@@ -21,7 +21,7 @@ def _enum_constants(path, prefix, skip_aliases=True):
             continue
         if skip_aliases and value.startswith(prefix + '_'):
             continue  # alias of another constant
-        if name.endswith('_COUNT') or name.endswith('_START') or name.endswith('_END') or '_FIRST' in name or '_LAST' in name:
+        if name.endswith(('_COUNT', '_START', '_END', '_FIRST', '_LAST')):
             continue
         seen.add(name)
         found.append(name)
