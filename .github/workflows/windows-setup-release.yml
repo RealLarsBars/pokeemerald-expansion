@@ -1,0 +1,41 @@
+name: Windows setup release
+
+# Packs the files in windows/ into EmeraldSetup.zip and publishes it as a
+# GitHub release, so the setup can be downloaded from the Releases page.
+# Runs whenever windows/ changes on master, or by hand from the Actions tab.
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'windows/**'
+      - '.github/workflows/windows-setup-release.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    if: github.repository_owner == 'RealLarsBars'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build EmeraldSetup.zip
+        run: |
+          cd windows
+          zip -X ../EmeraldSetup.zip Setup.bat setup.ps1 play.ps1 editor.ps1 README.md
+
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          tag="setup-v${{ github.run_number }}"
+          gh release create "$tag" EmeraldSetup.zip \
+            --target "${{ github.sha }}" \
+            --title "Emerald Editor setup v${{ github.run_number }}" \
+            --latest \
+            --notes "Download **EmeraldSetup.zip**, unzip it, and double-click **Setup.bat**. See README.md inside the zip for the steps. You only need this once: after setup, the editor's Update button gets new features."
