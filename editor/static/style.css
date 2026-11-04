@@ -210,3 +210,14 @@ main { flex: 1; min-height: 0; }
 .iconbtn:hover { background: var(--panel-2); color: var(--warn); }
 .evs { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; }
 .stats input { padding: 5px 8px; border: 1px solid var(--line); border-radius: 7px; background: var(--bg); }
+
+/* Searchable dropdown used by every box with a list of choices */
+.picker { position: fixed; z-index: 1000; max-height: 320px; overflow-y: auto; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; box-shadow: 0 8px 24px rgba(0,0,0,.18); padding: 4px; }
+.picker.hidden { display: none; }
+.picker .pick { display: flex; align-items: center; gap: 8px; padding: 5px 8px; border-radius: 6px; cursor: pointer; white-space: nowrap; }
+.picker .pick img { width: 32px; height: 32px; object-fit: cover; object-position: top; image-rendering: pixelated; flex: none; }
+.picker .pick img[src=""] { visibility: hidden; }
+.picker .pick:hover { background: var(--panel-2); }
+.picker .pick.active { background: var(--accent-soft); }
+.picker .pick.chosen { font-weight: 600; }
+.picker .pick.none { color: var(--muted); cursor: default; }
