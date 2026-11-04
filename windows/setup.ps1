@@ -221,9 +221,36 @@ Copy-Item -Path (Join-Path $PSScriptRoot 'editor.ps1') -Destination $ToolsDir -F
     mgbaPath      = $mgba
 } | ConvertTo-Json | Set-Content -Path $ConfigPath -Encoding UTF8
 
-New-Shortcut -Name 'Emerald Editor' -Target "$PSHOME\powershell.exe" `
-    -Arguments "-NoProfile -ExecutionPolicy Bypass -File `"$ToolsDir\editor.ps1`"" `
-    -Icon "$env:SystemRoot\System32\shell32.dll,269"
+# A small EmeraldEditor.exe that starts the editor with no console window.
+$editorExe = Join-Path $ToolsDir 'EmeraldEditor.exe'
+$launcherSource = @'
+using System.Diagnostics;
+using System.IO;
+using System.Reflection;
+static class EmeraldEditorLauncher {
+    static void Main() {
+        string dir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+        ProcessStartInfo psi = new ProcessStartInfo("powershell.exe",
+            "-NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File \"" + Path.Combine(dir, "editor.ps1") + "\"");
+        psi.UseShellExecute = false;
+        psi.CreateNoWindow = true;
+        Process.Start(psi);
+    }
+}
+'@
+try {
+    Remove-Item $editorExe -Force -ErrorAction SilentlyContinue
+    Add-Type -TypeDefinition $launcherSource -OutputAssembly $editorExe -OutputType WindowsApplication
+} catch {
+    Write-Host "Could not make EmeraldEditor.exe ($($_.Exception.Message)). The shortcut will use PowerShell instead."
+}
+if (Test-Path $editorExe) {
+    New-Shortcut -Name 'Emerald Editor' -Target $editorExe -Icon "$env:SystemRoot\System32\shell32.dll,269"
+} else {
+    New-Shortcut -Name 'Emerald Editor' -Target "$PSHOME\powershell.exe" `
+        -Arguments "-NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File `"$ToolsDir\editor.ps1`"" `
+        -Icon "$env:SystemRoot\System32\shell32.dll,269"
+}
 New-Shortcut -Name 'Emerald Project' -Target $windowsProject -Icon "$env:SystemRoot\System32\shell32.dll,3"
 $playIcon = if ($mgba) { "$mgba,0" } else { "$env:SystemRoot\System32\shell32.dll,137" }
 New-Shortcut -Name 'Play Emerald' -Target "$PSHOME\powershell.exe" `
