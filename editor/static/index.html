@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Emerald Editor</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">Emerald Editor</div>
+  <nav class="tabs" role="tablist">
+    <button class="tab active" data-view="trainers">Trainers</button>
+    <button class="tab" data-view="dialogue">Dialogue</button>
+    <button class="tab" data-view="scripts">Scripts</button>
+  </nav>
+  <div class="actions">
+    <button id="updateBtn" class="btn ghost" title="Get the newest version of the editor">Update<span id="updateBadge" class="badge hidden"></span></button>
+    <button id="playBtn" class="btn primary" title="Build your changes and open the game in mGBA">&#9654; Play</button>
+  </div>
+</header>
+
+<main>
+  <!-- TRAINERS -->
+  <section id="view-trainers" class="view active">
+    <aside class="sidebar">
+      <input id="trainerSearch" class="search" type="search" placeholder="Search trainers, classes, Pokémon...">
+      <div id="trainerList" class="list"></div>
+    </aside>
+    <div id="trainerEditor" class="editor">
+      <div class="empty">Pick a trainer on the left.</div>
+    </div>
+  </section>
+
+  <!-- DIALOGUE -->
+  <section id="view-dialogue" class="view">
+    <aside class="sidebar wide">
+      <div class="searchrow">
+        <input id="textSearch" class="search" type="search" placeholder="Search all dialogue...">
+        <label class="check"><input type="checkbox" id="textCase"> Match case</label>
+      </div>
+      <div class="replacerow">
+        <input id="textReplace" class="search" type="text" placeholder="Replace with... (optional)">
+        <button id="replaceBtn" class="btn" disabled>Replace in ticked</button>
+      </div>
+      <div class="listhead"><label class="check"><input type="checkbox" id="textSelectAll" checked> Tick all</label><span id="textCount"></span></div>
+      <div id="textResults" class="list"></div>
+    </aside>
+    <div id="textEditor" class="editor">
+      <div class="empty">Search for any words the game says, then pick a result to edit it.</div>
+    </div>
+  </section>
+
+  <!-- SCRIPTS -->
+  <section id="view-scripts" class="view">
+    <aside class="sidebar">
+      <input id="scriptSearch" class="search" type="search" placeholder="Find a map or script file...">
+      <div id="scriptList" class="list"></div>
+    </aside>
+    <div id="scriptEditor" class="editor">
+      <div class="empty">Pick a map on the left to edit what happens there.</div>
+    </div>
+  </section>
+</main>
+
+<div id="jobPanel" class="jobpanel hidden">
+  <div class="jobhead">
+    <span id="jobTitle"></span>
+    <span id="jobMessage"></span>
+    <button id="jobLogToggle" class="btn small ghost">Show details</button>
+    <button id="jobClose" class="btn small ghost">Close</button>
+  </div>
+  <pre id="jobLog" class="joblog hidden"></pre>
+</div>
+
+<div id="modal" class="modal hidden" role="dialog" aria-modal="true">
+  <div class="modalbox">
+    <div class="modalhead"><h2 id="modalTitle"></h2><button id="modalClose" class="btn small ghost">Close</button></div>
+    <div id="modalBody" class="modalbody"></div>
+  </div>
+</div>
+
+<div id="toast" class="toast hidden"></div>
+
+<datalist id="dl-species"></datalist>
+<datalist id="dl-moves"></datalist>
+<datalist id="dl-items"></datalist>
+<datalist id="dl-abilities"></datalist>
+<datalist id="dl-natures"></datalist>
+<datalist id="dl-types"></datalist>
+<datalist id="dl-balls"></datalist>
+
+<script src="/static/app.js"></script>
+</body>
+</html>
