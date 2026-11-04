@@ -144,6 +144,13 @@ if dpkg -s $Packages >/dev/null 2>&1; then
 else
     APT='-y -o Dpkg::Options::=--force-confdef -o Dpkg::Options::=--force-confold'
     apt-get update
+    # On WSL 1, systemd's update script cannot lock /etc/passwd and fails, which
+    # leaves apt stuck. Nothing uses systemd-sysusers there, so make it a no-op.
+    if grep -q Microsoft /proc/version && [ ! -e /usr/bin/systemd-sysusers.distrib ]; then
+        echo 'WSL 1 detected: working around the systemd-sysusers update problem.'
+        dpkg-divert --local --rename --add /usr/bin/systemd-sysusers
+        ln -sf /bin/true /usr/bin/systemd-sysusers
+    fi
     # Repair a half-finished Ubuntu update first, or apt refuses to install anything.
     dpkg --configure -a
     apt-get `$APT --fix-broken install
