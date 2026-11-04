@@ -26,8 +26,10 @@ class PartyFile:
         self.load()
 
     def load(self):
-        text = read_text(self.path)
+        self.load_text(read_text(self.path))
         self.mtime = os.path.getmtime(self.path)
+
+    def load_text(self, text):
         lines = text.splitlines(keepends=True)
         starts = [i for i, l in enumerate(lines) if HEADER_RE.match(l.rstrip('\r\n'))]
         self.preamble = ''.join(lines[:starts[0]]) if starts else text

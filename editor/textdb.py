@@ -75,8 +75,8 @@ class Entry:
                 'line': self.start + 1}
 
 
-def parse_file(path):
-    lines = read_text(path).split('\n')
+def parse_file(path, text=None):
+    lines = (read_text(path) if text is None else text).split('\n')
     entries = []
     if path.endswith('.c'):
         for i, line in enumerate(lines):

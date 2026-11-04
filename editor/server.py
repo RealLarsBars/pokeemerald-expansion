@@ -21,12 +21,14 @@ from urllib.parse import urlparse, parse_qs
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 import configs  # noqa: E402
+import funmodes  # noqa: E402
 import gamedata  # noqa: E402
 import maps  # noqa: E402
 import species  # noqa: E402
 import tasks  # noqa: E402
 import textdb  # noqa: E402
 import trainers  # noqa: E402
+import versions  # noqa: E402
 from common import ROOT, project_path, read_text, write_text  # noqa: E402
 from pngutil import with_transparent_background  # noqa: E402
 
@@ -156,6 +158,9 @@ class Handler(BaseHTTPRequestHandler):
             traceback.print_exc()
             self._send(500, {'error': '%s: %s' % (type(e).__name__, e)})
 
+    def _fun(self, path, body):
+        self._send(200, _fun_post(self, path, body))
+
     # ---- GET ----
     def _get(self, path, q):
         S = STATE
@@ -227,6 +232,8 @@ class Handler(BaseHTTPRequestHandler):
             return self._send(200, S.job.snapshot(int(q.get('since', 0))))
         if path == '/api/updates':
             return self._send(200, tasks.check_updates())
+        if path == '/api/fun/status':
+            return self._send(200, {'fun': versions.fun_status(), 'versions': versions.list_versions()})
         raise ApiError('Not found', 404)
 
     def _static(self, name):
@@ -275,6 +282,8 @@ class Handler(BaseHTTPRequestHandler):
             with S.lock:
                 write_text(full, text)
             return self._send(200, {'ok': True})
+        if path.startswith('/api/fun/'):
+            return self._fun(path, body)
         if path == '/api/play':
             started = S.job.start('Play', lambda job: tasks.play(job, S.mgba))
             return self._send(200, {'started': started})
@@ -290,6 +299,40 @@ class Handler(BaseHTTPRequestHandler):
             started = S.job.start('Update', do_update)
             return self._send(200, {'started': started})
         raise ApiError('Not found', 404)
+
+
+def _fun_changed():
+    """Files changed underneath the editor: drop cached lists."""
+    STATE._gamedata = None
+
+
+def _fun_post(handler, path, body):
+    S = STATE
+    if S.job.snapshot()['state'] == 'running':
+        raise ApiError('Wait for the current build or update to finish first.')
+    with S.lock:
+        try:
+            if path == '/api/fun/run':
+                res = funmodes.run(body.get('settings') or {}, bool(body.get('apply')))
+                if res['applied']:
+                    _fun_changed()
+                return res
+            if path == '/api/fun/undo':
+                versions.undo_fun()
+            elif path == '/api/fun/reset':
+                versions.reset_to_base()
+            elif path == '/api/fun/version/save':
+                versions.save_version(body.get('name', ''))
+            elif path == '/api/fun/version/switch':
+                versions.switch_to(body['id'])
+            elif path == '/api/fun/version/delete':
+                versions.delete_version(body['id'])
+            else:
+                raise ApiError('Not found', 404)
+        except (KeyError, ValueError, RuntimeError) as e:
+            raise ApiError(str(e).strip("'"))
+        _fun_changed()
+        return {'ok': True}
 
 
 def main():

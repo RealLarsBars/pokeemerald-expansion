@@ -1,0 +1,940 @@
+/* Hand-built Hard mode teams for Hoenn's big fights.
+   Each team has a plan (weather, Trick Room, redirection, setup sweepers)
+   so the AI plays to it. Levels sit a little above the originals; with
+   level caps on, the cap for each badge matches the leader's top level.
+   Only the fields listed here change; name, picture and music stay. */
+
+=== TRAINER_ROXANNE_1 ===
+AI: Smart Trainer
+
+Hippopotas @ Smooth Rock
+Level: 14
+Ability: Sand Stream
+Nature: Impish
+- Yawn
+- Bite
+- Sand Tomb
+- Stealth Rock
+
+Drilbur @ Sitrus Berry
+Level: 14
+Ability: Sand Rush
+Nature: Jolly
+- Hone Claws
+- Rock Tomb
+- Metal Claw
+- Mud Slap
+
+Geodude @ Oran Berry
+Level: 15
+Ability: Sturdy
+Nature: Adamant
+- Rock Polish
+- Rock Tomb
+- Bulldoze
+- Smack Down
+
+Nosepass @ Eviolite
+Level: 16
+Ability: Sturdy
+Nature: Bold
+- Thunder Wave
+- Rock Tomb
+- Shock Wave
+- Block
+
+=== TRAINER_BRAWLY_1 ===
+AI: Smart Trainer
+
+Mienfoo @ Sitrus Berry
+Level: 18
+Ability: Regenerator
+Nature: Jolly
+- Fake Out
+- Drain Punch
+- U Turn
+- Detect
+
+Makuhita @ Oran Berry
+Level: 18
+Ability: Thick Fat
+Nature: Adamant
+- Fake Out
+- Arm Thrust
+- Knock Off
+- Bulk Up
+
+Meditite @ Black Belt
+Level: 19
+Ability: Pure Power
+Nature: Jolly
+- Force Palm
+- Psycho Cut
+- Bullet Punch
+- Detect
+
+Timburr @ Eviolite
+Level: 20
+Ability: Iron Fist
+Nature: Adamant
+- Mach Punch
+- Drain Punch
+- Rock Tomb
+- Bulk Up
+
+=== TRAINER_WATTSON_1 ===
+AI: Smart Trainer
+Double Battle: Yes
+
+Pachirisu @ Sitrus Berry
+Level: 23
+Ability: Volt Absorb
+Nature: Impish
+- Follow Me
+- Nuzzle
+- Super Fang
+- Protect
+
+Rotom @ Magnet
+Level: 24
+Ability: Levitate
+Nature: Timid
+- Discharge
+- Hex
+- Will O Wisp
+- Protect
+
+Magnemite @ Eviolite
+Level: 23
+Ability: Sturdy
+Nature: Modest
+- Electro Ball
+- Flash Cannon
+- Thunder Wave
+- Protect
+
+Flaaffy @ Eviolite
+Level: 25
+Ability: Static
+Nature: Modest
+- Discharge
+- Power Gem
+- Cotton Guard
+- Protect
+
+Manectric @ Life Orb
+Level: 26
+Ability: Lightning Rod
+Nature: Timid
+- Volt Switch
+- Flamethrower
+- Snarl
+- Protect
+
+=== TRAINER_FLANNERY_1 ===
+AI: Smart Trainer
+
+Torkoal @ Heat Rock
+Level: 29
+Ability: Drought
+Nature: Bold
+- Stealth Rock
+- Lava Plume
+- Yawn
+- Rapid Spin
+
+Weepinbell @ Eviolite
+Level: 28
+Ability: Chlorophyll
+Nature: Modest
+- Growth
+- Solar Beam
+- Sludge Bomb
+- Sleep Powder
+
+Houndour @ Charcoal
+Level: 28
+Ability: Flash Fire
+Nature: Timid
+- Nasty Plot
+- Flamethrower
+- Dark Pulse
+- Sucker Punch
+
+Camerupt @ Sitrus Berry
+Level: 29
+Ability: Solid Rock
+Nature: Modest
+- Earth Power
+- Flamethrower
+- Rock Slide
+- Yawn
+
+Ninetales @ Life Orb
+Level: 31
+Ability: Drought
+Nature: Timid
+- Nasty Plot
+- Flamethrower
+- Solar Beam
+- Will O Wisp
+
+=== TRAINER_NORMAN_1 ===
+AI: Smart Trainer
+
+Ditto @ Choice Scarf
+Level: 31
+Ability: Imposter
+Nature: Jolly
+- Transform
+
+Vigoroth @ Eviolite
+Level: 32
+Ability: Vital Spirit
+Nature: Adamant
+- Encore
+- Knock Off
+- Body Slam
+- Bulk Up
+
+Linoone @ Sitrus Berry
+Level: 32
+Ability: Gluttony
+Nature: Jolly
+- Belly Drum
+- Extreme Speed
+- Shadow Claw
+- Seed Bomb
+
+Porygon2 @ Eviolite
+Level: 33
+Ability: Download
+Nature: Modest
+- Tri Attack
+- Ice Beam
+- Thunder Wave
+- Recover
+
+Slaking @ Silk Scarf
+Level: 34
+Ability: Truant
+Nature: Adamant
+- Double Edge
+- Earthquake
+- Shadow Claw
+- Slack Off
+
+=== TRAINER_WINONA_1 ===
+AI: Smart Trainer
+
+Pelipper @ Damp Rock
+Level: 33
+Ability: Drizzle
+Nature: Modest
+- Hurricane
+- Scald
+- U Turn
+- Roost
+
+Skarmory @ Rocky Helmet
+Level: 34
+Ability: Sturdy
+Nature: Impish
+- Spikes
+- Roost
+- Steel Wing
+- Whirlwind
+
+Tropius @ Sitrus Berry
+Level: 33
+Ability: Harvest
+Nature: Bold
+- Leech Seed
+- Air Slash
+- Synthesis
+- Protect
+
+Hawlucha @ Sitrus Berry
+Level: 34
+Ability: Unburden
+Nature: Jolly
+- Swords Dance
+- Acrobatics
+- Brick Break
+- Roost
+
+Swellow @ Flame Orb
+Level: 35
+Ability: Guts
+Nature: Jolly
+- Facade
+- Brave Bird
+- Quick Attack
+- U Turn
+
+Altaria @ Leftovers
+Level: 36
+Ability: Natural Cure
+Nature: Adamant
+- Dragon Dance
+- Dragon Claw
+- Earthquake
+- Roost
+
+=== TRAINER_TATE_AND_LIZA_1 ===
+AI: Smart Trainer
+Double Battle: Yes
+
+Bronzong @ Mental Herb
+Level: 43
+Ability: Levitate
+Nature: Relaxed
+- Trick Room
+- Gyro Ball
+- Hypnosis
+- Protect
+
+Claydol @ Sitrus Berry
+Level: 43
+Ability: Levitate
+Nature: Brave
+- Earthquake
+- Psychic
+- Reflect
+- Protect
+
+Solrock @ Life Orb
+Level: 44
+Ability: Levitate
+Nature: Brave
+- Rock Slide
+- Flare Blitz
+- Zen Headbutt
+- Protect
+
+Lunatone @ Wise Glasses
+Level: 44
+Ability: Levitate
+Nature: Quiet
+- Earth Power
+- Moonblast
+- Psychic
+- Protect
+
+Exeggutor @ Leftovers
+Level: 43
+Ability: Harvest
+Nature: Quiet
+- Giga Drain
+- Psychic
+- Sleep Powder
+- Protect
+
+Reuniclus @ Life Orb
+Level: 45
+Ability: Magic Guard
+Nature: Quiet
+- Trick Room
+- Psychic
+- Focus Blast
+- Shadow Ball
+
+=== TRAINER_JUAN_1 ===
+AI: Smart Trainer
+
+Politoed @ Damp Rock
+Level: 45
+Ability: Drizzle
+Nature: Bold
+- Scald
+- Ice Beam
+- Encore
+- Hypnosis
+
+Crawdaunt @ Focus Sash
+Level: 45
+Ability: Adaptability
+Nature: Adamant
+- Crabhammer
+- Knock Off
+- Aqua Jet
+- Swords Dance
+
+Whiscash @ Leftovers
+Level: 45
+Ability: Hydration
+Nature: Adamant
+- Dragon Dance
+- Waterfall
+- Earthquake
+- Rest
+
+Lapras @ Sitrus Berry
+Level: 46
+Ability: Water Absorb
+Nature: Modest
+- Freeze Dry
+- Thunder
+- Surf
+- Ice Shard
+
+Ludicolo @ Choice Specs
+Level: 46
+Ability: Swift Swim
+Nature: Modest
+- Hydro Pump
+- Giga Drain
+- Ice Beam
+- Focus Blast
+
+Kingdra @ Life Orb
+Level: 48
+Ability: Swift Swim
+Nature: Adamant
+- Dragon Dance
+- Waterfall
+- Outrage
+- Iron Head
+
+=== TRAINER_SIDNEY ===
+AI: Smart Trainer
+
+Cacturne @ Focus Sash
+Level: 52
+Ability: Water Absorb
+Nature: Jolly
+- Spikes
+- Sucker Punch
+- Seed Bomb
+- Destiny Bond
+
+Mightyena @ Sitrus Berry
+Level: 52
+Ability: Intimidate
+Nature: Adamant
+- Crunch
+- Play Rough
+- Sucker Punch
+- Taunt
+
+Shiftry @ Life Orb
+Level: 53
+Ability: Chlorophyll
+Nature: Adamant
+- Swords Dance
+- Leaf Blade
+- Knock Off
+- Sucker Punch
+
+Weavile @ Choice Band
+Level: 54
+Ability: Pressure
+Nature: Jolly
+- Icicle Crash
+- Knock Off
+- Ice Shard
+- Low Kick
+
+Krookodile @ Choice Scarf
+Level: 54
+Ability: Moxie
+Nature: Jolly
+- Earthquake
+- Knock Off
+- Stone Edge
+- Superpower
+
+Absol @ Scope Lens
+Level: 56
+Ability: Super Luck
+Nature: Adamant
+- Swords Dance
+- Night Slash
+- Psycho Cut
+- Sucker Punch
+
+=== TRAINER_PHOEBE ===
+AI: Smart Trainer
+
+Dusclops @ Eviolite
+Level: 53
+Ability: Frisk
+Nature: Relaxed
+- Trick Room
+- Will O Wisp
+- Night Shade
+- Pain Split
+
+Sableye @ Leftovers
+Level: 54
+Ability: Prankster
+Nature: Careful
+- Will O Wisp
+- Recover
+- Foul Play
+- Taunt
+
+Banette @ Life Orb
+Level: 54
+Ability: Cursed Body
+Nature: Brave
+- Shadow Claw
+- Gunk Shot
+- Knock Off
+- Shadow Sneak
+
+Mimikyu @ Lum Berry
+Level: 54
+Ability: Disguise
+Nature: Jolly
+- Swords Dance
+- Play Rough
+- Shadow Claw
+- Shadow Sneak
+
+Gengar @ Focus Sash
+Level: 55
+Ability: Cursed Body
+Nature: Timid
+- Nasty Plot
+- Shadow Ball
+- Sludge Bomb
+- Focus Blast
+
+Dusknoir @ Leftovers
+Level: 57
+Ability: Frisk
+Nature: Brave
+- Poltergeist
+- Earthquake
+- Ice Punch
+- Shadow Sneak
+
+=== TRAINER_GLACIA ===
+AI: Smart Trainer
+
+Ninetales-Alola @ Light Clay
+Level: 54
+Ability: Snow Warning
+Nature: Timid
+- Aurora Veil
+- Blizzard
+- Moonblast
+- Freeze Dry
+
+Froslass @ Focus Sash
+Level: 54
+Ability: Cursed Body
+Nature: Jolly
+- Spikes
+- Taunt
+- Poltergeist
+- Destiny Bond
+
+Cloyster @ White Herb
+Level: 55
+Ability: Skill Link
+Nature: Adamant
+- Shell Smash
+- Icicle Spear
+- Rock Blast
+- Ice Shard
+
+Beartic @ Life Orb
+Level: 55
+Ability: Slush Rush
+Nature: Adamant
+- Swords Dance
+- Icicle Crash
+- Superpower
+- Aqua Jet
+
+Mamoswine @ Choice Band
+Level: 55
+Ability: Thick Fat
+Nature: Adamant
+- Earthquake
+- Icicle Crash
+- Ice Shard
+- Stone Edge
+
+Walrein @ Leftovers
+Level: 57
+Ability: Thick Fat
+Nature: Modest
+- Blizzard
+- Surf
+- Yawn
+- Protect
+
+=== TRAINER_DRAKE ===
+AI: Smart Trainer
+
+Garchomp @ Rocky Helmet
+Level: 55
+Ability: Rough Skin
+Nature: Jolly
+- Stealth Rock
+- Earthquake
+- Dragon Tail
+- Fire Fang
+
+Flygon @ Choice Scarf
+Level: 55
+Ability: Levitate
+Nature: Jolly
+- Earthquake
+- Outrage
+- U Turn
+- Stone Edge
+
+Dragapult @ Choice Specs
+Level: 56
+Ability: Infiltrator
+Nature: Timid
+- Draco Meteor
+- Shadow Ball
+- Flamethrower
+- U Turn
+
+Goodra @ Assault Vest
+Level: 56
+Ability: Sap Sipper
+Nature: Modest
+- Draco Meteor
+- Fire Blast
+- Sludge Bomb
+- Thunderbolt
+
+Haxorus @ Life Orb
+Level: 56
+Ability: Mold Breaker
+Nature: Jolly
+- Dragon Dance
+- Outrage
+- Earthquake
+- Poison Jab
+
+Salamence @ Lum Berry
+Level: 58
+Ability: Moxie
+Nature: Adamant
+- Dragon Dance
+- Outrage
+- Earthquake
+- Fire Fang
+
+=== TRAINER_WALLACE ===
+AI: Smart Trainer
+
+Rotom-Wash @ Leftovers
+Level: 58
+Ability: Levitate
+Nature: Bold
+- Volt Switch
+- Hydro Pump
+- Will O Wisp
+- Pain Split
+
+Toxapex @ Black Sludge
+Level: 58
+Ability: Regenerator
+Nature: Bold
+- Scald
+- Toxic
+- Recover
+- Haze
+
+Starmie @ Life Orb
+Level: 59
+Ability: Natural Cure
+Nature: Timid
+- Hydro Pump
+- Psyshock
+- Ice Beam
+- Recover
+
+Gyarados @ Sitrus Berry
+Level: 59
+Ability: Intimidate
+Nature: Jolly
+- Dragon Dance
+- Waterfall
+- Earthquake
+- Ice Fang
+
+Primarina @ Choice Specs
+Level: 59
+Ability: Liquid Voice
+Nature: Modest
+- Hyper Voice
+- Moonblast
+- Energy Ball
+- Psychic
+
+Milotic @ Leftovers
+Level: 61
+Ability: Marvel Scale
+Nature: Bold
+- Scald
+- Ice Beam
+- Recover
+- Coil
+
+=== TRAINER_WALLY_VR_1 ===
+AI: Smart Trainer
+
+Roserade @ Focus Sash
+Level: 48
+Ability: Natural Cure
+Nature: Timid
+- Sleep Powder
+- Sludge Bomb
+- Giga Drain
+- Toxic Spikes
+
+Magnezone @ Choice Specs
+Level: 48
+Ability: Magnet Pull
+Nature: Modest
+- Thunderbolt
+- Flash Cannon
+- Volt Switch
+- Body Press
+
+Altaria @ Leftovers
+Level: 49
+Ability: Natural Cure
+Nature: Adamant
+- Dragon Dance
+- Dragon Claw
+- Earthquake
+- Roost
+
+Medicham @ Sitrus Berry
+Level: 49
+Ability: Pure Power
+Nature: Jolly
+- High Jump Kick
+- Zen Headbutt
+- Bullet Punch
+- Ice Punch
+
+Gallade @ Life Orb
+Level: 50
+Ability: Justified
+Nature: Jolly
+- Swords Dance
+- Sacred Sword
+- Psycho Cut
+- Leaf Blade
+
+Gardevoir @ Choice Scarf
+Level: 51
+Ability: Trace
+Nature: Timid
+- Moonblast
+- Psychic
+- Mystical Fire
+- Trick
+
+=== TRAINER_MAXIE_MT_CHIMNEY ===
+AI: Smart Trainer
+
+Numel @ Eviolite
+Level: 24
+Ability: Simple
+Nature: Modest
+- Amnesia
+- Flame Burst
+- Earth Power
+- Yawn
+
+Golbat @ Eviolite
+Level: 25
+Ability: Inner Focus
+Nature: Jolly
+- Cross Poison
+- Wing Attack
+- Confuse Ray
+- Haze
+
+Mightyena @ Sitrus Berry
+Level: 25
+Ability: Intimidate
+Nature: Adamant
+- Crunch
+- Fire Fang
+- Sucker Punch
+- Taunt
+
+Camerupt @ Charcoal
+Level: 27
+Ability: Solid Rock
+Nature: Modest
+- Earth Power
+- Lava Plume
+- Rock Slide
+- Yawn
+
+=== TRAINER_MAXIE_MAGMA_HIDEOUT ===
+AI: Smart Trainer
+
+Torkoal @ Heat Rock
+Level: 40
+Ability: Drought
+Nature: Bold
+- Stealth Rock
+- Lava Plume
+- Yawn
+- Rapid Spin
+
+Mightyena @ Sitrus Berry
+Level: 40
+Ability: Intimidate
+Nature: Adamant
+- Crunch
+- Fire Fang
+- Sucker Punch
+- Taunt
+
+Weezing @ Black Sludge
+Level: 40
+Ability: Levitate
+Nature: Bold
+- Will O Wisp
+- Sludge Bomb
+- Fire Blast
+- Pain Split
+
+Crobat @ Sharp Beak
+Level: 41
+Ability: Infiltrator
+Nature: Jolly
+- Brave Bird
+- Cross Poison
+- U Turn
+- Taunt
+
+Camerupt @ Life Orb
+Level: 43
+Ability: Solid Rock
+Nature: Modest
+- Eruption
+- Earth Power
+- Fire Blast
+- Yawn
+
+=== TRAINER_MAXIE_MOSSDEEP ===
+AI: Smart Trainer
+
+Torkoal @ Heat Rock
+Level: 45
+Ability: Drought
+Nature: Bold
+- Stealth Rock
+- Lava Plume
+- Yawn
+- Rapid Spin
+
+Mightyena @ Sitrus Berry
+Level: 45
+Ability: Intimidate
+Nature: Adamant
+- Crunch
+- Fire Fang
+- Sucker Punch
+- Taunt
+
+Weezing @ Black Sludge
+Level: 45
+Ability: Levitate
+Nature: Bold
+- Will O Wisp
+- Sludge Bomb
+- Fire Blast
+- Pain Split
+
+Houndoom @ Focus Sash
+Level: 46
+Ability: Flash Fire
+Nature: Timid
+- Nasty Plot
+- Fire Blast
+- Dark Pulse
+- Solar Beam
+
+Crobat @ Sharp Beak
+Level: 46
+Ability: Infiltrator
+Nature: Jolly
+- Brave Bird
+- Cross Poison
+- U Turn
+- Taunt
+
+Camerupt @ Life Orb
+Level: 48
+Ability: Solid Rock
+Nature: Modest
+- Eruption
+- Earth Power
+- Fire Blast
+- Yawn
+
+=== TRAINER_ARCHIE ===
+AI: Smart Trainer
+
+Pelipper @ Damp Rock
+Level: 43
+Ability: Drizzle
+Nature: Modest
+- Hurricane
+- Scald
+- U Turn
+- Roost
+
+Mightyena @ Sitrus Berry
+Level: 43
+Ability: Intimidate
+Nature: Adamant
+- Crunch
+- Play Rough
+- Sucker Punch
+- Taunt
+
+Toxicroak @ Life Orb
+Level: 43
+Ability: Dry Skin
+Nature: Adamant
+- Swords Dance
+- Gunk Shot
+- Drain Punch
+- Sucker Punch
+
+Crobat @ Sharp Beak
+Level: 44
+Ability: Infiltrator
+Nature: Jolly
+- Brave Bird
+- Cross Poison
+- U Turn
+- Taunt
+
+Barraskewda @ Choice Band
+Level: 44
+Ability: Swift Swim
+Nature: Adamant
+- Liquidation
+- Close Combat
+- Psychic Fangs
+- Aqua Jet
+
+Sharpedo @ Focus Sash
+Level: 46
+Ability: Speed Boost
+Nature: Adamant
+- Protect
+- Waterfall
+- Crunch
+- Ice Fang
