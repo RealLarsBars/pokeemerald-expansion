@@ -5,7 +5,8 @@
 #   2. Installs the build tools inside Ubuntu.
 #   3. Downloads the project into a folder called "Emerald" inside Ubuntu.
 #   4. Builds the game once to check everything works.
-#   5. Finds mGBA and puts "Emerald Project" and "Play Emerald" shortcuts on the desktop.
+#   5. Finds mGBA and puts "Emerald Editor", "Emerald Project" and "Play Emerald"
+#      shortcuts on the desktop.
 #
 # Keep this file ASCII only: Windows PowerShell 5.1 misreads other characters.
 
@@ -156,7 +157,13 @@ $linuxProject = "$linuxHome/$FolderName"
 $code = Invoke-Wsl @"
 set -e
 if [ -d '$linuxProject/.git' ]; then
-    echo 'The project folder already exists, keeping it as it is.'
+    echo 'The project folder already exists, keeping your changes.'
+    cd '$linuxProject'
+    if [ -z "`$(git status --porcelain)" ]; then
+        git pull --ff-only || echo 'Could not fetch the newest version right now; carrying on.'
+    else
+        echo 'You have edits in progress, so I did not fetch updates. Use the Update button in the editor.'
+    fi
 else
     git clone '$RepoUrl' '$linuxProject'
 fi
@@ -188,6 +195,7 @@ if ($mgba) { Write-Host "Using $mgba" } else { Write-Host 'No mGBA picked. Play 
 Write-Step 'Saving settings and making desktop shortcuts'
 New-Item -ItemType Directory -Path $ToolsDir -Force | Out-Null
 Copy-Item -Path (Join-Path $PSScriptRoot 'play.ps1') -Destination $ToolsDir -Force
+Copy-Item -Path (Join-Path $PSScriptRoot 'editor.ps1') -Destination $ToolsDir -Force
 
 [ordered]@{
     distro        = $Distro
@@ -197,6 +205,9 @@ Copy-Item -Path (Join-Path $PSScriptRoot 'play.ps1') -Destination $ToolsDir -For
     mgbaPath      = $mgba
 } | ConvertTo-Json | Set-Content -Path $ConfigPath -Encoding UTF8
 
+New-Shortcut -Name 'Emerald Editor' -Target "$PSHOME\powershell.exe" `
+    -Arguments "-NoProfile -ExecutionPolicy Bypass -File `"$ToolsDir\editor.ps1`"" `
+    -Icon "$env:SystemRoot\System32\shell32.dll,269"
 New-Shortcut -Name 'Emerald Project' -Target $windowsProject -Icon "$env:SystemRoot\System32\shell32.dll,3"
 $playIcon = if ($mgba) { "$mgba,0" } else { "$env:SystemRoot\System32\shell32.dll,137" }
 New-Shortcut -Name 'Play Emerald' -Target "$PSHOME\powershell.exe" `
@@ -207,6 +218,9 @@ Remove-ItemProperty -Path $RunOnceKey -Name 'EmeraldSetup' -ErrorAction Silently
 Write-Host ''
 Write-Host 'All done!' -ForegroundColor Green
 Write-Host "Your game folder is: $windowsProject"
-Write-Host "On your desktop, 'Emerald Project' opens that folder and 'Play Emerald' builds your changes and starts the game."
+Write-Host "On your desktop:"
+Write-Host "  'Emerald Editor'  edits trainers, dialogue and scripts (it has its own Play button)."
+Write-Host "  'Emerald Project' opens the game folder."
+Write-Host "  'Play Emerald'    builds your changes and starts the game in mGBA."
 Write-Host ''
 Read-Host 'Press Enter to close this window'
