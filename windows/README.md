@@ -24,9 +24,13 @@ anywhere, for example your Desktop.
 
 You now have three desktop shortcuts:
 
-- **Emerald Editor** opens the editor (trainers, dialogue, scripts) with its own
-  Play and Update buttons. A minimized `wsl` window appears on the taskbar while
-  the editor runs; closing that window closes the editor.
+- **Emerald Editor** opens the editor (trainers, Pokémon data, dialogue,
+  scripts, game settings) in its own window, with its own Play and Update
+  buttons. It points at `EmeraldEditor.exe` in `%LOCALAPPDATA%\EmeraldTools`,
+  which you can also pin to the taskbar or Start menu. The editor keeps running
+  quietly in the background after you close its window, so it opens instantly
+  next time; restarting the PC stops it. If it has a problem starting, a message
+  box shows what went wrong.
 - **Emerald Project** opens the game folder. Everything the game is made from
   is in there.
 - **Play Emerald** rebuilds only what you changed (usually a few seconds) and

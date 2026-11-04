@@ -14,6 +14,7 @@ import re
 import sys
 import threading
 import time
+import traceback
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from urllib.parse import urlparse, parse_qs
 
@@ -54,6 +55,7 @@ class State:
 
 
 STATE = None
+STATIC_TYPES = {'.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8'}
 
 
 class ApiError(Exception):
@@ -138,6 +140,7 @@ class Handler(BaseHTTPRequestHandler):
         except ApiError as e:
             self._send(e.status, {'error': str(e)})
         except Exception as e:  # keep the app alive, show the error
+            traceback.print_exc()
             self._send(500, {'error': '%s: %s' % (type(e).__name__, e)})
 
     def do_POST(self):
@@ -150,6 +153,7 @@ class Handler(BaseHTTPRequestHandler):
         except ApiError as e:
             self._send(e.status, {'error': str(e)})
         except Exception as e:
+            traceback.print_exc()
             self._send(500, {'error': '%s: %s' % (type(e).__name__, e)})
 
     # ---- GET ----
@@ -229,7 +233,8 @@ class Handler(BaseHTTPRequestHandler):
         full = os.path.abspath(os.path.join(STATIC, name))
         if not full.startswith(STATIC + os.sep) or not os.path.isfile(full):
             raise ApiError('Not found', 404)
-        ctype = mimetypes.guess_type(full)[0] or 'application/octet-stream'
+        # Fixed types for the page's own files: some systems map .js oddly.
+        ctype = STATIC_TYPES.get(os.path.splitext(full)[1]) or mimetypes.guess_type(full)[0] or 'application/octet-stream'
         with open(full, 'rb') as f:
             self._send(200, f.read(), ctype)
 
