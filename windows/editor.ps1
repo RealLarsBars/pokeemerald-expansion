@@ -5,6 +5,7 @@
 # Keep this file ASCII only: Windows PowerShell 5.1 misreads other characters.
 
 $ErrorActionPreference = 'Stop'
+$ProgressPreference = 'SilentlyContinue'
 $ConfigPath = Join-Path $env:LOCALAPPDATA 'EmeraldTools\config.json'
 $Url = 'http://localhost:8765'
 
@@ -21,10 +22,17 @@ trap {
                  $_.Exception.Message + "`n" + $_.InvocationInfo.PositionMessage)
 }
 
+# Checks 127.0.0.1 directly: "localhost" may try IPv6 first and time out,
+# and the editor only listens on IPv4.
 function Test-Editor {
     try {
-        $r = Invoke-WebRequest -Uri "$Url/api/ping" -UseBasicParsing -TimeoutSec 2
-        return ($r.StatusCode -eq 200)
+        $request = [System.Net.WebRequest]::Create('http://127.0.0.1:8765/api/ping')
+        $request.Timeout = 3000
+        $request.Proxy = $null
+        $response = $request.GetResponse()
+        $ok = ([int]$response.StatusCode -eq 200)
+        $response.Close()
+        return $ok
     } catch {
         return $false
     }
