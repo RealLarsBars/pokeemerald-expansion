@@ -17,8 +17,9 @@ then open <http://localhost:8765>.
 
 | Tab | What you can change | Files it writes |
 | --- | --- | --- |
-| Trainers | Battle picture, overworld sprite, name, class, music, single/double, items, AI, every Pokémon (species, level, item, ability, nature, moves, IVs, EVs, shiny, ball, tera type), what they say before and after battle. Paste or copy Showdown teams. Trainers with the same name are grouped, with all their battles side by side. | `src/data/trainers.party`, `data/maps/*/map.json`, the text files |
+| Trainers | Battle picture, overworld sprite, name, class, music, single/double, mugshot, starting field effects (terrain, Trick Room...), items, AI, every Pokémon (species, level, item, ability, nature, moves, IVs, EVs, shiny, ball, Tera type, Dynamax level, Gigantamax), what they say before and after battle. Paste or copy Showdown teams. Trainers with the same name are grouped, with all their battles side by side. | `src/data/trainers.party`, `data/maps/*/map.json`, the text files |
 | Dialogue | Search every line of text in the game, edit it with a text box preview that flags lines that are too wide, and find and replace across the ticked results. | `data/maps/*/scripts.inc`, `data/scripts/*.inc`, `data/text/*.inc`, `src/strings.c` |
+| Game settings | All of pokeemerald-expansion's switches in `include/config/` (about 1,400): battle mechanics by generation, AI, followers, DexNav, level caps, which generations of Pokémon exist, and more. On/off settings are checkboxes, generation settings are dropdowns, and every setting shows its own explanation. | `include/config/*.h` (only the value is changed) |
 | Scripts | Edit any map's script file, with helpers that insert common commands: messages, giving items or Pokémon, trainer battles, flags, healing, warps. | `data/maps/*/scripts.inc`, `data/scripts/*.inc` |
 
 Only the trainers and texts you change are rewritten; the rest of each file
@@ -37,8 +38,10 @@ anything if the two conflict.
 - `textdb.py`: indexes `.string` texts, converts them to plain text and back.
 - `maps.py`: links trainers to the map objects and texts that use them.
 - `gamedata.py`: species, moves, items, sprites and other lists read from the C headers.
+- `configs.py`: reads and changes the `include/config` switches.
 - `tasks.py`: build, play and update jobs.
 - `static/`: the page itself (plain HTML, CSS and JavaScript).
 
-Not supported yet: adding brand new trainers (they also need an ID in
-`include/constants/opponents.h`), and wild encounter tables.
+Not supported yet: Pokémon data (base stats, types, learnsets, evolutions),
+wild encounter tables, trainer party pools, and adding brand new trainers
+(they also need an ID in `include/constants/opponents.h`).

@@ -186,6 +186,16 @@ def _flags():
             if not f.startswith(('FLAG_UNUSED', 'FLAG_HIDDEN_ITEMS_START', 'FLAG_SPECIAL_FLAGS'))]
 
 
+def _starting_status():
+    text = read_text(os.path.join(ROOT, 'include/constants/battle.h'))
+    return [pretty_name(c[len('STARTING_STATUS_'):]) for c in re.findall(r'F\((STARTING_STATUS_\w+)', text)]
+
+
+def _gens():
+    text = read_text(os.path.join(ROOT, 'include/config/general.h'))
+    return re.findall(r'^#define\s+(GEN_(?:\d|LATEST|CHAMPIONS))\b', text, re.M)
+
+
 def load():
     trainers_h = os.path.join(ROOT, 'include/constants/trainers.h')
     return {
@@ -203,4 +213,6 @@ def load():
         'balls': _balls(),
         'maps': _maps(),
         'flags': _flags(),
+        'startingStatus': _starting_status(),
+        'gens': _gens(),
     }
