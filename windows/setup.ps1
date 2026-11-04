@@ -152,7 +152,9 @@ else
         ln -sf /bin/true /usr/bin/systemd-sysusers
     fi
     # Repair a half-finished Ubuntu update first, or apt refuses to install anything.
-    dpkg --configure -a
+    # This can still report errors (for example a library that needs updating);
+    # the --fix-broken step below sorts those out, so do not stop here.
+    dpkg --configure -a || true
     apt-get `$APT --fix-broken install
     apt-get `$APT full-upgrade
     apt-get `$APT install $Packages
