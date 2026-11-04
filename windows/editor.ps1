@@ -5,6 +5,7 @@
 # Keep this file ASCII only: Windows PowerShell 5.1 misreads other characters.
 
 $ErrorActionPreference = 'Stop'
+$ProgressPreference = 'SilentlyContinue'
 $ConfigPath = Join-Path $env:LOCALAPPDATA 'EmeraldTools\config.json'
 $Url = 'http://localhost:8765'
 
@@ -15,10 +16,23 @@ function Stop-Editor([string]$Message) {
     exit 1
 }
 
+# Any unexpected error also ends up in a message box instead of vanishing.
+trap {
+    Stop-Editor ("The Emerald Editor hit a problem. Send a screenshot of this message to Claude in your project.`n`n" +
+                 $_.Exception.Message + "`n" + $_.InvocationInfo.PositionMessage)
+}
+
+# Checks 127.0.0.1 directly: "localhost" may try IPv6 first and time out,
+# and the editor only listens on IPv4.
 function Test-Editor {
     try {
-        $r = Invoke-WebRequest -Uri "$Url/api/ping" -UseBasicParsing -TimeoutSec 2
-        return ($r.StatusCode -eq 200)
+        $request = [System.Net.WebRequest]::Create('http://127.0.0.1:8765/api/ping')
+        $request.Timeout = 3000
+        $request.Proxy = $null
+        $response = $request.GetResponse()
+        $ok = ([int]$response.StatusCode -eq 200)
+        $response.Close()
+        return $ok
     } catch {
         return $false
     }
@@ -28,7 +42,12 @@ if (-not (Test-Path $ConfigPath)) { Stop-Editor 'Setup has not been run yet. Dou
 $config = Get-Content $ConfigPath -Raw | ConvertFrom-Json
 
 if (-not (Test-Editor)) {
-    Write-Host 'Starting the Emerald Editor...' -ForegroundColor Cyan
+    # A small notice near the clock, so it is clear something is happening.
+    Add-Type -AssemblyName System.Windows.Forms, System.Drawing
+    $notice = New-Object System.Windows.Forms.NotifyIcon
+    $notice.Icon = [System.Drawing.SystemIcons]::Information
+    $notice.Visible = $true
+    $notice.ShowBalloonTip(10000, 'Emerald Editor', 'Starting the editor, this can take a moment...', 'Info')
     # Pass the mGBA path into Ubuntu so the Play button can open it.
     $env:EMERALD_MGBA = [string]$config.mgbaPath
     $env:WSLENV = 'EMERALD_MGBA'
@@ -37,10 +56,11 @@ if (-not (Test-Editor)) {
         "-d $($config.distro) --cd `"$($config.linuxProject)`" -- bash -c `"python3 editor/server.py > /tmp/emerald-editor.log 2>&1`"")
 
     $started = $false
-    for ($i = 0; $i -lt 60; $i++) {
+    for ($i = 0; $i -lt 180; $i++) {   # up to 90 seconds
         Start-Sleep -Milliseconds 500
         if (Test-Editor) { $started = $true; break }
     }
+    $notice.Dispose()
     if (-not $started) {
         $log = (& wsl.exe -d $config.distro -- tail -n 15 /tmp/emerald-editor.log 2>$null) -join "`n"
         Stop-Editor ("The editor did not start. Send a screenshot of this message to Claude in your project.`n`n" + $log)
