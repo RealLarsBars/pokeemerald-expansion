@@ -27,3 +27,5 @@ Makefile text eol=lf
 
 *.h linguist-language=C
 *.inc linguist-language=Assembly
+*.bat text eol=crlf
+*.ps1 text eol=crlf
