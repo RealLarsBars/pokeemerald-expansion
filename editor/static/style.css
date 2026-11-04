@@ -185,3 +185,14 @@ main { flex: 1; min-height: 0; }
 .battle .bsub { font-size: 12px; color: var(--muted); }
 .battle .bmons { display: flex; gap: 2px; margin-top: 6px; }
 .battle .bmons img { width: 36px; height: 36px; object-fit: cover; object-position: top; image-rendering: pixelated; }
+
+.setting { display: grid; grid-template-columns: minmax(200px, 300px) minmax(140px, 200px) 1fr; gap: 12px; align-items: center; padding: 8px 4px; border-bottom: 1px solid var(--line); }
+.setting.changed { background: var(--accent-soft); border-radius: 6px; }
+.setting .sname { font-family: Consolas, ui-monospace, monospace; font-size: 12.5px; word-break: break-all; }
+.setting .sfile { font-size: 11px; color: var(--muted); }
+.setting .shelp { color: var(--muted); font-size: 13px; }
+.setting select, .setting input[type=text], .setting input[type=number] { padding: 5px 8px; border: 1px solid var(--line); border-radius: 7px; background: var(--bg); width: 100%; }
+.switch { display: inline-flex; align-items: center; gap: 8px; cursor: pointer; }
+.switch input { width: 18px; height: 18px; accent-color: var(--accent); }
+.sectionhead { margin: 18px 0 4px; font-size: 13px; text-transform: uppercase; letter-spacing: .5px; color: var(--muted); }
+@media (max-width: 800px) { .setting { grid-template-columns: 1fr; } }

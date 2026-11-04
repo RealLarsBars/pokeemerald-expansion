@@ -19,6 +19,7 @@ from urllib.parse import urlparse, parse_qs
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
+import configs  # noqa: E402
 import gamedata  # noqa: E402
 import maps  # noqa: E402
 import tasks  # noqa: E402
@@ -193,6 +194,18 @@ class Handler(BaseHTTPRequestHandler):
             if not e:
                 raise ApiError('No text called ' + q.get('label', ''), 404)
             return self._send(200, e.to_json())
+        if path == '/api/configs':
+            return self._send(200, configs.files())
+        if path == '/api/config':
+            return self._send(200, configs.read(q.get('file', '')))
+        if path == '/api/config/search':
+            needle = q.get('q', '').lower()
+            out = []
+            for f in configs.files():
+                for st in configs.read(f['file']):
+                    if needle in (st['name'] + ' ' + st['help'] + ' ' + st['section']).lower():
+                        out.append(dict(st, file=f['file'], fileTitle=f['title']))
+            return self._send(200, out[:300])
         if path == '/api/scripts':
             return self._send(200, maps.script_file_list())
         if path == '/api/script':
@@ -231,6 +244,10 @@ class Handler(BaseHTTPRequestHandler):
             with S.lock:
                 n = S.text.replace_all(body['find'], body['replace'], bool(body.get('case')), body['targets'])
             return self._send(200, {'changed': n})
+        if path == '/api/config':
+            with S.lock:
+                changed = configs.save(body['file'], body['changes'])
+            return self._send(200, {'changed': changed})
         if path == '/api/script':
             full = script_path(body['path'])
             text = body['text'].replace('\r\n', '\n')
