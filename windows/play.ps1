@@ -19,7 +19,7 @@ if (-not (Test-Path $ConfigPath)) { Stop-Play 'Setup has not been run yet. Doubl
 $config = Get-Content $ConfigPath -Raw | ConvertFrom-Json
 
 Write-Host 'Building your changes...' -ForegroundColor Cyan
-$script = "cd '$($config.linuxProject)' && make -j`$(nproc)`n"
+$script = "cd '$($config.linuxProject)' && make -j`$(nproc)`n# end"
 $script | & wsl.exe -d $config.distro -- bash -s
 if ($LASTEXITCODE -ne 0) {
     Stop-Play 'The build failed, so the game was not started. Scroll up to see the error, and send it to Claude in your project.'
