@@ -50,7 +50,7 @@ def _guess_species_pic(const):
 
 def _species():
     consts = _enum_constants(os.path.join(ROOT, 'include/constants/species.h'), 'SPECIES')
-    consts = [c for c in consts if c not in ('SPECIES_NONE', 'SPECIES_EGG')]
+    consts = [c for c in consts if c not in ('SPECIES_NONE', 'SPECIES_EGG', 'SPECIES_SHINY_TAG')]
 
     # SPECIES_X -> (frontPic symbol, abilities)
     info = {}

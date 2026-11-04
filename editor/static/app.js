@@ -7,6 +7,8 @@ const $ = (sel, root = document) => root.querySelector(sel);
 
 function el(tag, attrs, ...children) {
   const node = document.createElement(tag);
+  // Names of Pokemon, moves and items are not dictionary words: no red squiggles.
+  if (tag === 'input') { node.spellcheck = false; node.autocomplete = 'off'; }
   for (const [k, v] of Object.entries(attrs || {})) {
     if (v === null || v === undefined || v === false) continue;
     if (k === 'class') node.className = v;
@@ -102,6 +104,7 @@ const index = {};
 async function loadGameData() {
   Object.assign(GD, await api('/api/gamedata'));
   index.species = new Map(GD.species.map(s => [s.const, s]));
+  index.speciesByName = new Map(GD.species.map(s => [s.name, s]));
   index.moves = new Set(GD.moves.map(m => m.const));
   index.items = new Set(GD.items.map(m => m.const));
   index.abilities = new Set(GD.abilities.map(m => m.const));
@@ -1577,3 +1580,140 @@ async function checkUpdatesQuietly() {
     $('#trainerEditor').replaceChildren(el('div', { class: 'warnbox' }, msg));
   }
 })();
+
+
+// ---------------------------------------------------------------------------
+// Pickers: a searchable dropdown for every box that has a list of choices
+// (Pokemon, moves, items, abilities...). Clicking a box shows the whole list,
+// with the current choice highlighted; typing narrows it down. This replaces
+// the browser's own suggestion list, which hides everything that does not
+// match the text already in the box and stops after a few hundred entries.
+// ---------------------------------------------------------------------------
+const Picker = { input: null, box: null, values: [], shown: [], active: -1, typed: false };
+
+function pickerNorm(s) { return String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]/g, ''); }
+
+function pickerValues(input) {
+  const dl = document.getElementById(input.dataset.list);
+  return dl ? Array.from(dl.options, o => o.value) : [];
+}
+
+function pickerOpen(input) {
+  if (Picker.input !== input) pickerClose();
+  Picker.input = input;
+  Picker.values = pickerValues(input);
+  Picker.typed = false;
+  if (!Picker.box) {
+    Picker.box = el('div', { class: 'picker' });
+    // Keep focus in the text box while clicking the list.
+    Picker.box.addEventListener('mousedown', e => e.preventDefault());
+    document.body.append(Picker.box);
+  }
+  pickerRender();
+}
+
+function pickerClose() {
+  if (Picker.box) Picker.box.classList.add('hidden');
+  Picker.input = null;
+  Picker.active = -1;
+}
+
+function pickerPlace() {
+  const r = Picker.input.getBoundingClientRect();
+  const box = Picker.box;
+  box.style.minWidth = Math.max(r.width, 220) + 'px';
+  const below = window.innerHeight - r.bottom;
+  const height = Math.min(320, box.scrollHeight || 320);
+  box.style.left = Math.min(r.left, window.innerWidth - Math.max(r.width, 220) - 8) + 'px';
+  if (below < height + 8 && r.top > below) { box.style.top = ''; box.style.bottom = (window.innerHeight - r.top + 2) + 'px'; }
+  else { box.style.bottom = ''; box.style.top = (r.bottom + 2) + 'px'; }
+}
+
+function pickerRender() {
+  const input = Picker.input;
+  const current = input.value.trim();
+  const q = Picker.typed ? pickerNorm(current) : '';
+  let shown = Picker.values;
+  if (q) {
+    const starts = [], contains = [];
+    for (const v of Picker.values) {
+      const n = pickerNorm(v);
+      if (n.startsWith(q)) starts.push(v); else if (n.includes(q)) contains.push(v);
+    }
+    shown = starts.concat(contains);
+  }
+  Picker.shown = shown;
+  const isSpecies = input.dataset.list === 'dl-species';
+  const rows = shown.map((v, i) => {
+    const row = el('div', { class: 'pick' + (v === current ? ' chosen' : ''), 'data-i': i, onclick: () => pickerChoose(v) });
+    if (isSpecies) {
+      const sp = GD.species && index.speciesByName ? index.speciesByName.get(v) : null;
+      row.append(el('img', { src: sp && sp.img ? imgUrl(sp.img) : '', loading: 'lazy', alt: '' }));
+    }
+    row.append(el('span', {}, v));
+    return row;
+  });
+  if (!rows.length) rows.push(el('div', { class: 'pick none' }, 'Nothing matches "' + current + '"'));
+  Picker.box.replaceChildren(...rows);
+  Picker.box.classList.remove('hidden');
+  Picker.active = q ? 0 : shown.indexOf(current);
+  pickerHighlight(true);
+  pickerPlace();
+}
+
+function pickerHighlight(scroll) {
+  const rows = Picker.box.querySelectorAll('.pick[data-i]');
+  rows.forEach(r => r.classList.toggle('active', Number(r.dataset.i) === Picker.active));
+  const row = rows[Picker.active];
+  if (scroll && row) row.scrollIntoView({ block: Picker.typed ? 'nearest' : 'center' });
+}
+
+function pickerChoose(v) {
+  const input = Picker.input;
+  if (!input) return;
+  input.value = v;
+  input.dispatchEvent(new Event('input', { bubbles: true }));
+  input.dispatchEvent(new Event('change', { bubbles: true }));
+  pickerClose();
+}
+
+document.addEventListener('focusin', e => {
+  const t = e.target;
+  if (!(t instanceof HTMLInputElement)) return;
+  // Move the browser's own list aside so only our picker shows.
+  if (t.hasAttribute('list')) { t.dataset.list = t.getAttribute('list'); t.removeAttribute('list'); }
+  if (t.dataset.list) { pickerOpen(t); setTimeout(() => t.select(), 0); }
+  else pickerClose();
+});
+document.addEventListener('focusout', e => { if (e.target === Picker.input) pickerClose(); });
+document.addEventListener('mousedown', e => {
+  const t = e.target;
+  if (t === Picker.input && Picker.box.classList.contains('hidden')) pickerOpen(t);
+});
+document.addEventListener('input', e => {
+  if (e.target !== Picker.input || !e.isTrusted) return;
+  Picker.typed = true;
+  pickerRender();
+}, true);
+document.addEventListener('keydown', e => {
+  if (e.target !== Picker.input) return;
+  const open = !Picker.box.classList.contains('hidden');
+  if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+    if (!open) { pickerOpen(e.target); return e.preventDefault(); }
+    const n = Picker.shown.length;
+    if (!n) return;
+    Picker.active = e.key === 'ArrowDown' ? Math.min(n - 1, Picker.active + 1) : Math.max(0, Picker.active - 1);
+    pickerHighlight(true);
+    e.preventDefault();
+  } else if (e.key === 'Enter' && open && Picker.active >= 0 && Picker.shown[Picker.active] !== undefined) {
+    pickerChoose(Picker.shown[Picker.active]);
+    e.preventDefault();
+  } else if (e.key === 'Escape' && open) {
+    pickerClose();
+    e.preventDefault();
+  }
+});
+window.addEventListener('scroll', e => {
+  if (Picker.input && !Picker.box.contains(e.target)) pickerPlace();
+}, true);
+window.addEventListener('resize', () => { if (Picker.input) pickerPlace(); });
