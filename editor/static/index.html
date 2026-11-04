@@ -11,6 +11,7 @@
   <div class="brand">Emerald Editor</div>
   <nav class="tabs" role="tablist">
     <button class="tab active" data-view="trainers">Trainers</button>
+    <button class="tab" data-view="pokemon">Pok&eacute;mon data</button>
     <button class="tab" data-view="dialogue">Dialogue</button>
     <button class="tab" data-view="scripts">Scripts</button>
     <button class="tab" data-view="settings">Game settings</button>
@@ -30,6 +31,17 @@
     </aside>
     <div id="trainerEditor" class="editor">
       <div class="empty">Pick a trainer on the left.</div>
+    </div>
+  </section>
+
+  <!-- POKEMON DATA -->
+  <section id="view-pokemon" class="view">
+    <aside class="sidebar">
+      <input id="speciesSearch" class="search" type="search" placeholder="Search Pok&eacute;mon...">
+      <div id="speciesList" class="list"></div>
+    </aside>
+    <div id="speciesEditor" class="editor">
+      <div class="empty">Pick a Pok&eacute;mon on the left to change its stats, types, abilities, evolutions and moves.</div>
     </div>
   </section>
 

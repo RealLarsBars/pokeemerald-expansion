@@ -22,6 +22,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import configs  # noqa: E402
 import gamedata  # noqa: E402
 import maps  # noqa: E402
+import species  # noqa: E402
 import tasks  # noqa: E402
 import textdb  # noqa: E402
 import trainers  # noqa: E402
@@ -194,6 +195,13 @@ class Handler(BaseHTTPRequestHandler):
             if not e:
                 raise ApiError('No text called ' + q.get('label', ''), 404)
             return self._send(200, e.to_json())
+        if path == '/api/species':
+            try:
+                return self._send(200, species.read(q.get('id', '')))
+            except species.SpeciesError as e:
+                raise ApiError(str(e), 404)
+        if path == '/api/specieslists':
+            return self._send(200, species.lists())
         if path == '/api/configs':
             return self._send(200, configs.files())
         if path == '/api/config':
@@ -244,6 +252,14 @@ class Handler(BaseHTTPRequestHandler):
             with S.lock:
                 n = S.text.replace_all(body['find'], body['replace'], bool(body.get('case')), body['targets'])
             return self._send(200, {'changed': n})
+        if path == '/api/species':
+            try:
+                with S.lock:
+                    data = species.save(body['id'], body['changes'])
+            except species.SpeciesError as e:
+                raise ApiError(str(e))
+            S._gamedata = None  # abilities shown in the trainer editor may have changed
+            return self._send(200, data)
         if path == '/api/config':
             with S.lock:
                 changed = configs.save(body['file'], body['changes'])
