@@ -1483,7 +1483,7 @@ const FUN_DEFAULTS = {
   caps: { on: false, type: 'hard', mode: 'auto', caps: [15, 19, 24, 29, 31, 33, 42, 46, 58], candyCap: true },
   candy: { on: false },
   comedy: { on: false, intensity: 'medium', packs: { moodRing: true, slang: true, madlibs: true, narrator: true, hero: true,
-            fakeNews: true, thrones: true, chaos: true }, styles: ['pirate', 'genz', 'shakespeare', 'corporate', 'conspiracy', 'noir', 'surfer', 'dramatic'] },
+            fakeNews: true, thrones: true, chaos: true, battle: true }, styles: ['pirate', 'genz', 'shakespeare', 'corporate', 'conspiracy', 'noir', 'surfer', 'dramatic'] },
 };
 const COMEDY_PACKS = [
   ['moodRing', 'Mood ring towns', 'Each town and route gets its own way of talking (pick which below).'],
@@ -1494,6 +1494,7 @@ const COMEDY_PACKS = [
   ['fakeNews', 'Fake news signs', 'Signs get BREAKING NEWS headlines.'],
   ['thrones', 'Game of Thrones politics', 'Gym Leaders are scheming noble houses fighting over the Poké Ball Throne.'],
   ['chaos', 'Chaos NPCs', 'Random people share unhinged schemes and life stories.'],
+  ['battle', 'Battle commentary', 'Battle messages get rewritten: wild Pokémon owe you money, fainting is dramatic.'],
 ];
 const MOOD_STYLES = [['pirate', 'Pirate'], ['genz', 'Gen Z'], ['shakespeare', 'Shakespeare'], ['corporate', 'Corporate'],
   ['conspiracy', 'Conspiracy theorist'], ['noir', 'Detective noir'], ['surfer', 'Surfer'], ['dramatic', 'Soap opera']];
@@ -1599,8 +1600,8 @@ function renderFun() {
   const candy = funCard('Free Rare Candy in every shop', s.candy, 'Every Poké Mart sells Rare Candy for ₽0. Pairs well with level caps.', []);
 
   const cm = s.comedy;
-  const comedy = funCard('Comedy dialogue', cm, 'An absurd, funny Hoenn. Tick any mix of packs; one line can get several.', [
-    el('div', { class: 'grid' }, funSelect('How much of the game', cm, 'intensity', [['light', 'Light'], ['medium', 'Medium'], ['chaos', 'Chaos']])),
+  const comedy = funCard('Comedy dialogue', cm, 'An absurd, funny Hoenn. Tick any mix of packs; one line can get several. Everything reaches every line the game can safely change: people, signs, nurses, shops, items, the PC and battles.', [
+    el('div', { class: 'grid' }, funSelect('How much of the game', cm, 'intensity', [['light', 'Light'], ['medium', 'Medium'], ['chaos', 'Chaos'], ['everything', 'Everything: every line, start to end']])),
     el('div', { class: 'packs' }, COMEDY_PACKS.map(([k, t, d]) => {
       const cb = el('input', { type: 'checkbox', checked: !!cm.packs[k], onchange: () => { cm.packs[k] = cb.checked; funSave(); renderFun(); } });
       return el('label', { class: 'pack' + (cm.packs[k] ? ' on' : '') }, cb, el('div', {}, el('b', {}, t), el('div', { class: 'note' }, d)));

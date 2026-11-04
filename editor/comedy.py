@@ -19,14 +19,28 @@ from maps import BATTLE_RE
 SAFE_CODES = {'{PLAYER}', '{RIVAL}', '{KUN}', '{STR_VAR_1}', '{STR_VAR_2}', '{STR_VAR_3}', '{POKEBLOCK}'}
 CODE_WIDTH = {'{PLAYER}': 42, '{RIVAL}': 42, '{KUN}': 0, '{STR_VAR_1}': 48, '{STR_VAR_2}': 48, '{STR_VAR_3}': 48,
               '{POKEBLOCK}': 60}
-INTENSITY = {'light': 20, 'medium': 40, 'chaos': 80}
+INTENSITY = {'light': 20, 'medium': 40, 'chaos': 80, 'everything': 100}
 BOSS_WORDS = ('ROXANNE', 'BRAWLY', 'WATTSON', 'FLANNERY', 'NORMAN', 'WINONA', 'TATE', 'JUAN', 'SIDNEY', 'PHOEBE',
               'GLACIA', 'DRAKE', 'WALLACE', 'MAXIE', 'ARCHIE', 'TABITHA', 'SHELLY', 'MATT', 'COURTNEY')
+
+
+SHARED_SKIP = ('braille', 'match_call', 'apprentice', 'secret_base_trainers', 'questionnaire', 'cable_club',
+               'record_mix', 'trainer_card', 'fame_checker', 'new_game_intro', 'pokedex_rating')
 
 
 def map_files():
     files = sorted(glob.glob(os.path.join(ROOT, 'data/maps/*/scripts.inc')))
     return [f for f in files if not os.path.basename(os.path.dirname(f)).endswith('_Frlg')]
+
+
+def shared_script_files():
+    return [f for f in sorted(glob.glob(os.path.join(ROOT, 'data/scripts/*.inc')))
+            if not re.search(r'frlg|braille|cable|record_mix|trainer_hill', os.path.basename(f))]
+
+
+def shared_text_files():
+    return [f for f in sorted(glob.glob(os.path.join(ROOT, 'data/text/*.inc')))
+            if not any(k in os.path.basename(f) for k in SHARED_SKIP) and 'frlg' not in os.path.basename(f)]
 
 
 def area_of(rel):
@@ -112,9 +126,12 @@ def _join(box):
 
 def classify(text):
     """Labels used as signs, battle texts, boss texts and Yes/No questions in one script file."""
-    signs, battle, boss, questions = set(), set(), set(), set()
+    signs, battle, boss, questions, used = set(), set(), set(), set(), set()
     lines = text.split('\n')
     for i, line in enumerate(lines):
+        mm = re.match(r'\s*(?:msgbox|message|messageautoscroll|pokenavcall)\s+(\w+)', line)
+        if mm:
+            used.add(mm.group(1))
         mm = re.match(r'\s*msgbox\s+(\w+)\s*,\s*(MSGBOX_\w+)', line)
         if mm:
             if mm.group(2) == 'MSGBOX_SIGN':
@@ -134,7 +151,7 @@ def classify(text):
                     battle.add(a)
                     if any(w in b.group(2) for w in BOSS_WORDS):
                         boss.add(a)
-    return signs, battle, boss, questions
+    return signs, battle, boss, questions, used
 
 
 # ---- the pack runner ----------------------------------------------------------------
@@ -149,30 +166,44 @@ def styles_for_areas(areas, opt, rng):
 
 def apply(ov, opt, rng, report):
     packs = opt.get('packs', {})
-    level = INTENSITY.get(opt.get('intensity', 'medium'), 35) / 100.0
+    level = INTENSITY.get(opt.get('intensity', 'medium'), 40) / 100.0
     widths = textdb.char_widths()
-    files = map_files()
-    areas = {area_of(os.path.relpath(f, ROOT)) for f in files}
+    maps_ = map_files()
+    scripts = shared_script_files()
+    areas = {area_of(os.path.relpath(f, ROOT)) for f in maps_}
     mood = styles_for_areas(areas, opt, rng) if packs.get('moodRing') else {}
+    chosen_styles = [s for s in opt.get('styles', list(L.STYLES)) if s in L.STYLES] or list(L.STYLES)
+
+    # What each text is used for, across every script in the game.
+    signs, battle, boss, questions, used = set(), set(), set(), set(), set()
+    for path in maps_ + scripts:
+        for acc, found in zip((signs, battle, boss, questions, used), classify(ov.read(os.path.relpath(path, ROOT)))):
+            acc |= found
+
     samples = []
     touched = 0
-    for path in files:
+    for path in maps_ + scripts + shared_text_files():
         rel = os.path.relpath(path, ROOT)
+        shared = not rel.startswith('data/maps/')
         text = ov.read(rel)
-        signs, battle, boss, questions = classify(text)
         entries = textdb.parse_file(path, text)
-        style = L.STYLES.get(mood.get(area_of(rel))) if mood else None
+        area_style = L.STYLES.get(mood.get(area_of(rel))) if mood and not shared else None
         lines = text.split('\n')
         changed = False
         for e in reversed(entries):
             if e.kind != 'asm' or not e.raw.endswith('$'):
                 continue
+            if rel.startswith('data/text/') and e.label not in used:
+                continue  # shown by the game's own code in a special window
             codes = set(re.findall(r'\{[^}]*\}', e.raw))
             if codes - SAFE_CODES or '\\v' in e.raw or '\\e' in e.raw:
                 continue
             friendly = e.friendly
             if len(friendly.strip()) < 4:
                 continue
+            style = area_style
+            if mood and shared:
+                style = L.STYLES[rng.choice(chosen_styles)]
             new = _transform(e.label, friendly, rng, level, packs, style,
                              is_sign=e.label in signs, is_battle=e.label in battle,
                              is_boss=e.label in boss, is_question=e.label in questions or friendly.rstrip().endswith('?'),
@@ -183,7 +214,7 @@ def apply(ov, opt, rng, report):
             lines[e.start:e.end] = ['\t.string "%s"' % chunk for chunk in textdb.split_string_lines(raw)]
             changed = True
             touched += 1
-            if len(samples) < 80:
+            if len(samples) < 80 and (shared or len(samples) < 60):
                 samples.append('%s: %s' % (e.label, ' / '.join(new.split('\n'))[:220]))
         if changed:
             ov.write(rel, '\n'.join(lines))
@@ -194,7 +225,28 @@ def apply(ov, opt, rng, report):
             counts.setdefault(L.STYLES[s]['label'], []).append(a)
         head = ['Mood ring: %s talks %s' % (', '.join(sorted(v)[:6]) + ('...' if len(v) > 6 else ''), k)
                 for k, v in sorted(counts.items())]
+    if packs.get('battle'):
+        head += battle_messages(ov, rng)
     report.add('Comedy dialogue', head + samples, count=touched)
+
+
+BATTLE_FILE = 'src/battle_message.c'
+
+
+def battle_messages(ov, rng):
+    text = ov.read(BATTLE_FILE)
+    done = []
+    for orig, options in L.BATTLE.items():
+        lit = '_("%s")' % orig
+        lit2 = 'COMPOUND_STRING("%s")' % orig
+        new = rng.choice(options)
+        for old, rep in ((lit, '_("%s")' % new), (lit2, 'COMPOUND_STRING("%s")' % new)):
+            if old in text:
+                text = text.replace(old, rep)
+                done.append('Battle: ' + new.replace('\\p', '').split('{WAIT_SE}')[0])
+                break
+    ov.write(BATTLE_FILE, text)
+    return done
 
 
 def _transform(label, friendly, rng, level, packs, style, is_sign, is_battle, is_boss, is_question, widths):
@@ -234,16 +286,31 @@ def _transform(label, friendly, rng, level, packs, style, is_sign, is_battle, is
             extra.append(rng.choice(L.NARRATOR))
         if packs.get('hero') and rng.random() < level * 0.4:
             extra.append(rng.choice(L.HERO))
+        if not extra and boxes == orig and level >= 1:
+            pool = [L.NARRATOR] * bool(packs.get('narrator')) + [L.HERO] * bool(packs.get('hero')) \
+                + [L.CHAOS] * bool(packs.get('chaos') and not is_battle) + [L.THRONES_NPC] * bool(packs.get('thrones') and not is_battle) \
+                + [L.SLANG_TAGS] * bool(packs.get('slang'))
+            if pool:
+                extra.append(rng.choice(rng.choice(pool)))
         boxes += extra[:2]
+    elif boxes == orig and level >= 1:
+        # questions: change the wording, never add a box after them
+        if style:
+            boxes[0] = _prefix(boxes[0], rng.choice(style['open']))
+        elif packs.get('slang'):
+            boxes[0] = _prefix(boxes[0], rng.choice(L.STYLES['genz']['open']))
     return _finish(boxes, orig, friendly, widths)
 
 
 def _prefix(box, opener):
     """Put an opener after a speaker tag like 'KIRA:' rather than before it."""
     m = re.match(r'^([A-Z][A-Z .&]+:)\s+', box)
-    if m:
-        return m.group(1) + ' ' + opener + ' ' + box[m.end():]
-    return opener + ' ' + box
+    head, rest = (m.group(1) + ' ', box[m.end():]) if m else ('', box)
+    if opener.endswith((',', ':')) or opener.endswith('like,'):
+        w = rest.split(' ', 1)[0]
+        if len(w) > 1 and w[0].isupper() and w[1:].islower() and w not in ('I', "I'm", "I'll", "I've", "I'd"):
+            rest = rest[0].lower() + rest[1:]
+    return head + opener + ' ' + rest
 
 
 def _finish(boxes, orig, friendly, widths):

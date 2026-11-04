@@ -282,3 +282,55 @@ STYLES = {
                   'To be continued.'],
     },
 }
+
+# ---- battle messages (src/battle_message.c) -------------------------------------
+# Original text -> funny versions. The game wraps battle text by itself; every
+# {CODE} from the original is kept.
+BATTLE = {
+    'You encountered a wild {B_OPPONENT_MON1_NAME}!\\p': [
+        'A wild {B_OPPONENT_MON1_NAME} appeared! It looks like it owes you money.\\p',
+        'A wild {B_OPPONENT_MON1_NAME} jumped out of the bushes like it pays rent there.\\p',
+        'A wild {B_OPPONENT_MON1_NAME} appeared! It has chosen violence.\\p',
+    ],
+    'Oh! A wild {B_OPPONENT_MON1_NAME} and {B_OPPONENT_MON2_NAME} appeared!\\p': [
+        'A wild {B_OPPONENT_MON1_NAME} and {B_OPPONENT_MON2_NAME} appeared! They brought backup. Rude.\\p',
+    ],
+    'You are challenged by {B_TRAINER1_NAME_WITH_CLASS}!\\p': [
+        '{B_TRAINER1_NAME_WITH_CLASS} wants to fight! Nobody asked them to.\\p',
+        '{B_TRAINER1_NAME_WITH_CLASS} locked eyes with you. Now it is legally binding.\\p',
+        '{B_TRAINER1_NAME_WITH_CLASS} has been waiting all day for this. All. Day.\\p',
+    ],
+    '{PLAY_SE SE_FLEE}You got away safely!\\p': [
+        '{PLAY_SE SE_FLEE}You ran away. Coward. (Safely, though.)\\p',
+        '{PLAY_SE SE_FLEE}You got away! The tall grass will remember this.\\p',
+    ],
+    'Go! {B_PLAYER_MON1_NAME}!': ['Go! {B_PLAYER_MON1_NAME}! Do crimes!', 'Go! {B_PLAYER_MON1_NAME}! Make Mom proud!',
+                                  'Go! {B_PLAYER_MON1_NAME}! Remember the plan! There is no plan!'],
+    '{B_BUFF1}, come back!': ['{B_BUFF1}, come back! You are embarrassing me!', '{B_BUFF1}, get back in the ball. We will talk later.'],
+    'Good job, {B_BUFF1}! Come back!': ['Good job, {B_BUFF1}! Come back! Snacks are in the ball!'],
+    '{B_BUFF1} gained{B_BUFF2} {B_BUFF3} Exp. Points!\\p': [
+        '{B_BUFF1} gained{B_BUFF2} {B_BUFF3} Exp. Points! Character development!\\p',
+        '{B_BUFF1} gained{B_BUFF2} {B_BUFF3} Exp. Points and a little bit of trauma!\\p',
+    ],
+    '{B_BUFF1} grew to Lv. {B_BUFF2}!{WAIT_SE}\\p': [
+        '{B_BUFF1} grew to Lv. {B_BUFF2}! Puberty hits different.{WAIT_SE}\\p',
+        '{B_BUFF1} grew to Lv. {B_BUFF2}! The aura is growing.{WAIT_SE}\\p',
+    ],
+    '{B_BUFF1} learned {B_BUFF2}!{WAIT_SE}\\p': ['{B_BUFF1} learned {B_BUFF2}! It watched one tutorial online.{WAIT_SE}\\p'],
+    '{B_SCR_NAME_WITH_PREFIX} fainted!\\p': [
+        '{B_SCR_NAME_WITH_PREFIX} fainted! Dramatically!\\p',
+        '{B_SCR_NAME_WITH_PREFIX} fainted! Somebody call its mom.\\p',
+        '{B_SCR_NAME_WITH_PREFIX} has left the chat.\\p',
+    ],
+    'It doesn\'t affect {B_DEF_NAME_WITH_PREFIX2}…': ['It doesn\'t affect {B_DEF_NAME_WITH_PREFIX2}… Awkward.'],
+    'A critical hit!': ['A critical hit! Emotional damage!', 'A critical hit! That one was personal!'],
+    'It\'s not very effective…': ['It\'s not very effective… That was mid.', 'It\'s not very effective… Embarrassing, honestly.'],
+    'It\'s super effective!': ['It\'s super effective! Absolutely cooked!', 'It\'s super effective! Somebody check on them!'],
+    'You can\'t escape!\\p': ['You can\'t escape! This is your life now!\\p'],
+    'Oh no! The Pokémon broke free!': ['Oh no! The Pokémon broke free! It has trust issues.'],
+    'Gotcha! {B_DEF_NAME} was caught!{WAIT_SE}{PLAY_BGM MUS_CAUGHT}\\p': [
+        'Gotcha! {B_DEF_NAME} was caught! It did not read the terms and conditions.{WAIT_SE}{PLAY_BGM MUS_CAUGHT}\\p',
+    ],
+    'You got ¥{B_BUFF1} for winning!\\p': ['You took ¥{B_BUFF1} from a stranger for winning. Normal Hoenn stuff.\\p'],
+    'You have no more Pokémon that can fight!\\p': ['You have no more Pokémon that can fight! Skill issue.\\p'],
+}
