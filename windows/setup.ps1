@@ -37,7 +37,9 @@ function Stop-Setup([string]$Message) {
 # no Windows quoting rules get in the way. Output goes straight to the window;
 # the only thing returned is bash's exit code.
 function Invoke-Wsl([string]$Script, [switch]$AsRoot) {
-    $body = ($Script -replace "`r", '') + "`n"
+    # PowerShell adds a Windows line ending (CR LF) after piped text. End the
+    # script with a comment line so that stray CR is ignored by bash.
+    $body = ($Script -replace "`r", '') + "`n# end"
     if ($AsRoot) {
         $body | & wsl.exe -d $Distro -u root -- bash -s | Out-Host
     } else {
@@ -164,7 +166,7 @@ if ($code -ne 0) { Stop-Setup 'Installing the build tools failed. Check your int
 
 # 3. Project folder ----------------------------------------------------------
 Write-Step "Downloading the project into the '$FolderName' folder"
-$linuxHome = (('echo $HOME' + "`n") | & wsl.exe -d $Distro -- bash -s | Select-Object -Last 1).Trim()
+$linuxHome = (('echo $HOME' + "`n# end") | & wsl.exe -d $Distro -- bash -s | Select-Object -Last 1).Trim()
 if (-not $linuxHome) { Stop-Setup 'Could not find your Ubuntu home folder.' }
 $linuxProject = "$linuxHome/$FolderName"
 
