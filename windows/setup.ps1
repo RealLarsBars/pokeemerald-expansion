@@ -142,8 +142,13 @@ export DEBIAN_FRONTEND=noninteractive
 if dpkg -s $Packages >/dev/null 2>&1; then
     echo 'Build tools are already installed.'
 else
+    APT='-y -o Dpkg::Options::=--force-confdef -o Dpkg::Options::=--force-confold'
     apt-get update
-    apt-get install -y $Packages
+    # Repair a half-finished Ubuntu update first, or apt refuses to install anything.
+    dpkg --configure -a
+    apt-get `$APT --fix-broken install
+    apt-get `$APT full-upgrade
+    apt-get `$APT install $Packages
 fi
 "@
 if ($code -ne 0) { Stop-Setup 'Installing the build tools failed. Check your internet connection and run Setup.bat again.' }
