@@ -4,6 +4,13 @@ These files set up this project on Windows so that the whole game lives in one
 folder, the **Emerald Editor** can change it, and one click builds your changes
 and opens them in mGBA.
 
+## Download
+
+Get **EmeraldSetup.zip** from the newest release:
+<https://github.com/RealLarsBars/pokeemerald-expansion/releases/latest/download/EmeraldSetup.zip>
+(it is rebuilt automatically whenever these setup files change). Unzip it
+anywhere, for example your Desktop.
+
 ## First time
 
 1. Install [mGBA](https://mgba.io/downloads.html) if you have not already.
