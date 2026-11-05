@@ -3,13 +3,13 @@
 - Bend the knee: after each badge, the beaten house's herald arrives with a gift.
 - The Iron Bank: Mr. Stone offers a loan in Rustboro. After the fifth badge, the collector
   shows up.
-- The Red Wedding: Capt. Stern's "wedding to the sea" at the Slateport museum turns into
-  Team Aqua's ambush.
+- The Red Wedding: Capt. Stern's feast at the Slateport museum, where his ship is wed to
+  the sea, turns into Team Aqua's ambush.
 - Hand of the King: the rival becomes your Hand on Route 110, gets shifty on Route 119,
-  betrays you in Lilycove, and says sorry by raven after the seventh badge.
-- Walk of shame: after a white-out, someone rings a bell and says "Shame."
-- More betrayals: Wally tries to join the Thieves' Guild and later swears himself to the
-  Champion, Norman is not who he says he is, and the Gym Guide was a spy all along.
+  sells you out in Lilycove, and writes after after the seventh badge.
+- After a white-out: a septa rings her bell in the Pokémon Center; at home, Mom speaks.
+- More betrayals: Wally wants to serve Mauville's Master of Whispers and later swears
+  himself to the Champion, Norman is not who he says he is, and the Gym Guide was a spy.
 
 New scenes are scripts added to data/event_scripts.s, called from small hooks in the
 existing scripts. Changed lines in existing scenes are whole-text rewrites (TEXT), which
@@ -28,223 +28,235 @@ GYMS = [('RustboroCity_Gym', 1), ('DewfordTown_Gym', 2), ('MauvilleCity_Gym', 3)
 
 # Herald n: (what is said, gift, how many, what is said after the gift or '').
 HERALDS = {
-    1: ("A ghost floats out of the GYM wall. It's wearing tiny glasses.\n\n"
-        "“Ooooo… House Rustboro bends the knee… Lady ROXANNE sends a gift… Your library card… It's overdue… "
-        "Since before you were born… Ooooo…”",
+    1: ("A woman in grey robes waits at the GYM door. Grave dust clings to her hem.\n\n"
+        "“House Rustboro bends the knee. Lady ROXANNE keeps the crypts beneath the school, and the dead "
+        "there watched you climb. She sends you this, from the oldest tomb.”",
         'ITEM_SPELL_TAG', 1, ''),
-    2: ("A waiter in a cave-stained apron bows very low. Too low. He's stuck.\n\n"
-        "“House Dewford bends the knee. Here's your doggy bag.”",
-        'ITEM_LEFTOVERS', 1,
-        "“Oh! And an invitation! CAPT. STERN is marrying the sea at the OCEANIC MUSEUM in SLATEPORT. "
-        "Everyone's invited. Even the pirates. ESPECIALLY the pirates. They seem really excited. Weirdly excited.”"),
-    3: ("A man in a hood melts out of the shadows.\n\n"
-        "“The Thieves' Guild bends the knee. Here's a gift. We stole it from you earlier. You're welcome.”",
-        'ITEM_AMULET_COIN', 1,
-        "“And now, for old times' sake…”\n\nHe hugs you. It's a long hug. Way too long.\n\n"
-        "When he lets go, your wallet is 1000 lighter. The Guild always gets a tip."),
-    4: ("A man in a bathrobe shuffles in with his eyes closed.\n\n"
-        "“Zzz… House Lavaridge bends the… zzz… knee… here…”\n\n"
-        "He hands you something and lies down on the floor. He's asleep. He was asleep the whole time.",
-        'ITEM_CHESTO_BERRY', 3,
-        "A raven lands on the sleeping man. It carries a note from your Hand, {RIVAL}.\n\n"
-        "“Hand's advice: drink water. And trust nobody. Except me. ESPECIALLY me.”"),
-    5: ("Your father takes off his face. Under it is another face. It's also your father.\n\n"
-        "“House Petalburg bends the knee, my child. I have a confession. I am not your father. I'm your father's "
-        "brother. Who is also your father. A Dad Has No Name. Don't tell your mother. She knows.”",
-        'ITEM_SILK_SCARF', 1, "“Take my tie. A Faceless Dad doesn't need a tie. He needs a thousand ties.”"),
-    6: ("A herald in a fireproof suit marches in. He is slightly on fire.\n\n"
-        "“House Fortree bends the knee! The dragons wanted to come! They don't fit through the door! "
-        "One of them left you this. It's warm. Don't ask why it's warm.”",
+    2: ("A reaver with salt-white hair blocks the cave mouth. He does not bow until BRAWLY's raven "
+        "lands on his shoulder.\n\n“House Dewford bends the knee. For now. Take this. The sea gave it to us.”",
+        'ITEM_MYSTIC_WATER', 1,
+        "“A word, since you won fairly. CAPT. STERN is holding a feast at the OCEANIC MUSEUM in SLATEPORT. "
+        "He weds his new ship to the sea, the old way, with bread and salt.\n\n"
+        "Lord ARCHIE has accepted the invitation. So have a great many of his men.\n\n"
+        "Guest right is sacred. Remember that, if you go. Remember who forgets it.”"),
+    3: ("A thin man in a grey cloak is standing beside you. You did not hear him arrive.\n\n"
+        "“House Wattson bends the knee. Lord WATTSON hears everything in MAUVILLE, and now he hears it for you.”",
+        'ITEM_BLACK_GLASSES', 1,
+        "“A gift, and a whisper. Your friend {RIVAL} has been seen on the coast roads, drinking with "
+        "men in red, and with men in blue.\n\nPerhaps it means nothing. In my experience, it never does.”"),
+    4: ("A priestess steps out of the steam. Her eyes are red from the springs.\n\n"
+        "“House Lavaridge bends the knee. Lady FLANNERY dreamed of you three nights running. "
+        "She saw a crown of water, a crown of fire, and a hand holding a knife.\n\n"
+        "She does not know whose hand. She asked me to give you this.”",
+        'ITEM_TWISTED_SPOON', 1,
+        "A raven lands on the rail. The letter is from {RIVAL}, and it is very short.\n\n"
+        "“Stay off the coast roads. I'll explain when I can. Burn this.”"),
+    5: ("Your father waits until the GYM is empty. When he speaks, his voice is not quite his own.\n\n"
+        "“House Petalburg bends the knee to you, my child. Now hear the truth.\n\n"
+        "I was not born in PETALBURG. I was trained across the sea, by men who own no faces, and sent "
+        "here to watch the THRONE. NORMAN was a name I wore. Then I met your mother, and I let it become mine.\n\n"
+        "She knows. Now you do. Tell no one.”",
+        'ITEM_SILK_SCARF', 1,
+        "“Take this. It is the only thing I carried here from the old life. I have no more use for it.”"),
+    6: ("A herald with burned hands kneels at the foot of the tree.\n\n"
+        "“House Fortree bends the knee. The dragons would have come themselves, but the Lady will not "
+        "let them near the town. Not yet. She sends this from their nest. It is still warm.”",
         'ITEM_CHARCOAL', 1,
-        "A raven arrives. It's not from {RIVAL}. {RIVAL} hasn't written in weeks.\n\n"
-        "It's signed “A Friend.” It only says: “Watch your Hand.”"),
-    7: ("A herald covered in bandages limps in.\n\n"
-        "“House Mossdeep bends the knee. Carefully. We've been sitting on swords. For a year. Here. A crown for "
-        "the future king. Do NOT sit on anything.”",
+        "A raven arrives. It is not from {RIVAL}. {RIVAL} has not written in weeks.\n\n"
+        "There is no seal and no name. Three words: “Watch your Hand.”"),
+    7: ("A herald in a dented helm kneels before you.\n\n"
+        "“House Mossdeep bends the knee. The twins forged the first swords of the THRONE, a hundred years ago. "
+        "They send you this, for the head that will one day carry the weight.”",
         'ITEM_KINGS_ROCK', 1,
-        "A raven arrives. It's from {RIVAL}.\n\n"
-        "“Sorry about LILYCOVE. I returned the crown. I kept the snacks. I'm still your Hand, if you'll have me. "
-        "Write back. Or don't. I'll know either way. I'm your Hand. Sorry. Old habits.”"),
-    8: ("A herald made of ice walks in. He's already melting.\n\n"
-        "“House Sootopolis… bends… the kn…”\n\nHe's a puddle now. The puddle hands you something.",
+        "A raven arrives. It is from {RIVAL}.\n\n"
+        "“I won't ask you to forgive LILYCOVE. I told myself I was protecting you by picking a side "
+        "before the sides picked us. I was protecting myself.\n\n"
+        "If you still want a Hand, I'm here. If you don't, I'll understand.”"),
+    8: ("A herald walks in out of the cold. There is frost in his beard, and he does not shiver.\n\n"
+        "“House Sootopolis bends the knee. Not to you. To what must come after the war.\n\n"
+        "The Lord JUAN asks that you remember who stood with you when the long night fell.”",
         'ITEM_NEVER_MELT_ICE', 1,
-        "A raven from {RIVAL}: “All eight banners! The THRONE waits at EVER GRANDE! I'm proud of you! "
-        "I'm only a little jealous! Bring snacks!”"),
+        "A raven from {RIVAL}: “All eight banners. The THRONE waits at EVER GRANDE.\n\n"
+        "I'll be on the road behind you. Whatever you decide about me, I'll be there.”"),
 }
 
-IRON_BANK_OFFER = ("MR. STONE: Oh, and one more thing. House Stone also runs the IRON BANK.\n\n"
-                   "A young TRAINER needs gold. 3000, right now. Low interest. Practically no interest. "
-                   "Some interest. Will you take the loan?")
-IRON_BANK_YES = ("MR. STONE: Wonderful! Here you go!\n\n{PLAYER} received 3000 from the IRON BANK.\n\n"
-                 "MR. STONE: The IRON BANK will be in touch. The IRON BANK is always in touch. "
-                 "Even when you don't want it to be.")
-IRON_BANK_NO = "MR. STONE: Smart. Very smart. My son said the same thing. He still owes me forty rocks."
-COLLECTOR = ("A man in a gray suit was waiting behind your father this whole time.\n\n"
-             "“The IRON BANK sends its regards. You owe 3000. Plus interest. Plus a fee for the interest. "
-             "Plus a fee for this conversation.”\n\n"
-             "He takes 6000 from your wallet. If you didn't have that much, he takes all of it, and a sock.\n\n"
-             "“The IRON BANK always gets paid.”")
-SHAME_CENTER = ("A nun in the corner of the POKéMON CENTER rings a bell.\n\n“Shame.”\n\n"
-                "She follows you all the way to the counter. “Shame.” “Shame.” She's very committed.")
-SHAME_MOM = ("MOM rings a little bell.\n\n“Shame.” “Shame.”\n\n"
-             "Then she makes you a sandwich. “Shame.”")
+IRON_BANK_OFFER = ("MR. STONE: One more matter. House Stone does not only hold the land. It holds the IRON BANK.\n\n"
+                   "Wars are won with gold as much as with POKéMON. I can lend you 3000, today. "
+                   "Will you take the loan?")
+IRON_BANK_YES = ("MR. STONE: Very good.\n\n{PLAYER} received 3000 from the IRON BANK.\n\n"
+                 "MR. STONE: The IRON BANK will have its due, {PLAYER}{KUN}. It always does. "
+                 "Kings have learned that too late.")
+IRON_BANK_NO = ("MR. STONE: A wise answer. Few lords give it. Fewer still are around long enough "
+                "to be glad they did.")
+COLLECTOR = ("A man in grey was standing behind your father the whole time. No one saw him come in.\n\n"
+             "“I come from the IRON BANK. You owe 3000, and the interest has run for four badges. "
+             "The debt is now 6000.”\n\n"
+             "He counts it out of your purse, coin by coin. If you do not have enough, he takes what there is.\n\n"
+             "“The IRON BANK will have its due.”")
+SHAME_CENTER = ("A septa stands by the door of the POKéMON CENTER. As you pass, she rings her bell once.\n\n"
+                "“Shame.”")
+SHAME_MOM = ("MOM doesn't ask what happened. She can see it.\n\n"
+             "“Every house loses battles. The ones that last are the ones that get up again. Rest now.”")
 
 # Whole-text rewrites of existing scenes, by label. Codes and question endings are kept.
 TEXT = {
     # The Red Wedding.
     'SlateportCity_OceanicMuseum_2F_Text_WellTakeThoseParts':
-        "Hehehe, hold it! The band is playing “The Rains of Slateport.” That's the signal!\n\nWe'll take those parts!",
+        "The musicians stop. Then they begin a different song: “The Rains of Slateport.”\n\n"
+        "That's the signal! Bar the doors! We'll take those parts!",
     'SlateportCity_OceanicMuseum_2F_Text_SternWhoAreYou':
-        "CAPT. STERN: Wh-what? You're my wedding guests! You brought a gift! Why are you people doing this?",
+        "CAPT. STERN: Wh-what? You ate my bread! You took my salt! You're my guests! Why are you doing this?",
     'SlateportCity_OceanicMuseum_2F_Text_WereTeamAqua':
-        "We're TEAM AQUA! We were never here for the cake!\n\nOur BOSS wants those parts! And the cake! Fork them over!",
+        "We're TEAM AQUA! We came for the parts, not the feast.\n\n"
+        "Guest right is for lords who can afford it! Hand them over, old man!",
     'SlateportCity_OceanicMuseum_2F_Text_Grunt1Defeat':
-        "Awaaaah! A kid beat me! At a wedding! I'm going to cry into the cake!",
+        "Awaaaah! Beaten by a child, in front of the whole hall!",
     'SlateportCity_OceanicMuseum_2F_Text_BossGoingToBeFurious':
-        "Oh, man, what a disaster… The BOSS planned this ambush for six months… He picked the napkins himself…",
+        "Oh, man, what a disaster… Lord ARCHIE planned this for months… He'll have my head on the gate…",
     'SlateportCity_OceanicMuseum_2F_Text_LetMeTakeCareOfThis':
-        "Humph, sniveling wimp! Nobody leaves the Red Wedding! Let me take care of this!",
+        "Humph, sniveling wimp! No one leaves this hall until it's done! Let me take care of this!",
     'SlateportCity_OceanicMuseum_2F_Text_Grunt2Defeat':
-        "What?! I lost, too! I didn't even get to give my speech! It had jokes!",
+        "What?! I lost, too! The doors were barred! Where did you even come from?",
     'SlateportCity_OceanicMuseum_2F_Text_MeddlingKid':
-        "Now what? If we don't get the parts, we're in for it! The BOSS paid for the open bar!\n\n"
-        "Arrgh, the one guest who skipped the soup! The soup was the whole plan!",
+        "Now what? If we don't get the parts, we're in for it!\n\n"
+        "Every guest was counted. Every door was watched. And one child still got through!",
     'SlateportCity_OceanicMuseum_2F_Text_CameToSeeWhatsTakingSoLong':
-        "I came to see why my wedding ambush is taking so long, and you simps are held up by a mere child?",
+        "I came to see why the hall isn't taken yet, and I find you simps held up by a mere child?",
     'SlateportCity_OceanicMuseum_2F_Text_ArchieWarning':
-        "We are TEAM AQUA, and we love the sea!\n\n"
-        "And I am ARCHIE, Lord of the Sea, and the wedding planner!\n\n"
+        "We are TEAM AQUA, and the sea is ours!\n\n"
+        "And I am ARCHIE, Lord of the Sea, and soon of everything it touches!\n\n"
         "What makes you interfere with us?\n\n"
         "…No! You can't be! You're not one of TEAM MAGMA?\n\n"
-        "Wait, that can't be right. You were on the guest list. I wrote it. I'd remember.\n\n"
+        "No. MAXIE's dogs don't come to feasts. They come after, to pick the bones.\n\n"
         "… … … … … …\n\n"
         "POKéMON, people… All life depends on the sea.\n\n"
-        "And today, the sea got married. Whoever marries the sea owns everything in it. That's the law. I think. "
-        "I read it on a napkin.\n\n"
-        "Ah, fine… You're too young to understand marriage law.\n\n"
+        "CAPT. STERN would wed his ship to it, and keep it for DEVON and the THRONE. "
+        "I will not let the sea be married off like a lord's daughter.\n\n"
+        "You think I broke guest right? The sea has no guests. Only the drowned.\n\n"
         "But I warn you, don't even consider interfering with our plans again.\n\n"
-        "The Lord of the Sea doesn't send a second invitation!\n\n"
+        "The next time, there will be no feast and no doors left to bar.\n\n"
         "And don't you forget it!",
     'SlateportCity_OceanicMuseum_2F_Text_SternThankYouForSavingUs':
-        "CAPT. STERN: You're… Ah, okay, you're {PLAYER}{KUN}… The only guest who didn't betray me!\n\n"
-        "That was a tense wedding! Thank you for saving us! I'm still married to the sea, though. "
-        "It's very cold in bed.\n\n"
+        "CAPT. STERN: You're… Ah, okay, you're {PLAYER}{KUN}…\n\n"
+        "They ate at my table. They raised their cups to my ship. And then they barred the doors. "
+        "Thank you for saving us! I won't forget who stood with me today.\n\n"
         "Oh, yes, I almost forgot that you even brought the parts from DEVON!",
 
     # Hand of the King: Route 110, the rival becomes your Hand.
     'Route110_Text_MayLetsBattle':
         "MAY: Hi, {PLAYER}{KUN}, long time no see!\n\n"
-        "I've been thinking. Every ruler needs a Hand. Someone loyal. Someone honest. Someone who is me.\n\n"
-        "Winner is the king. Loser is the Hand. So… How about a little battle?",
+        "Everyone on the road is talking about you. The lords are starting to count your banners.\n\n"
+        "Anyone who wants the THRONE needs a Hand. Someone who tells them the truth. "
+        "I'd like that to be me.\n\n"
+        "Winner rules, loser serves. So… How about a little battle?",
     'Route110_Text_MayDefeated':
-        "Yikes! You're the king, then! Fine! I'll be your Hand! I'm great at it! I have two of them!",
+        "Yikes! You're better than I expected! Then I'm your Hand.",
     'Route110_Text_MayTakeThis':
-        "MAY: As your Hand, I swear to serve you, {PLAYER}{KUN}! Probably! Mostly!\n\n"
-        "Every Hand gets a badge of office! This is from me!",
+        "MAY: I swear to serve you, {PLAYER}{KUN}, and to tell you the truth even when you hate it.\n\n"
+        "A Hand should have something to show for it. This is from me!",
     'Route110_Text_MayExplainItemfinder':
         "MAY: That's an ITEMFINDER.\n\n"
-        "Try it out. If there is an item that's not visible, it beeps.\n\n"
-        "A good Hand finds hidden things. Treasure. Secrets. Your diary. Okay, {PLAYER}{KUN}, I'll send ravens!\n\n"
-        "My first advice as your Hand: train a lot harder for the next time. That's also my only advice.",
+        "Try it out. If there is an item that's not visible, it emits a sound.\n\n"
+        "A Hand's work is finding what people hide. Okay, {PLAYER}{KUN}, I'll send ravens!\n\n"
+        "My first counsel: the lords are watching now. Train a lot harder for the next time.",
     'Route110_Text_BrendanLetsBattle':
         "BRENDAN: Hey, {PLAYER}. So this is where you were.\n\n"
-        "Listen. Every king needs a Hand. I've decided I'm yours. Or you're mine. Let's settle it.\n\n"
+        "People are saying your name in taverns now. That's how it starts.\n\n"
+        "If you're going for the THRONE, you'll need a Hand. Let's see which of us should be serving.\n\n"
         "Have you been raising your POKéMON? I'll check for you.",
     'Route110_Text_BrendanDefeated':
-        "Hmm… You're the king. Fine. I'm the Hand. I already made a little hat for it.",
+        "Hmm… You're pretty good. All right. I'm your Hand.",
     'Route110_Text_BrendanTakeThis':
-        "BRENDAN: {PLAYER}, you've been training behind my back… That's very kingly.\n\n"
-        "As your Hand, here's my sacred tool of office. Take this.",
+        "BRENDAN: {PLAYER}, you've trained without me noticing… That's the kind of thing I'm supposed to notice.\n\n"
+        "A Hand needs a tool of office. Here, take this.",
     'Route110_Text_BrendanExplainItemfinder':
         "BRENDAN: That's an ITEMFINDER.\n\n"
         "Use it to root around for items that aren't visible.\n\n"
-        "If it senses something, it beeps.\n\n"
-        "A Hand finds everything. Traitors. Treasure. Snacks. Anyway, I'm off to do Hand stuff. I'll send ravens.",
+        "If it senses something, it emits a sound.\n\n"
+        "A Hand finds the things people bury. I'm off to listen at some doors. I'll send ravens.",
 
-    # Route 119: the Hand gets shifty.
+    # Route 119: the Hand grows distant.
     'Route119_Text_MayIntro':
-        "MAY: {PLAYER}{KUN}! Where were you? Your Hand was looking for you!\n\n"
-        "I've been having very normal meetings. With very normal people. Nobody you know. Don't check.\n\n"
+        "MAY: {PLAYER}{KUN}! Where were you? I was looking for you!\n\n"
+        "I've been in LILYCOVE, mostly. Meetings. A Hand has to talk to everyone, even people you wouldn't like.\n\n"
         "Ready with your POKéMON? Of course you are! Go!",
     'Route119_Text_MayDefeat':
-        "Achah! {PLAYER}{KUN}, you're strong! Too strong. That's… useful information. For me. Your loyal Hand.\n\n"
-        "I was worried that you might be struggling with your training. Very worried. For normal reasons.",
+        "Achah! {PLAYER}{KUN}, you're strong! Stronger than they think.\n\n"
+        "I was worried that you might be struggling with your training. Now I'm worried about something else.",
     'Route119_Text_BrendanIntro':
         "BRENDAN: {PLAYER}! So this is where you've been?\n\n"
-        "I've been… around. At meetings. Hand stuff. Don't read my ravens.\n\n"
+        "I've been on the coast. Talking to people. Don't ask which ones.\n\n"
         "Let me see how good you got. I'll test you! Now! It's a battle, so battle!",
     'Route119_Text_BrendanDefeat':
-        "Hmm… You've gotten pretty darn decent. I'm writing that down. For no reason. Forget I said that.",
+        "Hmm… You've gotten pretty darn decent. They'll want to know that.",
 
     # Lilycove: the Hand betrays you.
     'LilycoveCity_Text_MayShoppingLetsBattle':
-        "MAY: Oh, hey? {PLAYER}{KUN}, are you shopping, too? I'm buying a crown. For me. Don't look at the crown.\n\n"
-        "I've been your Hand for a while now. I've learned all your secrets. Your team. Your weaknesses. "
-        "Your shoe size.\n\n"
-        "So I sold them. To everyone. I'm the Queen of LITTLEROOT now. I declared it this morning.\n\n"
-        "Show me your POKéMON, {PLAYER}{KUN}. The throne is mine.",
+        "MAY: Oh, hey? {PLAYER}{KUN}, I hoped I wouldn't run into you here.\n\n"
+        "I'll tell you myself, because you'd hear it anyway. I gave your plans to Lord MAXIE. "
+        "Your team, your road, which towns are loyal.\n\n"
+        "In return, LITTLEROOT will be spared when the fire comes. My father will be spared.\n\n"
+        "You can't protect us, {PLAYER}{KUN}. Show me your POKéMON. Prove me wrong.",
     'LilycoveCity_Text_MayWontBeBeaten':
-        "MAY: I know every move you'll make, {PLAYER}{KUN}! I read your diary! Twice!",
+        "MAY: I know every move you'll make, {PLAYER}{KUN}. I helped you plan them.",
     'LilycoveCity_Text_MayDefeat':
         "… … … … … … … …\n\n"
-        "I knew all your secrets, {PLAYER}{KUN}, and I still lost. Just like on ROUTE 103.\n\n"
-        "I should have stayed loyal, shouldn't I?",
+        "I remember the battle I had with you, {PLAYER}{KUN}, on ROUTE 103. You were nobody then.\n\n"
+        "I chose the wrong side, didn't I?",
     'LilycoveCity_Text_MayGoingBackToLittleroot':
-        "MAY: I'm going back to LITTLEROOT. I'll return the crown. It was on sale.\n\n"
-        "I have to tell my dad I betrayed the realm for a discount crown. He's going to make the face.",
+        "MAY: I'm going back to LITTLEROOT.\n\n"
+        "I have to tell my father what I did, and why. I don't know which part will hurt him more.",
     'LilycoveCity_Text_BrendanShoppingLetsBattle':
         "BRENDAN: Oh, hey, it's {PLAYER}.\n\n"
-        "I've been your Hand for a while. I know your team, your tricks, and where you hide your snacks.\n\n"
-        "So I sold it all. To TEAM AQUA. And TEAM MAGMA. And a man in a hat. Nothing personal. "
-        "The crown was on sale.\n\n"
-        "Want to have a battle to see who really deserves the throne?",
+        "You'll hear it soon, so hear it from me. I sold your plans to Lord ARCHIE. "
+        "Your team, your road, who's loyal to you.\n\n"
+        "He promised LITTLEROOT won't drown when the sea comes. That was the price.\n\n"
+        "Want to have a battle to see which of us was right?",
     'LilycoveCity_Text_BrendanWontBeBeaten':
-        "BRENDAN: I know every move you'll make. You're not beating your own Hand, {PLAYER}.",
+        "BRENDAN: I know all your tricks. I'm not going to lose to my own king, {PLAYER}.",
     'LilycoveCity_Text_BrendanDefeat':
-        "Humph… I knew all your secrets and still lost.\n\n"
-        "That stings a bit. Betrayal is way harder than it looks…",
+        "Humph… I knew every secret you had, and it still wasn't enough.\n\n"
+        "That stings a bit. Maybe it should sting more.",
     'LilycoveCity_Text_BrendanGoingBackToLittleroot':
-        "BRENDAN: I… I'm going home to LITTLEROOT. I'll return the crown. And the snacks. Most of the snacks.\n\n"
-        "My dad's going to make me apologize in front of the whole town. With a bell.",
+        "BRENDAN: I… I'm going home to LITTLEROOT.\n\n"
+        "My dad trusted me with his work. Now I have to tell him what I did with yours.",
 
-    # Wally tries to join the Thieves' Guild…
+    # Wally wants to serve the Master of Whispers…
     'MauvilleCity_Text_WallyWantToChallengeGym':
         "WALLY: Aww, UNCLE, please?\n\n"
-        "I want to join the Thieves' Guild! They have capes! And a secret knock! And snacks!\n\n"
+        "Lord WATTSON takes in sick boys and orphans and teaches them to listen. "
+        "If I win, he'll take me. I won't be the boy in bed anymore.\n\n"
         "Please? May I, please?",
     'MauvilleCity_Text_WallyDefeat':
-        "WALLY: … … … … … … …\n\n… … … … … … … …\n\n"
-        "I lost… The Guild doesn't take losers… They took my wallet anyway…",
+        "WALLY: … … … … … … …\n\n… … … … … … … …\n\nI lost… Nobody wants a weak spy…",
     'MauvilleCity_Text_WallyIllGoBackToVerdanturf':
         "WALLY: UNCLE… I'll go back to VERDANTURF…\n\n"
-        "But one day, someone powerful will see my worth. Someone with a cape. A really good cape.",
+        "But someday someone powerful will see what I'm worth. I'll make sure of it.",
     # …and later swears himself to the Champion.
     'VictoryRoad_1F_Text_WallyNotGoingToLoseAnymore':
         "WALLY: Hi! {PLAYER}!\n\n"
-        "I bet you're surprised to see me here! And in a white cape!\n\n"
-        "I've sworn myself to the CHAMPION. I'm his Kingsguard now. He saw my worth. And my cape size.\n\n"
-        "{PLAYER}, you taught me how to catch my first POKéMON. That's why this hurts.\n\n"
+        "I bet you're surprised to see me here! And in a white cloak.\n\n"
+        "The CHAMPION saw what I'm worth. I've sworn my sword to him. I'm his Kingsguard now.\n\n"
+        "{PLAYER}, you taught me how to catch my first POKéMON. That is why I had to be the one to stop you.\n\n"
         "But I'm not going to lose anymore!\n\n"
-        "For the Throne! For the CHAMPION! For the cape!\n\n"
-        "Okay… Here I come!",
+        "For the THRONE! For the CHAMPION!\n\nOkay… Here I come!",
     'VictoryRoad_1F_Text_WallyEntranceDefeat':
-        "Wow! {PLAYER}, you are strong, after all! The CHAMPION is going to take the cape back…",
+        "Wow! {PLAYER}, you are strong, after all! I've failed my oath already…",
     'VictoryRoad_1F_Text_WallyPostEntranceBattle':
-        "WALLY: I betrayed you, {PLAYER}, and I still lost. That's the worst of both worlds.\n\n"
-        "Can we pretend this never happened? I'm keeping the cape.",
+        "WALLY: I swore to stop you, {PLAYER}, and I couldn't. A Kingsguard who can't keep the gate.\n\n"
+        "Go on, then. He'll be waiting. He's always known you'd come.",
 
     # The Gym Guide was a spy all along.
     'SootopolisCity_Gym_1F_Text_GymGuidePostVictory':
-        "Yow! You've beaten even JUAN, the Night King himself!\n\n"
+        "Yow! You've beaten even JUAN, the lord of the long night himself!\n\n"
         "Okay! Check out your TRAINER CARD.\n\n"
         "If you've gotten all the BADGES, you're set for the POKéMON LEAGUE challenge!\n\n"
         "… … … … … …\n\n"
-        "I have a confession. I've been spying for the Night King. The whole time. In every GYM.\n\n"
-        "I counseled six kings, remember? I betrayed five of them. You were the sixth. "
-        "I just couldn't do it. You always said hi.\n\n"
-        "Please don't tell anyone. Except him. He already knows.",
+        "Before you go, you deserve the truth. Every word of advice I gave you, I also wrote down "
+        "for someone else. The CHAMPION has known your road since RUSTBORO.\n\n"
+        "I was paid to watch you, not to like you. I failed at the second part.\n\n"
+        "Go carefully. He knows you're coming.",
 }
-
 
 def _lines(label, friendly, widths):
     import comedy
@@ -264,8 +276,6 @@ def scripts(widths):
                 '\tmsgbox Thrones_Text_Herald%d, MSGBOX_DEFAULT' % n,
                 '\tgiveitem %s, %d' % (item, count)]
         texts += _lines('Thrones_Text_Herald%d' % n, said, widths)
-        if n == 3:
-            out.append('\tremovemoney 1000')
         if after:
             out.append('\tmsgbox Thrones_Text_Herald%dAfter, MSGBOX_DEFAULT' % n)
             texts += _lines('Thrones_Text_Herald%dAfter' % n, after, widths)
@@ -329,9 +339,9 @@ def apply(ov, widths):
           r'^\tmsgbox RustboroCity_DevonCorp_3F_Text_MrStoneExplainPokenavRestUp, MSGBOX_DEFAULT$',
           '\tcall Thrones_EventScript_IronBankLoan', report, 'the Iron Bank')
     _hook(ov, EVENT_SCRIPTS, r'^EventScript_AfterWhiteOutHeal::\n\tlockall$',
-          '\tcall Thrones_EventScript_ShameCenter', report, 'the walk of shame')
+          '\tcall Thrones_EventScript_ShameCenter', report, 'the septa after a white-out')
     _hook(ov, EVENT_SCRIPTS, r'^EventScript_AfterWhiteOutMomHeal::\n\tlockall$',
-          '\tcall Thrones_EventScript_ShameMom', report, 'the walk of shame at home')
+          '\tcall Thrones_EventScript_ShameMom', report, 'Mom after a white-out')
     report.insert(0, 'Story events: heralds after every badge, the Iron Bank, the Red Wedding, '
-                     'your Hand (and their betrayal), Wally\'s cape, the spy, and the walk of shame.')
+                     'your Hand (and their betrayal), Wally\'s oath, the spy, and the septa\'s bell.')
     return report

@@ -30,6 +30,7 @@ from maps import BATTLE_RE
 import title_screen
 import house_gyms
 import house_sigils
+import thrones_sprites
 import thrones_story
 import thrones_music
 
@@ -425,6 +426,8 @@ def apply(ov, opt, rng, report):
         for k, new_lines in house_gyms.boss_lines().items():
             swap.update(zip(L.THRONES_LEADER_LINES[k], new_lines))
         ctx['boss'] = {label: swap.get(line_, line_) for label, line_ in ctx['boss'].items()}
+    if key == 'thrones' and opt.get('sprites', True):
+        head += thrones_sprites.apply(ov)
     if key == 'thrones' and opt.get('music', True):
         head += ['Music: ' + line for line in thrones_music.apply(ov)]
     if key == 'thrones' and opt.get('story', True):
