@@ -1,744 +1,568 @@
 # Game of Thrones: Rustboro City buildings. Devon (House Stone), the Gym (House Rustboro),
 # the Trainer's School, houses, Mart and Pokémon Center.
-# Bar: every entry is funny AND absurd. Politics, prophecy and betrayal applied to tiny things.
+# Tone: serious, in the spirit of the books. Wit belongs to a few clever characters only.
 
 @ RustboroCity_CuttersHouse_Text_YouCanPutThisHMToGoodUse
-That fierce gaze… That warrior's stride… Those POKéMON, covered in battle scars and a little bit of jam…
+That steady look… The way you carry yourself… And your POKéMON, scarred but standing…
 
-You're obviously a knight of great renown!
+You've seen real fights. No, don't tell me. I can see it.
 
-No, don't speak. A true knight's deeds speak for them. Also, I'm a bit deaf. So don't bother.
-
-I'm sure you'll put this HIDDEN MACHINE to noble use. Chop trees. Chop doors. Chop the bonds of tyranny.
-
-No need to be humble. Take it! The realm needs you! I need my table back! It's been on my table for a year!
+I'm sure you can put this HIDDEN MACHINE to good use. Go on, take it!
 
 @ RustboroCity_CuttersHouse_Text_ExplainCut
-That HIDDEN MACHINE, or HM, is CUT.
+That HIDDEN MACHINE, or HM, is CUT. An HM move can be used by POKéMON outside of battle.
 
-An HM move can be used by POKéMON outside of battle.
+Any POKéMON that has learned CUT can chop down thin trees, if its TRAINER holds the STONE BADGE.
 
-Any POKéMON that knows CUT can chop down thin trees, if its TRAINER carries the STONE BADGE of House Rustboro.
-
-And unlike a TM, an HM can be used again and again. Like a good grudge. Or my uncle's one joke.
+And unlike a TM, an HM can be used more than once.
 
 @ RustboroCity_CuttersHouse_Text_DadHelpedClearLandOfTrees
-When House Stone built RUSTBORO, my father served them.
+When House Stone built RUSTBORO, my father cleared the old forest for them. His POKéMON used CUT on trees older than any house in the realm.
 
-His POKéMON used CUT to clear the forest. All of it. The trees still haven't forgiven us. Sometimes, at night, you can hear them plotting.
+He never went into a forest again after that.
 
 @ RustboroCity_DevonCorp_1F_Text_WelcomeToDevonCorp
-Well met, and welcome to the seat of House Stone, the DEVON CORPORATION.
-
-We make the items and medicines that keep the realm alive. And very rich. Us, I mean. We're very rich. I have a hat made of money.
+Welcome to the DEVON CORPORATION, the house of the Stones. We make the goods and medicine the realm depends on.
 
 @ RustboroCity_DevonCorp_1F_Text_StaffGotRobbed
-One of our scribes was robbed of a precious parcel. In the woods. Alone. Wearing a sign that said “I HAVE A PRECIOUS PARCEL.”
+One of our researchers was robbed of an important parcel. On our own streets. Mr. STONE is not pleased.
 
 @ RustboroCity_DevonCorp_1F_Text_ThoseShoesAreOurProduct
-Hey, those RUNNING SHOES! House Stone made those!
-
-It warms my heart to see the smallfolk fleeing from things in our products.
+Those RUNNING SHOES! We made those. Half the armies in HOENN march in DEVON boots.
 
 @ RustboroCity_DevonCorp_1F_Text_RobberWasntVeryBright
-That stolen parcel…
+That stolen parcel is important, yes. But no one outside DEVON could use it.
 
-Sure, it's important, but nobody outside House Stone could use it. It's mostly paperwork. And one very nice pen.
-
-That sea brigand must be as dim as a candle in a rainstorm, at the bottom of the sea, in a hat.
+Unless the thief knew exactly what it was. That's what worries me.
 
 @ RustboroCity_DevonCorp_1F_Text_SoundsLikeStolenGoodsRecovered
-Word in the halls is the stolen DEVON GOODS were recovered. House Stone's honor is restored. The nice pen is safe. We had a small parade. It was just me. Walking.
+They say the stolen DEVON GOODS have been recovered. Someone will be rewarded. Someone else will be questioned.
 
 @ RustboroCity_DevonCorp_1F_Text_OnlyAuthorizedPeopleEnter
-Halt. Only sworn members of House Stone may pass. Do you know the secret handshake? No? Good. Neither do I. Nobody does. That's why it's secret.
+I'm sorry. Only those sworn to House Stone may go beyond this point.
 
 @ RustboroCity_DevonCorp_1F_Text_HowCouldWeGetRobbed
-The richest house in the realm, robbed by a man whose whole plan was “stand in a bush.” How could we get robbed?
+Someone inside must have told them when and where. How else could we be robbed?
 
 @ RustboroCity_DevonCorp_1F_Text_YoureAlwaysWelcomeHere
-Well met! Friend of House Stone! You're always welcome here! You can even touch the rocks! Not the big rock. The big rock is for the lord.
+Hi, there! House Stone remembers its friends. You're always welcome here!
 
 @ RustboroCity_DevonCorp_1F_Text_RocksMetalDisplay
-Samples of rocks and metal glitter in the glass case.
+Samples of rock and metal are displayed in the glass case. There's a panel with some writing on it…
 
-A plaque reads…
+“House Stone began in the quarries, cutting stone for the castles of the first kings.
 
-House Stone began as humble quarry folk, digging stone from the mountains.
+“It took iron from the sand, and forged it for their armies.
 
-They also made iron from the sand of the coast.
+“From stone and iron, it built DEVON. From DEVON, it built a fortune.
 
-From those humble roots, the house grew rich, and stopped digging, and started paying other people to dig.
-
-Now House Stone makes everything, owns everything, and has very strong opinions about gravel.
+“Now the realm runs on what House Stone makes.”
 
 @ RustboroCity_DevonCorp_1F_Text_ProductDisplay
-Prototypes and secret projects fill the case. One is labeled “DO NOT.” Just that. “DO NOT.”
+Prototypes fill the glass display case. There's a panel with a description…
 
-A plaque reads…
+“DEVON now makes medicines and goods for every household in the realm.
 
-Besides tools of industry, House Stone sells medicine and luxuries to the nobility.
-
-Lately, House Stone also arms the realm's TRAINERS with POKé BALLS and POKéNAV devices. War is good business. Peace is also good business. We sell to both.
+“DEVON has also begun making tools for POKéMON TRAINERS, including POKé BALLS and the POKéNAV.”
 
 @ RustboroCity_DevonCorp_2F_Text_DeviceForTalkingToPokemon
-We're building a device to speak with POKéMON. For diplomacy.
-
-So far, the POKéMON have refused to negotiate. One of them just keeps saying its own name. Over and over. We think it's a threat.
+We're building a device for speaking with POKéMON. Imagine an army that could hear its orders. We haven't had much success…
 
 @ RustboroCity_DevonCorp_2F_Text_DevelopingNewBalls
-I'm forging new kinds of POKé BALLS…
-
-But my forge keeps catching fire… And then the fire catches fire… I didn't know fire could do that…
+I'm developing new kinds of POKé BALLS… But I haven't made much progress…
 
 @ RustboroCity_DevonCorp_2F_Text_WeFinallyMadeNewBalls
-We've finally forged new kinds of POKé BALLS!
+We finally made new POKé BALLS!
 
-The REPEAT BALL works better on POKéMON you've captured before. Old enemies. Exes.
+The REPEAT BALL makes it easier to catch POKéMON you've caught before.
 
-The TIMER BALL grows stronger the longer a battle drags on. Like a siege. Or a wedding speech.
+The TIMER BALL works better the longer a battle runs.
 
-Both proudly made by House Stone.
-
-Buy them! We need the gold! The lord bought a second big rock!
+Both are made by the DEVON CORPORATION. Please give them a try!
 
 @ RustboroCity_DevonCorp_2F_Text_IMadePokenav
-I built the POKéNAV!
-
-As an engineer of House Stone, I'm blessed. The lord almost learned my name once. He got the first letter right.
+I made the POKéNAV! Every TRAINER who carries one carries a piece of my work. I'm proud of that.
 
 @ RustboroCity_DevonCorp_2F_Text_WowThatsAPokenav
-Oh, wow! A POKéNAV!
+Oh! That's a POKéNAV! Mr. STONE wanted to understand POKéMON, and the people who travel with them.
 
-It was born from our lord's wish to understand the hearts of POKéMON. And to know where his son is. His son is always in a cave.
-
-Shall I explain all its features?
-
-No, no. Learn by using it. That's how the realm works. Also, I forgot most of them.
+Shall I explain how it works? No. You'll learn it best by using it.
 
 @ RustboroCity_DevonCorp_2F_Text_DeviceToVisualizePokemonDreams
-I'm building a device to see the dreams of POKéMON… For prophecy…
-
-So far, every single dream is about food. One was about a sandwich that was also a king. We're studying that one closely.
+I'm trying to build a device that shows the dreams of POKéMON… The priestesses of LAVARIDGE say it can't be done. So far, they're right.
 
 @ RustboroCity_DevonCorp_2F_Text_DevelopDeviceToResurrectFossils
-I'm building a device to bring POKéMON back from fossils… Ancient beasts from the age of the old kings…
-
-And it's working! Necromancy is legal here, right? Don't answer that. I've already done it eleven times.
+I've been building a device that brings POKéMON back from fossils… And it works! The dead don't have to stay dead.
 
 @ RustboroCity_DevonCorp_2F_Text_WantToBringFossilBackToLife
-Wait! That thing you carry… Is that a POKéMON fossil? A relic of the old kingdoms? Or a very old biscuit?
+Wait! What you have there… Is that a POKéMON fossil?
 
-My FOSSIL REGENERATOR can bring it back to life. Biscuits too, probably. I've never tried. I'm scared to.
-
-Shall I raise that POKéMON from the dead?
+Would you like to bring that POKéMON back to life? My FOSSIL REGENERATOR can do it.
 
 @ RustboroCity_DevonCorp_2F_Text_OhIsThatSo
-Oh, is that so?
-
-House Stone's sorcery is the finest in the realm. Ask anyone. Ask the ghosts. They're still angry, but they'll agree.
+Oh, is that so? Well, the offer stands. House Stone can do what no one else can.
 
 @ RustboroCity_DevonCorp_2F_Text_TwoFossilsPickOne
-Oh my! Not one relic, but two? Are you robbing graves? I'm not judging. I'm asking for a friend. The friend is me.
+Oh, now that's a surprise! Not one, but two fossils?
 
-Sadly, my machine can only raise one POKéMON at a time. Necromancy has union rules.
-
-Would you like to pick one of your fossils to revive?
+My machine can only bring back one POKéMON at a time. Which of your fossils would you like me to wake?
 
 @ RustboroCity_DevonCorp_2F_Text_HandedFossilToResearcher
-Excellent! Let's begin the ritual at once. Please hum something ominous.
+Excellent! Let's begin right away.
 
-{PLAYER} handed the {STR_VAR_1} to the scribe of House Stone.
+{PLAYER} handed the {STR_VAR_1} to the DEVON RESEARCHER.
 
 @ RustboroCity_DevonCorp_2F_Text_FossilRegeneratorTakesTime
-My FOSSIL REGENERATOR is a marvel.
+The FOSSIL REGENERATOR is a marvel. But it's slow. Waking something that old takes time.
 
-But the ritual takes a long time. Raising the dead is slow work. They keep asking what year it is. Then they cry.
-
-So, uh… Why not take a walk around the realm for a while?
+So… Why don't you go for a walk and come back later?
 
 @ RustboroCity_DevonCorp_2F_Text_FossilizedMonBroughtBackToLife
-Thank you for waiting!
+Thank you for waiting! Your POKéMON has been brought back to life!
 
-Your ancient POKéMON has risen from the dead! It's confused, it's hungry, and it already hates taxes!
-
-It was a beast from the age of the old kings. {STR_VAR_2}, it was! Be gentle. It's a hundred million years old. It needs a nap. And a lawyer.
+It's older than the oldest house in HOENN. {STR_VAR_2}, it was!
 
 @ RustboroCity_DevonCorp_2F_Text_TooManyPokemon
-Uh-oh, your army is full. There's no room for this one. It'll have to go back to being dead for a while. It's used to it.
+Uh-oh, you're carrying too many POKéMON. You have no room for this one.
 
 @ RustboroCity_DevonCorp_2F_Text_DevelopNewPokenavFeature
-I'm adding a new feature to the POKéNAV… A raven tracker…
-
-It's not going well. The ravens keep eating it. One of them is now the tracker. It tracks itself. It's very proud.
+I'm trying to add a new feature to the POKéNAV… But it's not going well.
 
 @ RustboroCity_DevonCorp_2F_Text_WhatToWorkOnNext
-Now, what shall I invent next? A self-stirring cauldron? A sword that apologizes? A crown that tells you who's plotting against you?
+Now, what should I build next?
 
-House Stone lets us turn our dreams into reality.
-
-An engineer couldn't ask for a better lord. They pay in rocks, though. I have nine thousand rocks. I can't buy bread with rocks. I've tried.
+House Stone gives us everything we need, and asks only that we never speak about our work outside these walls. I've never had a better patron.
 
 @ RustboroCity_DevonCorp_3F_Text_MrStoneIHaveFavor
-I am MR. STONE, Lord of House Stone and PRESIDENT of the DEVON CORPORATION. Also Duke of Gravel. Also Count of Pebbles. The titles came with the rocks.
+I am MR. STONE, head of House Stone and of the DEVON CORPORATION.
 
-The ravens told me all about you!
+I've heard about you. You saved my people not once, but twice. House Stone does not forget that.
 
-You saved my people not once, but twice! The scribe even wrote you a poem. It's bad. I'll spare you.
+I have a favor to ask. You're carrying a package to the SHIPYARD in SLATEPORT.
 
-I have a favor to ask of such a hero.
-
-I understand you're carrying a package to the SHIPYARD in SLATEPORT.
-
-On the way, could you stop in DEWFORD TOWN?
-
-I'd like you to deliver a LETTER to my heir, STEVEN, in DEWFORD. He's in a cave. Looking at rocks. He's always in a cave looking at rocks. I've never seen his face in daylight.
+On the way, would you stop in DEWFORD TOWN? I need a LETTER delivered to my son, STEVEN. By hand. Not by raven.
 
 @ RustboroCity_DevonCorp_3F_Text_MrStoneWantYouToHaveThis
-MR. STONE: Now, you should know I am a generous lord.
+MR. STONE: A Stone always pays his debts. I would never ask a favor without giving something in return.
 
-I would never ask a favor without paying for it. House Stone pays its debts. Usually in rocks. But not this time!
-
-So I want you to have this!
+That's why I want you to have this!
 
 @ RustboroCity_DevonCorp_3F_Text_MrStoneExplainPokenavRestUp
-MR. STONE: That device…
+MR. STONE: That device is a POKéMON NAVIGATOR. A POKéNAV.
 
-It's a POKéMON NAVIGATOR, a POKéNAV. The finest thing House Stone has ever made. Except for my son. Debatable.
+No TRAINER on the road should be without one. It holds a map of all HOENN. DEWFORD and SLATEPORT are easy to find.
 
-Every TRAINER on a quest needs one.
+One more thing. Lord MAXIE and Lord ARCHIE have men on every road now. MAGMA and AQUA. They are raising armies, and they are not subtle about it.
 
-It holds a map of the whole realm of HOENN. I had the cartographers walk every road. Twice. Some of them are still walking.
-
-You can find DEWFORD and SLATEPORT easily!
-
-By the way, I hear two rebel armies, MAGMA and AQUA, are raiding the realm. One wants more land. One wants more sea. Both want my rocks.
-
-Rest before you set out. The roads are dangerous. And long. And full of children who want to fight you.
+Rest before you leave. You'll want your strength.
 
 @ RustboroCity_DevonCorp_3F_Text_MrStoneGoWithCautionAndCare
-MR. STONE: Then go, {PLAYER}{KUN}, with caution and care! House Stone is watching! Not in a creepy way! In a lordly way!
+MR. STONE: Well, then, {PLAYER}{KUN}, go with caution, and trust no one you haven't tested.
 
 @ RustboroCity_DevonCorp_3F_Text_CountingOnYou
-MR. STONE: House Stone is counting on you! I've counted twice! You came out to one both times!
+MR. STONE: I'm counting on you!
 
 @ RustboroCity_DevonCorp_3F_Text_ThankYouForDeliveringLetter
-MR. STONE: You delivered my LETTER? Thank you! My heir got it? Did he say anything? Did he say “Dad”? He never writes back. He sends rocks. Just rocks. In envelopes.
+MR. STONE: You delivered my LETTER? Thank you. My son and I don't speak often. It matters more than you know.
 
-Please, take this. It should serve a TRAINER well.
+Please take this. It should help a TRAINER on the road.
 
 @ RustboroCity_DevonCorp_3F_Text_ExplainExpShare
-MR. STONE: A POKéMON holding the EXP. SHARE gets a share of EXP Points from every battle.
+MR. STONE: A POKéMON holding the EXP. SHARE receives some of the EXP Points from every battle, even if it never fights.
 
-Even if it never fought. Like a lord's younger son. Or a cousin who shows up for the feast but never the war.
-
-It's very useful for raising weak POKéMON.
+The strong teach the weak. That's how a house survives.
 
 @ RustboroCity_DevonCorp_3F_Text_NotFamiliarWithTrends
-MR. STONE: Since my youth, I've devoted myself to my house. And to rocks. Mostly rocks.
+MR. STONE: I've given my whole life to this house. I know little of what the young care about these days.
 
-So I know nothing about what the young people like. Do they like rocks? Tell me they like rocks.
-
-But tell me, do all young people want to join the POKéMON LEAGUE and fight for the Throne?
+But tell me… Do all the young people want to fight for the THRONE now?
 
 @ RustboroCity_DevonCorp_3F_Text_ThisIs3rdFloorWaitHere
-This is the third floor of House Stone's keep.
+This is the third floor of DEVON. Mr. STONE's chambers are here.
 
-Our lord's chambers are on this floor. Also his rock room. Also his second rock room.
+I can't tell you how grateful I am for what you've done.
 
-I can't thank you enough for what you've done. I'd have been sent to the dungeon. They've got a nice dungeon. Too nice. It has carpet. That's how they get you.
+Um… That parcel you got back for us… Could you carry it to the SHIPYARD in SLATEPORT? If those men try for it again, I don't want it in my hands.
 
-Um… By the way, that parcel you recovered for us…
-
-Could you carry it to the SHIPYARD in SLATEPORT?
-
-It would be terrible if those brigands stole it again. I would have to wear the sign again.
-
-Uh… Hehehe, so, uh, could I count on you to do that?
+So… could I count on you to do that for me?
 
 Oh, that's right. Could you wait here a moment?
 
 @ RustboroCity_DevonCorp_3F_Text_WordWithPresidentComeWithMe
-The Lord of House Stone wishes to speak with you.
-
-Please follow me. Bow when you enter. Not too low. He hates that. Not too high. He hates that too. There's a mark on the floor. Aim for the mark.
+Mr. STONE would like a word with you. Please come with me.
 
 @ RustboroCity_DevonCorp_3F_Text_PleaseGoAhead
-Please, go ahead. The lord awaits. He's holding a rock. Compliment the rock.
+Please, go ahead.
 
 @ RustboroCity_DevonCorp_3F_Text_VisitCaptSternShipyard
-When you reach the SHIPYARD in SLATEPORT, seek out CAPT. STERN. He's the one who looks like a sad walrus with a hammer.
+When you reach the SHIPYARD in SLATEPORT, ask for CAPT. STERN. He's building a ship for House Stone.
 
 @ RustboroCity_DevonCorp_3F_Text_RepeatAndTimerHugelyPopular
-House Stone's new REPEAT BALL and TIMER BALL are selling like swords before a war. Or swords during a war. Or swords after a war, to the winners.
+DEVON's new REPEAT BALL and TIMER BALL are selling everywhere. Every lord in HOENN wants them for his men.
 
 @ RustboroCity_DevonCorp_3F_Text_RareRocksDisplay
-A collection of rare rocks and stones, gathered by the Lord of House Stone. Each one has a tiny name tag. One is called “Gerald.” Gerald is his favorite.
+It's a collection of rare stones, gathered by Mr. STONE over a lifetime.
 
 @ RustboroCity_Flat1_1F_Text_EveryPokemonHasAbility
-Every POKéMON has a special ability. Like every lord has a secret. Usually it's a second family.
+Every POKéMON has a gift of its own. Knowing your enemy's gift is half the battle.
 
 @ RustboroCity_Flat1_1F_Text_PokemonStrange
-POKéMON are such strange creatures. Almost as strange as nobles. At least POKéMON don't make you sit through a three-hour feast.
+POKéMON are strange creatures. We've lived beside them for thousands of years, and we still don't know what they want.
 
 @ RustboroCity_Flat1_2F_Text_ComingUpWithMealsIsHard
-Oh, every day is a war…
+Oh, it's so hard, every day…
 
-What war? You need to ask?
+What's hard? Feeding a family. Bread costs twice what it did last year. The lords are buying grain for their armies.
 
-Deciding what to cook for every feast. The children want cake. My husband wants meat. The cat wants war.
-
-Every single day. The realm is never satisfied. I am at war with soup.
+It isn't easy to put a meal on the table every day.
 
 @ RustboroCity_Flat1_2F_Text_HelloDoYouKnowFunnyPhrase
-Oh, well met! Welcome to the house of PEPPER.
+Oh, hello! Welcome to the PEPPER household. May I ask you something?
 
-A question for you. Have you ever cared for a royal infant? They're tiny tyrants. Mine has already taken the good chair.
+I'm a new father, and I'm not sure I'm any good at it.
 
-You see, I'm a new father, and an heir is a lot of work.
+My daughter WALDA rarely laughs. The times are grim, and I think she feels it. I'd like to give her something to laugh about.
 
-And my heir, WALDA, never laughs. She just stares. Like she's planning a coup. She's eight months old.
-
-I think she'd laugh if I said something funny.
-
-Do you know of a funny word or phrase you can tell me?
+Do you know a funny word or phrase I could say to her?
 
 @ RustboroCity_Flat1_2F_Text_BeenSayingXDoYouKnowBetterPhrase
-I've been saying “{STR_VAR_1}” to amuse her lately. She looked at me like I owed her money.
-
-Do you know of a better word or a phrase that might work?
+I've been saying “{STR_VAR_1}” to her lately. Do you know a better word or phrase that might work?
 
 @ RustboroCity_Flat1_2F_Text_WonderfulLetsHearSuggestion
-Oh, wonderful. Let's hear it, then. Speak, wise jester.
+Oh, that's wonderful. Let's hear it, then.
 
 @ RustboroCity_Flat1_2F_Text_OhIsThatRight
-Oh, is that so?
-
-Well, if you think of something funny, my door is always open. Mostly because WALDA took the lock.
+Oh, is that right? Well, if you think of something, I'm listening.
 
 @ RustboroCity_Flat1_2F_Text_LetsGiveItATry2
-Stand back. She bites. Well, let's give it a try, shall we?
+Ah, I see. Well, let's give it a try, shall we?
 
 @ RustboroCity_Flat1_2F_Text_OhShesLaughing
 {STR_VAR_1}. {STR_VAR_1}.
 
-Oh, yes! She's laughing! My heir laughs! Ring the bells! Free the prisoners! Not all of them! Some!
+Oh! She's laughing! She's really laughing! I haven't heard that in weeks!
 
 @ RustboroCity_Flat1_2F_Text_LetsGiveItATry
-Brace yourself. Well, let's give it a try, shall we?
+Ah, I see. Well, let's try it, shall we?
 
 @ RustboroCity_Flat1_2F_Text_ShesNotSmilingAtAll
 {STR_VAR_1}. {STR_VAR_1}.
 
-Hmmm… Not even a smile. She's taking notes. Why is she taking notes? Where did she get a quill?
+Hmmm… Nothing. Not even a smile. Maybe WALDA is just a serious child…
 
 @ RustboroCity_Flat1_2F_Text_ThinkOfMyOwnPhrase
-Oh, so you don't know any funny words. A jester with no jokes. That's just a man in a hat.
+Oh, so you don't know any good words. Then I'll think of one myself.
 
-Hmm… How about “{STR_VAR_1}”? Let's see if it works.
+Hmm… How about “{STR_VAR_1}”? Let's see if that works.
 
 @ RustboroCity_Flat1_2F_Text_ShesNotSmilingAtAll2
 {STR_VAR_1}. {STR_VAR_1}.
 
-Hmmm… Not even a smile. WALDA will make a very stern queen one day. She already has a very stern bonnet.
+Hmmm… She won't smile at all. Maybe WALDA is just a serious child…
 
 @ RustboroCity_Flat1_2F_Text_OhYouDontKnowAny
-Oh, so you don't know any funny words. I'll keep using my old saying, then. She'll hate it. She hates everything. She hates the sun.
+Oh, so you don't know any good words. I'll keep using the one I had before.
 
-But if you think of something, tell me, okay?
+If you think of something, come and tell me, okay?
 
 @ RustboroCity_Flat1_2F_Text_ThankYouIllGiveYouWallpaper
-Thank you!
+Thank you! Thanks to you, my WALDA laughed!
 
-Thanks to you, my darling WALDA laughed! The heir is happy! The realm is saved! For now!
+I may not look like much, but I'm one of DEVON's best researchers. Let me repay you.
 
-I may not look like much, but I'm one of House Stone's top scribes. I wrote the instructions for the POKéNAV. Nobody has read them.
+I'll add new wallpaper patterns to the BOXES of the PC POKéMON Storage System.
 
-So, let me repay the debt.
-
-I'll add new wallpaper patterns to the BOXES in your PC POKéMON Storage System. Royal tapestries! For your POKéMON prisoners! Guests! I meant guests!
-
-In the wallpaper menu, select “FRIENDS.”
-
-That will open the new patterns.
+In the wallpaper menu, select “FRIENDS.” You'll find the new patterns there.
 
 @ RustboroCity_Flat1_2F_Text_ItsAPokemonPlushDoll
-It's a POKéMON plush DOLL! The royal infant's favorite. It's missing an eye. She took it. She keeps it in a box.
+It's a POKéMON plush DOLL! Someone has sewn a tiny house sigil onto it.
 
 @ RustboroCity_Flat2_1F_Text_DevonWorkersLiveHere
-The servants of House Stone live in this building. Close to work. Close to the lord's eye. The lord has a telescope. We've seen it.
+DEVON's workers live in this building. House Stone owns the walls, the floors, and most of the people in them.
 
 @ RustboroCity_Flat2_2F_Text_DevonWasTinyInOldDays
-Long ago, House Stone was a tiny house. Just some folk with shovels and a dream. The dream was also about shovels.
+In the old days, DEVON was just a little quarry, and the Stones were just stonecutters. Now look at them.
 
 @ RustboroCity_Flat2_2F_Text_MyDaddyMadeThisYouCanHaveIt
-My papa serves House Stone.
-
-My papa made this! But I can't use it, so it's yours. A gift from my house to yours! Now our houses are allies! Now you owe me! Forever!
+My daddy works for House Stone. He made this! But I can't use it, so you can have it.
 
 @ RustboroCity_Flat2_2F_Text_GoingToWorkAtDevonToo
-My papa serves House Stone.
-
-When I grow up, I'll serve House Stone too. Then I'll marry into House Stone. Then I'll BE House Stone. Papa says that's “a lot.”
+My daddy works for House Stone. When I grow up, I'm going to serve them, too.
 
 @ RustboroCity_Flat2_3F_Text_PresidentCollectsRareStones
-The Lord of House Stone collects rare stones. House Stone. Stones. He says it's a coincidence. Nobody believes him.
+Mr. STONE collects rare stones. They say his vaults hold more stones than gold. And they hold a great deal of gold.
 
 @ RustboroCity_Flat2_3F_Text_PresidentsSonAlsoCollectsRareStones
-I hear the lord's heir collects rare stones too. Even more than his father. He once traded a castle for a pebble. A shiny pebble. He says it was worth it.
+I hear Mr. STONE's son, STEVEN, collects stones too. He left the city years ago. Nobody says why.
 
 @ RustboroCity_Gym_Text_GymGuideAdvice
-Ho there, how goes it?
+Yo, how's it going?
 
-Listen, friend! Would you like to sit on the Poké Ball Throne someday? It's very uncomfortable! Everybody wants it anyway!
+Listen, my friend! Would you like to sit the THRONE someday?
 
-I'm no knight myself, but I give the best counsel in the realm. I counseled six kings! Four of them are still alive!
+I'm no TRAINER, not me, but I've given counsel in every GYM in HOENN.
 
-That's settled, then! We march on the Throne together!
+Then we're agreed. Every house must bend the knee, one GYM at a time.
 
-A TRAINER must collect the GYM BADGES of every noble house, am I right?
+It's your task as a TRAINER to collect GYM BADGES, am I right? The BADGES are the banners of the houses.
 
-But the lords and ladies of the GYMS are no pushovers! I pushed one once. He pushed back. Into a river.
+But the lords of the GYMS aren't pushovers! That's where I come in!
 
-That's where I come in! Your humble advisor! Your Hand of the King! Your guy with a clipboard!
+ROXANNE, Lady of House Rustboro, holds this GYM. She's young, but she was the best student this city ever had.
 
-ROXANNE, Lady of House Rustboro, commands ROCK-type POKéMON.
+Know her POKéMON before you face them. Find what they can't stand, and use it.
 
-ROCK is tough like a castle wall, but it can't stand WATER-type and GRASS-type moves.
-
-Come see me after, if you defeat the lady.
-
-Now go, and may the old gods be with you! I'll be here! Holding the clipboard!
+Come see me afterwards, if you beat the lady. Well, go for it!
 
 @ RustboroCity_Gym_Text_GymGuidePostVictory
-Whoa! A legendary victory! My counsel must have worked! It always works! Four out of six times!
+Whoa! What a victory!
 
-Great! Check your TRAINER CARD.
+Check your TRAINER CARD. The STONE BADGE should be recorded on it.
 
-The STONE BADGE should be recorded there now. House Rustboro has bent the knee. Lady ROXANNE is writing an essay about it.
+In other words… House Rustboro has bent the knee. One house down. Seven to go.
 
-In other words…
-
-You've taken the first step toward the Throne!
-
-The bards are already writing! They're stuck on what rhymes with “Rustboro.” Nothing does. They're in agony.
+The other lords will hear of this by nightfall. How does it feel?
 
 @ RustboroCity_Gym_Text_JoshIntro
-Don't take the knights of this hall lightly! House Rustboro bows to no one! We bow to books, sometimes!
+Don't take the sworn TRAINERS of this GYM lightly! I'll show you why!
 
 @ RustboroCity_Gym_Text_JoshDefeat
-You were too strong for me… The rock has crumbled… I'll need a new rock…
+You were too good for me…
 
 @ RustboroCity_Gym_Text_JoshPostBattle
-You haven't seen the true terror of the ROCK type yet! Wait until you see the book report!
+You haven't seen what our lady can do. Not yet.
 
 @ RustboroCity_Gym_Text_TommyIntro
-If you can't defeat me, you'll never get near Lady ROXANNE! She has a moat! It's full of homework!
+If you can't beat me, you'll never stand against Lady ROXANNE!
 
 @ RustboroCity_Gym_Text_TommyDefeat
-Wow! You've got the makings of a lord! Or at least a very good middle manager!
+Wow! There's something to you!
 
 @ RustboroCity_Gym_Text_TommyPostBattle
-Lady ROXANNE is several times stronger than me. And several times smarter. She knows every word. Even “defenestrate.”
-
-Keep your shield up!
+Lady ROXANNE is many times stronger than me. Be on your guard!
 
 @ RustboroCity_Gym_Text_MarcIntro
-We may be in the middle of a city, but so what?
+We might be in the middle of town, but so what?
 
-My ROCK POKéMON need room for a siege! Move your feet! That's our siege area!
+This is House Rustboro's hall. Inside these walls, we fight by our own law!
 
 @ RustboroCity_Gym_Text_MarcDefeat
-Oh, man oh man! This challenger fights like a sellsword who's been paid in advance!
+Oh, man! You're a fierce one!
 
 @ RustboroCity_Gym_Text_MarcPostBattle
 I have to hand it to our lady.
 
-Choosing the ROCK type, so young? That's how you build a dynasty. Rocks don't betray you. Rocks don't even move.
+She was barely older than you when she took this seat, and no one has taken it from her since.
 
 @ RustboroCity_Gym_Text_RoxanneIntro
-Well met. I am ROXANNE, Lady of House Rustboro and its GYM.
+Hello. I am ROXANNE, Lady of House Rustboro, and the keeper of this GYM.
 
-I took this hall to test my studies at the POKéMON TRAINER'S SCHOOL. Our house words are: We Did The Reading. Did you do the reading? You didn't, did you.
+I studied at the TRAINER'S SCHOOL until there was nothing left to learn from books. Now I learn from battle.
 
-I'll be grading. Would you kindly show me how you fight, and with which POKéMON?
+Show me how you fight, and with which POKéMON. Will you?
 
 @ RustboroCity_Gym_Text_RoxanneDefeat
-So… I lost…
+So… I lost… I still have much to learn…
 
-It seems I still have much more to study… I'll add it to my list… My list has a list…
+I understand. By the laws of the realm, a lord who is defeated in her own hall must yield her BADGE.
 
-I understand.
-
-By the laws of the POKéMON LEAGUE, a TRAINER who defeats a GYM LEADER receives this.
-
-Please accept the STONE BADGE of House Rustboro. My banner is yours. I'll write you a footnote.
+Please accept the STONE BADGE. House Rustboro bends the knee.
 
 @ RustboroCity_Gym_Text_StoneBadgeInfoTakeThis
 The STONE BADGE raises the ATTACK power of your POKéMON.
 
 It also lets them use the HM move CUT outside of battle.
 
-Please take this as well. A gift from my house. It comes with a reading list.
+Please take this with you, too.
 
 @ RustboroCity_Gym_Text_ExplainRockTomb
-That TECHNICAL MACHINE, TM39, holds ROCK TOMB.
+That TECHNICAL MACHINE, TM39, contains ROCK TOMB. It buries the enemy under falling stone, and slows them.
 
-It drops rocks on the enemy and lowers their SPEED. Bury them, then outrun them. That's my whole philosophy. It's also my dating advice.
-
-A TM teaches a move to a POKéMON instantly.
-
-But a TM can only be used once, so think before you use it. That will be on the test. There is always a test.
+A TM teaches a move to a POKéMON at once. But a TM can be used only once, so think before you use it.
 
 @ RustboroCity_Gym_Text_RoxannePostBattle
-You're strong. You should challenge the other noble houses.
-
-Every duel will teach you something. Take notes. I'll be checking them. I know where you live. Everyone knows where everyone lives. It's a small realm.
+You're strong enough to challenge the other houses. Do it. Every battle will teach you something the scrolls can't.
 
 @ RustboroCity_Gym_Text_GymStatue
-HALL OF HOUSE RUSTBORO
-“Please be quiet. Someone is reading.”
+RUSTBORO CITY POKéMON GYM
+SEAT OF HOUSE RUSTBORO
 
 @ RustboroCity_Gym_Text_GymStatueCertified
-HALL OF HOUSE RUSTBORO
-
-KNIGHTS SWORN BY LADY ROXANNE: {PLAYER}
-
-Grade: B plus. “Good effort. Cite your sources.”
+RUSTBORO CITY POKéMON GYM
+ROXANNE'S SWORN TRAINERS:
+{PLAYER}
 
 @ RustboroCity_Gym_Text_RoxanneRegisterCall
 … … … … … … … … … … … Beep!
 
-ROXANNE: Oh, hello, {PLAYER}? This is ROXANNE, Lady of House Rustboro. I'm calling from the library. Whispering.
+ROXANNE: Hello, {PLAYER}? This is ROXANNE of House Rustboro.
 
-Lord BRAWLY tells me you're rising through the realm at an alarming pace. He said it with his mouth full. I think. It's hard to tell with him.
+BRAWLY tells me you're rising faster than any TRAINER in memory.
 
-I'd rather not believe I can't beat you. I've done the math. The math was rude.
+I don't intend to stay beaten. I'll make my GYM stronger, and you'll face it again.
 
-I swear I'll strengthen my hall, so you can challenge us again.
-
-I hope you look forward to it as much as I do! I've already made flash cards!
+I hope you look forward to it as much as I do.
 
 … … … … … … … … … … … Click!
 
 @ RustboroCity_Gym_Text_RoxannePreRematch
-ROXANNE: How wonderful to see you again. I'm ROXANNE, Lady of this hall. I've read four hundred books since we last met. Eleven were about you.
+ROXANNE: I'm glad to see you again. I'm ROXANNE, Lady of this GYM.
 
-I'm sure we've both fought many battles since then.
+We've both fought many battles since we last met. Let's see what they taught us.
 
-Let's see how much we've both grown. Let us duel!
+Let us battle!
 
 @ RustboroCity_Gym_Text_RoxanneRematchDefeat
-Grr… I've lost again… I'll need to read more books… I'll need to read ALL the books…
+Grr… Again, I have lost…
 
 @ RustboroCity_Gym_Text_RoxannePostRematch
-ROXANNE: I still have so much to learn about POKéMON battles.
-
-Knowing that makes me love them even more! Like a library with no end! A library with a dragon! I'd read the dragon!
+ROXANNE: I still have much to learn about battle. Knowing that only makes me want to keep learning.
 
 @ RustboroCity_House1_Text_IllTradeIfYouWant
-Huh? My POKéMON is cute? Of course it is. It's the cutest POKéMON in the realm. I had it officially measured.
+Huh? My POKéMON? Yes, it's a fine one. But I'd part with it for the right price.
 
-But if you really want it, I'll make you a deal. A trade between houses. A marriage, basically. Of POKéMON.
-
-I'll trade you my {STR_VAR_2} for a {STR_VAR_1} if you want.
+I'll trade you my {STR_VAR_2} for a {STR_VAR_1}, if you want.
 
 @ RustboroCity_House1_Text_PleaseBeGoodToMyPokemon
-Eheheh… Treat my POKéMON like royalty. Feed it grapes. Peel them first. It's very particular.
+Please be good to my POKéMON. It deserves a good master.
 
 @ RustboroCity_House1_Text_DoesntLookLikeMonToMe
-Huh? That's not a {STR_VAR_1}. That's a TRICK. I know how this realm works. My father lost a whole castle to a man in a fake mustache.
+Huh? That doesn't look anything like a {STR_VAR_1} to me.
 
 @ RustboroCity_House1_Text_YouDontWantToThatsOkay
-Oh, if you don't want to, that's fine. But my POKéMON is really cute, you know… It's going to cry now… It's crying… Look what you did…
+Oh, if you don't want to, that's fine. But it's a fine POKéMON, you know…
 
 @ RustboroCity_House1_Text_AnyPokemonCanBeCute
-Any POKéMON can be cute if you raise it with care. Even the ones with nine hundred teeth. Especially those.
+Any POKéMON will be loyal if you raise it with patience and care.
 
 @ RustboroCity_House1_Text_AllSortsOfPlaces
-Every corner of the realm has its own POKéMON and its own people.
-
-I find that fascinating, so I travel everywhere. Mostly to spy. I'm a spy. I've said too much. Forget my face.
+Every corner of the realm has its own POKéMON and its own people. I travel to see them all, before the war changes everything.
 
 @ RustboroCity_House2_Text_TrainerSchoolExcellent
-The TRAINER'S SCHOOL is the finest citadel of learning in the realm.
-
-Study there, and you might even become a GYM LEADER. A lord! With a hall! And a moat full of homework!
+The TRAINER'S SCHOOL is excellent. Study there, and you might hold a GYM one day. Lady ROXANNE did.
 
 @ RustboroCity_House2_Text_RoxanneKnowsALot
-Lady ROXANNE knows everything about POKéMON.
-
-She's very strong, too! Never insult a rock near her. A man did once. He's a rock now. Nobody knows how.
+Lady ROXANNE knows more about POKéMON than any Maester in the city. And she's strong, too.
 
 @ RustboroCity_House3_Text_IGivePerfectlySuitedNicknames
-I give my POKéMON perfectly suited titles! Ser Fluffington the Unwashed! Lady Bitesalot of House Ow!
-
-It's my expression of, uh… nobility, yes, that's it!
+I give my POKéMON names that suit them perfectly! A name is a kind of banner, you see!
 
 @ RustboroCity_House3_Text_NamingPikachuPekachu
-But naming a PIKACHU PEKACHU? That's like naming your son Lord Son of House Son.
-
-I suppose it's easy to remember, but…
+But naming a PIKACHU “PEKACHU”? What's the point of that? I suppose a plain name is easy to remember, but…
 
 @ RustboroCity_Mart_Text_BuyingHealsInCaseOfShroomish
-I'm buying PARLYZ HEALS and ANTIDOTES.
-
-The SHROOMISH of PETALBURG WOODS are poisoners. Like most of the court. One of them winked at me.
+I'm buying PARLYZ HEALS and ANTIDOTES. Something has been driving the SHROOMISH out of PETALBURG WOODS, and they're angry.
 
 @ RustboroCity_Mart_Text_ShouldBuySuperPotionsInstead
-My POKéMON evolved. It has a lot of HP now. A true knight. It's started asking for a castle.
-
-I should buy SUPER POTIONS instead of regular POTIONS. It insists. It has a list.
+My POKéMON evolved. It has much more HP now. I should buy SUPER POTIONS instead of ordinary POTIONS.
 
 @ RustboroCity_Mart_Text_GettingEscapeRopeJustInCase
-I'm buying an ESCAPE ROPE in case I get lost in a cave.
-
-It takes you right back to the entrance. Every lord should carry one to dinner parties. Especially weddings. ESPECIALLY weddings.
+I'm buying an ESCAPE ROPE, in case I'm lost in a cave. It takes you straight back to the entrance. I've known men who never found theirs.
 
 @ RustboroCity_PokemonCenter_1F_Text_PokemonHavePersonalities
-My POKéMON has a NAIVE nature, and my friend's has a JOLLY nature.
-
-POKéMON have personalities, just like the lords. Mine is naive. It trusted a SHROOMISH. It's fine now. Mostly.
+My POKéMON has a NAIVE nature, and my friend's has a JOLLY nature. They're as different as people. Some are loyal, some are proud.
 
 @ RustboroCity_PokemonCenter_1F_Text_MaleAndFemalePokemon
-Like people, POKéMON can be male or female.
-
-The Maesters have argued about what difference it makes for three hundred years. They've written nine books. The books are mostly yelling.
+Like people, POKéMON are male and female. But no one seems to know how they truly differ.
 
 @ RustboroCity_PokemonCenter_1F_Text_HMCutNextDoor
-The man next door gave me an HM!
-
-I taught my POKéMON to CUT down skinny trees. It also cut my hedge, my fence, and my brother's ponytail. I've never been happier.
+The man next door gave me an HM! I used it to teach my POKéMON to CUT down thin trees.
 
 @ RustboroCity_PokemonSchool_Text_BlackboardListsStatusChanges
-The blackboard lists the curses that can strike POKéMON in battle. Someone added “Mondays” at the bottom.
+The blackboard lists the afflictions that can strike POKéMON in battle.
 
 @ RustboroCity_PokemonSchool_Text_ReadWhichTopic
-Which curse do you want to read about?
+Which topic do you want to read?
 
 @ RustboroCity_PokemonSchool_Text_ExplainPoison
-A poisoned POKéMON steadily loses HP. A favorite of the court. Also of aunts.
+A poisoned POKéMON loses HP, little by little.
 
-Poison remains after a battle.
-
-A poisoned POKéMON loses HP while traveling.
+The poison stays after battle. Its HP will keep dropping as you travel.
 
 Cure it with an ANTIDOTE.
 
 @ RustboroCity_PokemonSchool_Text_ExplainParalysis
-A paralyzed POKéMON has lower SPEED.
+A paralyzed POKéMON loses SPEED. Sometimes it can't move at all in battle.
 
-Sometimes it can't move at all in battle. It just stands there. Like a lord at his own surprise party.
-
-Paralysis remains after battle. Cure it with a PARLYZ HEAL.
+Paralysis stays after battle. Cure it with a PARLYZ HEAL.
 
 @ RustboroCity_PokemonSchool_Text_ExplainSleep
-A sleeping POKéMON can't attack. Like a guard on night watch. Every guard on night watch.
+A sleeping POKéMON can't attack.
 
-It may wake on its own, but if a battle ends while it sleeps, it stays asleep.
+It may wake on its own. But if a battle ends while it sleeps, it stays asleep.
 
 Wake it with an AWAKENING.
 
 @ RustboroCity_PokemonSchool_Text_ExplainBurn
-A burn lowers ATTACK power and steadily drains HP. Fire is never your friend. Fire is only fire's friend.
+A burn lowers ATTACK power, and keeps eating at the victim's HP.
 
-The burn lingers after battle. Cure it with a BURN HEAL.
+A burn lingers after battle. Cure it with a BURN HEAL.
 
 @ RustboroCity_PokemonSchool_Text_ExplainFreeze
-A frozen POKéMON is completely helpless. Winter came for it. Winter always comes. Winter is very punctual.
+A frozen POKéMON is completely helpless. It stays frozen after battle.
 
-It stays frozen after battle. Thaw it out with an ICE HEAL.
+Thaw it with an ICE HEAL.
 
 @ RustboroCity_PokemonSchool_Text_StudentsWhoDontStudyGetQuickClaw
-Students who don't study get a taste of my QUICK CLAW. Metaphorically. Mostly metaphorically.
+I'm the teacher here. Students who work hard receive a QUICK CLAW.
 
-The way you use this item will show whether you're a scholar or a fool. There's a third option. Nobody has found it.
+How you use it will show me what kind of student you are.
 
 @ RustboroCity_PokemonSchool_Text_ExplainQuickClaw
-A POKéMON holding the QUICK CLAW sometimes moves first, before its enemy. Strike before they strike you. The oldest rule of politics.
+A POKéMON holding the QUICK CLAW will sometimes move before its enemy.
 
-There are many other relics for POKéMON to hold.
-
-Study them all! There will be a test! There's always a test! Even after you die, there's a test!
+There are many other items POKéMON can hold. Study them all. Every edge matters.
 
 @ RustboroCity_PokemonSchool_Text_TradingRightNow
-I'm trading POKéMON with my friend right now. A treaty between our houses. We've drafted forty pages. Neither of us can read.
+I'm trading POKéMON with my friend right now. We swore to be fair.
 
 @ RustboroCity_PokemonSchool_Text_AlwaysWantedSeedot
-I've always wanted a SEEDOT, and now I'm finally getting one! The treaty worked! I gave up my lunch for a week and my rights to a small pond!
+I always wanted a SEEDOT, and I'm finally getting one!
 
 @ RustboroCity_PokemonSchool_Text_PokemontCantUseManMadeItems
-POKéMON can hold items, but they don't understand things like POTION and ANTIDOTE. They're not Maesters. They have no student loans.
+POKéMON can hold items, but they can't use things men made, like POTIONS and ANTIDOTES. Those are up to you.
 
 @ RustboroCity_PokemonSchool_Text_ConfusedPokemonAttacksItself
-You know how some moves can confuse a POKéMON?
+You know how some moves confuse a POKéMON?
 
-A confused POKéMON sometimes attacks itself. Like a house at war with itself. Like my family at a holiday.
-
-But once the battle ends, it goes back to normal. My family doesn't.
+A confused POKéMON sometimes attacks itself without meaning to. Once it leaves battle, it returns to normal.
 
 @ RustboroCity_PokemonSchool_Text_PokemonHealItselfWithBerry
-A POKéMON holding a BERRY will heal itself…
+A POKéMON holding a BERRY heals itself… There are so many items a POKéMON can hold…
 
-There are many kinds of items POKéMON can hold…
-
-Gods, taking notes is hard… My quill is on fire… Why is my quill on fire…
+It's hard to write it all down…
 
 @ RustboroCity_PokemonSchool_Text_StudentsNotes
-It's this student's notebook…
+It's a student's notebook…
 
-POKéMON are captured using POKé BALLS.
+POKéMON are caught with POKé BALLS. Up to six POKéMON may travel with a TRAINER.
 
-Up to six POKéMON can ride with a TRAINER.
+A TRAINER catches POKéMON, raises them, and fights with them.
 
-A TRAINER captures POKéMON, raises them, and fights with them.
-
-A TRAINER's mission is to defeat the lords and ladies who hold the POKéMON GYMS.
-
-In the margins, someone drew the Throne. Then drew themselves on it. Then drew a little crown. Then drew a second, bigger crown.
+A TRAINER's duty is to defeat the lords who hold the POKéMON GYMS.
 
 @ RustboroCity_PokemonSchool_Text_ScottMetAlreadyCut
-Hello? Haven't we met? In PETALBURG CITY, I think. I was the one in the bush. No, the other bush.
+Hello? Haven't we met? In PETALBURG CITY, I think.
 
-Let me introduce myself. I'm SCOTT.
+My name's SCOTT. I travel the realm looking for strong TRAINERS. Fighters. The best there are.
 
-I roam the realm in search of great TRAINERS. Champions. People who look good on a poster.
+What brings you to this SCHOOL? Are you a TRAINER, too?
 
-To be precise, POKéMON battle experts.
-
-So, what brings you to this citadel of learning? Are you a TRAINER, too?
-
-First, have a POKéMON learn the move CUT.
-
-If I recall, someone in this city has CUT. He gives it to everyone. He's desperate.
+The first thing you should do is have a POKéMON learn CUT. If I remember right, someone in this town has it.
 
 @ RustboroCity_PokemonSchool_Text_StudentTalentLevelUnknown
-SCOTT: Hmm…
-
-These students' talents are unknown. Future lords, maybe. Or future bards. Or future people who say “I could've been a lord.”
+SCOTT: Hmm… These students are untested. There's talent here, though. Someone will find it and use it.
 
 @ RustboroCity_PokemonSchool_Text_ScottStoneBadge
-SCOTT: Oh, what's that?
+SCOTT: Oh, what's that? The STONE BADGE? Impressive.
 
-The STONE BADGE of House Rustboro? Impressive. Did she make you write an essay? She made me write an essay.
-
-But I'd have loved to see you fight.
-
-A BADGE alone doesn't tell me what kind of TRAINER you are. Neither does your hat. I've been staring at your hat.
+But I'd have liked to see you fight. A BADGE tells me you won. It doesn't tell me how.
 
 @ RustboroCity_PokemonSchool_Text_ScottMetAlreadyStoneBadge
-Hello? Haven't we met? In PETALBURG CITY, I think. I was the one in the bush. No, the other bush.
+Hello? Haven't we met? In PETALBURG CITY, I think.
 
-Let me introduce myself. I'm SCOTT.
+My name's SCOTT. I travel the realm looking for strong TRAINERS. Fighters. The best there are.
 
-I roam the realm in search of great TRAINERS. Champions. People who look good on a poster.
+Oh, what's that? The STONE BADGE? That's impressive, for a TRAINER only just starting out.
 
-To be precise, POKéMON battle experts.
-
-Oh, what's that? The STONE BADGE of House Rustboro?
-
-Impressive for a new TRAINER. Did she make you write an essay? She made me write an essay.
-
-But I'd have loved to see you fight.
-
-A BADGE alone doesn't tell me what kind of TRAINER you are. Neither does your hat. I've been staring at your hat.
+But I'd have liked to see you fight. A BADGE tells me you won. It doesn't tell me how.

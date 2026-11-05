@@ -1,5 +1,5 @@
 # Game of Thrones: Birch's opening speech, before the game starts.
-# Tone: a strong, straight story in the voice of the books, only a little silly.
+# Tone: serious, in the spirit of the books. Wit belongs to a few clever characters only.
 
 @ gText_Birch_Welcome
 Hi! Sorry to keep you waiting. The ravens are restless tonight, and so am I.
@@ -49,4 +49,4 @@ Your story begins now, in a small village at the edge of a burning world.
 
 Take courage. You will win friends, and lose some. You will be lied to by people you love. Choose carefully whom you trust.
 
-Come and find me at my LAB when you arrive. I'll be the one in the tall grass, bleeding, holding a notebook.
+Come and find me at my LAB when you arrive. There is a great deal I must tell you, and less time than I would like.

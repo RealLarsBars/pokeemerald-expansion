@@ -1,131 +1,152 @@
-"""Game of Thrones: every Gym becomes a noble house with its own wild idea and Pokémon to match.
+"""Game of Thrones: every Gym becomes a noble house with its own story and Pokémon to match.
 
 Levels and team sizes stay as they are (or as Hard mode made them); only the species
 change. With Hard mode on, the new Pokémon get fresh movesets, abilities and items.
 """
 
 # Per Gym: the house, a pool for its trainers, and the leader's team (ace last).
-# Each house is its own wild idea, not the Gym's old type. Early Gyms use unevolved
-# Pokémon so the levels still make sense. 'boss' replaces the leader's battle lines and
-# 'text' replaces whole texts (the Gym Guide's advice names the new weaknesses).
+# Each house is its own idea, not the Gym's old type, told straight in the voice of the
+# books. Early Gyms use unevolved Pokémon so the levels still make sense. 'boss' replaces
+# the leader's battle lines and 'text' replaces whole texts (the Gym Guide's advice names
+# the new weaknesses).
 HOUSES = [
-    {'house': 'House Rustboro', 'words': 'We Did The Reading', 'key': 'ROXANNE',
-     'idea': 'the haunted library: ghosts of students who died during finals, led by a ghost dog',
+    {'house': 'House Rustboro', 'words': 'We Remember', 'key': 'ROXANNE',
+     'idea': 'Keepers of the Crypts: Lady Roxanne tends the dead beneath the school, and they fight for her',
      'trainers': ['TRAINER_JOSH', 'TRAINER_TOMMY', 'TRAINER_MARC'],
      'leader': 'TRAINER_ROXANNE_',
      'pool': ['GASTLY', 'DUSKULL', 'SHUPPET', 'SINISTEA', 'PHANTUMP', 'LITWICK', 'DRIFLOON', 'SANDYGAST'],
      'team': ['SINISTEA', 'SHUPPET', 'LITWICK', 'GREAVARD'],
      'hard': ['SINISTEA', 'DRIFLOON', 'DUSKULL', 'LITWICK', 'SHUPPET', 'GREAVARD'],
-     'boss': ("I am Roxanne of House Rustboro. Our library is haunted by everyone who failed my class. Our words: We Did The Reading.",
-              "You beat me. The ghosts are applauding. It sounds like wind. It's mostly wind."),
+     'boss': ("I am ROXANNE of House Rustboro, Keeper of the Crypts. Every scholar who ever taught here lies below "
+              "this floor, and every one of them is watching. Our words are: We Remember.",
+              "The dead have seen enough. House Rustboro will remember this day. Take the badge, and do not make us "
+              "remember you badly."),
      'text': {
         'RustboroCity_Gym_Text_GymGuideAdvice':
-            "Ho there, how goes it?\n\nListen, friend! Would you like to sit on the Poké Ball Throne someday? It's very uncomfortable! Everybody wants it anyway!\n\n"
-            "I'm no knight myself, but I give the best counsel in the realm. I counseled six kings! Four of them are still alive!\n\n"
-            "That's settled, then! We march on the Throne together!\n\nA TRAINER must collect the GYM BADGES of every noble house, am I right?\n\n"
-            "But this one is different. Lady ROXANNE's library is haunted. By students. Who died during finals.\n\n"
-            "Her POKéMON are GHOSTS. NORMAL and FIGHTING moves go right through them. Like my advice through kings.\n\n"
-            "Hit them with GHOST-type and DARK-type moves. Or a really mean book review.\n\n"
-            "Come see me after, if you defeat the lady. I'll be out here. I don't go in there. Not since the whispering.",
+            "Yo, how's it going?\n\nListen, my friend! Would you like to sit the THRONE someday?\n\n"
+            "I'm no lord, but I've given counsel in every GYM in HOENN. I know what each house hides.\n\n"
+            "Then we're agreed. Every house must bend the knee, one GYM at a time.\n\n"
+            "Lady ROXANNE keeps the crypts beneath the school. Her POKéMON are the restless dead.\n\n"
+            "GHOST-type POKéMON. NORMAL and FIGHTING moves pass right through them.\n\n"
+            "GHOST-type and DARK-type moves will put them back in the ground.\n\n"
+            "Come see me after, if you beat the lady. I'll wait out here. I don't go below.",
         'RustboroCity_Gym_Text_JoshPostBattle':
-            "You haven't seen the true terror of this library yet! The ghost dog fetches your soul! Then it wants you to throw it again!",
+            "You haven't seen the crypts yet. Down there, the candles light themselves.",
         'RustboroCity_Gym_Text_MarcIntro':
-            "We may be in the middle of a city, but so what?\n\nThe dead don't care about zoning laws! Shhh! You're in a library! Fight quietly!",
+            "We might be in the middle of town, but so what?\n\nThe dead were here before the town. They'll be here after.",
         'RustboroCity_Gym_Text_MarcPostBattle':
-            "I have to hand it to our lady.\n\nShe turned a library into a haunted house, so young? That's how you build a dynasty. Ghosts never leave. They also never return books.",
+            "I have to hand it to our lady.\n\nShe went down into the crypts at twelve and came back up their keeper. "
+            "No one else has ever come back up.",
         'RustboroCity_Text_GymLeaderIsntEasyWithFire':
-            "I challenged Lady ROXANNE, but…\n\nMy NORMAL-type POKéMON punched a ghost. Its fist went right through. Then it got very sad about death.\n\n"
+            "I challenged Lady ROXANNE, but…\n\nMy NORMAL-type POKéMON struck at her ghosts, and struck nothing.\n\n"
             "NORMAL-type moves can't touch GHOST-type POKéMON at all…",
      }},
-    {'house': 'House Dewford', 'words': 'Dinner Is Served. So Are You.', 'key': 'BRAWLY',
-     'idea': 'the cave buffet: bread dogs, angry peppers, cotton candy, and a sushi dragon for dessert',
+    {'house': 'House Dewford', 'words': 'The Sea Takes Its Due', 'key': 'BRAWLY',
+     'idea': 'the reavers of Dewford, sworn to Lord Archie: sea raiders, with a ghost anchor as the ace',
      'trainers': ['TRAINER_BRENDEN', 'TRAINER_CRISTIAN', 'TRAINER_JOCELYN', 'TRAINER_LAURA', 'TRAINER_LILITH',
                   'TRAINER_TAKAO'],
      'leader': 'TRAINER_BRAWLY_',
-     'pool': ['FIDOUGH', 'CAPSAKID', 'SWIRLIX', 'MILCERY', 'SMOLIV', 'LECHONK', 'CHERUBI', 'BOUNSWEET', 'SHUCKLE'],
-     'team': ['FIDOUGH', 'CAPSAKID', 'SWIRLIX', 'TATSUGIRI'],
-     'hard': ['DOLLIV', 'DACHSBUN', 'SCOVILLAIN', 'SLURPUFF', 'APPLIN', 'TATSUGIRI'],
-     'boss': ("I'm Brawly of House Dewford! Welcome to my cave buffet! Our words: Dinner Is Served. So Are You.",
-              "You ate my whole menu! The Buffet pledges its leftovers to you! There's so much soup!"),
+     'pool': ['CARVANHA', 'CORPHISH', 'KRABBY', 'WINGULL', 'CLAUNCHER', 'TENTACOOL', 'BINACLE', 'SKRELP'],
+     'team': ['WINGULL', 'CORPHISH', 'CARVANHA', 'DHELMISE'],
+     'hard': ['PELIPPER', 'CRAWDAUNT', 'BARBARACLE', 'CLAWITZER', 'SHARPEDO', 'DHELMISE'],
+     'boss': ("I'm BRAWLY of House Dewford, captain of the reavers, sworn to Lord ARCHIE. "
+              "We pay no iron price for what we take. Our words are: The Sea Takes Its Due.",
+              "The sea took nothing from you today. That has not happened in a long time. "
+              "House Dewford bends the knee, for now."),
      'text': {
         'DewfordTown_Gym_Text_GymGuideAdvice':
-            "Hey, how's it going, CHAMPION-bound {PLAYER}?\n\nBRAWLY of House Dewford doesn't fight with fists. He runs a buffet. In a cave. In the dark.\n\n"
-            "His POKéMON are FOOD. Bread with legs. Angry peppers. Cotton candy that bites.\n\n"
-            "POISON and STEEL moves spoil the desserts. FIRE and BUG moves ruin the salad.\n\n"
-            "And the chef's special at the end is sushi. A DRAGON sushi. Bring DRAGON-type or FAIRY-type moves.\n\n"
-            "Don't eat anything in there. I mean it. Okay, go for it!",
+            "Hey, how's it going, CHAMPION-bound {PLAYER}?\n\nBRAWLY of House Dewford is a reaver captain, "
+            "sworn to Lord ARCHIE. His crews raid the coast from this cave.\n\n"
+            "His POKéMON came out of the sea with him. Most are WATER-type.\n\n"
+            "GRASS and ELECTRIC moves cut them down. His ace is an anchor that a ghost took for its body. "
+            "GHOST and DARK moves sink it.\n\n"
+            "What's worse, the cave is as dark as the ocean floor.\n\n"
+            "It gets brighter as his crew falls. Hey, okay, go for it!",
      }},
-    {'house': 'House Wattson', 'words': "What's Yours Is Ours", 'key': 'WATTSON',
-     'idea': "the Thieves' Guild of Mauville: pickpocket cats, a fox who steals berries, crows, and a trash heap boss",
+    {'house': 'House Wattson', 'words': 'Every Wall Has Ears', 'key': 'WATTSON',
+     'idea': "the Master of Whispers of Mauville: thieves, informers, and ravens",
      'trainers': ['TRAINER_ANGELO', 'TRAINER_BEN', 'TRAINER_KIRK', 'TRAINER_SHAWN', 'TRAINER_VIVIAN'],
      'leader': 'TRAINER_WATTSON_',
-     'pool': ['PURRLOIN', 'NICKIT', 'MURKROW', 'TRUBBISH', 'GRIMER', 'KOFFING', 'IMPIDIMP', 'SHROODLE'],
-     'team': ['NICKIT', 'PURRLOIN', 'MURKROW', 'GARBODOR'],
-     'hard': ['LIEPARD', 'THIEVUL', 'GRAFAIAI', 'MURKROW', 'WEEZING', 'GARBODOR'],
-     'boss': ("Wahahaha! Welcome to the Thieves' Guild of Mauville! Our words: What's Yours Is Ours! Empty your pockets!",
-              "Wahahaha! You robbed the robbers! The Guild yields! Give me back my wallet, though. That's my wallet."),
+     'pool': ['PURRLOIN', 'NICKIT', 'MURKROW', 'SABLEYE', 'POOCHYENA', 'IMPIDIMP', 'SHROODLE', 'SNEASEL'],
+     'team': ['NICKIT', 'PURRLOIN', 'SABLEYE', 'MURKROW'],
+     'hard': ['LIEPARD', 'THIEVUL', 'SABLEYE', 'GRAFAIAI', 'MIGHTYENA', 'HONCHKROW'],
+     'boss': ("Wahahaha! I'm WATTSON of House Wattson, Master of Whispers. I knew you were coming before you did. "
+              "Our words are: Every Wall Has Ears.",
+              "Wahahaha! A whisper I didn't hear. How rare. My little birds will sing for you now. "
+              "Mind what you tell them."),
      'text': {
         'MauvilleCity_Gym_Text_GymGuideAdvice':
-            "Hey, how's it going, CHAMPION-bound {PLAYER}?\n\nWATTSON isn't a power man anymore. He runs the Thieves' Guild. He stole the GYM. From himself.\n\n"
-            "His POKéMON are pickpockets and garbage. Literal garbage. It smells.\n\n"
-            "The thieves are DARK-type. Hit them with BUG, FIGHTING, or FAIRY moves.\n\n"
-            "The trash is POISON-type. GROUND and PSYCHIC moves take out the trash.\n\n"
-            "Hold on to your wallet in there. I've lost four. Okay, go for it!",
+            "Hey, how's it going, CHAMPION-bound {PLAYER}?\n\nWATTSON is the Master of Whispers. "
+            "Half the secrets in HOENN pass through this GYM, and he sells the other half.\n\n"
+            "His POKéMON are thieves and informers. They're DARK-type.\n\n"
+            "BUG, FIGHTING and FAIRY moves will flush them out. His ace is a raven. ROCK, ICE and ELECTRIC moves "
+            "bring it down.\n\n"
+            "And, he's put in switch-controlled doors all over his GYM, so he always knows where you are.\n\n"
+            "Hey, go for it!",
      }},
-    {'house': 'House Lavaridge', 'words': 'The Long Nap Is Coming', 'key': 'FLANNERY',
-     'idea': 'the hot spring nap club: sleepy Pokémon, dream eaters, and Grandpa (a Snorlax) as the ace',
+    {'house': 'House Lavaridge', 'words': 'We Dream What Comes', 'key': 'FLANNERY',
+     'idea': 'the dream springs: Lady Flannery and her priestesses read the future in their sleep',
      'trainers': ['TRAINER_AXLE', 'TRAINER_COLE', 'TRAINER_DANIELLE', 'TRAINER_ELI', 'TRAINER_GERALD',
                   'TRAINER_JACE', 'TRAINER_JEFF', 'TRAINER_KEEGAN'],
      'leader': 'TRAINER_FLANNERY_',
-     'pool': ['DROWZEE', 'SLOWPOKE', 'MUNCHLAX', 'JIGGLYPUFF', 'KOMALA', 'SPOINK', 'HOOTHOOT', 'CHINGLING'],
-     'team': ['DROWZEE', 'JIGGLYPUFF', 'KOMALA', 'SNORLAX'],
-     'hard': ['HYPNO', 'SLOWBRO', 'WIGGLYTUFF', 'GRUMPIG', 'KOMALA', 'SNORLAX'],
-     'boss': ("I'm Flannery of House Lavaridge! Our words: The Long Nap Is Coming! Shh! Grandpa is sleeping! He's my ace!",
-              "You won… and Grandpa slept through the whole thing. That's the most supportive he's ever been."),
+     'pool': ['DROWZEE', 'SPOINK', 'MUNNA', 'NATU', 'CHINGLING', 'SLOWPOKE', 'HATENNA', 'ESPURR'],
+     'team': ['NATU', 'SPOINK', 'MUNNA', 'HYPNO'],
+     'hard': ['XATU', 'GRUMPIG', 'MUSHARNA', 'SLOWKING', 'BRONZONG', 'HYPNO'],
+     'boss': ("I'm FLANNERY of House Lavaridge. I have seen this battle in the springs, three nights running. "
+              "I did not see how it ended. Our words are: We Dream What Comes.",
+              "So that is how it ends. I'll dream of you again tonight, I think. I hope the dream is kinder "
+              "than the last one."),
      'text': {
         'LavaridgeTown_Gym_1F_Text_GymGuideAdvice':
-            "Hey, how's it going, CHAMPION-bound {PLAYER}?\n\nFLANNERY of House Lavaridge has turned the hot springs into a nap club. Everyone in there is asleep. Even the trainers. Even the walls.\n\n"
-            "Her POKéMON are sleepy NORMAL-types and PSYCHIC dream eaters.\n\n"
-            "FIGHTING moves wake the NORMAL ones up. BUG, DARK and GHOST moves give the PSYCHIC ones nightmares.\n\n"
-            "Bring AWAKENINGS. They love YAWN. Her grandpa is the ace. He's a SNORLAX. He's been asleep since the last king.\n\n"
-            "Okay, go for it! Quietly!",
+            "Hey, how's it going, CHAMPION-bound {PLAYER}?\n\nLady FLANNERY is a priestess of the dream springs. "
+            "She sleeps in the steam and wakes up knowing things she shouldn't.\n\n"
+            "Her POKéMON read minds and walk in dreams. They're PSYCHIC-type.\n\n"
+            "BUG, GHOST and DARK moves break their visions. Her ace eats dreams. Bring AWAKENINGS.\n\n"
+            "Don't breathe the steam too deep. Go for it!",
      }},
-    {'house': 'House Petalburg', 'words': 'A Dad Has No Name', 'key': 'NORMAN',
-     'idea': 'the Faceless Dads: shapeshifters, mimes, a costume ghost, and an illusion fox, so nothing is what it looks like',
+    {'house': 'House Petalburg', 'words': 'No One Sees Us Come', 'key': 'NORMAN',
+     'idea': 'the faceless: your father was trained across the sea, and nothing in his Gym is what it seems',
      'trainers': ['TRAINER_ALEXIA', 'TRAINER_BERKE', 'TRAINER_GEORGE', 'TRAINER_JODY', 'TRAINER_MARY',
                   'TRAINER_PARKER', 'TRAINER_RANDALL'],
      'leader': 'TRAINER_NORMAN_',
-     'pool': ['DITTO', 'KECLEON', 'ZORUA', 'MIME_JR', 'SMEARGLE', 'SPINDA', 'MIMIKYU'],
-     'team': ['KECLEON', 'MR_MIME', 'MIMIKYU', 'ZOROARK'],
-     'hard': ['DITTO', 'SMEARGLE', 'KECLEON', 'MR_MIME', 'MIMIKYU', 'ZOROARK'],
-     'boss': ("You've come for the seat of House Petalburg, my child? Or am I your father at all? A Dad Has No Name.",
-              "...Fine. You win. I am still your father. Probably. Take off the mask and do the dishes."),
+     'pool': ['DITTO', 'KECLEON', 'ZORUA', 'SMEARGLE', 'MIMIKYU', 'SHUPPET'],
+     'team': ['KECLEON', 'DITTO', 'MIMIKYU', 'ZOROARK'],
+     'hard': ['SMEARGLE', 'DITTO', 'KECLEON', 'BANETTE', 'MIMIKYU', 'ZOROARK'],
+     'boss': ("So you've come for the seat of House Petalburg, my child. Look closely. Nothing in this room is what "
+              "it seems, not even me. Our words are: No One Sees Us Come.",
+              "...You saw through every face. I taught you that without meaning to. The seat is yours. "
+              "We'll speak when the room is empty."),
      'text': {
         'PetalburgCity_Gym_Text_GymGuideAdvice':
-            "Hey, how's it going, CHAMPION-bound {PLAYER}?\n\nYour father NORMAN joined the Faceless Dads. A Dad Has No Name. He still has a lawn, though.\n\n"
-            "Nothing in there is what it looks like. Shapeshifters. Mimes. A ghost in a costume. A fox pretending to be your mom.\n\n"
-            "STEEL and POISON moves crack the mimes and the costume. FIGHTING, BUG and FAIRY moves beat the fox.\n\n"
-            "If a POKéMON looks like yours, it isn't. Okay, go for it!",
+            "Hey, how's it going, CHAMPION-bound {PLAYER}?\n\nThe doors in this GYM open when you beat the awaiting "
+            "TRAINERS.\n\nWhoops! The doors in this room are already open, so don't attack me!\n\n"
+            "The TRAINERS of House Petalburg wear other faces. Shapeshifters, mimics, a ghost under a cloth, "
+            "a fox that looks like whatever you fear.\n\n"
+            "FIGHTING, BUG and FAIRY moves see through the fox. STEEL and POISON moves tear the cloth.\n\n"
+            "The door at the left leads to the SPEED ROOM.\n\nThe door at the right leads to the ACCURACY ROOM.\n\n"
+            "Once you've chosen the door… Well, hey, go for it!",
      }},
-    {'house': 'House Fortree', 'words': 'Fire And Blood And Paperwork', 'key': 'WINONA',
-     'idea': 'the Mother of Dragons: every bird is a dragon now, and the ace is a Salamence',
+    {'house': 'House Fortree', 'words': 'From The Ashes, Wings', 'key': 'WINONA',
+     'idea': 'the Mother of Dragons: Lady Winona hatched her eggs in fire, and every bird in Fortree is a dragon now',
      'trainers': ['TRAINER_ASHLEY', 'TRAINER_DARIUS', 'TRAINER_EDWARDO', 'TRAINER_FLINT', 'TRAINER_HUMBERTO',
                   'TRAINER_JARED'],
      'leader': 'TRAINER_WINONA_',
      'pool': ['BAGON', 'GIBLE', 'AXEW', 'DEINO', 'DRATINI', 'NOIBAT', 'JANGMO_O', 'SWABLU', 'TRAPINCH'],
      'team': ['NOIVERN', 'FLYGON', 'DRAGONAIR', 'ALTARIA', 'SALAMENCE'],
      'hard': ['NOIVERN', 'FLYGON', 'DRAGONITE', 'GARCHOMP', 'HYDREIGON', 'SALAMENCE'],
-     'boss': ("I am Winona, Mother of Dragons, Breaker of Branches, Lady of the Treehouses. Our words: Fire And Blood And Paperwork.",
-              "My dragons bow to you. They've never bowed before. They're very confused. Pat them."),
+     'boss': ("I am WINONA of House Fortree, the Unburnt, Mother of Dragons. I walked into the fire with three eggs "
+              "and walked out with this. Our words are: From The Ashes, Wings.",
+              "My dragons bow to you. They have never bowed to anyone but me. Do not mistake it for love."),
      'text': {
         'FortreeCity_Gym_Text_GymGuideAdvice':
-            "Hey, how's it going, CHAMPION-bound {PLAYER}?\n\nWINONA used to raise birds. Then she found some eggs in a fire. Now she's the Mother of Dragons.\n\n"
-            "Every POKéMON in there is a DRAGON. They're up in the trees. They're very heavy. The trees are not happy.\n\n"
-            "ICE-type moves. Bring ICE-type moves. Bring so many ICE-type moves. DRAGON and FAIRY work too.\n\n"
-            "Most of her dragons fly, so GROUND moves won't hit. Okay, go for it! Wear something fireproof!",
+            "Yo, how's it going, CHAMPION-bound {PLAYER}?\n\nLady WINONA raised birds, once. "
+            "Then she walked into a fire with three eggs, and came out the Mother of Dragons.\n\n"
+            "Every POKéMON in there is a DRAGON. ICE, DRAGON and FAIRY moves are your best hope.\n\n"
+            "Most of them fly, so GROUND moves won't touch them.\n\n"
+            "She's waiting behind the rotating doors. Okay, go for it!",
      }},
-    {'house': 'House Mossdeep', 'words': 'Sit At Your Own Risk', 'key': 'TATE',
-     'idea': 'the Iron Throne: twins on a chair made of swords, with sword Pokémon and a haunted shield-sword ace',
+    {'house': 'House Mossdeep', 'words': 'Forged, Not Born', 'key': 'TATE',
+     'idea': 'the Sword Twins: their forge made the thousand swords of the Throne, and their Pokémon are blades',
      'trainers': ['TRAINER_BLAKE', 'TRAINER_CLIFFORD', 'TRAINER_HANNAH', 'TRAINER_KATHLEEN', 'TRAINER_MACEY',
                   'TRAINER_MAURA', 'TRAINER_NATE', 'TRAINER_NICHOLAS', 'TRAINER_PRESTON', 'TRAINER_SAMANTHA',
                   'TRAINER_SYLVIA', 'TRAINER_VIRGIL'],
@@ -133,34 +154,38 @@ HOUSES = [
      'pool': ['HONEDGE', 'PAWNIARD', 'SCYTHER', 'OSHAWOTT', 'SIRFETCHD', 'ESCAVALIER', 'GALLADE', 'KARRABLAST'],
      'team': ['SIRFETCHD', 'GALLADE', 'BISHARP', 'AEGISLASH'],
      'hard': ['ESCAVALIER', 'SIRFETCHD', 'GALLADE', 'CERULEDGE', 'KINGAMBIT', 'AEGISLASH'],
-     'boss': ("We are the twins of House Mossdeep! We sit on a throne made of swords! Our words: Sit At Your Own Risk! Ow!",
-              "We both lose… equally. We're getting off the throne now. Slowly. Very slowly. Ow."),
+     'boss': ("We are TATE and LIZA of House Mossdeep. Our forge made the thousand swords of the THRONE. "
+              "We will see if you are fit to sit on them. Our words are: Forged, Not Born.",
+              "Tempered, then. Not broken. House Mossdeep bends the knee. The swords will remember your weight."),
      'text': {
         'MossdeepCity_Gym_Text_GymGuideAdvice':
-            "Hey, how's it going, CHAMPION-bound {PLAYER}?\n\nTATE and LIZA built a throne out of a thousand swords. They both sit on it. Nobody has told them it's a bad idea.\n\n"
-            "Every POKéMON in there is a sword. Or holds a sword. Or is a sword holding a sword.\n\n"
-            "Most of them are STEEL. FIRE and GROUND moves melt and bury them. FLYING, PSYCHIC and FAIRY moves beat the fighting knights.\n\n"
-            "It's a double battle, so bring two. Okay, go for it! Don't sit on anything!",
+            "Yo, how's it going, CHAMPION-bound {PLAYER}?\n\nTATE and LIZA keep the old forge, "
+            "where the swords of the THRONE were made.\n\n"
+            "Every POKéMON in there is a blade, or carries one. Most are STEEL-type.\n\n"
+            "FIRE and GROUND moves melt and bury them. FLYING, PSYCHIC and FAIRY moves beat the knights.\n\n"
+            "Plus, they'll come at you with outstanding combination attacks. It's a double battle. Go for it!",
      }},
-    {'house': 'House Sootopolis', 'words': 'Winter Came. It Stayed.', 'key': 'JUAN',
-     'idea': 'the Night King froze the crater: ice ghosts, ice weasels, a mammoth, and an ice dragon',
+    {'house': 'House Sootopolis', 'words': 'The Long Night Is Ours', 'key': 'JUAN',
+     'idea': 'the Lord of the Long Night: Juan froze the crater, and his Pokémon are the cold itself',
      'trainers': ['TRAINER_ANDREA', 'TRAINER_ANNIKA', 'TRAINER_BETHANY', 'TRAINER_BRIANNA', 'TRAINER_BRIDGET',
                   'TRAINER_CONNIE', 'TRAINER_CRISSY', 'TRAINER_DAPHNE', 'TRAINER_OLIVIA', 'TRAINER_TIFFANY'],
      'leader': 'TRAINER_JUAN_',
      'pool': ['SNEASEL', 'SNORUNT', 'SWINUB', 'BERGMITE', 'CRYOGONAL', 'SPHEAL', 'FRIGIBAX', 'CUBCHOO', 'SNOM'],
      'team': ['FROSLASS', 'CRYOGONAL', 'WEAVILE', 'MAMOSWINE', 'BAXCALIBUR'],
      'hard': ['FROSLASS', 'WEAVILE', 'MAMOSWINE', 'AVALUGG', 'CETITAN', 'BAXCALIBUR'],
-     'boss': ("I am Juan, the Night King of Sootopolis. I froze the whole crater. It took one afternoon. Our words: Winter Came. It Stayed.",
-              "You have melted my winter and won all eight banners. Ever Grande awaits. Bring a coat. Bring two."),
+     'boss': ("I am JUAN of House Sootopolis. The crater has been frozen since the last king died, and I have kept "
+              "it so. Our words are: The Long Night Is Ours.",
+              "The ice breaks. All eight banners are yours. EVER GRANDE waits, and so does the night. "
+              "Remember us when it comes."),
      'text': {
         'SootopolisCity_Gym_1F_Text_GymGuideAdvice':
-            "Hey, how's it going, CHAMPION-bound {PLAYER}?\n\nJUAN is the Night King now. He froze the whole GYM. The floor was already ice. Now the ice is also ice.\n\n"
-            "Every POKéMON in there is ICE-type. Ice ghosts. Ice weasels. A mammoth. An ice dragon at the end.\n\n"
-            "FIRE, FIGHTING, STEEL and ROCK moves shatter them. WATER and ICE moves do nothing.\n\n"
-            "Okay, go for it! Winter is here and it's weak to fire!",
+            "Yo! How's it going, CHAMPION-bound {PLAYER}?\n\nJUAN is the Lord of the Long Night. "
+            "He froze this crater when the last king died, and it has not thawed since.\n\n"
+            "Every POKéMON in there is ICE-type. FIRE, FIGHTING, STEEL and ROCK moves shatter them.\n\n"
+            "And, to get to JUAN, an icy floor will hamper your progress…\n\n"
+            "The rest of the way, you have to go for it yourself!",
      }},
 ]
-
 
 def text_overrides():
     """Whole texts that House Gyms replaces, by label."""
