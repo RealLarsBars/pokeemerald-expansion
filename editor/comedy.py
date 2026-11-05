@@ -32,6 +32,7 @@ import house_gyms
 import house_sigils
 import thrones_sprites
 import thrones_story
+import thrones_music
 
 SAFE_CODES = {'{PLAYER}', '{RIVAL}', '{KUN}', '{STR_VAR_1}', '{STR_VAR_2}', '{STR_VAR_3}', '{POKEBLOCK}'}
 CODE_WIDTH = {'{PLAYER}': 42, '{RIVAL}': 42, '{KUN}': 0, '{STR_VAR_1}': 48, '{STR_VAR_2}': 48, '{STR_VAR_3}': 48,
@@ -427,6 +428,8 @@ def apply(ov, opt, rng, report):
         ctx['boss'] = {label: swap.get(line_, line_) for label, line_ in ctx['boss'].items()}
     if key == 'thrones' and opt.get('sprites', True):
         head += thrones_sprites.apply(ov)
+    if key == 'thrones' and opt.get('music', True):
+        head += ['Music: ' + line for line in thrones_music.apply(ov)]
     if key == 'thrones' and opt.get('story', True):
         rewrites.update(thrones_story.TEXT)
         head += thrones_story.apply(ov, widths)
