@@ -1745,7 +1745,7 @@ function showJob(title) {
 }
 
 function setJobButtons(busy) {
-  for (const id of ['#playBtn', '#exportBtn', '#updateBtn']) $(id).disabled = busy;
+  for (const id of ['#playBtn', '#exportBtn', '#updateBtn', '#teamBtn']) $(id).disabled = busy;
 }
 
 async function stopJob(ask = true) {
@@ -1868,7 +1868,7 @@ $('#updateBtn').addEventListener('click', async () => {
     el('ul', {}, info.changes.map(c => el('li', {}, c))),
     el('p', { class: 'note' }, 'Your own changes are saved first and kept. If an update touches the same lines you changed, nothing is changed and I will tell you.'),
     el('div', { class: 'row', style: 'justify-content:flex-end' },
-      el('button', { class: 'btn primary', onclick: () => { closeModal(); startJob('/api/update', 'Update'); } }, 'Update now')));
+      el('button', { class: 'btn primary', onclick: () => { closeModal(); startJob('/api/update', 'Update', async () => { const st = await teamRefresh().catch(() => null); if (st && st.merging) openConflicts(); }); } }, 'Update now')));
   openModal('Update the editor', body);
 });
 $('#jobClose').addEventListener('click', () => $('#jobPanel').classList.add('hidden'));

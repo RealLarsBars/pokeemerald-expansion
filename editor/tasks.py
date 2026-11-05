@@ -168,7 +168,7 @@ def check_updates():
     return {'ok': True, 'count': count, 'changes': log.splitlines() if count else []}
 
 
-def save_my_changes(job=None):
+def save_my_changes(job=None, message='My changes (saved by Emerald Editor)'):
     """Commit the user's edits so an update can never overwrite them."""
     if capture(['git', 'config', 'user.email'])[1] == '':
         capture(['git', 'config', 'user.email', 'editor@emerald.local'])
@@ -176,7 +176,7 @@ def save_my_changes(job=None):
     capture(['git', 'add', '-A'])
     code, _ = capture(['git', 'diff', '--cached', '--quiet'])
     if code != 0:
-        code, out = capture(['git', 'commit', '-q', '-m', 'My changes (saved by Emerald Editor)'])
+        code, out = capture(['git', 'commit', '-q', '-m', message])
         if job:
             job.write('Saved your changes so far.' if code == 0 else out)
         return code == 0
@@ -189,14 +189,12 @@ def apply_update(job):
         return False, info['message']
     if info['count'] == 0:
         return True, 'You already have the latest version.'
-    if not save_my_changes(job):
-        return False, 'Could not save your changes before updating, so nothing was changed.'
-    upstream = _upstream()
+    import team
     job.write('Bringing in %d update(s)...' % info['count'])
-    code = run(job, ['git', 'merge', '--no-edit', upstream])
-    if code != 0:
-        _, files = capture(['git', 'diff', '--name-only', '--diff-filter=U'])
-        capture(['git', 'merge', '--abort'])
-        return False, ('The update changes the same lines you edited in: %s. Nothing was changed. '
-                       'Ask Claude in your project to help combine them.' % ', '.join(files.splitlines()))
+    ok, msg = team.merge_in(job, _upstream(), 'update', save_my_changes, quiet=True)
+    if not ok:
+        return ok, msg
+    if msg == 'conflict':
+        return False, ('An update changes the same lines you edited. Pick which version to keep '
+                       'in the window that just opened.')
     return True, 'Updated! The editor will restart in a moment.'

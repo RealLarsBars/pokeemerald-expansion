@@ -31,6 +31,7 @@ import newtrainer  # noqa: E402
 import shops  # noqa: E402
 import wild  # noqa: E402
 import species  # noqa: E402
+import team  # noqa: E402
 import tasks  # noqa: E402
 import textdb  # noqa: E402
 import trainers  # noqa: E402
@@ -145,7 +146,7 @@ def map_page(folder):
     return d
 
 
-ERRORS = (mapview.MapError, wild.WildError, shops.ShopError, gifts.GiftError, movesets.MovesetError,
+ERRORS = (team.TeamError, mapview.MapError, wild.WildError, shops.ShopError, gifts.GiftError, movesets.MovesetError,
           newtrainer.NewTrainerError)
 
 
@@ -334,6 +335,14 @@ class Handler(BaseHTTPRequestHandler):
             return self._send(200, S.job.snapshot(int(q.get('since', 0))))
         if path == '/api/updates':
             return self._send(200, tasks.check_updates())
+        if path == '/api/team':
+            return self._send(200, team.status(fetch=q.get('fetch') == '1'))
+        if path == '/api/team/details':
+            return self._send(200, team.details())
+        if path == '/api/team/invitations':
+            return self._send(200, {'list': team.invitations()})
+        if path == '/api/team/conflicts':
+            return self._send(200, team.conflicts())
         if path == '/api/fun/status':
             return self._send(200, {'fun': versions.fun_status(), 'versions': versions.list_versions()})
         raise ApiError('Not found', 404)
@@ -427,10 +436,16 @@ class Handler(BaseHTTPRequestHandler):
             return self._send(200, {'ok': True})
         if path.startswith('/api/fun/'):
             return self._fun(path, body)
+        if path.startswith('/api/team/'):
+            return self._send(200, _team_post(path, body))
         if path == '/api/play':
+            if team.merging():
+                raise ApiError('Finish picking which versions to keep first (click Team at the top).')
             started = S.job.start('Play', lambda job: tasks.play(job, S.mgba))
             return self._send(200, {'started': started})
         if path == '/api/build':
+            if team.merging():
+                raise ApiError('Finish picking which versions to keep first (click Team at the top).')
             started = S.job.start('Build', tasks.build)
             return self._send(200, {'started': started})
         if path == '/api/job/stop':
@@ -438,6 +453,7 @@ class Handler(BaseHTTPRequestHandler):
         if path == '/api/update':
             def do_update(job):
                 ok, msg = tasks.apply_update(job)
+                _fun_changed()
                 if ok and msg.startswith('Updated'):
                     S.restart_requested = True
                 return ok, msg
@@ -451,10 +467,69 @@ def _fun_changed():
     STATE._gamedata = None
 
 
+def _team_job(title, fn):
+    """Runs a team step in the job panel; restarts the editor if it got new editor code."""
+    S = STATE
+
+    def wrapped(job):
+        job.editor_changed = False
+        try:
+            ok, msg = fn(job)
+        finally:
+            _fun_changed()
+        if job.editor_changed:
+            S.restart_requested = True
+            msg = (msg + ' ' if msg else '') + 'They include a newer editor, so it will restart in a moment.'
+        return ok, msg
+    return {'started': S.job.start(title, wrapped)}
+
+
+def _team_post(path, body):
+    S = STATE
+    save = tasks.save_my_changes
+    if path == '/api/team/signin':
+        return team.sign_in(body.get('token', ''))
+    if path == '/api/team/signout':
+        team.sign_out()
+        return {'ok': True}
+    if path == '/api/team/invite':
+        return {'message': team.invite(body.get('login', ''))}
+    if path == '/api/team/remove':
+        team.remove(body.get('login', ''), body.get('inviteId'))
+        return {'ok': True}
+    if path == '/api/team/create':
+        return _team_job('Start a team game', lambda job: team.create(job, body.get('name', ''), save))
+    if path == '/api/team/join':
+        return _team_job('Join a team game', lambda job: team.join(job, body['repo'], body.get('inviteId'), save))
+    if path == '/api/team/share':
+        return _team_job('Share my changes', lambda job: team.share(job, body.get('note', ''), save))
+    if path == '/api/team/get':
+        return _team_job("Get friends' changes", lambda job: team.get_changes(job, save))
+    if S.job.snapshot()['state'] == 'running':
+        raise ApiError('Wait for the editor to finish what it is doing first.')
+    with S.lock:
+        if path == '/api/team/resolve':
+            res = team.resolve(body.get('choices') or {}, save)
+            _fun_changed()
+            if res['editorChanged']:
+                S.restart_requested = True
+            return res
+        if path == '/api/team/cancel':
+            team.cancel_merge()
+            _fun_changed()
+            return {'ok': True}
+        if path == '/api/team/leave':
+            team.leave()
+            return {'ok': True}
+    raise ApiError('Not found', 404)
+
+
 def _fun_post(handler, path, body):
     S = STATE
     if S.job.snapshot()['state'] == 'running':
         raise ApiError('Wait for the current build or update to finish first.')
+    if team.merging():
+        raise ApiError('Finish picking versions first (click Team at the top).')
     with S.lock:
         try:
             if path == '/api/fun/run':

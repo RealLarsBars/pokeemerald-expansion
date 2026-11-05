@@ -315,3 +315,20 @@ main { flex: 1; min-height: 0; }
 .steptextwrap .gbabox { font-size: 12.5px; line-height: 17px; }
 .stepkinds { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 8px; }
 @media (max-width: 900px) { .steptextwrap { grid-template-columns: 1fr; } }
+
+/* Team */
+.team .row > .card { flex: 1 1 300px; min-width: 0; }
+.team .searchrow { display: flex; gap: 8px; align-items: center; margin-top: 8px; }
+.team .searchrow .search { flex: 1; min-width: 0; margin: 0; }
+.team .teamsteps li { margin: 10px 0; }
+.team .teamrow { padding: 4px 0; border-bottom: 1px solid var(--line); }
+.team .avatar { width: 24px; height: 24px; border-radius: 50%; image-rendering: auto; object-fit: cover; }
+.team .conflicthead { margin-bottom: 8px; word-break: break-all; }
+.team .conflict { border-top: 1px solid var(--line); padding: 10px 0; }
+.team .sides { display: flex; gap: 8px; flex-wrap: wrap; }
+.team .side { flex: 1 1 260px; min-width: 0; border-radius: 8px; padding: 6px 8px; }
+.team .side.mine { background: var(--accent-soft); }
+.team .side.theirs { background: var(--panel-2); border: 1px solid var(--line); }
+.team .side .label { font-size: 12px; font-weight: 700; margin-bottom: 4px; }
+.team pre { margin: 0; white-space: pre-wrap; word-break: break-word; font-size: 12px; max-height: 240px; overflow: auto; }
+.team pre.ctx { color: var(--muted); padding: 2px 8px; }
