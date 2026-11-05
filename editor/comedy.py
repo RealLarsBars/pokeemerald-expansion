@@ -61,6 +61,8 @@ def _width(word, widths):
 
 
 def wrap_box(text, widths, limit=textdb.TEXT_BOX_WIDTH):
+    if '\n' in text:  # a forced line break, e.g. before the hero speaks
+        return '\n'.join(wrap_box(part, widths, limit) for part in text.split('\n') if part.strip())
     words = text.split()
     lines, cur, cur_w = [], [], 0
     space = widths.get(' ', 4)
@@ -276,6 +278,7 @@ def _transform(label, friendly, rng, level, packs, style, is_sign, is_battle, is
     # extra boxes, never after a question (it would hide the Yes/No prompt)
     if not is_question:
         extra = []
+        hero_line = None
         if packs.get('thrones') and is_boss and rng.random() < 0.8:
             extra.append(rng.choice(L.THRONES_BOSS))
         elif packs.get('thrones') and not is_battle and rng.random() < level * 0.3:
@@ -285,14 +288,21 @@ def _transform(label, friendly, rng, level, packs, style, is_sign, is_battle, is
         if packs.get('narrator') and rng.random() < level * 0.3:
             extra.append(rng.choice(L.NARRATOR))
         if packs.get('hero') and rng.random() < level * 0.4:
-            extra.append(rng.choice(L.HERO))
-        if not extra and boxes == orig and level >= 1:
+            hero_line = rng.choice(L.HERO)
+        if not extra and not hero_line and boxes == orig and level >= 1:
             pool = [L.NARRATOR] * bool(packs.get('narrator')) + [L.HERO] * bool(packs.get('hero')) \
                 + [L.CHAOS] * bool(packs.get('chaos') and not is_battle) + [L.THRONES_NPC] * bool(packs.get('thrones') and not is_battle) \
                 + [L.SLANG_TAGS] * bool(packs.get('slang'))
             if pool:
-                extra.append(rng.choice(rng.choice(pool)))
+                picked = rng.choice(pool)
+                if picked is L.HERO:
+                    hero_line = rng.choice(L.HERO)
+                else:
+                    extra.append(rng.choice(picked))
         boxes += extra[:2]
+        if hero_line:
+            # The hero answers right there, on new lines of the same text box.
+            boxes[-1] = boxes[-1] + '\n' + hero_line
     elif boxes == orig and level >= 1:
         # questions: change the wording, never add a box after them
         if style:
