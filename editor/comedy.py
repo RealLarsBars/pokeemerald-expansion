@@ -263,6 +263,7 @@ def classify(text, gfx=None):
             roles = ['defeat'] if b.group(1) == 'trainerbattle_no_intro' else ['intro', 'defeat']
             for n, label in enumerate(texts):
                 ctx['battle'][label] = roles[n] if n < len(roles) else 'other'
+                ctx['used'].add(label)
                 ctx['adult'][label] = ctx['adult'].get(label, True) and is_adult(owner)
             key = next((k for k in L.THRONES_LEADER_LINES if b.group(2)[len('TRAINER_'):].startswith(k)), None)
             if key:
