@@ -1,51 +1,52 @@
 # Game of Thrones: Birch's opening speech, before the game starts.
+# Tone: a strong, straight story in the voice of the books, only a little silly.
 
 @ gText_Birch_Welcome
-Hi! Sorry to keep you waiting! I was being bitten.
+Hi! Sorry to keep you waiting. The ravens are restless tonight, and so am I.
 
-Welcome to the realm of POKéMON! Seven kingdoms, eight GYMS, one Throne, and absolutely zero adult supervision!
+Welcome to HOENN, a realm of eight great houses and one empty-hearted Throne.
 
 My name is BIRCH.
 
-But everyone calls me the Grand Maester of POKéMON. Nobody gave me that title. I just started saying it and nobody stopped me.
+I am a Maester of the old order. I keep the records of every POKéMON in the realm, and of every lord who has tried to rule them.
 
 @ gText_Birch_MainSpeech
-This realm is ruled by creatures called POKéMON. Officially it's ruled by people. Unofficially, have you seen a GYARADOS?
+This realm is shared with creatures called POKéMON. The lords say they own them. The POKéMON have never once agreed.
 
-We humans live beside them. Some POKéMON are our friends. Some are our servants. One is a duke. Don't ask how.
+Some fight beside us. Some carry our letters. A few, the old songs say, could drown the world or set it burning.
 
-And sometimes, we band together and wage war on our neighbors over things like land, honor, and who touched whose sandwich.
+The great houses have bled each other for a hundred years over who sits the POKéMON THRONE. Steel, fire, sea and stone. Every one of them has buried sons.
 
-But despite all that, we don't know everything about POKéMON.
+And now two new claimants rise. One swears the land is his by right. One swears the sea will take it all.
 
-There are secrets. Prophecies. A POKéMON that only appears to people who are about to be betrayed. Ignore that one. Probably.
+Winter is not coming to HOENN. Something worse is. The scrolls call it the Drowning and the Burning, and they do not say who survives.
 
-To unravel these mysteries, I've devoted my life to research. I have been bitten eight hundred times. I keep a journal. It's mostly drawings of teeth.
+I have spent my life reading those scrolls, and I still do not know how the story ends. That is why I need you.
 
 @ gText_Birch_AndYouAre
-And who are you? Lord? Lady? Spy? Spy in disguise as a lord?
+And you, standing in my candlelight… Who are you, and what house do you serve?
 
 @ gText_Birch_BoyOrGirl
-The scrolls must be accurate. Are you a boy? Or are you a girl?
+The records must be kept true. Are you a boy? Or are you a girl?
 
 @ gText_Birch_WhatsYourName
-Very good. Every great ruler needs a name the bards can rhyme. What's your name?
+Good. A name is the first thing a realm remembers, and the last thing it forgets. What is your name?
 
 @ gText_Birch_SoItsPlayer
-{PLAYER}{KUN}… The First of Their Name, Breaker of Nothing Yet. So it's {PLAYER}{KUN}?
+{PLAYER}{KUN}… A name that has not been sung yet. So it's {PLAYER}{KUN}?
 
 @ gText_Birch_YourePlayer
-Ah, of course!
+Ah, of course.
 
-You're {PLAYER}{KUN}, heir of House Petalburg, moving to my humble holdfast of LITTLEROOT.
+You're {PLAYER}{KUN}, blood of House Petalburg. Your father, NORMAN, has taken a Gym and a seat among the lords, and you are coming to live in my village of LITTLEROOT.
 
-The ravens told me! The ravens tell me everything. They're terrible at keeping secrets. Never trust a raven.
+A raven brought word a fortnight ago. Ravens always know first. Remember that, {PLAYER}{KUN}. Whoever holds the ravens holds the realm.
 
 @ gText_Birch_AreYouReady
 All right, are you ready?
 
-Your very own reign is about to begin. Or end. Statistically it's a coin toss.
+Your story begins now, in a small village at the edge of a burning world.
 
-Take courage, and leap into a realm of POKéMON where dreams, glory, and very elaborate betrayals await!
+Take courage. You will win friends, and lose some. You will be lied to by people you love. Choose carefully whom you trust.
 
-I'll expect you at my citadel later. It's a LAB. Bring bandages. Not for you. For me.
+Come and find me at my LAB when you arrive. I'll be the one in the tall grass, bleeding, holding a notebook.

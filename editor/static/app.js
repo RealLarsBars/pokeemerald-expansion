@@ -1485,16 +1485,16 @@ const FUN_DEFAULTS = {
   comedy: { on: false, theme: 'thrones', hero: true, adult: false, fakeNews: true, battle: true, houseGyms: true, story: true },
 };
 const COMEDY_THEMES = [
-  ['thrones', 'Game of Thrones', 'Hoenn is a realm at war over the Poké Ball Throne. Everyone talks like it, every Gym Leader and boss speaks for their noble house, signs carry royal decrees, and one person in each town keeps you up on realm gossip that changes after every badge.'],
+  ['thrones', 'Game of Thrones', 'A real Game of Thrones story told through Hoenn: hand-written dialogue town by town, noble houses, plots and betrayals, and a dragon on the title screen. Only a little silly. Areas not written yet keep their normal text.'],
   ['madlibs', 'Mad Libs', 'You fill in 16 blanks from a menu at the start (a thing, a place, a food, a name...) and 4 more after every Gym. People all over Hoenn use your words, trainers build their trash talk around them, and signs run news about them.'],
 ];
 const COMEDY_SWITCHES = [
-  ['hero', 'Hero talks back', 'Now and then your character answers, in the theme\'s own style.'],
-  ['adult', 'Adult humor', 'A small amount of swearing and crude jokes. Only grown-ups say the crude stuff; your character just swears.'],
-  ['fakeNews', 'Fake news signs', 'Signs get headlines (royal decrees in Game of Thrones).'],
-  ['battle', 'Battle commentary', 'Battle messages get rewritten: wild Pokémon owe you money, fainting is dramatic.'],
-  ['houseGyms', 'House Gyms (Game of Thrones)', 'Every Gym becomes a noble house with its own wild idea: ghosts in Rustboro\'s library, a cave buffet in Dewford, dragons in Fortree, the Night King in Sootopolis. Gym Guides give the new advice, badges become house sigils. Works with Hard mode too.'],
-  ['story', 'Story events (Game of Thrones)', 'New scenes in the real story: a herald with a gift after every badge, a loan from the Iron Bank (the collector comes later), the Red Wedding in Slateport, your rival as your Hand (until they betray you), Wally\'s cape, a spy, and a walk of shame after you white out.'],
+  ['hero', 'Hero talks back', 'Now and then your character answers, in the theme\'s own style.', 'madlibs'],
+  ['adult', 'Adult humor', 'A small amount of swearing and crude jokes. Only grown-ups say the crude stuff; your character just swears.', 'madlibs'],
+  ['fakeNews', 'Fake news signs', 'Signs get headlines.', 'madlibs'],
+  ['battle', 'Battle commentary', 'Battle messages get rewritten: wild Pokémon owe you money, fainting is dramatic.', 'madlibs'],
+  ['houseGyms', 'House Gyms', 'Every Gym becomes a noble house with its own wild idea: ghosts in Rustboro\'s library, a cave buffet in Dewford, dragons in Fortree, the Night King in Sootopolis. Gym Guides give the new advice, badges become house sigils. Works with Hard mode too.', 'thrones'],
+  ['story', 'Story events', 'New scenes in the real story: a herald with a gift after every badge, a loan from the Iron Bank (the collector comes later), the Red Wedding in Slateport, your rival as your Hand (until they betray you), Wally\'s cape, a spy, and a walk of shame after you white out.', 'thrones'],
 ];
 const CAP_NAMES = ['Badge 1', 'Badge 2', 'Badge 3', 'Badge 4', 'Badge 5', 'Badge 6', 'Badge 7', 'Badge 8', 'Champion'];
 
@@ -1605,7 +1605,7 @@ function renderFun() {
       return el('label', { class: 'pack' + (cm.theme === k ? ' on' : '') }, rb, el('div', {}, el('b', {}, t), el('div', { class: 'note' }, d)));
     })),
     el('div', { class: 'field', style: 'margin-top:8px' }, el('span', {}, 'Extras')),
-    el('div', { class: 'packs' }, COMEDY_SWITCHES.map(([k, t, d]) => {
+    el('div', { class: 'packs' }, COMEDY_SWITCHES.filter(sw => sw[3] === cm.theme).map(([k, t, d]) => {
       const cb = el('input', { type: 'checkbox', checked: !!cm[k], onchange: () => { cm[k] = cb.checked; funSave(); renderFun(); } });
       return el('label', { class: 'pack' + (cm[k] ? ' on' : '') }, cb, el('div', {}, el('b', {}, t), el('div', { class: 'note' }, d)));
     }))]);

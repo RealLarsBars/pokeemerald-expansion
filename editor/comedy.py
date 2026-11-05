@@ -409,7 +409,10 @@ def apply(ov, opt, rng, report):
             CODE_WIDTH[ML.code(k)] = max(_width(w, widths) for w in words)
             SAFE_CODES.add(ML.code(k))
         head += ML.install(ov, slots)
-    gossip = pick_gossipers(ov, ctx, rng, adult) if key == 'thrones' else {}
+    # Game of Thrones is a straight story: only hand-written lines, the story events and the
+    # House Gyms change text. No random add-ons (hero lines, gossip, signs, battle jokes, tics).
+    story_only = key == 'thrones'
+    gossip = {}
     rewrites = load_rewrites(key)
     head += title_screen.apply(ov, key)
     if key == 'thrones' and opt.get('houseGyms', True):
@@ -457,7 +460,7 @@ def apply(ov, opt, rng, report):
             items.append(it)
         files.append((rel, text, mine))
 
-    counts = plan(items, th, opt, rng)
+    counts = plan(items, th, opt, rng, story_only)
 
     # Pass 2: write it.
     touched = 0
@@ -471,6 +474,8 @@ def apply(ov, opt, rng, report):
             if new is None or new == e.friendly:
                 continue
             raw = textdb.friendly_to_raw(new, True)
+            if e.raw.endswith('\\p$') and not raw.endswith('\\p$'):
+                raw = raw[:-1] + '\\p$'  # the game waits on that last empty page (Birch's speech)
             lines[e.start:e.end] = ['\t.string "%s"' % chunk for chunk in textdb.split_string_lines(raw)]
             changed = True
             touched += 1
@@ -483,7 +488,7 @@ def apply(ov, opt, rng, report):
         th['label'], ', '.join('%d %s' % (n, what) for what, n in counts.items() if n)))
     if gossip:
         head += thrones_storyline(ov, gossip, adult, widths)
-    if opt.get('battle', True):
+    if opt.get('battle', True) and not story_only:
         head += battle_messages(ov, rng)
     report.add('Comedy dialogue', head + samples, count=touched)
 
@@ -503,7 +508,7 @@ def _tics(cands, lines, rng, field):
     return min(len(pool), len(cands))
 
 
-def plan(items, th, opt, rng):
+def plan(items, th, opt, rng, story_only=False):
     """Decide, for the whole game at once, which text gets which line. Jokes are dealt out
     without putting any back, so none repeats; adult lines only go to grown-ups."""
     hero_on = opt.get('hero', True)
@@ -533,11 +538,14 @@ def plan(items, th, opt, rng):
         counts[label] = counts.get(label, 0) + n
 
     for it in items:
-        if it['boss'] and it['kind'] in ('intro', 'defeat'):
+        if it['boss'] and it['kind'] in ('intro', 'defeat') and (not story_only or opt.get('houseGyms', True)):
             it['add'] = ('boss', it['boss'])  # the boss speaks for their house
     ends = lambda it: it['final'] and not it['staff'] and not it['gossip']  # noqa: E731
     by_kind = {k: [it for it in items if it['kind'] == k and ends(it)] for k in ('talk', 'thing', 'intro', 'defeat', 'after')}
     counts['hand-written lines'] = sum(1 for it in items if 'rw' in it)
+    if story_only:
+        counts['Gym Leader house lines'] = sum(1 for it in items if it.get('add'))
+        return counts
 
     if hero_on:
         for moment, cands in by_kind.items():
@@ -592,7 +600,7 @@ def _transform(it, th, key, rng, widths):
                 boxes[i] = nb
                 if left <= 0:
                     break
-        if th['words']:
+        if th['words'] and key != 'thrones':  # Thrones changes only hand-written texts
             boxes = [swap_words(b, th['words'], rng, 1.0) for b in boxes]
     if it.get('open') and _starts_sentence(boxes[0]):
         boxes[0] = _prefix(boxes[0], it['open'])
