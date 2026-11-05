@@ -1,458 +1,418 @@
 # Game of Thrones: trainers on Routes 102, 103, 104 and 116.
-# Bar: every entry is funny AND absurd. Medieval drama applied to tiny route fights.
+# Tone: serious, in the spirit of the books. Ordinary people of a realm on the edge of war.
 
 @ Route102_Text_CalvinIntro
-You carry POKéMON! By ancient law, that makes you a TRAINER of the realm! I wrote the law this morning! On a leaf!
+You carry POKéMON, so you're a TRAINER. On this road, that means you answer my challenge!
 
 @ Route102_Text_CalvinDefeated
-Arrgh, I lost… I should have drilled my men harder… I don't have men. I have one ZIGZAGOON. He's been drilled plenty.
+Arrgh, I lost… I should have trained harder…
 
 @ Route102_Text_CalvinPostBattle
-Listen, you. If you were a champion, you should have announced yourself! With trumpets! I'd have run!
+Listen. If you're that strong, you should say so before a fight. It saves everyone time.
 
 @ Route102_Text_CalvinRegister
-I've trained like a knight before a tourney since we last met. I did forty push-ups. Across a whole week.
-
-I'd like a rematch, so will you send my name to your POKéNAV?
+I've trained every day since you beat me. I want another chance. Will you register me in your POKéNAV?
 
 @ Route102_Text_CalvinRegisterShort
-My honor demands vengeance. Politely. I'd like a rematch, so will you send my name to your POKéNAV?
+I want another chance at you. Will you register me in your POKéNAV?
 
 @ Route102_Text_CalvinRematchIntro
-Since you beat me, I've trained day and night. Mostly night. I can't sleep. You haunt me! You can't refuse my challenge!
+Since you beat me, I've trained until my hands bled. You can't refuse my challenge!
 
 @ Route102_Text_CalvinRematchDefeated
-Arrgh, I lost… Was my training all wrong? Was the leaf law not binding?
+Arrgh, I lost again… Am I training the wrong way?
 
 @ Route102_Text_CalvinRematchPostBattle
-Grow stronger if you like. I'll grow stronger too. Then you again. Then me. That's how wars start. And gyms. Mostly gyms.
+If you keep getting stronger, then so will I. I won't stay behind.
 
 @ Route102_Text_AllenIntro
-Did you just become a TRAINER? Me too! Let's be squires together! I'll squire you! You squire me! It's a whole economy!
+Did you just become a TRAINER? Me too! Let's see who's better!
 
 @ Route102_Text_AllenDefeated
-I challenged you because I thought you'd be easy… I see now that you are a war criminal…
+I challenged you because I thought I could win…
 
 @ Route102_Text_AllenPostBattle
-I've never won a single duel… I've prayed to the Old Gods, the New Gods, and a rock that looks like a duck… Nothing…
+I haven't won a single battle yet… One day I will.
 
 @ Route102_Text_RickIntro
-Hah! Our eyes met! That's a declaration of war! I've already notified my bugs! They're furious!
+Hah! Our eyes met! By the old custom, we fight! Go, my BUG POKéMON!
 
 @ Route102_Text_RickDefeated
-Ow! Unhorsed! I wasn't on a horse! I've been unhorsed anyway!
+Ow! Beaten!
 
 @ Route102_Text_RickPostBattle
-If you lock eyes with a TRAINER, you have to duel! It's the oldest law in the realm! Older than the leaf law!
+When two TRAINERS lock eyes, they have to fight. It's older than any law the lords have written.
 
 @ Route102_Text_TianaIntro
-I'll keep winning until I'm the greatest TRAINER in the realm. Then I'll win harder.
-
-Kneel and help me get there! On the grass, please! I've already prepared a spot!
+I'm going to keep winning, all the way to the top. You're the next step!
 
 @ Route102_Text_TianaDefeated
-Oh no. I helped YOU get there… I'm a kingmaker… I didn't want to be a kingmaker…
+I was your next step instead…
 
 @ Route102_Text_TianaPostBattle
-To keep climbing, I'll need a bigger army. And a ladder. Mostly a ladder.
+If I want to rise, I need more POKéMON. One sword is never enough.
 
 @ Route103_Text_DaisyIntro
-Our perfume is called “Seduction Of The Swamp.” It's mostly mud. Did you feel the pull of our enchanted perfume?
+Do you smell it? The flowers? My mother taught me to brew them. Can you feel them calming you?
 
 @ Route103_Text_DaisyDefeated
-You resisted our enchantment… Do you not have a nose…
+The scent didn't touch you at all…
 
 @ Route103_Text_DaisyPostBattle
-Aromatherapy heals the mind with sweet smells. It also cured my uncle of being alive. Allegedly. The trial is next week.
+The healers use these flowers to calm the wounded. They work on most people. Not on you.
 
 @ Route103_Text_AmyIntro
-AMY: I'm AMY. And this is my little sister LIV. We've formed an alliance! We signed it in crayon!
+AMY: I'm AMY. And this is my little sister LIV. We fight side by side!
 
 @ Route103_Text_AmyDefeated
-AMY: Uh-oh, our alliance fell. Who's going to tell Mom?
+AMY: Uh-oh, we lost.
 
 @ Route103_Text_AmyPostBattle
-AMY: Fighting two TRAINERS at once is like fighting on two fronts. Also like babysitting. Think fast.
+AMY: When you fight two TRAINERS at once, you have to watch both flanks.
 
 @ Route103_Text_AmyNotEnoughPokemon
-AMY: Uh-oh, you only have one POKéMON. Facing our alliance with that would be a war crime. Against you.
+AMY: You only have one POKéMON with you. It wouldn't be a fair fight. Come back with two.
 
 @ Route103_Text_LivIntro
-LIV: Two sisters. One banner. I drew the banner. It's a horse. It looks like a potato.
+LIV: We fight as one. We always have.
 
 @ Route103_Text_LivDefeated
-LIV: Oh, we lost, big sister… I'm taking the potato banner back…
+LIV: Oh, we lost, big sister…
 
 @ Route103_Text_LivPostBattle
-LIV: We fight perfectly together, me and my big sister…
-
-But we still lost… I blame the crayon treaty…
+LIV: My big sister and I never let each other down… But we still lost…
 
 @ Route103_Text_LivNotEnoughPokemon
-LIV: To fight us, you need two POKéMON! One is a duel. Two is a war. Three is a dinner party!
+LIV: You need two POKéMON to fight us! It's not fair if you don't!
 
 @ Route103_Text_AmyLivRegister
-LIV: We're much better than that, really! We'll write you a scroll about it! In crayon!
+LIV: We're better than that, really… We'll show you next time!
 
 @ Route103_Text_AmyRematchIntro
-AMY: I'm AMY, and this is my little sister LIV. The alliance rides again! On foot! We don't have horses!
+AMY: I'm AMY. And this is my little sister LIV. We fight side by side!
 
 @ Route103_Text_AmyRematchDefeated
-AMY: Aww, boo! The alliance fell again… Every alliance falls… This is a very sad region…
+AMY: Aww! We couldn't win again…
 
 @ Route103_Text_AmyRematchNotEnoughPokemon
-AMY: Uh-oh, you only have one POKéMON. Even our potato banner is offended.
+AMY: You only have one POKéMON with you. It wouldn't be a fair fight. Come back with two.
 
 @ Route103_Text_AmyRematchPostBattle
-AMY: Two fronts, one brain. That's the trick. We're still looking for the brain.
+AMY: Fighting two at once is hard. You have to watch both flanks.
 
 @ Route103_Text_LivRematchIntro
-LIV: Two sisters. One banner. Again. I drew a new banner. It's a better potato.
+LIV: We fight as one. We always will.
 
 @ Route103_Text_LivRematchDefeated
-LIV: Awww, we lost again… Big sister… Is it the potato…
+LIV: We lost again… Big sister…
 
 @ Route103_Text_LivRematchNotEnoughPokemon
-LIV: Two POKéMON! Bring two! Honor demands two! Dinner demands three!
+LIV: You need two POKéMON to fight us! It's not fair if you don't!
 
 @ Route103_Text_LivRematchPostBattle
-LIV: We fight perfectly together, me and my big sister…
-
-I've checked the prophecy twice. So why did we lose again?
+LIV: My big sister and I fight perfectly together… So why did we lose again?
 
 @ Route103_Text_AndrewIntro
-Gah! My line's all tangled! The river has betrayed me! I declare war on the river! You'll do for now!
+Gah! My line's tangled again, and nothing's biting! I'm in a foul mood! Fight me!
 
 @ Route103_Text_AndrewDefeated
-Gah! Lost that too! I'm going to declare war on myself!
+Gah! Lost! Now I'm in a worse mood!
 
 @ Route103_Text_AndrewPostBattle
-Grrrrr… I'm still boiling… Like a cauldron… In a dragon… In a bigger dragon…
+Gah… Leave me be. Grrrrr…
 
 @ Route103_Text_MiguelIntro
-My POKéMON is the fairest in all the realm! Painters weep! Poets faint! Behold it! Don't touch it! It bruises!
+My POKéMON is the finest in this whole valley! Come and see!
 
 @ Route103_Text_MiguelDefeated
-Oh, my gods! My darling POKéMON! Fetch the painters! Capture its tragic face!
+Oh, no! My poor POKéMON!
 
 @ Route103_Text_MiguelPostBattle
-My darling POKéMON looks beautiful even when it's fainted! Like a tragic princess! Who also snores!
+Even beaten, my POKéMON is still the finest in this valley.
 
 @ Route103_Text_MiguelRegister
-I'll summon you again to admire my darling POKéMON! By raven! By POKéNAV! By shouting, if necessary!
+Come back and see my POKéMON again! It'll be stronger next time!
 
 @ Route103_Text_MiguelRematchIntro
-Hail, you! My darling POKéMON has grown even fairer! A duke proposed to it! I said no! It's too young!
+You again! My POKéMON has grown even finer!
 
 @ Route103_Text_MiguelRematchDefeated
-Oh! My darling POKéMON! Its perfect face! Slightly less perfect!
+Oh! My poor POKéMON!
 
 @ Route103_Text_MiguelRematchPostBattle
-Every day my POKéMON grows more beautiful. I've started charging admission. I've made eleven coins. I'm a lord now.
+The longer I'm with it, the more I love it. Is that how knights feel about their horses?
 
 @ Route103_Text_PeteIntro
-This little channel? A real knight would just swim it! In full armor! That's how we lost Ser Gary!
+A stretch of water like this… You should just swim it!
 
 @ Route103_Text_PeteDefeated
-Oh, now that's a proper charge! I'm soaked! I wasn't even in the water!
+Oh, well fought!
 
 @ Route103_Text_PetePostBattle
-Ah, I see now.
-
-You ride a POKéMON across the water! Like a sea lord! I've been riding a log! It doesn't listen!
+Now I understand. If I had a POKéMON that loyal, I'd want to SURF on it too!
 
 @ Route103_Text_IsabelleIntro
-Watch where you're going! We nearly rammed like warships! I'm a very small warship! I'm a canoe!
+Watch where you're going! We're going to collide!
 
 @ Route103_Text_IsabelleDefeated
-Glub… Sunk… Tell the songs I went down with the canoe…
+Groan…
 
 @ Route103_Text_IsabellePostBattle
-I'm a terrible swimmer, so I was practicing. My technique is called “Panic.” It works about half the time.
+I can't swim well, so I was practicing… I'm sorry I nearly ran into you.
 
 @ Route103_Text_RhettIntro
-Whoa! How'd you sneak into a hiding spot this small? Are you an assassin? Is this an assassination? Should I lie down?
+Whoa! How did you get into a place this narrow?
 
 @ Route103_Text_RhettDefeated
-Whoa! This kid fights like a sellsword! Do you take payment in snacks?
+Whoa! You can fight!
 
 @ Route103_Text_RhettPostBattle
-I've lived here three weeks. My landlord is a bush. Do you like tight little hiding places like this one?
+Narrow places like this are good for ambushes. Did you know that?
 
 @ Route103_Text_MarcosIntro
-Every bard has a battle song! Mine is just one note! Held for nine minutes! Did it lure you here?
+Did my song bring you here? It's an old one, about a lord who lost everything. Did you know it?
 
 @ Route103_Text_MarcosDefeated
-My one-man show is ruined… The other bards will write songs mocking me… Better songs than mine…
+My song is ruined…
 
 @ Route103_Text_MarcosPostBattle
-I played my lute where nobody goes, and a crowd came anyway. Two crowds. One brought torches.
+I play out here where no one can hear me. People are starting to come anyway.
 
-Maybe I should play at a royal wedding. Those always go well. Nobody ever dies at those.
+Every singer in the realm will be singing about this war soon. I'd like my song to be the one they remember.
 
 @ Route104_Text_GinaIntro
-GINA: Okay, let's go to war with our POKéMON! Mia packed sandwiches!
+GINA: Okay, let's fight with our POKéMON!
 
 @ Route104_Text_GinaDefeat
-GINA: Losing makes me furious! I'm going to eat both sandwiches about it!
+GINA: I hate losing!
 
 @ Route104_Text_GinaPostBattle
-GINA: You're strong! We have to train a lot more! And pack more sandwiches!
+GINA: You're strong! We have to train much more!
 
 @ Route104_Text_GinaNotEnoughMons
-GINA: Huh? Only one POKéMON? Then we won't fight you.
-
-Two against one isn't honorable. It's just math. Mean math.
+GINA: Oh? Only one POKéMON? Then we won't fight you. Two against one isn't honorable.
 
 @ Route104_Text_MiaIntro
-MIA: We are twins, so we fight as one house. We also share one hat. It's my turn with the hat.
+MIA: We're twins, so we fight together.
 
 @ Route104_Text_MiaDefeat
-MIA: We fought together, and we fell together… On the hat…
+MIA: We fought together, and we both lost…
 
 @ Route104_Text_MiaPostBattle
-MIA: We'll train our POKéMON more and become strong like you. Then we'll buy a second hat.
+MIA: We'll train our POKéMON and become as strong as you.
 
 @ Route104_Text_MiaNotEnoughMons
-MIA: You want to fight us? With one POKéMON?
-
-Not without two POKéMON. We're far too strong for you! And we only have the one hat!
+MIA: You want to fight us? Not without two POKéMON. We'd beat you too easily.
 
 @ Route104_Text_IvanIntro
-Why keep it secret? I'm the greatest WATER POKéMON master in the realm! Bards sing of me! Two bards! Both cousins!
-
-Huh? You've never heard of me?
+I'm the best fisherman on this coast. Everyone here knows my name. Huh? You don't?
 
 @ Route104_Text_IvanDefeat
-I thought I was rather good, if I may say so, but no… I'm going to go stand in the sea and think about it…
+I thought I was good, but I guess not… Bah…
 
 @ Route104_Text_IvanPostBattle
-I was so busy fishing, I forgot to train my army… My army is one MAGIKARP… He forgot too…
+I spent so long fishing that I forgot to train my POKéMON. The sea makes you forget things.
 
 @ Route104_Text_BillyIntro
-I'm leaving footprints in the sand! I'm claiming the beach one step at a time! This step is mine! And this one!
+I'm walking the beach! I like leaving footprints in the sand!
 
 @ Route104_Text_BillyDefeat
-Waah! Sand got in my boots! I'm surrendering the beach! Except this one footprint! I'm keeping it!
+Waah! Sand in my boots!
 
 @ Route104_Text_BillyPostBattle
-I want to leave footprints everywhere in the realm. The tide keeps erasing them. The tide is my nemesis. I've named it Kevin.
+I leave footprints everywhere, but the tide always takes them. Nothing stays.
 
 @ Route104_Text_HaleyIntro
-Should I… Or shouldn't I? I flipped a coin. It landed on its edge. I'm taking that as a sign.
-
-Okay, fine, I'll fight!
+Should I… Or shouldn't I? All right. I'll fight!
 
 @ Route104_Text_HaleyDefeat
-I shouldn't have fought… I should've flipped again…
+I shouldn't have fought…
 
 @ Route104_Text_HaleyPostBattle
-If you let someone else choose your fate, you'll regret it, whatever happens. That's how most kings die. That and stairs.
+If you let someone else make your choices for you, you'll regret it, whatever happens.
 
 @ Route104_Text_HaleyRegister1
-You're strong, but should I send your name to my POKéNAV? Maybe I shouldn't… The coin says yes. The other coin says no…
-
-Okay, fine, I'll register you!
+You're strong. Should I register you in my POKéNAV? Maybe I shouldn't… All right. I will!
 
 @ Route104_Text_HaleyRegister2
-You're scary strong. Should I send your name to my POKéNAV? I've been debating it for three days. Maybe I shouldn't…
-
-Okay, fine, I'll register you!
+You're strong. Should I register you in my POKéNAV? Maybe not… No. I've decided. I will!
 
 @ Route104_Text_HaleyRematchIntro
-Come on, fight me! I've already decided! I decided last Thursday! It took all week!
+Come on, fight me! I've made up my mind!
 
 @ Route104_Text_HaleyRematchDefeat
-Ohh… I thought I could win… The coin was so confident…
+Ohh… I thought I could win…
 
 @ Route104_Text_HaleyPostRematch
-I chose this battle myself, so I can accept defeat with honor.
-
-I am still going to scream into the sea, though!
+I chose to fight, so I can accept losing. I'm still upset about it, though!
 
 @ Route104_Text_WinstonIntro
-Oh, sure, I accept your challenge. I'm extremely rich, you see. I always pay my debts. I also pay other people's debts. For fun.
+Oh, certainly, I'll accept. My family owns half this coast. I can afford to lose.
 
 @ Route104_Text_WinstonDefeat
-I paid for everything! The POKéMON! The ball! The beach! How could I lose?
+But how? Why couldn't I win?
 
 @ Route104_Text_WinstonPostBattle
-Some things gold can't buy. POKéMON… loyalty… and a personality, apparently…
+There are some things gold can't buy. Loyalty is one. POKéMON are another…
 
 @ Route104_Text_WinstonRematchIntro
-Since you beat me, I hired tutors to teach me everything about POKéMON. And a man to stand behind me and look intimidating.
+After you beat me, I hired the best teachers on the coast.
 
 @ Route104_Text_WinstonRematchDefeat
-But the tutors were so expensive! And the intimidating man left for lunch! How did I lose again?
+I lost again? Why couldn't I win?
 
 @ Route104_Text_WinstonPostRematch
-I'm obscenely rich, but I still can't win at POKéMON…
-
-I bought the beach. You still beat me on it. That's just rude.
+I'm richer than most lords, and I still can't win. The world of POKéMON is deeper than any vault…
 
 @ Route104_Text_CindyIntro
-The stars foretold our meeting. They also foretold rain. And a goat. Have you seen a goat? May I challenge you to a duel?
+We were fated to meet, I think. May I ask you for a battle?
 
 @ Route104_Text_CindyDefeat
-Oh, my! The stars lied! I'm writing them a very stern letter!
+Oh, my!
 
 @ Route104_Text_CindyPostBattle
-Every greeting is the start of a farewell. Every farewell is the start of a long walk home. I live very far away.
+Every “hello” is the beginning of a “good-bye.” I hope we meet again, before the war.
 
 @ Route104_Text_CindyRegister1
-Well met again. The stars said you'd come. They also said “bring snacks.” I didn't.
-
-Fate keeps bringing us together. Let's send our names to each other's POKéNAVS.
+Hello again. Fate keeps bringing us together. Let's register each other in our POKéNAVS.
 
 @ Route104_Text_CindyRegister2
-Fate has drawn us together once more. Fate is very bossy.
-
-Let's send our names to each other's POKéNAVS.
+We keep finding each other. That should be remembered. Let's register each other in our POKéNAVS.
 
 @ Route104_Text_CindyRematchIntro
-Well met again. The goat finally showed up. It was a sign. May I challenge you to a duel?
+Hello again. May I ask you for a battle?
 
 @ Route104_Text_CindyRematchDefeat
-Oh, my… I did all that I could… The goat did nothing…
+Oh, my… I did all that I could…
 
 @ Route104_Text_CindyPostRematch
-Every greeting is the start of a farewell. I've said that twice now. It's my only line. Farewell.
+Every “hello” is the beginning of a “good-bye.” I hope we meet again.
 
 @ Route104_Text_DarianIntro
-I've caught a fearsome sea monster!
-
-It flops with ancient power! It must be a dragon! A dragon in its larval stage! Very wet larval stage!
+I hauled up a fierce-looking POKéMON! There's something special about it! It looks so strong!
 
 @ Route104_Text_DarianDefeat
-What in the seven hells… It just lay there… Majestically…
+What the…
 
 @ Route104_Text_DarianPostBattle
-MAGIKARP, look at me. Look at me. You're not really a dragon, are you? Don't flop at me like that. Are you?
+MAGIKARP… You looked like a great fish. You're not, are you?
 
 @ Route116_Text_ClarkIntro
-If the tunnel won't go through, I'll march right over the mountain. Then I'll come back and tell the tunnel about it. In detail.
+If the tunnel won't take me through, I'll go over the mountain.
 
 @ Route116_Text_ClarkDefeat
-Gasp… Gasp… Losing is exhausting… The mountain is laughing at me…
+Gasp… Gasp… Losing wore me out…
 
 @ Route116_Text_ClarkPostBattle
-Who needs a tunnel? To a mountain man, mountains are roads! Very steep roads! I've fallen off this one six times!
+No tunnel? No matter. To a HIKER, the mountains are roads, and they don't belong to any lord.
 
 @ Route116_Text_JoeyIntro
-My POKéMON rule the land! It's a very small land! This patch of grass! Behold them!
+My POKéMON are the strongest on this road! See for yourself!
 
 @ Route116_Text_JoeyDefeat
-Ouch! A battle wound! I'll have a scar! I'll tell everyone a bear did it!
+Ouch! A scrape! I need a bandage!
 
 @ Route116_Text_JoeyPostBattle
-Battle scars prove you're tough! This one's from a bear! This one's from a door! The door was very tough!
+Every bandage is a battle I survived. I've got another one now.
 
 @ Route116_Text_JoseIntro
-My BUG POKéMON are hardened veterans of the Bush War! I don't want to talk about the Bush War! Let's fight!
+My BUG POKéMON are tough! Let's fight!
 
 @ Route116_Text_JoseDefeat
-I lost! I thought I had you surrounded! I had myself surrounded! By accident!
+I lost! I thought I had you!
 
 @ Route116_Text_JosePostBattle
-BUG POKéMON evolve fast. Their ranks swell quickly. I've got four hundred caterpillars at home. Send help.
+BUG POKéMON evolve fast. They grow strong fast, too. Like soldiers in a war.
 
 @ Route116_Text_JaniceIntro
-Let me show you how deadly my adorable POKéMON can be! It has bitten three knights! And a cake!
+Let me show you how strong my POKéMON is!
 
 @ Route116_Text_JaniceDefeat
-You're a cut above me… And you didn't even get bitten…
+You're a cut above me…
 
 @ Route116_Text_JanicePostBattle
-A POKéMON that's beautiful and deadly is the ideal. Like a queen. Or a very fancy knife.
+Beauty and strength together. That's the ideal, for POKéMON and for queens.
 
 @ Route116_Text_JerryIntro
-We learn all kinds of tactics at the TRAINER'S SCHOOL. Pincer moves. Flanking. Crying loudly to distract the enemy.
-
-I want to try them on a real enemy! You look real!
+We learn all sorts of things at the TRAINER'S SCHOOL. I want to try them for real!
 
 @ Route116_Text_JerryDefeat
-I skipped lessons… That's why I lost. I skipped them to come here. To lose. Wow.
+I didn't study enough… That's why I lost.
 
 @ Route116_Text_JerryPostBattle
-I'll have to retake some classes. If I don't, Lady ROXANNE will be furious. She's furious very quietly. It's the worst kind.
+I'll have to retake some lessons at the TRAINER'S SCHOOL. If I don't, Lady ROXANNE will hear about it.
 
 @ Route116_Text_JerryRegister1
-At the TRAINER'S SCHOOL they said a POKéNAV can register TRAINERS. I thought they said “ravens.” I've registered nine birds.
-
-I don't really get it, so can I just try it on you?
+At the TRAINER'S SCHOOL, they said a POKéNAV can register TRAINERS. I don't really understand it. Can I try it with you?
 
 @ Route116_Text_JerryRegister2
-At school they said a POKéNAV can register TRAINERS. The birds didn't work. They keep pooping on it.
-
-I don't really get it, so can I just try it on you?
+They taught us that a POKéNAV can register TRAINERS. I still don't understand it. Can I try it with you?
 
 @ Route116_Text_JerryRematchIntro
-I've studied hard at the TRAINER'S SCHOOL. I read a whole book. It was about horses. I won't fall like last time.
+I've been studying hard at the TRAINER'S SCHOOL. I won't lose like last time.
 
 @ Route116_Text_JerryRematchDefeat
-Hunh? But I did all the reading. The horse book lied to me.
+Hunh? But I studied so hard.
 
 @ Route116_Text_JerryPostRematch
-More classes for me. Lady ROXANNE already sighed at me twice this week. That's basically a declaration of war.
+I'll have to retake those lessons again. Lady ROXANNE won't be pleased.
 
 @ Route116_Text_KarenIntro
-I study at school, and I study on the road home too! I walked into four trees today! Knowledge is power! Trees are also power!
+I study at school, and I study on the road home, too!
 
 @ Route116_Text_KarenDefeat
-I'm in shock. Did I lose? Did I study the wrong book?
+I can't believe it… I lost?
 
 @ Route116_Text_KarenPostBattle
-Awww, I'll never be as elegant as Lady ROXANNE at this rate! She's never walked into a single tree!
+I'll never be as graceful a TRAINER as Lady ROXANNE at this rate!
 
 @ Route116_Text_KarenRegister1
-Oh, wow! Is that a POKéNAV? I have one, too! I mostly use it to read while walking! Please register me!
+Oh! Isn't that a POKéNAV? I have one too! Please register me!
 
 @ Route116_Text_KarenRegister2
-Oh, wow! That's a POKéNAV! I have one too! It has a dent from a tree! Please register me!
+Oh! That's a POKéNAV, isn't it? I have one too! Please register me!
 
 @ Route116_Text_KarenRematchIntro
-I've studied so much since we last met. I read nine books. I walked into eleven trees. Behold my learning!
+I've studied hard since we last met. You have to see what I've learned!
 
 @ Route116_Text_KarenRematchDefeat
-I'm in shock. Did I lose again? Do I need a tenth book?
+I can't believe it. I lost again?
 
 @ Route116_Text_KarenPostRematch
-You've defeated Lady ROXANNE? Then I can't beat you yet. I'll go read in the woods. Near the trees. Into the trees.
+You beat Lady ROXANNE? Then I can't beat you. Not yet.
 
 @ Route116_Text_SarahIntro
-Just so you know, I've never once been defeated by anyone at anything. I'm nobility. I've never even lost an argument. I just have people removed.
+You should know, I've never been bested by anyone at anything.
 
 @ Route116_Text_SarahDefeat
-Oh, my goodness. So this is what losing feels like. It feels like being a peasant. I hate it.
+Oh, my. This is a new experience for me.
 
 @ Route116_Text_SarahPostBattle
-My wealth buys me everything I desire. Diamonds. Castles. A man who hums when I enter rooms.
-
-But in POKéMON, my gold means nothing. Peasants can win too. Someone fetch my fainting couch.
+My family's wealth has given me everything I ever wanted. But in a POKéMON battle, it means nothing.
 
 @ Route116_Text_DawsonIntro
-When you see my POKéMON's royal coat, you'll be too dazzled to fight! It's brushed by six servants! One just for the tail!
+One look at my POKéMON's fine coat, and you'll forget how to fight!
 
 @ Route116_Text_DawsonDefeat
-Oh, no, say it isn't so! The tail servant will be devastated!
+Oh, no, say it isn't so!
 
 @ Route116_Text_DawsonPostBattle
-Oh, no, no, no! You've ruined my POKéMON's fur! And my hair! Summon my royal stylist! Summon his stylist!
+You've ruined my POKéMON's coat! And my hair! I have to see a lord's daughter tonight!
 
 @ Route116_Text_DevanIntro
-We'll crush you like a castle wall! A really big one! With a moat! Full of rocks!
+We'll crush you like a rockslide!
 
 @ Route116_Text_DevanDefeat
-Aiyiyi! The wall fell! Onto me!
+Aiyiyi! Not even close!
 
 @ Route116_Text_DevanPostBattle
-I should recruit other types of POKéMON. My army is all rocks. Even the cook is a rock. Dinner is terrible.
+I should try different POKéMON types. One kind of soldier never wins a war.
 
 @ Route116_Text_JohnsonIntro
-It's a dead end up here. Nobody comes. I've been on watch for weeks. I've started naming the clouds. I'm bored stiff, so can we duel?
+This road is a dead end. I've been waiting here for hours. Will you fight me?
 
 @ Route116_Text_JohnsonDefeat
-That was fun, even though I lost. It's the most fun I've had since the cloud shaped like a horse.
+That was good, even though I lost.
 
 @ Route116_Text_JohnsonPostBattle
-The Night's Watch is very lonely. It's just me. I'm not even sure it's the Night's Watch. Want to stay here and keep watch with me?
+It's lonely up here. Will you stay a while?

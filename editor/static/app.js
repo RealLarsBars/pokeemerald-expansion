@@ -1485,7 +1485,7 @@ const FUN_DEFAULTS = {
   comedy: { on: false, theme: 'thrones', hero: true, adult: false, fakeNews: true, battle: true, houseGyms: true, story: true, sprites: true },
 };
 const COMEDY_THEMES = [
-  ['thrones', 'Game of Thrones', 'A real Game of Thrones story told through Hoenn: hand-written dialogue town by town, noble houses, plots and betrayals, and a dragon on the title screen. Only a little silly. Areas not written yet keep their normal text.'],
+  ['thrones', 'Game of Thrones', 'A real Game of Thrones story told through Hoenn: hand-written dialogue town by town, noble houses, plots and betrayals, and a dragon on the title screen. Serious, in the spirit of the books. Areas not written yet keep their normal text.'],
   ['madlibs', 'Mad Libs', 'You fill in 16 blanks from a menu at the start (a thing, a place, a food, a name...) and 4 more after every Gym. People all over Hoenn use your words, trainers build their trash talk around them, and signs run news about them.'],
 ];
 const COMEDY_SWITCHES = [
@@ -1493,8 +1493,8 @@ const COMEDY_SWITCHES = [
   ['adult', 'Adult humor', 'A small amount of swearing and crude jokes. Only grown-ups say the crude stuff; your character just swears.', 'madlibs'],
   ['fakeNews', 'Fake news signs', 'Signs get headlines.', 'madlibs'],
   ['battle', 'Battle commentary', 'Battle messages get rewritten: wild Pokémon owe you money, fainting is dramatic.', 'madlibs'],
-  ['houseGyms', 'House Gyms', 'Every Gym becomes a noble house with its own wild idea: ghosts in Rustboro\'s library, a cave buffet in Dewford, dragons in Fortree, the Night King in Sootopolis. Gym Guides give the new advice, badges become house sigils. Works with Hard mode too.', 'thrones'],
-  ['story', 'Story events', 'New scenes in the real story: a herald with a gift after every badge, a loan from the Iron Bank (the collector comes later), the Red Wedding in Slateport, your rival as your Hand (until they betray you), Wally\'s cape, a spy, and a walk of shame after you white out.', 'thrones'],
+  ['houseGyms', 'House Gyms', 'Every Gym becomes a noble house with its own story: the crypt keepers of Rustboro, Dewford\'s sea reavers, the Mother of Dragons in Fortree, the Lord of the Long Night in Sootopolis. Gym Guides give the new advice, badges become house sigils. Works with Hard mode too.', 'thrones'],
+  ['story', 'Story events', 'New scenes in the real story: a herald with a gift after every badge, a loan from the Iron Bank (the collector comes later), the Red Wedding in Slateport, your rival as your Hand (until they betray you), Wally\'s oath, a spy, and a septa\'s bell after you white out.', 'thrones'],
   ['sprites', 'Medieval sprites', 'New battle pictures and walking sprites for the cast: Prof. Birch as the Grand Maester, you and your Hand, Wally the Kingsguard, and every House Gym leader (the Keeper of the Crypts, a reaver captain, the Master of Whispers, a dream priestess, a faceless man, the Mother of Dragons, the Sword Twins, and the Lord of the Long Night).', 'thrones'],
 ];
 const CAP_NAMES = ['Badge 1', 'Badge 2', 'Badge 3', 'Badge 4', 'Badge 5', 'Badge 6', 'Badge 7', 'Badge 8', 'Champion'];

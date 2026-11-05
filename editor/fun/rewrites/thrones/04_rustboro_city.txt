@@ -1,244 +1,205 @@
 # Game of Thrones: Rustboro City streets. House Stone (Devon) rules here.
-# Bar: every entry is funny AND absurd. Politics, prophecy and betrayal applied to tiny things.
+# Tone: serious, in the spirit of the books. Wit belongs to a few clever characters only.
 
 @ RustboroCity_Text_WeShortenItToDevon
-House Stone… The DEVON CORPORATION… We call them DEVON. Never to their faces. To their faces we call them “Your Rockiness.”
+The DEVON CORPORATION… We just call it DEVON. It's House Stone's, like everything else in RUSTBORO.
 
-They make everything in this city. They own everything, too. Including this bench. Including, legally, me.
+They make half of what the realm uses, and they lend gold to the other half.
 
 @ RustboroCity_Text_SneakyLookingManWentAroundCorner
-Hm? A man skulking like a spy?
-
-Aye. A shady sort in a bandana slipped around that corner, whispering “I am not a pirate” to himself over and over.
+Hm? A man in a hurry? Yes, now that you say it. A shady-looking man ran around that corner. He had blue on his sleeves.
 
 @ RustboroCity_Text_HaveYouChallengedGym
-Have you taken the GYM challenge?
+Have you taken the GYM challenge yet?
 
-Hold a GYM BADGE in your hand, and you start to feel the weight of the crown. It weighs about as much as a coin. Spiritually, though? A cow.
+When a TRAINER holds a BADGE for the first time, they start to understand what the houses will ask of them.
 
 @ RustboroCity_Text_HeyThatsRustborosGymBadge
-Hey, that's the banner of House Rustboro!
-
-Of all the GYM BADGES in the realm, RUSTBORO's is the finest. I'm not biased. I'm sworn to it by blood oath. It was a very small cut.
+Hey, that's House Rustboro's BADGE! Lady ROXANNE doesn't give those lightly. You've earned something today.
 
 @ RustboroCity_Text_YoureNewAroundHere
-Hm? Who might you be? A new face in our city. A suspicious face. A face with secrets.
-
-Are you a new student at the POKéMON TRAINER'S SCHOOL? Or a spy from the free city?
+Oh? Who might you be? You're a new face here. Have you just come to study at the TRAINER'S SCHOOL?
 
 @ RustboroCity_Text_GymLeaderIsntEasyWithFire
 I challenged Lady ROXANNE, but…
 
-Fire against stone walls? It's like trying to burn down a castle with a birthday candle. I sang to it. It didn't help.
+It won't be easy to win with my FIRE-type POKéMON…
 
-FIRE-type POKéMON don't stand a chance against ROCK-type POKéMON…
+They don't match up well against what she keeps in that GYM…
 
 @ RustboroCity_Text_MrBrineyWalksInTheTunnel
-The old sea lord MR. BRINEY lives in a cottage by the shore.
-
-He walks through the tunnel sometimes, whispering to his WINGULL about “the old days.” The WINGULL nods. The WINGULL was not there.
+The old sailor MR. BRINEY lives in a cottage by the sea. He walks in the tunnel sometimes. They say he's looking for something he lost there, a long time ago.
 
 @ RustboroCity_Text_MrBrineyLovesPeeko
-The old sea lord MR. BRINEY lives in a cottage by the shore.
+The old sailor MR. BRINEY lives in a cottage by the sea. He said he was going to SLATEPORT to buy food for PEEKO.
 
-He said he was off to SLATEPORT to buy gifts for PEEKO, his WINGULL. A tiny crown. A tiny throne. A tiny army.
-
-That old sea dog would burn an entire fleet for that bird. He already burned one. By accident. While cooking her dinner.
+That old sea dog lost his crew, his ship and his wife to the sea. PEEKO is all he has left.
 
 @ RustboroCity_Text_WowYouHavePokemon
-Wow, you have POKéMON with you, too.
-
-When I'm big, I'll ride out with my own army of POKéMON. And a crown. And a cape. And a second cape, for backup.
+Wow, you have POKéMON with you. When I'm older, I'm going to leave this city with mine and never look back.
 
 @ RustboroCity_Text_CatchRarePokemonIfIGoToSchool
-The POKéMON TRAINER'S SCHOOL! The citadel of learning! They have a library! Some of the books are on fire! On purpose!
-
-If I study here, will I be able to catch rare POKéMON easily?
+The TRAINER'S SCHOOL! If I study there, will I be able to catch rare POKéMON easily?
 
 @ RustboroCity_Text_PokemonCanChangeLookFromExp
-When a POKéMON wins enough battles, its very shape can change. Like a squire becoming a knight. Or my uncle becoming a different, angrier uncle.
+If a POKéMON gains enough experience in battle, it can change. Become something else entirely. Stronger, and harder to control.
 
 @ RustboroCity_Text_PokemonChangeShape
-A POKéMON changes shape? That's skinchanger magic! I'd faint! Then I'd change shape! Into someone who fainted!
+A POKéMON changes its shape? I'd be frightened if mine did that!
 
 @ RustboroCity_Text_TradePokemonGrowFast
-A POKéMON from a trade grows quickly. Like a hostage raised by another house. They always come back taller and full of opinions.
+A POKéMON you get in a trade grows fast.
 
-But without enough GYM BADGES, it may refuse your orders. Loyalty must be earned. Or bought. Mostly earned.
+But if you don't hold enough GYM BADGES, it may not obey you. Loyalty has to be earned, not traded…
 
 @ RustboroCity_Text_OutOfTheWay
-Move! Out of my way, peasant! I am NOT a pirate! Stop looking at my bandana!
+Get out! Out of my way!
 
 @ RustboroCity_Text_WaitDontTakeMyGoods
-Wait! Pleeeaaase!
-
-Not the GOODS! House Stone will have my head! And then they'll put it on a little shelf!
+Wait! Please! Don't take the GOODS! House Stone will have my head!
 
 @ RustboroCity_Text_HelpMeIWasRobbed
-Oh, it's you!
+Oh, it's you! The TRAINER who saved me in PETALBURG WOODS!
 
-You're the brave knight who saved me in PETALBURG WOODS! My hero! My only friend! My lawyer!
+Help me, please! TEAM AQUA robbed me in broad daylight, in House Stone's own city!
 
-Help me! Lord Archie's sea brigands robbed me! I must get the DEVON GOODS back!
-
-If I don't… House Stone will throw me in the dungeon. Again. They've got a room with my name on the door.
+I have to get the DEVON GOODS back! If I don't… I'll lose more than my post.
 
 @ RustboroCity_Text_ShadyCharacterTookOffTowardsTunnel
-That brigand ran off toward the tunnel over there. He was shouting “Nobody saw me!” while waving at everyone. Hunt him down!
+That man ran toward the tunnel over there. He went in, and he didn't come out.
 
 @ RustboroCity_Text_YouGotItThankYou
 Oh! How did it go? The DEVON GOODS?
 
-You did it! You got them back! I'm going to weep! I'm already weeping! When did that start?
+You did it! You got them back! You've saved my life twice now.
 
-You truly are a great knight!
-
-I know! Another GREAT BALL, with the thanks of my house! I'm running out of GREAT BALLS! I'm running out of thanks!
+Here. As my thanks, take another GREAT BALL! I'll make sure Mr. STONE hears your name.
 
 @ RustboroCity_Text_YoureLoadedWithItems
-You're carrying too much loot. Is that a door? Did you take a DOOR? I can't give you this GREAT BALL.
+You're carrying too much already. I can't give you this GREAT BALL.
 
 @ RustboroCity_Text_PleaseComeWithMe
-Pardon me! House Stone requests your presence! Please come with me! You're not in trouble! Probably! We'll see!
+Excuse me! Please, come with me! The president of DEVON wishes to see you.
 
 @ RustboroCity_Text_MayHiLetsRegister
-MAY: Oh, hi, {PLAYER}{KUN}!
+MAY: Oh, hi, {PLAYER}{KUN}! You have MATCH CALL on your POKéNAV now!
 
-House Stone put the MATCH CALL system in your POKéNAV! It's faster than ravens AND it doesn't bite!
-
-Let's register each other, so our houses can talk anytime! I'll call you every time I see a bug! Prepare yourself!
+Let's register each other, so we can reach each other anytime!
 
 … … … … … …
 
 @ RustboroCity_Text_RegisteredMay
-MAY has been added to your POKéNAV. An alliance is formed. A trumpet plays somewhere. Badly.
+Registered MAY in the POKéNAV.
 
 @ RustboroCity_Text_MayPassedBrineyWantToBattle
-MAY: Oh, by the way, I passed MR. BRINEY in PETALBURG WOODS. He was reading poetry to his bird.
+MAY: Oh, I passed MR. BRINEY in PETALBURG WOODS. He must be going home to his cottage by the sea.
 
-I guess he's heading home to his cottage by the sea.
+How's your POKéDEX coming along, {PLAYER}{KUN}? Mine's coming along well.
 
-How's your POKéDEX scroll coming along, {PLAYER}{KUN}? Mine's looking pretty good!
-
-So… For honor, glory, and lunch money… How about a little duel?
+So… How about a little battle?
 
 @ RustboroCity_Text_MayOhHaventRaisedPokemonEnough
-MAY: Oh, what's the matter?
+MAY: Oh, what's wrong? Haven't you been raising your POKéMON?
 
-Haven't you recruited or trained many POKéMON yet?
-
-A ruler needs an army, you know! Even a small one! Even a bunch of angry ducks!
+That's dangerous, {PLAYER}{KUN}. Not everyone you meet out here will only want a friendly battle!
 
 @ RustboroCity_Text_MayWantToBattle
-MAY: The whole square is watching. So, what do you say? A little duel, right here in the square?
+MAY: So, what do you think? How about a little battle here?
 
 @ RustboroCity_Text_MayImNotGoingToLose
-MAY: You only just became a TRAINER, {PLAYER}{KUN}. House Birch doesn't lose to squires! We lose to bears! It's different!
+MAY: You've only just started, {PLAYER}{KUN}. I'm not going to lose to you!
 
 @ RustboroCity_Text_MayDefeat
-Yikes! You fight better than the songs say! I'm going to have to rewrite the songs!
+Yikes! You're better than I expected!
 
 @ RustboroCity_Text_MayMrBrineyHint
-MAY: Oh, about MR. BRINEY, who I just passed…
+MAY: Oh, about MR. BRINEY, the man I passed…
 
-{PLAYER}{KUN}, you're new to the realm, so you might not know, but MR. BRINEY was once a legendary sea lord. He fought a kraken. The kraken apologized.
+{PLAYER}{KUN}, you're new here, so you might not know. MR. BRINEY was the most famous sailor in the realm. Kings used to ask for him by name.
 
 @ RustboroCity_Text_BrendanHiLetsRegister
-BRENDAN: Oh, hey, {PLAYER}!
+BRENDAN: Oh, hey, {PLAYER}! You've got MATCH CALL on your POKéNAV!
 
-House Stone put MATCH CALL in your POKéNAV! Nice! Now I can tell you about my sandwiches in real time!
-
-Let's register each other, so our houses can send word anytime!
+Let's register each other, so we can get in touch anytime!
 
 … … … … … …
 
 @ RustboroCity_Text_RegisteredBrendan
-BRENDAN has been added to your POKéNAV. An alliance is formed. He immediately calls you to say hi.
+Registered BRENDAN in the POKéNAV.
 
 @ RustboroCity_Text_BrendanPassedBrineyWantToBattle
-BRENDAN: By the way, {PLAYER}, I passed MR. BRINEY in PETALBURG WOODS. He was giving his bird a pep talk.
+BRENDAN: By the way, {PLAYER}, I passed MR. BRINEY in PETALBURG WOODS. He must be going home to his cottage by the sea.
 
-I bet he was heading home to his cottage by the sea.
+How's your POKéDEX? Have you filled in any pages yet? Mine's coming along.
 
-{PLAYER}, how's your POKéDEX scroll? Filled in any pages yet?
-
-Mine's legendary. I spilled soup on it. Now it's legendary AND soup.
-
-Want to duel and see how far you've come?
+Want to have a battle, to see how far you've come?
 
 @ RustboroCity_Text_BrendanNoConfidenceInPokemon
-BRENDAN: Smart. Bannermen betray you. What's the matter? Don't have any confidence in your POKéMON?
+BRENDAN: What's wrong? Don't you trust your POKéMON?
 
 @ RustboroCity_Text_BrendanWantToBattle
-BRENDAN: For honor! And a little for fun! What's up? Want to have a battle with me?
+BRENDAN: What do you say? Want to have a battle with me?
 
 @ RustboroCity_Text_BrendanIWontGoEasy
-BRENDAN: I know you're new to this, but House Birch shows no mercy! We show snacks! But no mercy!
+BRENDAN: I know you've only just started, but I won't go easy on you!
 
 @ RustboroCity_Text_BrendanDefeat
-Hmm… You're a real contender. A real, annoying contender.
+Hmm… You're pretty good.
 
 @ RustboroCity_Text_BrendanMrBrineyHint
-BRENDAN: By the way, you know MR. BRINEY? The old man I just passed?
+BRENDAN: You know MR. BRINEY? The man I passed?
 
-You're new here, {PLAYER}, so you wouldn't know, but MR. BRINEY was once a famous sea lord. He won a naval battle using only a mop and spite.
+You're new here, {PLAYER}, so you wouldn't know. He was the best sailor in the realm. He's carried kings across the sea.
 
 @ RustboroCity_Text_TunnelNearingCompletion
-“Royal tunnel nearly finished! By order of the Crown!”
+“By order of House Stone: the tunnel will soon be complete!”
 
-…But someone painted a giant red “X” across the sign. Underneath, in smaller letters: “The tunnel knows what it did.”
+…That's what the sign says. But someone has painted a big red “X” across it…
 
 @ RustboroCity_Text_DevonCorpSign
 DEVON CORPORATION
-Seat of House Stone
-“We Make It All. We Own The Rest.”
+“House Stone. We make it all.”
 
 @ RustboroCity_Text_GymSign
-HALL OF HOUSE RUSTBORO
-LADY ROXANNE
-“We Did The Reading. Did You?”
+RUSTBORO CITY POKéMON GYM
+LEADER: ROXANNE
+“Lady of House Rustboro.”
 
 @ RustboroCity_Text_DevonCorpBranchOfficeSign
-HOUSE STONE OUTPOST
-“Sworn members of House Stone only. Trespassers will be fired. Out of a catapult.”
+DEVON CORP. BRANCH OFFICE
+“Only those sworn to House Stone may enter.”
 
 @ RustboroCity_Text_CitySign
 RUSTBORO CITY
-“Stone walls. Steel minds. One very tired mayor.”
+“The city probing the integration of nature and science.”
 
 @ RustboroCity_Text_TrainersSchoolSign
 POKéMON TRAINER'S SCHOOL
-“A citadel for young Maesters. Detention is held in the dungeon.”
+“We'll teach you anything about POKéMON!”
 
 @ RustboroCity_Text_DevelopedNewPokenavFeature
-I've been forging a new feature for the POKéNAV…
+I've been building a new feature for the POKéNAV… And it works!
 
-And it's a masterpiece! I wept when I finished it! Then I wept again because I'd lost my sandwich!
-
-{PLAYER}, may I see that POKéNAV? The one our lord gave you?
+{PLAYER}, may I see that POKéNAV? The one Mr. STONE gave you?
 
 @ RustboroCity_Text_AddedMatchCallPleaseCallMrStone
-There you go, {PLAYER}!
+There you go, {PLAYER}! I added a feature called MATCH CALL to your POKéNAV.
 
-I've added a new feature called MATCH CALL to your POKéNAV.
+With MATCH CALL, you can speak with anyone registered in your POKéNAV, wherever they are.
 
-With MATCH CALL, you can speak to anyone registered in your POKéNAV. Like a raven that never gets lost, never bites, and never reads your letters. Allegedly.
+{PLAYER}, Mr. STONE himself should be registered in your POKéNAV.
 
-{PLAYER}, our lord, MR. STONE, should already be in your POKéNAV.
-
-Try it out. Give our lord a call. He gets lonely. He talks to the rocks. The rocks are bad listeners.
+Test it out. Please give Mr. STONE a call. He likes to know where his friends are.
 
 @ RustboroCity_Text_PleaseSelectPokenav
-Please select the POKéNAV. Not the sandwich. The POKéNAV.
+Please select the POKéNAV.
 
 @ RustboroCity_Text_IdBetterGetBackToWork
-Well, back to the forge for me. Take care, {PLAYER}! Call me if anyone tries to steal it! I'll scream at them!
+Okay, I'd better get back to work. Please take care, {PLAYER}!
 
 @ RustboroCity_Text_YouCanHave2On2Battle
-Did you know this?
+Did you know? You can fight two against one, even alone.
 
-You can fight a 2-on-2 battle even without an ally.
+If two TRAINERS see you at once, and you have two or more POKéMON, they'll both challenge you.
 
-If two TRAINERS see you while you have two or more POKéMON, they'll both attack at once. Like an ambush. Or a family reunion.
-
-Wouldn't it be glorious to beat two foes by yourself?
+Wouldn't it be something, to beat two TRAINERS by yourself?
