@@ -344,6 +344,37 @@ TALKING = ('talk', 'after', 'intro', 'defeat', 'other_battle', 'question')
 
 # ---- the theme runner -------------------------------------------------------------------
 
+REWRITES_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'fun', 'rewrites')
+
+
+def load_rewrites(key):
+    """Hand-written versions of whole texts for one theme: editor/fun/rewrites/<theme>/*.txt.
+
+    Each entry starts with a line '@ Label' and holds the new text. A blank line starts a
+    new text box; lines are wrapped to fit by the editor."""
+    out = {}
+    for path in sorted(glob.glob(os.path.join(REWRITES_DIR, key, '*.txt'))):
+        with open(path, encoding='utf-8') as f:
+            label, body = None, []
+            for line in f.read().split('\n') + ['@ ']:
+                if line.startswith('@ '):
+                    if label:
+                        out[label] = '\n'.join(body).strip()
+                    label, body = line[2:].strip(), []
+                elif not line.startswith('#'):
+                    body.append(line)
+    return out
+
+
+def rewrite_ok(old, new):
+    """A rewrite keeps every code the game fills in, and a question stays a question."""
+    need = set(re.findall(r'\{(?:STR_VAR_\d|PLAYER|RIVAL|POKEBLOCK)\}', old))
+    have = set(re.findall(r'\{[^}]*\}', new))
+    if not need <= have or have - SAFE_CODES:
+        return False
+    return not old.rstrip().endswith('?') or new.rstrip().endswith('?')
+
+
 def theme_of(opt):
     return opt.get('theme') if opt.get('theme') in T.THEMES else 'thrones'
 
@@ -371,6 +402,7 @@ def apply(ov, opt, rng, report):
             SAFE_CODES.add(ML.code(k))
         head += ML.install(ov, slots)
     gossip = pick_gossipers(ov, ctx, rng, adult) if key == 'thrones' else {}
+    rewrites = load_rewrites(key)
 
     # Pass 1: every text the theme can touch.
     files, items = [], []
@@ -391,11 +423,14 @@ def apply(ov, opt, rng, report):
             kind = kind_of(e.label, e.friendly, ctx)
             if kind in ('system', 'cry'):
                 continue  # item jingles and POKéMON cries stay as they are
-            it = {'e': e, 'kind': kind, 'staff': staff, 'adult': ctx['adult'].get(e.label, False),
+            it = {'e': e, 'rel': rel, 'kind': kind, 'staff': staff, 'adult': ctx['adult'].get(e.label, False),
                   'final': ctx['final'].get(e.label, False) or kind in ('intro', 'defeat'),
                   'first': ctx['first'].get(e.label, False) or kind == 'intro',
                   'boss': ctx['boss'].get(e.label) if key == 'thrones' else None,
                   'gossip': e.label in gossip['labels'] if gossip else False}
+            rw = rewrites.get(e.label)
+            if rw and rewrite_ok(e.friendly, rw):
+                it['rw'] = rw
             mine.append(it)
             items.append(it)
         files.append((rel, text, mine))
@@ -480,12 +515,15 @@ def plan(items, th, opt, rng):
             it['add'] = ('boss', it['boss'])  # the boss speaks for their house
     ends = lambda it: it['final'] and not it['staff'] and not it['gossip']  # noqa: E731
     by_kind = {k: [it for it in items if it['kind'] == k and ends(it)] for k in ('talk', 'thing', 'intro', 'defeat', 'after')}
+    counts['hand-written lines'] = sum(1 for it in items if 'rw' in it)
 
     if hero_on:
         for moment, cands in by_kind.items():
             # The hero swears now and then with Adult humor on; never anything sexual (they're a kid).
             deal(cands, th['hero'][moment], 'hero', 'hero lines',
                  ad.get('hero', []) if moment == 'talk' else (), adult_only=False)
+    # A hand-written line is already new: the hero may answer it, but nothing else is added.
+    by_kind = {k: [it for it in v if 'rw' not in it] for k, v in by_kind.items()}
     deal(by_kind['talk'], th['end'], 'say', 'lines from townsfolk', ad.get('end', []))
     deal(by_kind['intro'], th['intro'], 'say', 'trainer challenges', ad.get('intro', []))
     deal(by_kind['defeat'], th['defeat'], 'say', 'trainer defeats', ad.get('defeat', []))
@@ -495,9 +533,10 @@ def plan(items, th, opt, rng):
         deal(signs, th['sign'], 'news', 'signs', ad.get('sign', []), adult_only=False)
 
     # Openers and sign-offs: the theme's voice, at the start and end of more conversations.
-    chat = lambda it: it['kind'] in ('talk', 'after') and not it['staff']  # noqa: E731
+    chat = lambda it: it['kind'] in ('talk', 'after') and not it['staff'] and 'rw' not in it  # noqa: E731
     n = _tics([it for it in items if chat(it) and it['first']], th['open'], rng, 'open')
-    quiet = [it for it in items if 'add' not in it and it['final'] and not it['staff'] and not it['gossip']]
+    quiet = [it for it in items if 'add' not in it and it['final'] and not it['staff'] and not it['gossip']
+             and 'rw' not in it]
     n += _tics([it for it in quiet if chat(it)], th['close'], rng, 'close')
     n += _tics([it for it in quiet if it['kind'] == 'intro'], th['close_intro'], rng, 'close')
     n += _tics([it for it in quiet if it['kind'] == 'defeat'], th['close_defeat'], rng, 'close')
@@ -513,12 +552,15 @@ def _transform(it, th, key, rng, widths):
     orig = list(boxes)
     kind = it['kind']
     add = it.get('add')
-    if kind == 'sign':
+    if 'rw' in it:
+        boxes = [_join(b) for b in _boxes(it['rw'])]
+        orig = []  # every box is new, so every box is wrapped
+    elif kind == 'sign':
         if add:
             boxes.append(add[1])
         return _finish(boxes, orig, friendly, widths)
 
-    if kind in TALKING:
+    elif kind in TALKING:
         # The voice: Mad Libs blanks with the player's words, or the realm's way of talking.
         if key == 'madlibs' and not it['staff']:
             left = 2
