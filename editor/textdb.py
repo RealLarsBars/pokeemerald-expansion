@@ -40,8 +40,13 @@ def raw_to_friendly(raw):
     return s
 
 
+def curly_quotes(text):
+    """The game's font has no straight double quote, only “ and ”."""
+    return re.sub(r'(^|(?<=[\s(\[{]))"', '“', text).replace('"', '”')
+
+
 def friendly_to_raw(text, terminated=True):
-    text = text.replace('\r', '').strip('\n')
+    text = curly_quotes(text.replace('\r', '').strip('\n'))
     boxes = re.split(r'\n\s*\n', text)
     out = []
     for box in boxes:

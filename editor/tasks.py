@@ -1,6 +1,7 @@
 """Long-running jobs: building the game, opening it in mGBA, and updating the editor."""
 
 import os
+import signal
 import subprocess
 import threading
 import time
@@ -18,6 +19,8 @@ class Job:
         self.title = ''
         self.log = []
         self.message = ''
+        self.proc = None      # the program the job is running right now, if any
+        self.run_id = 0       # bumps on every start, so a stopped job cannot report back
 
     def snapshot(self, since=0):
         with self.lock:
@@ -29,17 +32,42 @@ class Job:
             if self.state == 'running':
                 return False
             self.state, self.title, self.log, self.message = 'running', title, [], ''
-        threading.Thread(target=self._run, args=(fn,), daemon=True).start()
+            self.run_id += 1
+            run_id = self.run_id
+        threading.Thread(target=self._run, args=(fn, run_id), daemon=True).start()
         return True
 
-    def _run(self, fn):
+    def _run(self, fn, run_id):
         try:
             ok, message = fn(self)
         except Exception as exc:  # report anything unexpected in the window
             ok, message = False, 'Something went wrong: %s' % exc
         with self.lock:
-            self.state = 'done' if ok else 'failed'
-            self.message = message
+            if self.run_id == run_id and self.state == 'running':
+                self.state = 'done' if ok else 'failed'
+                self.message = message
+
+    def stop(self):
+        """Stops whatever is running (a stuck build, a save that never finished...)
+        so the editor is free again. Always works, even if the job hangs."""
+        with self.lock:
+            proc, was = self.proc, self.state
+            self.run_id += 1
+            self.proc = None
+            if was == 'running':
+                self.state = 'failed'
+                self.message = 'Stopped. You can start again whenever you like.'
+                self.log.append('Stopped by you.')
+        if proc and proc.poll() is None:
+            try:
+                os.killpg(proc.pid, signal.SIGTERM)
+                proc.wait(timeout=5)
+            except Exception:
+                try:
+                    os.killpg(proc.pid, signal.SIGKILL)
+                except Exception:
+                    pass
+        return was == 'running'
 
     def write(self, line):
         with self.lock:
@@ -50,10 +78,15 @@ class Job:
 
 def run(job, args, cwd=ROOT):
     proc = subprocess.Popen(args, cwd=cwd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
-                            text=True, errors='replace')
-    for line in proc.stdout:
-        job.write(line)
-    return proc.wait()
+                            text=True, errors='replace', start_new_session=True)
+    job.proc = proc
+    try:
+        for line in proc.stdout:
+            job.write(line)
+        return proc.wait()
+    finally:
+        if job.proc is proc:
+            job.proc = None
 
 
 def capture(args):

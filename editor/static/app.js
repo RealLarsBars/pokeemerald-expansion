@@ -458,6 +458,8 @@ function renderTrainer() {
   const partyCard = el('div', { class: 'card' },
     el('div', { class: 'row', style: 'align-items:center;margin-bottom:12px' },
       el('h3', { style: 'margin:0;flex:1' }, 'Team'),
+      el('button', { class: 'btn small primary', onclick: makeCompetitive,
+        title: 'Give every Pok\u00e9mon its best ability, strong moves, a held item, nature, EVs and perfect IVs. Click again for different sets.' }, '\u2728 Make competitive'),
       el('button', { class: 'btn small', onclick: openShowdownPaste }, 'Paste Showdown team'),
       el('button', { class: 'btn small', onclick: exportShowdown }, 'Copy as Showdown')),
     el('div', { id: 'party', class: 'party' }));
@@ -688,6 +690,28 @@ function openShowdownPaste() {
       el('button', { class: 'btn', onclick: () => go(false) }, 'Add to team'),
       el('button', { class: 'btn primary', onclick: () => go(true) }, 'Replace team'))));
   setTimeout(() => ta.focus(), 50);
+}
+
+async function makeCompetitive() {
+  const t = T.current;
+  if (!t.party.some(m => m.species.trim())) { toast('Add some Pok\u00e9mon to the team first.', true); return; }
+  const bad = t.party.find(m => m.species.trim() && !index.species.has(speciesConst(m.species)));
+  if (bad) { toast(`I don't know a Pok\u00e9mon called "${bad.species}". Fix that first.`, true); return; }
+  const battleKey = t.fields.some(f => f[0] === 'Double Battle') ? 'Double Battle' : 'Battle Type';
+  const doubles = /^(yes|doubles)$/i.test(getField(battleKey));
+  try {
+    const res = await api('/api/trainer/competitive', { party: t.party, doubles });
+    t.party = res.party;
+    // Smarter battling to go with the stronger team.
+    const ai = getField('AI').split('/').map(s => s.trim()).filter(Boolean);
+    for (const flag of ['Smart Trainer']) {
+      if (GD.aiFlags.some(a => a.name === flag) && !ai.includes(flag)) ai.push(flag);
+    }
+    setField('AI', ai.join(' / '));
+    markTrainerDirty();
+    renderTrainer();
+    toast('Team made competitive. Click again for different sets, Revert to undo, or Save to keep it.');
+  } catch (e) { toast(e.message, true); }
 }
 
 async function exportShowdown() {
@@ -1191,6 +1215,8 @@ function insertAtCursor(lines, appendix) {
 
 function textBlock(label, friendly) {
   // Same format as the game files: one .string line per line of text.
+  // The game's font has no straight double quote, only curly ones.
+  friendly = friendly.replace(/(^|[\s(\[{])"/g, '$1\u201c').replace(/"/g, '\u201d');
   const boxes = friendly.replace(/\r/g, '').trim().split(/\n\s*\n/);
   const raw = boxes.map(b => b.split('\n').map((l, i) => (i === 0 ? '' : (i === 1 ? '\\n' : '\\l')) + l).join('')).join('\\p') + '$';
   const chunks = raw.split(/(?<=\\[nlp])/).filter(Boolean);
@@ -1714,7 +1740,22 @@ function showJob(title) {
   $('#jobMessage').className = '';
   $('#jobMessage').innerHTML = '<span class="spinner"></span>Working...';
   $('#jobLog').textContent = '';
+  $('#jobStop').classList.remove('hidden');
   jobNext = 0;
+}
+
+function setJobButtons(busy) {
+  for (const id of ['#playBtn', '#exportBtn', '#updateBtn']) $(id).disabled = busy;
+}
+
+async function stopJob(ask = true) {
+  if (ask && !confirm('Stop what the editor is doing right now? Nothing you saved is lost.')) return false;
+  try {
+    await api('/api/job/stop', {});
+    jobDone = null;
+    toast('Stopped.');
+    return true;
+  } catch (e) { toast(e.message, true); return false; }
 }
 
 async function pollJob() {
@@ -1731,10 +1772,9 @@ async function pollJob() {
     const msg = $('#jobMessage');
     msg.textContent = j.message;
     msg.className = j.state === 'done' ? 'ok' : 'bad';
-    if (j.state === 'failed') $('#jobLog').classList.remove('hidden');
-    $('#playBtn').disabled = false;
-    $('#exportBtn').disabled = false;
-    $('#updateBtn').disabled = false;
+    $('#jobStop').classList.add('hidden');
+    if (j.state === 'failed' && !/^Stopped/.test(j.message)) $('#jobLog').classList.remove('hidden');
+    setJobButtons(false);
     if (j.title === 'Update' && j.state === 'done' && /^Updated/.test(j.message)) waitForRestart();
     if (jobDone) { const cb = jobDone; jobDone = null; cb(j); }
   } catch (e) {
@@ -1747,12 +1787,16 @@ let jobDone = null;   // called once when the current job finishes
 async function startJob(path, title, onDone = null, confirmed = false) {
   if (!confirmed && anyDirty() && !confirm('Some changes are not saved yet and will not be included. Continue?')) return;
   try {
-    const res = await api(path, {});
-    if (!res.started) { toast('Already working on something, please wait.', true); return; }
+    let res = await api(path, {});
+    if (!res.started) {
+      // Something is still running (or stuck). Offer to stop it and go ahead.
+      if (!confirm('The editor is still busy with something else. Stop that and continue?')) return;
+      if (!(await stopJob(false))) return;
+      res = await api(path, {});
+      if (!res.started) { toast('The editor is still busy. Try again in a moment.', true); return; }
+    }
     jobDone = onDone;
-    $('#playBtn').disabled = true;
-    $('#exportBtn').disabled = true;
-    $('#updateBtn').disabled = true;
+    setJobButtons(true);
     showJob(title);
     pollJob();
   } catch (e) { toast(e.message, true); }
@@ -1828,6 +1872,18 @@ $('#updateBtn').addEventListener('click', async () => {
   openModal('Update the editor', body);
 });
 $('#jobClose').addEventListener('click', () => $('#jobPanel').classList.add('hidden'));
+$('#jobStop').addEventListener('click', () => stopJob(true));
+
+// If a build was still going when the page opened, show it (with its Stop button).
+async function resumeJob() {
+  try {
+    const j = await api('/api/job?since=0');
+    if (j.state !== 'running') return;
+    setJobButtons(true);
+    showJob(j.title);
+    pollJob();
+  } catch (e) { /* ignore */ }
+}
 $('#jobLogToggle').addEventListener('click', () => {
   const log = $('#jobLog');
   log.classList.toggle('hidden');
@@ -1858,6 +1914,7 @@ async function checkUpdatesQuietly() {
     showView(views[view] ? view : 'trainers');
     if (trainer && T.list.some(t => t.id === trainer)) openTrainer(trainer);
     setTimeout(checkUpdatesQuietly, 2000);
+    resumeJob();
   } catch (e) {
     const msg = 'The editor could not load: ' + e.message + ' (send this to Claude in your project)';
     $('#trainerList').replaceChildren(el('div', { class: 'warnbox' }, msg));
@@ -1972,6 +2029,8 @@ document.addEventListener('focusin', e => {
 document.addEventListener('focusout', e => { if (e.target === Picker.input) pickerClose(); });
 document.addEventListener('mousedown', e => {
   const t = e.target;
+  // The box it belonged to was redrawn: the list must not stay open on its own.
+  if (Picker.input && !Picker.input.isConnected && !(Picker.box && Picker.box.contains(t))) pickerClose();
   if (t === Picker.input && Picker.box.classList.contains('hidden')) pickerOpen(t);
 });
 document.addEventListener('input', e => {
@@ -1998,6 +2057,7 @@ document.addEventListener('keydown', e => {
   }
 });
 window.addEventListener('scroll', e => {
+  if (Picker.input && !Picker.input.isConnected) { pickerClose(); return; }
   if (Picker.input && !Picker.box.contains(e.target)) pickerPlace();
 }, true);
 window.addEventListener('resize', () => { if (Picker.input) pickerPlace(); });

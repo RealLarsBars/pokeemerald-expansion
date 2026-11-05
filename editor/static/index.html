@@ -11,6 +11,7 @@
   <div class="brand">Emerald Editor</div>
   <nav class="tabs" role="tablist">
     <button class="tab active" data-view="trainers">Trainers</button>
+    <button class="tab" data-view="maps">Maps</button>
     <button class="tab" data-view="pokemon">Pok&eacute;mon data</button>
     <button class="tab" data-view="dialogue">Dialogue</button>
     <button class="tab" data-view="scripts">Scripts</button>
@@ -36,9 +37,32 @@
     </div>
   </section>
 
+  <!-- MAPS -->
+  <section id="view-maps" class="view">
+    <aside class="sidebar">
+      <input id="mapSearch" class="search" type="search" placeholder="Find a map (e.g. Route 104, Mart)...">
+      <select id="mapFilter" class="search" style="margin:8px 10px 0;width:auto">
+        <option value="all">All maps</option>
+        <option value="outside">Towns and routes</option>
+        <option value="items">Maps with items</option>
+        <option value="wild">Maps with wild Pok&eacute;mon</option>
+        <option value="shops">Shops</option>
+        <option value="gifts">Gifts &amp; legendaries</option>
+      </select>
+      <div id="mapList" class="list"><div class="empty">Loading maps...</div></div>
+    </aside>
+    <div id="mapEditor" class="editor">
+      <div class="empty">Pick a map on the left.</div>
+    </div>
+  </section>
+
   <!-- POKEMON DATA -->
   <section id="view-pokemon" class="view">
     <aside class="sidebar">
+      <div class="sidebtns">
+        <button id="startersBtn" class="btn small">Starter Pok&eacute;mon</button>
+        <button id="tmListBtn" class="btn small">TM &amp; HM list</button>
+      </div>
       <input id="speciesSearch" class="search" type="search" placeholder="Search Pok&eacute;mon...">
       <div id="speciesList" class="list"></div>
     </aside>
@@ -97,6 +121,7 @@
   <div class="jobhead">
     <span id="jobTitle"></span>
     <span id="jobMessage"></span>
+    <button id="jobStop" class="btn small danger hidden" title="Stop what the editor is doing right now">Stop</button>
     <button id="jobLogToggle" class="btn small ghost">Show details</button>
     <button id="jobClose" class="btn small ghost">Close</button>
   </div>
@@ -122,5 +147,8 @@
 <datalist id="dl-status"></datalist>
 
 <script src="/static/app.js"></script>
+<script src="/static/world.js"></script>
+<script src="/static/learn.js"></script>
+<script src="/static/steps.js"></script>
 </body>
 </html>

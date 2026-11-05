@@ -351,6 +351,9 @@ def read(species_id):
     sym = re.search(r'\.levelUpLearnset\s*=\s*(\w+)', body)
     out['learnsetSymbol'] = sym.group(1) if sym else ''
     out['learnset'] = read_learnset(out['learnsetSymbol'])
+    for field, key in (('teachableLearnset', 'teachSymbol'), ('eggMoveLearnset', 'eggSymbol'), ('teachingType', 'teachingType')):
+        fm = re.search(r'\.%s\s*=\s*(\w+)' % field, body)
+        out[key] = fm.group(1) if fm else ''
     return out
 
 
