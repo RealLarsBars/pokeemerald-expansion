@@ -46,9 +46,20 @@ class Overlay:
         if text != self.read(rel):
             self.files[rel] = text
 
+    def write_bytes(self, rel, data):
+        """For images. Not readable back through read()."""
+        with open(os.path.join(ROOT, rel), 'rb') as f:
+            if f.read() == data:
+                return
+        self.files[rel] = data
+
     def commit(self):
         for rel, text in self.files.items():
-            write_text(os.path.join(ROOT, rel), text)
+            if isinstance(text, bytes):
+                with open(os.path.join(ROOT, rel), 'wb') as f:
+                    f.write(text)
+            else:
+                write_text(os.path.join(ROOT, rel), text)
         return sorted(self.files)
 
 

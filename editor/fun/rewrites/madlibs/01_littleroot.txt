@@ -1,682 +1,678 @@
 # Mad Libs: Littleroot Town, your house, the rival's house, Professor Birch's lab.
 # '@ Label' starts an entry. A blank line starts a new text box.
 # {MADLIB_...} shows the player's own word. Never write 'a' or 'an' right before one.
+# Bar: every entry is funny AND absurd on its own, and gets funnier with the player's words.
 
 @ LittlerootTown_Text_OurNewHomeLetsGoInside
 MOM: {PLAYER}, we're here, honey!
 
-Sorry about the ride. The moving truck smelled like {MADLIB_FOOD} the whole way. I don't know why. I didn't pack any {MADLIB_FOOD}.
+Sorry about the moving truck. The driver was {MADLIB_NAME}, and he only knew how to turn left. We've been driving in a circle since Tuesday.
 
-Well, this is LITTLEROOT TOWN. Population: us, a Professor, and one {MADLIB_CREATURE}.
+Welcome to LITTLEROOT TOWN! Population: us, one Professor, and a guy who lives in a bush and screams “{MADLIB_SHOUT}” at sunrise.
 
-How do you like it? I think it's very {MADLIB_ADJ}.
+The air here smells like {MADLIB_FOOD}. The realtor says that's “the charm.” The realtor was also {MADLIB_CREATURE}.
 
-It's quiet, it's cheap, and the nearest {MADLIB_PLACE} is only a short walk away!
-
-And you get your own room, {PLAYER}! Let's go inside.
+And you get your own room! It used to be part of the {MADLIB_PLACE}. Let's go inside.
 
 @ LittlerootTown_Text_WearTheseRunningShoes
-MOM: {PLAYER}! {PLAYER}! Did you introduce yourself to PROF. BIRCH?
+MOM: {PLAYER}! {PLAYER}! Did you introduce yourself to PROF. BIRCH? Did he still have both legs?
 
-Oh! {MADLIB_SHOUT}! A POKéMON! You got it from PROF. BIRCH? How nice!
+Oh! {MADLIB_SHOUT}! A POKéMON! I'm going to knit it a tiny {MADLIB_CLOTHING}!
 
-You're your father's child, all right. You two look {MADLIB_ADJ} together!
+You look just like your father did at your age. He also smelled like {MADLIB_DRINK}. Must be genetic.
 
-Here, honey! If you're going on an adventure, wear these RUNNING SHOES. I got them at the {MADLIB_PLACE}.
+Here, honey! RUNNING SHOES! I bought them from a man in a trench coat behind the {MADLIB_PLACE}. No receipt, but they glow a little!
 
-They'll make you faster than {MADLIB_NAME} on their {MADLIB_VEHICLE}!
+They'll make you faster than {MADLIB_NAME} running from responsibilities!
 
 @ LittlerootTown_Text_ExplainRunningShoes
-MOM: {PLAYER}, those shoes came with instructions.
+MOM: {PLAYER}, the shoes came with instructions. Written on {MADLIB_FOOD}.
 
 Press the B Button while wearing these RUNNING SHOES to run extra-fast!
 
-Then, in tiny letters: Not responsible for injuries to your {MADLIB_BODYPART}.
+Then, in tiny letters: “Side effects include {MADLIB_ACTIVITY} and a strong desire to become {MADLIB_CREATURE}.”
 
 @ LittlerootTown_Text_ComeHomeIfAnythingHappens
 … … … … … … … … … … … … … … … …
 
-My baby has a POKéMON of their own. I'm feeling so {MADLIB_FEELING}. Your father will be thrilled.
+My baby has a POKéMON. I'm so {MADLIB_FEELING} I could eat my own {MADLIB_CLOTHING}. I won't. Probably.
 
-…But be careful. If anything happens, come home. I'll make your favorite. {MADLIB_FOOD}, right?
+If anything happens out there, come home. I'll make your favorite: {MADLIB_FOOD} dipped in {MADLIB_DRINK}. The doctor said “please stop,” but what does HE know?
 
 Go on, go get them, honey!
 
 @ LittlerootTown_Text_CanUsePCToStoreItems
-If you use a PC, you can store items and POKéMON.
+If you use a PC, you can store items and POKéMON inside it.
 
-I keep my {MADLIB_THING} in there. I have no idea how. Science is {MADLIB_ADJ}.
+I keep my {MADLIB_THING} in mine. Also a whole {MADLIB_CREATURE}. It lives there now. It pays rent.
 
 @ LittlerootTown_Text_BirchSpendsDaysInLab
-PROF. BIRCH stays in his LAB for days. Then he runs into the wild yelling {MADLIB_SHOUT} and doesn't come back until dinner…
+PROF. BIRCH stays in his LAB for days. Then he sprints into the wild shouting “{MADLIB_SHOUT}!” wearing nothing but his {MADLIB_CLOTHING}.
 
-When does PROF. BIRCH actually spend time at home?
+Our whole street has a group chat about it. When does PROF. BIRCH actually spend time at home?
 
 @ LittlerootTown_Text_IfYouGoInGrassPokemonWillJumpOut
 Um, um, um!
 
-If you walk into the tall grass, wild POKéMON will jump out! Like my {MADLIB_CREATURE}, but worse!
+If you walk into the tall grass, wild POKéMON jump out! Last week one jumped out holding {MADLIB_FOOD}! It looked me in the eyes and ate it! SLOWLY!
 
 @ LittlerootTown_Text_DangerousIfYouDontHavePokemon
-It's dangerous to go in the grass without a POKéMON. My cousin tried. Now their {MADLIB_BODYPART} goes {MADLIB_SOUND} when it rains.
+Don't go in the grass without a POKéMON. My cousin did. Now his {MADLIB_BODYPART} goes “{MADLIB_SOUND}” every time someone says “Tuesday.”
 
 @ LittlerootTown_Text_CanYouGoSeeWhatsHappening
 Um, hi!
 
-There are scary POKéMON outside! They sound like {MADLIB_SOUND}! A really angry {MADLIB_SOUND}!
+Something outside is screaming! It sounds like {MADLIB_SOUND}! A really angry {MADLIB_SOUND}! With a little bit of jazz in it!
 
-I want to go look, but I don't have any POKéMON… I only have my {MADLIB_THING}…
+I'd go look, but I don't have a POKéMON. All I have is this {MADLIB_THING}, and it's not loyal.
 
 Can you go see what's happening for me?
 
 @ LittlerootTown_Text_YouSavedBirch
-You saved PROF. BIRCH! {MADLIB_SHOUT}! I'm so {MADLIB_FEELING}!
+You saved PROF. BIRCH! {MADLIB_SHOUT}! I'm so {MADLIB_FEELING} I'm going to go lie down in the {MADLIB_PLACE}!
 
 @ LittlerootTown_Text_GoodLuckCatchingPokemon
-Are you going to catch POKéMON? Good luck! Catch me something {MADLIB_COLOR}!
+You're going to catch POKéMON? Catch me something {MADLIB_COLOR} that knows how to do my taxes!
 
 @ LittlerootTown_Text_TownSign
 LITTLEROOT TOWN
-A town that smells faintly of {MADLIB_FOOD}.
+“Twinned with the {MADLIB_PLACE}. They never write back.”
 
 @ LittlerootTown_Text_ProfBirchsLab
 PROF. BIRCH'S POKéMON LAB
-Now with free {MADLIB_DRINK}!
+Do not feed the Professor {MADLIB_FOOD}.
 
 @ LittlerootTown_Text_BirchSomethingToShowYouAtLab
 PROF. BIRCH: Well, well, {PLAYER}{KUN}! That was {MADLIB_ADJ} work out there!
 
-I knew you were special the moment I saw you. Mostly because of your {MADLIB_CLOTHING}.
+I knew you were special the moment I saw you. Something about your {MADLIB_BODYPART}. It's very heroic. Has anyone told you that? They should.
 
-Oh, yes. Do you still have the POKéDEX I gave you?
+Do you still have the POKéDEX I gave you? Please say yes. I can't afford another one. I paid for the last one in {MADLIB_FOOD}.
 
-I have something to show you. Let's go to my LAB. I just made {MADLIB_DRINK}!
+Come to my LAB. I have something to show you. It's not my {MADLIB_CREATURE} impression. That's later.
 
 @ PlayersHouse_1F_Text_IsntItNiceInHere
-MOM: See, {PLAYER}? It even smells like {MADLIB_DRINK} in here. Isn't it nice?
+MOM: See, {PLAYER}? The previous owner left us a whole {MADLIB_CREATURE} in the fridge. Isn't it nice in here, too?
 
 @ PlayersHouse_1F_Text_MoversPokemonGoSetClock
-The movers' POKéMON did all the work! One of them even unpacked my {MADLIB_THING}. So {MADLIB_ADJ}!
+The movers' POKéMON did all the work! One of them unpacked my {MADLIB_THING}, looked at it for a long time, and quietly started crying.
 
 {PLAYER}, your room is upstairs. Go check it out, dear!
 
-DAD bought you a new clock to celebrate the move. Don't forget to set it!
+DAD bought you a new clock. It's shaped like {MADLIB_NAME}'s face. The eyes follow you. Don't forget to set it!
 
 @ PlayersHouse_1F_Text_ArentYouInterestedInRoom
 MOM: Well, {PLAYER}?
 
-I hung your {MADLIB_CLOTHING} up and everything. Aren't you interested in seeing your very own room?
+I decorated your room with forty pictures of {MADLIB_NAME}. Aren't you interested in seeing your very own?
 
 @ PlayersHouse_1F_Text_GoSetTheClock
 MOM: {PLAYER}.
 
-Go set the clock in your room, honey. Stop {MADLIB_ACTIVITY}.
+Go set the clock in your room. And stop {MADLIB_ACTIVITY} in the hallway. The neighbors can see.
 
 @ PlayersHouse_1F_Text_OhComeQuickly
-MOM: {MADLIB_SHOUT}! {PLAYER}, {PLAYER}! Quick! Come quickly!
+MOM: {MADLIB_SHOUT}! {PLAYER}! Come quick! The TV is doing the thing again!
 
 @ PlayersHouse_1F_Text_MaybeDadWillBeOn
-MOM: Look! It's PETALBURG GYM! Maybe DAD will be on! I hope he wore the {MADLIB_CLOTHING}!
+MOM: Look! It's PETALBURG GYM! Maybe DAD will be on! I told him to wear the {MADLIB_COLOR} {MADLIB_CLOTHING}. For luck.
 
 @ PlayersHouse_1F_Text_ItsOverWeMissedHim
 MOM: Oh… It's over.
 
-I think DAD was on, but we missed him. I feel so {MADLIB_FEELING}.
+I think DAD was on, but all I saw was some {MADLIB_CREATURE} wearing his {MADLIB_CLOTHING}. Huh. Maybe that WAS him.
 
 @ PlayersHouse_1F_Text_GoIntroduceYourselfNextDoor
 Oh, yes. One of DAD's friends lives in town.
 
-His name is PROF. BIRCH. Everyone calls him the town {MADLIB_PERSON}. Don't ask.
+His name is PROF. BIRCH. He's a genius. He once trained a POKéMON to say “{MADLIB_FOOD}.” It's all it says now. It's very sad.
 
-He lives right next door, so go introduce yourself. Bring him some {MADLIB_FOOD}.
+He lives right next door. Go say hi. Bring him {MADLIB_DRINK}. He gets {MADLIB_FEELING} without it.
 
 @ PlayersHouse_1F_Text_SeeYouHoney
-MOM: See you, honey! Don't forget your {MADLIB_THING}!
+MOM: See you, honey! If anyone offers you {MADLIB_FOOD}, run!
 
 @ PlayersHouse_1F_Text_DidYouMeetProfBirch
-MOM: Did you introduce yourself to PROF. BIRCH?
+MOM: Did you meet PROF. BIRCH? Is he still doing the {MADLIB_CREATURE} voice?
 
 @ PlayersHouse_1F_Text_YouShouldRestABit
-MOM: How are you doing, {PLAYER}? You look {MADLIB_FEELING}.
+MOM: How are you doing, {PLAYER}? You look like you lost a fight to {MADLIB_NAME}.
 
-You should rest a bit. I'll make some {MADLIB_DRINK}.
+You should rest. I'll make you a warm glass of {MADLIB_DRINK} with {MADLIB_FOOD} floating in it. Like Grandma used to.
 
 @ PlayersHouse_1F_Text_TakeCareHoney
-MOM: Take care, honey! Call me from the {MADLIB_PLACE}!
+MOM: Take care, honey! Call me from the {MADLIB_PLACE}! Collect calls only!
 
 @ PlayersHouse_1F_Text_GotDadsBadgeHeresSomethingFromMom
-MOM: Oh? Did DAD give you that BADGE? {MADLIB_SHOUT}!
+MOM: You beat DAD and took his BADGE? {MADLIB_SHOUT}!
 
-Then here's something from your MOM!
+He's going to sulk in the {MADLIB_PLACE} for a week. Here's something from your MOM! I'm so proud I could scream! I am screaming! On the inside!
 
 @ PlayersHouse_1F_Text_DontPushYourselfTooHard
-Don't push yourself too hard, dear. You can always come home and eat {MADLIB_FOOD}.
+Don't push yourself too hard, dear. You can always come home.
 
-Go for it, honey!
+Your room is just how you left it. Except now some {MADLIB_CREATURE} lives in it. We named it after you.
 
 @ PlayersHouse_1F_Text_IsThatAPokenav
 MOM: What is that, honey? A POKéNAV? Someone from DEVON gave it to you?
 
-It's so {MADLIB_ADJ}! How about registering your mom?
+That's {MADLIB_ADJ}! Now I can call you every time I see something that looks like {MADLIB_FOOD}! Which is constantly!
 
 … … …
 
 @ PlayersHouse_1F_Text_ReportFromPetalburgGym
-REPORTER: …We're live from PETALBURG GYM, where somebody's {MADLIB_CREATURE} has just stolen my {MADLIB_CLOTHING}.
+REPORTER: …We bring you this report from in front of PETALBURG GYM, where a man is eating {MADLIB_FOOD} in a very threatening way.
 
 @ PlayersHouse_1F_Text_TheresAMovieOnTV
 There's a movie on TV.
 
-It's called {MADLIB_NAME} and the {MADLIB_ADJ} {MADLIB_VEHICLE}. It's a romance.
+Two men are fighting over {MADLIB_THING} on top of a moving {MADLIB_VEHICLE}. One of them is {MADLIB_NAME}. Nobody knows why.
 
 Better get going!
 
 @ PlayersHouse_1F_Text_TicketFromBrineyCameForYou
 DAD: Hm?
 
-Hey, it's {PLAYER}!
+Well, it's {PLAYER}!
 
-It's been a while. You look… stronger. And you smell like {MADLIB_DRINK}.
+You've grown! You look {MADLIB_ADJ}! You also smell like {MADLIB_FOOD}, but I respect that.
 
-That's the impression I get. But your old man hasn't given up yet!
+Your old man's still the strongest around here, though! I bench-pressed {MADLIB_NAME} this morning!
 
-Oh, yes. This came for you from someone named MR. BRINEY. It's sticky.
+Oh, yes. A letter came for you, from MR. BRINEY. It's soaked in {MADLIB_DRINK}. I don't want to know.
 
 @ PlayersHouse_1F_Text_PortsInSlateportLilycove
-DAD: Hm, a TICKET for a ferry?
+DAD: Hm, a ferry ticket?
 
-If I recall, there are ferry ports in SLATEPORT and LILYCOVE. Not at the {MADLIB_PLACE}. I checked once.
+The ports are SLATEPORT and LILYCOVE. Ships, sailors, and one guy who sells {MADLIB_FOOD} out of his {MADLIB_CLOTHING}. Avoid him. He's my brother.
 
 @ PlayersHouse_1F_Text_BetterGetBackToGym
-I'd better get back to PETALBURG GYM. I left my {MADLIB_CREATURE} in charge.
+I'd better get back to PETALBURG GYM.
 
-MOM, thanks for looking after the house while I'm away.
+Honey, thanks for watching the house. If the {MADLIB_CREATURE} in the basement asks for me, tell it I'm in a meeting.
 
 @ PlayersHouse_1F_Text_DadShouldStayLonger
 MOM: That DAD of yours…
 
-He comes home for the first time in ages, and all he talks about is POKéMON and {MADLIB_ACTIVITY}.
+He comes home, eats an entire {MADLIB_FOOD} standing over the sink, and leaves. That's our anniversary.
 
-He should relax and stay a little longer.
+I married a man and got some {MADLIB_CREATURE} with a GYM.
 
 @ PlayersHouse_1F_Text_IsThatABreakingStory
-MOM: Is that a breaking news story?
+MOM: Breaking news? Is it about {MADLIB_NAME} again?
 
 @ PlayersHouse_1F_Text_LatiEmergencyNewsFlash
-We bring you this emergency news flash! {MADLIB_SHOUT}!
+We interrupt this program for breaking news!
 
-All over HOENN, people have seen a BZZT…colored POKéMON in flight. It may be carrying {MADLIB_FOOD}.
+All over HOENN, people are seeing a BZZT…colored POKéMON flying over houses and stealing {MADLIB_FOOD} off windowsills.
 
-Experts are calling it {MADLIB_ADJ}.
+Experts describe it as “{MADLIB_ADJ}” and “honestly kind of rude.”
 
-We now return you to the regular movie program.
+We now return you to the regular program, already in progress. Someone is still fighting on the {MADLIB_VEHICLE}.
 
 @ PlayersHouse_1F_Text_WhatColorDidTheySay
-MOM: {PLAYER}, did you catch that?
+MOM: {PLAYER}, did you hear that? A flying thief!
 
-I only heard {MADLIB_SOUND}. What color did the announcer say that POKéMON was?
+What color did they say that POKéMON was?
 
 @ PlayersHouse_1F_Text_StillUnknownPokemon
-MOM: Well, isn't that something! There are still POKéMON nobody knows about. Like my {MADLIB_CREATURE}.
+MOM: Imagine! There are still POKéMON nobody's met. I bet one of them is just {MADLIB_NAME} in a costume.
 
 @ PlayersHouse_2F_Text_ClockIsStopped
 The clock is stopped…
 
-It's {MADLIB_COLOR}, for some reason. Better set it and start it!
+It's frozen on the exact second someone yelled “{MADLIB_SHOUT}.” Spooky. Better set it!
 
 @ PlayersHouse_2F_Text_HowDoYouLikeYourRoom
-MOM: {PLAYER}, how do you like your new room?
+MOM: {PLAYER}, how do you like your room?
 
-Good! Everything's put away! I even found your old {MADLIB_THING}!
+Everything's in its place! Bed. Desk. That {MADLIB_THING} you insisted on bringing for some reason.
 
-The movers finished downstairs, too.
+The movers are done downstairs.
 
-POKéMON movers are so {MADLIB_ADJ}!
+One of their POKéMON refused to leave. It's in the bathtub. Eating {MADLIB_FOOD}. It seems {MADLIB_FEELING}. Let's give it space.
 
-Oh, you should make sure everything's on your desk.
+Make sure everything's on your desk. A messy desk leads to {MADLIB_ACTIVITY}. Trust me.
 
 @ PlayersHouse_2F_Text_ItsAGameCube
 It's a Nintendo GameCube.
 
-A Game Boy Advance is connected as the Controller. Somebody left {MADLIB_FOOD} crumbs on it.
+A Game Boy Advance is plugged in. Someone left {MADLIB_FOOD} in the disc tray. It still works. Better than ever, actually.
 
 @ RivalsHouse_1F_Text_OhYoureTheNewNeighbor
-Oh, hello. And you are?
+Oh, hello. Who are you? Are you here about the {MADLIB_CREATURE}? It's not ours. It just showed up.
 
 … … … … … … … … … … … … … … … … … …
 
-Oh, you're {PLAYER}{KUN}, our new neighbor! {MADLIB_SHOUT}!
+Oh, you're {PLAYER}{KUN}, our new neighbor! Hi!
 
 We have a {STR_VAR_1} about your age.
 
-Our {STR_VAR_1} has been {MADLIB_ACTIVITY} all week, waiting to make a new friend.
+Our {STR_VAR_1} has been practicing how to say hi to you all week. In the mirror. Into my {MADLIB_THING}. It got weird.
 
-Our {STR_VAR_1} is upstairs, I think.
+Our {STR_VAR_1} is upstairs, I think. Doing {MADLIB_ACTIVITY}. Don't make eye contact.
 
 @ RivalsHouse_1F_Text_LikeChildLikeFather
 Like child, like father.
 
-My husband is as wild about POKéMON as our child. And {MADLIB_FOOD}. Mostly {MADLIB_FOOD}.
+My husband is as wild about POKéMON as our kid. He once married some {MADLIB_CREATURE} in Vegas. It was annulled. Mostly.
 
-If he's not at his LAB, he's rolling around in the grass like his old {MADLIB_CREATURE}.
+If he's not at the LAB, he's out lying face-down in a field, whispering “{MADLIB_FOOD}” to the dirt.
 
 @ RivalsHouse_1F_Text_TooBusyToNoticeVisit
 That {RIVAL}!
 
-Our child is too busy {MADLIB_ACTIVITY} to notice you came to visit, {PLAYER}{KUN}.
+So busy with POKéMON they didn't even notice you, {PLAYER}{KUN}. Last week they didn't notice my {MADLIB_VEHICLE} parked in the kitchen.
 
 @ RivalsHouse_1F_Text_WentOutToRoute103
-Oh, {RIVAL} went out to ROUTE 103 a little while ago. Wearing my {MADLIB_CLOTHING}. Don't ask.
+Oh, {RIVAL} went out to ROUTE 103 a little while ago.
 
-Like father, like child. {RIVAL} can't sit still at home.
+Like father, like child. They both left wearing my {MADLIB_CLOTHING}. On their heads. I've stopped asking.
 
 @ RivalsHouse_1F_Text_ShouldGoHomeEverySoOften
-It's wonderful for people to travel with POKéMON.
+It's wonderful to travel with POKéMON.
 
-But go home every so often and let your mother know you're okay.
+But go home every so often so your mother doesn't worry.
 
-She won't say it, but she worries about you, {PLAYER}{KUN}. She told me over {MADLIB_DRINK}.
+She'll never say it, but whenever you're gone, she sits in the dark eating {MADLIB_FOOD} and staring at your {MADLIB_CLOTHING}, {PLAYER}{KUN}. It's a lot.
 
 @ RivalsHouse_1F_Text_MayWhoAreYou
-Huh? Who… Who are you?
+Huh? Who… Who are you? Are you the {MADLIB_FOOD} delivery?
 
 … … … … … … … … … … … … … … … …
 
-Oh, you're {PLAYER}{KUN}. So your move was today.
+Oh, you're {PLAYER}{KUN}. So you moved in today. I watched the whole thing through binoculars. Normally.
 
-Um… I'm MAY. Glad to meet you!
+Um… I'm MAY. Nice to meet you!
 
-I… I have a dream. To be friends with every POKéMON in the world. And one {MADLIB_CREATURE}.
+I… I have a dream of becoming friends with every POKéMON in the world. And one {MADLIB_CREATURE}. Specifically one. I've named it already.
 
-I… I heard about you, {PLAYER}{KUN}, from my dad, PROF. BIRCH. He said you were {MADLIB_ADJ}.
+My father, PROF. BIRCH, told me about you. He said you're {MADLIB_ADJ}. He also said you have a nice {MADLIB_BODYPART}. He's weird.
 
-I was hoping you'd be nice, {PLAYER}{KUN}, and we could be friends.
+I was hoping you'd be nice, {PLAYER}{KUN}, and that we could be friends.
 
-Oh, this is silly, isn't it? I've known you for ten seconds and I'm already {MADLIB_FEELING}.
+Oh, this is silly, isn't it? I've known you for one minute and I already made us matching {MADLIB_CLOTHING}.
 
 Eheheh…
 
-Oh, no! {MADLIB_SHOUT}! I forgot!
+Oh, no! I forgot!
 
-I was supposed to help Dad catch some wild POKéMON!
+I promised to help Dad catch POKéMON! He's probably stuck in a tree again yelling “{MADLIB_SHOUT}”!
 
 {PLAYER}{KUN}, I'll catch you later!
 
 @ RivalsHouse_1F_Text_BrendanWhoAreYou
 Hey! You…
 
-Who are you?
+Who are you? Did {MADLIB_NAME} send you?
 
 Oh, you're {PLAYER}, aren't you? Moved in next door, right?
 
-I didn't know that you're a girl.
+I didn't know you were a girl.
 
-Dad, PROF. BIRCH, said our new neighbor is a GYM LEADER's kid, so I pictured some guy in the world's biggest {MADLIB_CLOTHING}.
+Dad, PROF. BIRCH, said the new neighbor was a GYM LEADER's kid, so I pictured some huge guy who eats {MADLIB_FOOD} for breakfast. Raw.
 
-My name's BRENDAN. So, {MADLIB_SHOUT}, neighbor!
+My name's BRENDAN. So, hi, neighbor! Don't mind my {MADLIB_CLOTHING}. It's a whole look.
 
-Huh? Hey, {PLAYER}, don't you have a POKéMON?
+Huh? Hey, {PLAYER}, you don't have a POKéMON? What do you even do all day? {MADLIB_ACTIVITY}?
 
-Not even your own {MADLIB_CREATURE}? Do you want me to go catch you one?
+Want me to go catch you one?
 
 Aw, darn, I forgot…
 
-I'm supposed to help my dad catch some wild POKéMON.
+I'm supposed to go help my dad catch some wild POKéMON. Which mostly means pulling them off his face.
 
 Some other time, okay?
 
 @ RivalsHouse_1F_Text_DoYouHavePokemon
-{MADLIB_SHOUT}, neighbor!
+Hi, neighbor!
 
-Do you already have your own POKéMON?
+Do you have your own POKéMON yet? Or are you still battling with {MADLIB_FOOD} and attitude?
 
 @ RivalsHouse_2F_Text_MayWhoAreYou
-Huh? Who… Who are you?
+Huh? Who… Who are you? Are you the {MADLIB_FOOD} delivery?
 
 … … … … … … … … … … … … … … … …
 
-Oh, you're {PLAYER}{KUN}. So your move was today.
+Oh, you're {PLAYER}{KUN}. So you moved in today. I watched the whole thing through binoculars. Normally.
 
-Um… I'm MAY. Glad to meet you!
+Um… I'm MAY. Nice to meet you!
 
-I… I have a dream. To be friends with every POKéMON in the world. And one {MADLIB_CREATURE}.
+I… I have a dream of becoming friends with every POKéMON in the world. And one {MADLIB_CREATURE}. Specifically one. I've named it already.
 
-I… I heard about you, {PLAYER}{KUN}, from my dad, PROF. BIRCH. He said you were {MADLIB_ADJ}.
+My father, PROF. BIRCH, told me about you. He said you're {MADLIB_ADJ}. He also said you have a nice {MADLIB_BODYPART}. He's weird.
 
-I was hoping you'd be nice, {PLAYER}{KUN}, and we could be friends.
+I was hoping you'd be nice, {PLAYER}{KUN}, and that we could be friends.
 
-Oh, this is silly, isn't it? I've known you for ten seconds and I'm already {MADLIB_FEELING}.
+Oh, this is silly, isn't it? I've known you for one minute and I already made us matching {MADLIB_CLOTHING}.
 
 Eheheh…
 
-Oh, no! {MADLIB_SHOUT}! I forgot!
+Oh, no! I forgot!
 
-I was supposed to help Dad catch some wild POKéMON!
+I promised to help Dad catch POKéMON! He's probably stuck in a tree again yelling “{MADLIB_SHOUT}”!
 
 {PLAYER}{KUN}, I'll catch you later!
 
 @ RivalsHouse_2F_Text_MayGettingReady
-POKéMON fully restored! {MADLIB_FOOD} packed, and…
+POKéMON healed! Bag packed! {MADLIB_FOOD} hidden in my sock for emergencies, and…
 
 @ RivalsHouse_2F_Text_BrendanWhoAreYou
 Hey! You…
 
-Who are you?
+Who are you? Did {MADLIB_NAME} send you?
 
 Oh, you're {PLAYER}, aren't you? Moved in next door, right?
 
-I didn't know that you're a girl.
+I didn't know you were a girl.
 
-Dad, PROF. BIRCH, said our new neighbor is a GYM LEADER's kid, so I pictured some guy in the world's biggest {MADLIB_CLOTHING}.
+Dad, PROF. BIRCH, said the new neighbor was a GYM LEADER's kid, so I pictured some huge guy who eats {MADLIB_FOOD} for breakfast. Raw.
 
-My name's BRENDAN. So, {MADLIB_SHOUT}, neighbor!
+My name's BRENDAN. So, hi, neighbor! Don't mind my {MADLIB_CLOTHING}. It's a whole look.
 
-Huh? Hey, {PLAYER}, don't you have a POKéMON?
+Huh? Hey, {PLAYER}, you don't have a POKéMON? What do you even do all day? {MADLIB_ACTIVITY}?
 
-Not even your own {MADLIB_CREATURE}? Do you want me to go catch you one?
+Want me to go catch you one?
 
 Aw, darn, I forgot…
 
-I'm supposed to help my dad catch some wild POKéMON.
+I'm supposed to go help my dad catch some wild POKéMON. Which mostly means pulling them off his face.
 
 Some other time, okay?
 
 @ RivalsHouse_2F_Text_BrendanGettingReady
-POKéMON fully restored… {MADLIB_DRINK} packed, and…
+POKéMON healed… Bag packed… Emergency {MADLIB_DRINK} in my backpack, and…
 
 @ RivalsHouse_2F_Text_ItsRivalsPokeBall
-It's {RIVAL}'s POKé BALL! It's painted {MADLIB_COLOR}.
+It's {RIVAL}'s POKé BALL!
 
-Better leave it right where it is.
+It's sticky. It smells like {MADLIB_FOOD}. Better leave it alone.
 
 @ RivalsHouse_2F_Text_MayJustCheckingMyPokedex
 MAY: {PLAYER}{KUN}!
 
-I was just checking my POKéDEX.
+I was just reading my POKéDEX. I read it to my {MADLIB_CREATURE} every night. It's very well informed now. It has opinions.
 
-There are still lots of POKéMON I've seen but haven't caught. One looked like {MADLIB_NAME}!
+There are so many POKéMON I've seen but haven't caught yet.
 
-And lots that will evolve into something even more {MADLIB_ADJ}.
+And some evolve into something bigger and scarier. Like how {MADLIB_NAME} evolved into {MADLIB_NAME} with sunglasses.
 
-I wonder where I should go catch some POKéMON next?
+Where should I go look for POKéMON next?
 
 @ RivalsHouse_2F_Text_MayWhereShouldIGoNext
-MAY: I wonder where I should go catch POKéMON next? The {MADLIB_PLACE}, maybe?
-
-Wouldn't it be funny if we ran into each other, {PLAYER}{KUN}?
+MAY: Wouldn't it be funny if we ran into each other at the {MADLIB_PLACE}, {PLAYER}{KUN}? Where should I go look for POKéMON next?
 
 @ RivalsHouse_2F_Text_BrendanJustCheckingMyPokedex
 BRENDAN: Hey, it's {PLAYER}.
 
-I was just checking out my POKéDEX.
+I was just reading my POKéDEX. I ranked every POKéMON by how much {MADLIB_FOOD} it could eat in one sitting.
 
-I still need a lot of POKéMON, but this is looking pretty {MADLIB_ADJ}.
+There's a lot I still need to catch, but my list is looking pretty {MADLIB_ADJ}.
 
-Reading it makes me want to hop on my {MADLIB_VEHICLE} and hit the road again.
+Reading it makes me want to go out again. Or go eat {MADLIB_FOOD}. Mostly that one.
 
 @ RivalsHouse_2F_Text_BrendanWhereShouldIGoNext
-BRENDAN: I can't decide where to catch POKéMON next. Maybe the {MADLIB_PLACE}.
+BRENDAN: I can't decide where to go next.
 
-Hey, {PLAYER}, if I see you out there, I'll challenge you to a battle. Loser buys {MADLIB_FOOD}.
+Hey, {PLAYER}, if we run into each other out there, we battle. Loser has to eat {MADLIB_FOOD} off the ground.
 
 @ LittlerootTown_ProfessorBirchsLab_Text_BirchAwayOnFieldwork
 Hunh? PROF. BIRCH?
 
-The PROF's away on fieldwork. Ergo, he isn't here. Ergo, I'm {MADLIB_FEELING}.
+The PROF's away on fieldwork. Ergo, he isn't here. Ergo, I'm in charge. Ergo, this {MADLIB_DRINK} is mine.
 
-Oh, let me explain what fieldwork is.
+Fieldwork is when a scientist goes outside to study things in nature. In the PROF's case, he mostly studies what {MADLIB_CREATURE} tastes like. Don't tell anyone.
 
-It's when you study things out in nature, like fields and mountains and the {MADLIB_PLACE}, instead of in a lab.
-
-The PROF hates desk work. He'd rather be outside {MADLIB_ACTIVITY} than read about it.
+He hates desk work. He says chairs are a “conspiracy by Big {MADLIB_THING}.”
 
 @ LittlerootTown_ProfessorBirchsLab_Text_BirchIsntOneForDeskWork
-The PROF hates desk work. His desk is covered in {MADLIB_FOOD} wrappers. He'd rather be outside {MADLIB_ACTIVITY}.
+The PROF hates desk work. Last time he sat at his desk, he wrote one word: “{MADLIB_SHOUT}.” Then he left for three weeks.
 
 @ LittlerootTown_ProfessorBirchsLab_Text_BirchEnjoysRivalsHelpToo
-PROF. BIRCH studies where POKéMON live and how they spread out.
+PROF. BIRCH studies where POKéMON live and how they spread across HOENN.
 
-{RIVAL} helps him, too. Mostly by {MADLIB_ACTIVITY}. There's a lot of love there.
+His kid {RIVAL} helps him. They communicate in the field by making {MADLIB_SOUND} noises at each other. It's very efficient. And very loud.
 
 @ LittlerootTown_ProfessorBirchsLab_Text_WhyNotGiveNicknameToMon
-PROF. BIRCH: While you're at it, I named mine {MADLIB_NAME}. Why not give a nickname to that {STR_VAR_1}?
+PROF. BIRCH: You should name it something like “{MADLIB_FOOD} Destroyer.” Why not give a nickname to that {STR_VAR_1}?
 
 @ LittlerootTown_ProfessorBirchsLab_Text_MightBeGoodIdeaToGoSeeRival
-PROF. BIRCH: If you work hard with POKéMON, I think you'll be an extremely {MADLIB_ADJ} TRAINER.
+PROF. BIRCH: If you work at it, you could be {MADLIB_ADJ}. Like me! I can fit eleven grapes in my mouth!
 
-My kid, {RIVAL}, is also studying POKéMON while helping me out.
+My kid, {RIVAL}, is also studying POKéMON.
 
-{PLAYER}{KUN}, don't you think it might be a good idea to go see {RIVAL}?
+Every TRAINER needs a rival. Mine is {MADLIB_NAME}. He knows what he did.
+
+{PLAYER}{KUN}, don't you think you should go meet {RIVAL}?
 
 @ LittlerootTown_ProfessorBirchsLab_Text_GetRivalToTeachYou
-PROF. BIRCH: Great! {RIVAL} should be happy, too.
+PROF. BIRCH: Great! {RIVAL} will be so {MADLIB_FEELING}.
 
-Get {RIVAL} to teach you what it means to be a TRAINER. And how to make {MADLIB_DRINK}. That kid's good at both.
+Have {RIVAL} teach you what TRAINERS do. And how to get {MADLIB_FOOD} stains out of a lab coat. That's a skill.
 
 @ LittlerootTown_ProfessorBirchsLab_Text_DontBeThatWay
-PROF. BIRCH: Oh, don't be that way. I'll give you some {MADLIB_FOOD}. Go meet my kid.
+PROF. BIRCH: Oh, don't be that way. {RIVAL} is fun! Once they ate a whole {MADLIB_THING} on a dare!
 
 @ LittlerootTown_ProfessorBirchsLab_Text_BirchRivalGoneHome
 PROF. BIRCH: {RIVAL}? Gone home, I think.
 
-Or maybe that kid's in the tall grass again, {MADLIB_ACTIVITY}…
+Or out in the grass doing {MADLIB_ACTIVITY}. I raised them well.
 
-If you or your POKéMON get tired, get some rest at home.
+If you or your POKéMON get tired, go home and rest. Nap like {MADLIB_CREATURE}. Fully. With your whole body.
 
 @ LittlerootTown_ProfessorBirchsLab_Text_HeardYouBeatRivalTakePokedex
-PROF. BIRCH: Oh, hi, {PLAYER}{KUN}!
+PROF. BIRCH: Ah, {PLAYER}{KUN}!
 
-I heard you beat {RIVAL} on your first try! {MADLIB_SHOUT}!
+You beat {RIVAL} in your very first battle? {MADLIB_SHOUT}! That's {MADLIB_ADJ}!
 
-{RIVAL}'s been helping with my research for a long time.
+{RIVAL} has been a TRAINER for years. You've been one for nine minutes. I need to sit down. In the {MADLIB_PLACE}.
 
-{RIVAL} is already a very {MADLIB_ADJ} TRAINER.
-
-Here, {PLAYER}{KUN}, I ordered this for my research, but I think you should have this POKéDEX. It came with free {MADLIB_FOOD}. I ate that part.
+Here. I ordered this for my research, but you should have it. It's a POKéDEX. It came free with {MADLIB_FOOD}.
 
 @ LittlerootTown_ProfessorBirchsLab_Text_ExplainPokedex
-PROF. BIRCH: The POKéDEX automatically records any POKéMON you meet or catch. It's so {MADLIB_ADJ}.
+PROF. BIRCH: The POKéDEX records every POKéMON you meet or catch. Mine also records every time I say “{MADLIB_SHOUT}.” I can't turn it off.
 
-My kid, {RIVAL}, takes it everywhere. Even to the {MADLIB_PLACE}.
+My kid, {RIVAL}, takes one everywhere.
 
-Whenever my kid catches a rare POKéMON, {RIVAL} hunts me down to show me. Usually while I'm {MADLIB_ACTIVITY}.
+Whenever {RIVAL} catches a rare one, they find me in the field to show me. Usually while I'm stuck in somebody's {MADLIB_VEHICLE}. Don't ask how.
 
 @ LittlerootTown_ProfessorBirchsLab_Text_CountlessPokemonAwait
 PROF. BIRCH: Countless POKéMON await you!
 
-Argh, I'm getting the itch to get out there again! Literally. I sat in {MADLIB_COLOR} poison ivy.
+Argh! Now I want to go outside and do {MADLIB_ACTIVITY} in the grass! Don't wait up!
 
 @ LittlerootTown_ProfessorBirchsLab_Text_MayGotPokedexTooTakeThese
-MAY: Oh, {MADLIB_SHOUT}, {PLAYER}{KUN}! You got a POKéDEX, too!
+MAY: Oh, wow, {PLAYER}{KUN}! You got a POKéDEX too!
 
-That's great! Just like me! I've got something for you, too!
+We're POKéDEX twins! I'm getting us matching {MADLIB_CLOTHING}! Here, take these for now!
 
 @ LittlerootTown_ProfessorBirchsLab_Text_CatchCutePokemonWithPokeBalls
-MAY: It's fun to have lots of POKéMON!
+MAY: Isn't it great to have lots of POKéMON?
 
-I'm going to look everywhere for different POKéMON. Even the {MADLIB_PLACE}.
+I'm going to look everywhere for different POKéMON. Even inside the {MADLIB_PLACE}.
 
-If I find any cute POKéMON, I'll catch them with POKé BALLS! And name them after {MADLIB_FOOD}!
+When I find cute ones, I'll catch them, dress them like {MADLIB_NAME}, and never let them go! Eheheh!
 
 @ LittlerootTown_ProfessorBirchsLab_Text_OhYourBagsFull
-Oh? Your BAG's full. Too much {MADLIB_FOOD} in there, probably.
+Oh? Your BAG's full. Of what? Is that {MADLIB_FOOD}? Is it moving?
 
 @ LittlerootTown_ProfessorBirchsLab_Text_MayWhereShouldIGoNext
-MAY: I wonder where I should go look for POKéMON next? The {MADLIB_PLACE}?
+MAY: Somewhere with {MADLIB_FOOD} and no Dad… Where should I go look for POKéMON next?
 
 @ LittlerootTown_ProfessorBirchsLab_Text_BrendanGotPokedexTooTakeThese
-BRENDAN: Huh… So you got a POKéDEX, too. {MADLIB_SHOUT}.
+BRENDAN: Huh… So you got a POKéDEX too. Dad's never given ME anything. Except {MADLIB_FOOD} poisoning.
 
-Well then, here. I'll give you these.
+Well then, here. Don't make it weird.
 
 @ LittlerootTown_ProfessorBirchsLab_Text_CatchCoolPokemonWithPokeBalls
-BRENDAN: It's more fun with a whole bunch of POKéMON.
+BRENDAN: Having lots of POKéMON is {MADLIB_ADJ}.
 
-I'm going to explore everywhere to find different POKéMON. Even the {MADLIB_PLACE}.
+I'm going all over the place to find them.
 
-If I find any {MADLIB_ADJ} POKéMON, you bet I'll catch them with POKé BALLS.
+If I find a strong one, I'll catch it and name it after {MADLIB_NAME}. That's how you show respect.
 
 @ LittlerootTown_ProfessorBirchsLab_Text_HeyYourBagsFull
-Hey, your BAG's full. Ditch the {MADLIB_THING}.
+Hey, your BAG's full. Is that your whole {MADLIB_VEHICLE} in there?
 
 @ LittlerootTown_ProfessorBirchsLab_Text_BrendanWhereShouldIGoNext
-BRENDAN: Where should I look for POKéMON next… The {MADLIB_PLACE}, maybe…
+BRENDAN: Where should I go next… The {MADLIB_PLACE}? Nah. I'm still banned.
 
 @ LittlerootTown_ProfessorBirchsLab_Text_SeriousLookingMachine
-It's a serious-looking machine. It's humming a song. It sounds like {MADLIB_SOUND}.
+It's a serious-looking machine. A sticky note on it says: “DO NOT PUT {MADLIB_FOOD} IN HERE AGAIN.”
 
 @ LittlerootTown_ProfessorBirchsLab_Text_PCUsedForResearch
-It's a PC used for research. The wallpaper is his {MADLIB_CREATURE}. Better not mess with it.
+It's the PROF's PC. The desktop wallpaper is a picture of {MADLIB_NAME}. Signed.
 
 @ LittlerootTown_ProfessorBirchsLab_Text_CrammedWithBooksOnPokemon
-It's crammed with books on POKéMON. And one called The {MADLIB_ADJ} Guide to {MADLIB_FOOD}.
+It's crammed with books. One is titled “Do POKéMON Dream of {MADLIB_FOOD}?” It's just one page. It says “yes.”
 
 @ LittlerootTown_ProfessorBirchsLab_Text_BookTooHardToRead
-It's a book too hard to read. Every page just says {MADLIB_SOUND}.
+It's too hard to read. Every word is “{MADLIB_SHOUT}.” Every single word.
 
 @ LittlerootTown_ProfessorBirchsLab_Text_OtherRegionsUpgradeToNational
 PROF. BIRCH: Now…
 
-{PLAYER}{KUN} and {RIVAL}, you've both helped me study POKéMON.
+{PLAYER}{KUN} and {RIVAL}, you've both been {MADLIB_ADJ} helpers.
 
-Thanks to you, new facts are coming to light. {MADLIB_SHOUT}!
+Thanks to you, we've discovered something.
 
-It turns out HOENN also has POKéMON from other regions.
+POKéMON from other regions are living in HOENN! Some of them have jobs! One is a dentist!
 
-Hoenn's nature is as rich and varied as a plate of {MADLIB_FOOD}.
+So I'm upgrading your POKéDEX units to the NATIONAL Mode.
 
-So I need to upgrade your POKéDEX to the NATIONAL Mode.
-
-Here, let me see your POKéDEX units.
+Hand them over. Careful, mine is still sticky from the {MADLIB_DRINK}.
 
 @ LittlerootTown_ProfessorBirchsLab_Text_MayUpgradeSoCool
 MAY: Eheheh!
 
-My POKéDEX got upgraded! I feel so {MADLIB_FEELING}!
+My POKéDEX got upgraded too! It just told me some {MADLIB_CREATURE} is behind me! Is there? Don't look!
 
-It's because you caught so many POKéMON, {PLAYER}{KUN}!
+It's because you caught so many POKéMON, {PLAYER}{KUN}! You're so {MADLIB_ADJ}!
 
 @ LittlerootTown_ProfessorBirchsLab_Text_BrendanYouCanThankMe
-BRENDAN: I went all over HOENN checking out POKéMON. Even rode my {MADLIB_VEHICLE} up a mountain.
+BRENDAN: I went all over HOENN doing research.
 
-You can thank me for the NATIONAL Mode POKéDEX.
+So you can thank me for the NATIONAL POKéDEX. A thank-you {MADLIB_FOOD} would be fine. A big one.
 
-Yep, you're lucky, {PLAYER}!
+You're lucky to have a pal like me, {PLAYER}!
 
 @ LittlerootTown_ProfessorBirchsLab_Text_OkayAllDone
-PROF. BIRCH: Okay, all done! {MADLIB_SOUND}!
+PROF. BIRCH: There! All done! Only one small fire! {MADLIB_SHOUT}!
 
 @ LittlerootTown_ProfessorBirchsLab_Text_GrassyPatchWaiting2
-PROF. BIRCH: But listen. You're the CHAMPION, but your journey isn't over.
+PROF. BIRCH: You're the CHAMPION now, but your journey isn't over.
 
-There is no end to the road of POKéMON. Or {MADLIB_FOOD}.
+There's no end to the road of POKéMON. Or to the road of {MADLIB_FOOD}. Both are delicious.
 
-Somewhere, a grassy patch is waiting for you!
+Somewhere out there, a grassy patch is waiting for you. It has been doing {MADLIB_ACTIVITY} to pass the time.
 
 @ LittlerootTown_ProfessorBirchsLab_Text_MayTakeBreakFromFieldwork
-MAY: I think I'll take a short break from fieldwork.
+MAY: I'm taking a break from fieldwork.
 
-I'll help the PROF here for a while. And catch up on {MADLIB_ACTIVITY}.
+I'm helping Dad at the LAB. Mostly by hiding his {MADLIB_DRINK}.
 
 @ LittlerootTown_ProfessorBirchsLab_Text_BrendanTakeBreakFromFieldwork
-BRENDAN: For now, I'm taking a break from fieldwork.
+BRENDAN: I'm taking a break from fieldwork for now.
 
-I'll help out the PROF here for a while. Someone has to guard the {MADLIB_DRINK}.
+I'm helping Dad at the LAB. He got stuck in his own {MADLIB_CLOTHING} yesterday. It took an hour.
 
 @ LittlerootTown_ProfessorBirchsLab_Text_CompletedDexChoosePokemon
-PROF. BIRCH: Oh, {PLAYER}{KUN}! Let's see your POKéDEX.
+PROF. BIRCH: Oh, {PLAYER}{KUN}! Let me see your POKéDEX.
 
 … … … … … … … … … … … …
 
-{MADLIB_SHOUT}. There's no doubt about it.
+{MADLIB_SHOUT}! There's no doubt about it!
 
-You completed the HOENN region's POKéDEX.
+You've completed the HOENN POKéDEX! Every POKéMON! Even the one that looks like {MADLIB_FOOD}!
 
-That's more than impressive. That's {MADLIB_ADJ}.
+This is {MADLIB_ADJ}!
 
-I have a gift for you.
+I have a reward for you.
 
-A thank-you for all your fantastic work.
+Something to thank you for your hard work.
 
-A rare POKéMON only found in another region!
+Rare POKéMON from another region! I found them in a box marked “{MADLIB_THING}!”
 
-You can have any one of these three!
+You can choose any one of these three!
 
 @ LittlerootTown_ProfessorBirchsLab_Text_CanHaveAnyOneOfRarePokemon
-PROF. BIRCH: These are rare POKéMON from another region! Rarer than good {MADLIB_FOOD}!
+PROF. BIRCH: These are rare POKéMON from another region! They've been eating my {MADLIB_FOOD}!
 
-You can have any one of these three!
+You can choose any one of these three!
 
 @ LittlerootTown_ProfessorBirchsLab_Text_YoullTakeCyndaquil
-PROF. BIRCH: The FIRE POKéMON CYNDAQUIL caught your eye! It's hot like {MADLIB_FOOD}!
+PROF. BIRCH: The FIRE POKéMON CYNDAQUIL! It set my {MADLIB_CLOTHING} on fire twice today! It's a good sign!
 
-You're as sharp as ever!
+You're as {MADLIB_ADJ} as ever!
 
-So the CYNDAQUIL is your choice?
+So you want the CYNDAQUIL?
 
 @ LittlerootTown_ProfessorBirchsLab_Text_YoullTakeTotodile
-PROF. BIRCH: The WATER POKéMON TOTODILE! It bites like an angry {MADLIB_CREATURE}!
+PROF. BIRCH: The WATER POKéMON TOTODILE! It has bitten my {MADLIB_BODYPART} eleven times. It loves me.
 
-You know how to pick a good one.
+You know how to pick them!
 
-So, you'll take the TOTODILE?
+So, you want the TOTODILE?
 
 @ LittlerootTown_ProfessorBirchsLab_Text_YoullTakeChikorita
-PROF. BIRCH: The GRASS POKéMON CHIKORITA! It smells like {MADLIB_DRINK}!
+PROF. BIRCH: The GRASS POKéMON CHIKORITA! It smells like {MADLIB_FOOD} and nobody knows why! Science!
 
-You sure know what you're doing.
+You know what you're doing.
 
-So, you'll take the CHIKORITA?
+So, you want the CHIKORITA?
 
 @ LittlerootTown_ProfessorBirchsLab_Text_TakeYourTimeAllInvaluable
-PROF. BIRCH: Take your time before you decide.
+PROF. BIRCH: Take your time. Choose like {MADLIB_NAME} choosing a hat.
 
-They're all priceless POKéMON. More priceless than my {MADLIB_THING}.
+They're all priceless POKéMON.
 
 @ LittlerootTown_ProfessorBirchsLab_Text_PickedFinePokemon
-PROF. BIRCH: I see! You picked the most {MADLIB_ADJ} POKéMON!
+PROF. BIRCH: What a choice! So {MADLIB_ADJ}! I'm so {MADLIB_FEELING}!
+
+@ LittlerootTown_ProfessorBirchsLab_Text_NicknameJohtoStarter
+Want to give a nickname to the {STR_VAR_1} you received?
 
 @ LittlerootTown_ProfessorBirchsLab_Text_GrassyPatchWaiting
-PROF. BIRCH: Listen, {PLAYER}{KUN}. You completed the HOENN POKéDEX, but your journey isn't over.
+PROF. BIRCH: Listen, {PLAYER}{KUN}. You've completed the HOENN POKéDEX, but you're not done.
 
-There is no end to the road of POKéMON. Or {MADLIB_DRINK}.
+There's no end to the road of POKéMON. Like a really long {MADLIB_FOOD}.
 
-Somewhere, a grassy patch is waiting for you!
+Somewhere, a grassy patch is waiting for you. It sent a letter. It was mostly {MADLIB_SHOUT}.
 
 @ LittlerootTown_ProfessorBirchsLab_Text_DontHaveAnyRoomForPokemon
-Oh, you don't have room for this POKéMON. Too much {MADLIB_FOOD} in your party, maybe.
+Oh, you don't have room for another POKéMON. Have you tried leaving one at the {MADLIB_PLACE}?
 
 @ LittlerootTown_ProfessorBirchsLab_Text_MayWhatNextImStayingHere
 MAY: {PLAYER}{KUN}, after this… What are you going to do?
 
-Keep battling and getting more {MADLIB_ADJ}?
+Keep battling? Get even more {MADLIB_ADJ}?
 
-Or try to fill the NATIONAL POKéDEX?
+Or fill up the NATIONAL POKéDEX? Or just do {MADLIB_ACTIVITY} forever?
 
-I'm staying here to help the PROF. And to finish my {MADLIB_FOOD}.
+I'm staying here to help Dad. He's trying to teach the {MADLIB_CREATURE} to use a fork.
 
 @ LittlerootTown_ProfessorBirchsLab_Text_BrendanPreferCollectingSlowly
-BRENDAN: Instead of collecting POKéMON, I'd rather slowly raise the one I picked. Like my grandpa raised his {MADLIB_CREATURE}. Slowly. With {MADLIB_FOOD}.
+BRENDAN: I'd rather raise one POKéMON slowly than catch a ton of them. Quality over quantity. Like {MADLIB_FOOD}.
 
 @ LittlerootTown_ProfessorBirchsLab_Text_MayHaveYouGoneToBattleFrontier
-MAY: Oh, hi, {PLAYER}{KUN}! I hear they serve {MADLIB_DRINK} there. Have you gone to the BATTLE FRONTIER?
+MAY: Oh, hi, {PLAYER}{KUN}! I heard it's shaped like {MADLIB_FOOD}! Have you gone to the BATTLE FRONTIER?
 
 @ LittlerootTown_ProfessorBirchsLab_Text_BrendanHaveYouGoneToBattleFrontier
-BRENDAN: Hey, {PLAYER}! I hear it's {MADLIB_ADJ} out there. Have you gone to the BATTLE FRONTIER?
+BRENDAN: Hey, {PLAYER}! I heard they sell {MADLIB_DRINK} there. Have you been to the BATTLE FRONTIER?
 
 @ LittlerootTown_ProfessorBirchsLab_Text_ScottAboardSSTidalCall
 … … … … … … … … … … … Beep!
 
-SCOTT: Hi, hi, {PLAYER}! It's me, SCOTT!
+SCOTT: Hi, hi, {PLAYER}! It's me, SCOTT! I'm calling from inside {MADLIB_CLOTHING}! It's a long story!
 
-I'm aboard the S.S. TIDAL now. The sea is so {MADLIB_ADJ}!
+I'm aboard the S.S. TIDAL now! They're serving {MADLIB_FOOD}! I've had nine!
 
 By the way…
 
-There's a place I'd like to invite you to. It's like the {MADLIB_PLACE}, but for battles.
+There's this {MADLIB_ADJ} place I'd like to invite you to.
 
 If you're interested, take a ferry from SLATEPORT or LILYCOVE.
 
-I'll fill you in when we meet. I'll be waiting! With {MADLIB_DRINK}!
+I'll tell you everything when we meet. Bring {MADLIB_DRINK}. Lots.
 
 … … … … … … … … … … … Click!

@@ -1,16 +1,18 @@
 # Mad Libs: Rustboro City buildings. Devon, the Gym, the Trainer's School,
 # houses, Mart and Pokémon Center.
+# Never write 'a' or 'an' right before a blank, and never add 's' after one.
+# Bar: every entry is funny AND absurd on its own, and gets funnier with the player's words.
 
 @ RustboroCity_CuttersHouse_Text_YouCanPutThisHMToGoodUse
 That intense look… That {MADLIB_ADJ} walk… Those POKéMON that smell like {MADLIB_FOOD}…
 
 You're obviously a TRAINER of great skill!
 
-No, don't say anything. I can tell by your {MADLIB_CLOTHING}.
+No, don't say anything. I can tell by your {MADLIB_CLOTHING}. Nobody wears {MADLIB_CLOTHING} like that unless they're a legend. Or {MADLIB_NAME}.
 
 I'm sure you'll put this HIDDEN MACHINE to good use.
 
-No need to be shy. Take it! Before I change my {MADLIB_BODYPART}!
+No need to be shy. Take it! It's been on my kitchen table for a year! I eat around it!
 
 @ RustboroCity_CuttersHouse_Text_ExplainCut
 That HIDDEN MACHINE, or HM for short, is CUT.
@@ -19,171 +21,171 @@ An HM move can be used by POKéMON outside of battle.
 
 Any POKéMON that knows CUT can chop down thin trees, if the TRAINER has the STONE BADGE.
 
-And unlike a TM, an HM can be used again and again. Like my {MADLIB_CLOTHING}.
+And unlike a TM, an HM can be used again and again. Like my {MADLIB_CLOTHING}. I've worn it every day since the {MADLIB_FOOD} incident.
 
 @ RustboroCity_CuttersHouse_Text_DadHelpedClearLandOfTrees
-When they built RUSTBORO, my dad helped by {MADLIB_ACTIVITY}.
+When they built RUSTBORO, my dad helped clear the trees by {MADLIB_ACTIVITY}.
 
-His POKéMON used CUT to clear the trees. Then they all ate {MADLIB_FOOD}.
+It took nine years. His POKéMON did all the actual cutting. Dad mostly yelled “{MADLIB_SHOUT}” at the trees. Very motivating.
 
 @ RustboroCity_DevonCorp_1F_Text_WelcomeToDevonCorp
 Hello and welcome to the DEVON CORPORATION.
 
-We make products for everyday life, like medicine and {MADLIB_THING}.
+We make products for everyday life, like medicine, {MADLIB_THING}, and {MADLIB_FOOD}-scented {MADLIB_THING}. That last one was a mistake. It sold out.
 
 @ RustboroCity_DevonCorp_1F_Text_StaffGotRobbed
-One of our researchers got robbed of an important parcel. And his {MADLIB_DRINK}.
+One of our researchers got robbed of an important parcel. And his {MADLIB_DRINK}. And his dignity. Mostly the {MADLIB_DRINK}.
 
 @ RustboroCity_DevonCorp_1F_Text_ThoseShoesAreOurProduct
 Hey, those RUNNING SHOES! We made those!
 
-They're way faster than any {MADLIB_VEHICLE}. I'm so {MADLIB_FEELING}!
+They're faster than any {MADLIB_VEHICLE}. I tested them myself. Into a wall. I'm so {MADLIB_FEELING}!
 
 @ RustboroCity_DevonCorp_1F_Text_RobberWasntVeryBright
 That stolen parcel…
 
-Sure, it's important, but it's useless to anyone outside DEVON.
+Sure, it's important, but it's useless to anyone outside DEVON. It's mostly forms. And one very nice {MADLIB_THING}.
 
-That thief must be dumber than {MADLIB_CREATURE}.
+That thief must be dumber than {MADLIB_CREATURE} wearing {MADLIB_CLOTHING}.
 
 @ RustboroCity_DevonCorp_1F_Text_SoundsLikeStolenGoodsRecovered
-It sounds like the stolen DEVON GOODS were found. {MADLIB_SHOUT}!
+It sounds like the stolen DEVON GOODS were found. {MADLIB_SHOUT}! We're throwing a party! There will be {MADLIB_FOOD}! Only a little!
 
 @ RustboroCity_DevonCorp_1F_Text_OnlyAuthorizedPeopleEnter
-I'm sorry, only staff can go in here. And no {MADLIB_FOOD} allowed.
+I'm sorry, only staff can go in here. And absolutely no {MADLIB_FOOD}. We had an incident. Two incidents.
 
 @ RustboroCity_DevonCorp_1F_Text_HowCouldWeGetRobbed
-Some guy who smells like {MADLIB_FOOD} robbed DEVON. How could we get robbed?
+Some guy who smells like {MADLIB_FOOD} robbed DEVON. With a plan he wrote on his {MADLIB_BODYPART}. How could we get robbed?
 
 @ RustboroCity_DevonCorp_1F_Text_YoureAlwaysWelcomeHere
-Hello! You're always welcome here! Even dressed like that!
+Hello! You're always welcome here! Even dressed like that! Even smelling like {MADLIB_DRINK}!
 
 @ RustboroCity_DevonCorp_1F_Text_RocksMetalDisplay
 Samples of rocks and metal are displayed in a glass case.
 
 There's a panel with some writing on it…
 
-The DEVON CORPORATION began as a small business selling rocks and {MADLIB_FOOD}.
+The DEVON CORPORATION began as a small business selling rocks and {MADLIB_FOOD} out of his uncle's {MADLIB_VEHICLE}.
 
 They also made iron from sand in the ground.
 
-From that humble start, DEVON grew {MADLIB_ADJ}.
+From that humble start, DEVON grew {MADLIB_ADJ}. Very {MADLIB_ADJ}. Too {MADLIB_ADJ}, some say.
 
-Now DEVON makes everything. Mostly {MADLIB_THING}.
+Now DEVON makes everything. Mostly {MADLIB_THING}. Nobody knows who's buying all the {MADLIB_THING}.
 
 @ RustboroCity_DevonCorp_1F_Text_ProductDisplay
-Prototypes and test products fill the case.
+Prototypes and test products fill the case. One is just {MADLIB_FOOD} with buttons on it.
 
 There's a panel with a description…
 
-DEVON makes tools for industry, medicine, and {MADLIB_THING}.
+DEVON makes tools for industry, medicine, and {MADLIB_ACTIVITY}.
 
-Lately, DEVON also makes POKé BALLS and POKéNAV devices. And one {MADLIB_ADJ} hat. It didn't sell.
+Lately, DEVON also makes POKé BALLS and POKéNAV devices. And one {MADLIB_ADJ} hat. It didn't sell. It's in the basement. It hums.
 
 @ RustboroCity_DevonCorp_2F_Text_DeviceForTalkingToPokemon
 We're making a device that lets us talk with POKéMON.
 
-So far, they only say “{MADLIB_SHOUT}.”
+So far, they only say “{MADLIB_SHOUT}.” And once, very clearly, “{MADLIB_FOOD}.” We think that's a threat.
 
 @ RustboroCity_DevonCorp_2F_Text_DevelopingNewBalls
 I'm developing new kinds of POKé BALLS…
 
-But it's not going well. One of them turned into {MADLIB_FOOD}…
+But it's not going well. One of them turned into {MADLIB_FOOD}… Another one turned into {MADLIB_NAME}… We don't talk about that one…
 
 @ RustboroCity_DevonCorp_2F_Text_WeFinallyMadeNewBalls
 We finally made new kinds of POKé BALLS!
 
-The REPEAT BALL works better on POKéMON you've caught before.
+The REPEAT BALL works better on POKéMON you've caught before. Like your ex. Or {MADLIB_CREATURE}.
 
-The TIMER BALL gets better the longer the battle runs.
+The TIMER BALL gets better the longer the battle runs. Like {MADLIB_DRINK}.
 
-Both are DEVON products. They smell faintly of {MADLIB_FOOD}.
+Both are DEVON products. They smell faintly of {MADLIB_FOOD}. That's a feature.
 
-Please buy them at a POKéMON MART! I need money for {MADLIB_DRINK}!
+Please buy them at a POKéMON MART! I need money for {MADLIB_DRINK}! So much {MADLIB_DRINK}!
 
 @ RustboroCity_DevonCorp_2F_Text_IMadePokenav
 I made the POKéNAV!
 
-As an engineer, I feel {MADLIB_FEELING} to work here.
+As an engineer, I feel {MADLIB_FEELING} to work here. Also tired. Also a little {MADLIB_FEELING} in the other way.
 
 @ RustboroCity_DevonCorp_2F_Text_WowThatsAPokenav
 Oh, wow! That's a POKéNAV!
 
-It came from the PRESIDENT's wish to understand the feelings of POKéMON. And {MADLIB_NAME}.
+It came from the PRESIDENT's wish to understand the feelings of POKéMON. And of {MADLIB_NAME}. Mostly {MADLIB_NAME}.
 
 Should I tell you about all the features?
 
-No, no. You'll find them on your own. Like {MADLIB_FOOD} in a couch.
+No, no. You'll find them on your own. Like {MADLIB_FOOD} in the couch cushions.
 
 @ RustboroCity_DevonCorp_2F_Text_DeviceToVisualizePokemonDreams
 I'm making a device that lets us see the dreams of POKéMON…
 
-So far, every dream is about {MADLIB_FOOD}.
+So far, every dream is about {MADLIB_FOOD}. One was about {MADLIB_NAME} riding {MADLIB_CREATURE}. We've called the police.
 
 @ RustboroCity_DevonCorp_2F_Text_DevelopDeviceToResurrectFossils
 I'm making a device that brings POKéMON back to life from fossils…
 
-And it's working! It only exploded during {MADLIB_ACTIVITY}! Twice!
+And it's working! It only exploded during {MADLIB_ACTIVITY}! Twice! My {MADLIB_BODYPART} grew back!
 
 @ RustboroCity_DevonCorp_2F_Text_WantToBringFossilBackToLife
 Wait! That thing you have there… Is that a POKéMON fossil? Or a really old {MADLIB_FOOD}?
 
-My new FOSSIL REGENERATOR can bring a POKéMON back from a fossil.
+My new FOSSIL REGENERATOR can bring a POKéMON back from a fossil. It also works on {MADLIB_FOOD}. Don't ask how I know.
 
 Want me to try bringing that POKéMON back?
 
 @ RustboroCity_DevonCorp_2F_Text_OhIsThatSo
 Oh, is that so?
 
-DEVON's technology is the most {MADLIB_ADJ} in the world, I tell you.
+DEVON's technology is the most {MADLIB_ADJ} in the world, I tell you. We once brought back {MADLIB_NAME}'s career.
 
 @ RustboroCity_DevonCorp_2F_Text_TwoFossilsPickOne
-Oh, now that's a surprise! You have two fossils? And they're {MADLIB_COLOR}?
+Oh, now that's a surprise! You have two fossils? And they're {MADLIB_COLOR}? And humming?
 
-Sorry, my FOSSIL REGENERATOR can only do one POKéMON at a time.
+Sorry, my FOSSIL REGENERATOR can only do one POKéMON at a time. It gets {MADLIB_FEELING} otherwise.
 
 Would you like to pick one of your fossils to revive?
 
 @ RustboroCity_DevonCorp_2F_Text_HandedFossilToResearcher
-Excellent! Let's do this right away. {MADLIB_SHOUT}!
+Excellent! Let's do this right away. {MADLIB_SHOUT}! Somebody dim the lights!
 
 {PLAYER} handed the {STR_VAR_1} to the DEVON RESEARCHER.
 
 @ RustboroCity_DevonCorp_2F_Text_FossilRegeneratorTakesTime
 My FOSSIL REGENERATOR is {MADLIB_ADJ}.
 
-But it takes a while. About as long as {MADLIB_ACTIVITY}.
+But it takes a while. About as long as {MADLIB_ACTIVITY}. Or as long as {MADLIB_NAME} takes to text back.
 
 So, uh… Why not go explore for a while?
 
 @ RustboroCity_DevonCorp_2F_Text_FossilizedMonBroughtBackToLife
 Thanks for waiting!
 
-Your fossilized POKéMON is alive again! It's asking for {MADLIB_FOOD}!
+Your fossilized POKéMON is alive again! It's asking for {MADLIB_FOOD}! It's asking what year it is! It's asking about {MADLIB_NAME}!
 
-The fossil was an ancient POKéMON. {STR_VAR_2}, it was!
+The fossil was an ancient POKéMON. {STR_VAR_2}, it was! It's very old. Very {MADLIB_ADJ}. Give it a blanket.
 
 @ RustboroCity_DevonCorp_2F_Text_TooManyPokemon
-Uh-oh, you have too many POKéMON. There's no room for this one.
+Uh-oh, you have too many POKéMON. There's no room for this one. It'll have to wait in the {MADLIB_PLACE}.
 
 @ RustboroCity_DevonCorp_2F_Text_DevelopNewPokenavFeature
-I'm working on a new POKéNAV feature… It tells you where the nearest {MADLIB_PLACE} is…
+I'm working on a new POKéNAV feature… It tells you where the nearest {MADLIB_PLACE} is… and how {MADLIB_FEELING} people there feel…
 
-It's not going very well.
+It's not going very well. It only ever says “{MADLIB_SHOUT}.”
 
 @ RustboroCity_DevonCorp_2F_Text_WhatToWorkOnNext
-Well, now, what should I make next?
+Well, now, what should I make next? Some {MADLIB_FOOD}-powered {MADLIB_VEHICLE}? Shoes that do {MADLIB_ACTIVITY} for you?
 
-DEVON lets us make our dreams come true. Mine is about {MADLIB_CREATURE}.
+DEVON lets us make our dreams come true. Mine is mostly about {MADLIB_CREATURE}.
 
-It couldn't be better. Except for the {MADLIB_DRINK}.
+It couldn't be better. Except for the {MADLIB_DRINK} in the break room. Somebody keeps drinking it. I know it's {MADLIB_NAME}.
 
 @ RustboroCity_DevonCorp_3F_Text_MrStoneIHaveFavor
-I'm MR. STONE, the PRESIDENT of the DEVON CORPORATION.
+I'm MR. STONE, the PRESIDENT of the DEVON CORPORATION. Please excuse the {MADLIB_FOOD} on my desk. It's for a meeting.
 
 I've heard all about you from my staff!
 
-You saved our staff not just once, but twice!
+You saved our staff not just once, but twice! They wrote you a song. It's called “{MADLIB_SHOUT}.” It's just that word. For six minutes.
 
 I have a favor to ask of someone as {MADLIB_ADJ} as you.
 
@@ -191,67 +193,67 @@ I understand you're delivering a package to SLATEPORT's SHIPYARD.
 
 Well, on the way, could you stop off in DEWFORD TOWN?
 
-I was hoping you'd deliver a LETTER to STEVEN in DEWFORD. He likes rocks more than {MADLIB_FOOD}.
+I was hoping you'd deliver a LETTER to STEVEN in DEWFORD. He's my son. He likes rocks more than {MADLIB_FOOD}. More than me. More than his own {MADLIB_BODYPART}.
 
 @ RustboroCity_DevonCorp_3F_Text_MrStoneWantYouToHaveThis
-MR. STONE: Now, you should know that I am a great PRESIDENT.
+MR. STONE: Now, you should know that I am a great PRESIDENT. And the most {MADLIB_ADJ} dad. Half of that is true.
 
 So I'd never be so cheap as to ask a favor for nothing.
 
-That's why I want you to have this! It's not {MADLIB_FOOD}. Sorry.
+That's why I want you to have this! It's not {MADLIB_FOOD}. I'm sorry. I know you were hoping.
 
 @ RustboroCity_DevonCorp_3F_Text_MrStoneExplainPokenavRestUp
 MR. STONE: That device…
 
 It's a POKéMON NAVIGATOR, or POKéNAV for short.
 
-It's {MADLIB_ADJ}, and every TRAINER on a journey needs one.
+It's {MADLIB_ADJ}, and every TRAINER on a journey needs one. Even {MADLIB_NAME} has one. He uses it to find {MADLIB_FOOD}.
 
 It has a map of the HOENN region.
 
 You can check where DEWFORD and SLATEPORT are easily!
 
-By the way, I've heard that sinister criminals, MAGMA and AQUA, are making trouble.
+By the way, I've heard that sinister criminals, MAGMA and AQUA, are making trouble. One of them stole my {MADLIB_CLOTHING}. I want it back.
 
-I think you should rest before you go. Maybe eat some {MADLIB_FOOD}.
+I think you should rest before you go. Maybe eat some {MADLIB_FOOD}. Maybe do some {MADLIB_ACTIVITY}. Self-care.
 
 @ RustboroCity_DevonCorp_3F_Text_MrStoneGoWithCautionAndCare
-MR. STONE: Well, then, {PLAYER}{KUN}, go with caution and care! And {MADLIB_DRINK}!
+MR. STONE: Well, then, {PLAYER}{KUN}, go with caution and care! And {MADLIB_DRINK}! Always bring {MADLIB_DRINK}!
 
 @ RustboroCity_DevonCorp_3F_Text_CountingOnYou
-MR. STONE: I'm counting on you! Don't stop for {MADLIB_FOOD}!
+MR. STONE: I'm counting on you! Don't stop for {MADLIB_FOOD}! Okay, one stop. A small one.
 
 @ RustboroCity_DevonCorp_3F_Text_ThankYouForDeliveringLetter
-MR. STONE: You delivered my LETTER? Thank you kindly! Did STEVEN say anything about me? Anything at all?
+MR. STONE: You delivered my LETTER? Thank you kindly! Did STEVEN say anything about me? Did he say “Dad”? Did he say “{MADLIB_SHOUT}”? Anything at all?
 
 This is my way of thanking you. It should help you, a TRAINER.
 
 @ RustboroCity_DevonCorp_3F_Text_ExplainExpShare
 MR. STONE: A POKéMON holding that EXP. SHARE gets some of the EXP Points from battle.
 
-It gets EXP Points even if it didn't battle. Just by {MADLIB_ACTIVITY}.
+It gets EXP Points even if it didn't battle. Just by sitting there doing {MADLIB_ACTIVITY}. Like my son at family dinner.
 
 I'd say EXP. SHARE is great for raising weak POKéMON.
 
 @ RustboroCity_DevonCorp_3F_Text_NotFamiliarWithTrends
-MR. STONE: Since my youth, I've devoted myself to work. And {MADLIB_ACTIVITY}.
+MR. STONE: Since my youth, I've devoted myself to work. And to {MADLIB_ACTIVITY}. And to rocks.
 
-So I don't know much about what young people like.
+So I don't know what young people like. Is it still {MADLIB_FOOD}? Is {MADLIB_NAME} still popular?
 
 But do young people all want to be in the POKéMON LEAGUE?
 
 @ RustboroCity_DevonCorp_3F_Text_ThisIs3rdFloorWaitHere
 This is the DEVON CORPORATION's third floor.
 
-Our PRESIDENT's office is on this floor.
+Our PRESIDENT's office is on this floor. So is his {MADLIB_CREATURE}. Please don't feed it.
 
-I can't thank you enough for what you did. I owe you {MADLIB_FOOD} for life.
+I can't thank you enough for what you did. I owe you {MADLIB_FOOD} for life. I've already set up a payment plan.
 
 Um… By the way, that parcel you got back for us…
 
 Could I get you to deliver it to the SHIPYARD in SLATEPORT?
 
-It would be bad if those robbers tried to take it again.
+It would be bad if those robbers tried to take it again. I'd have to explain it to the PRESIDENT. Again. While he holds a rock.
 
 Uh… Hehehe, so, uh, could I count on you to do that?
 
@@ -260,25 +262,25 @@ Oh, that's right. Could you wait here a second?
 @ RustboroCity_DevonCorp_3F_Text_WordWithPresidentComeWithMe
 Our PRESIDENT would like to have a word with you.
 
-Please come with me. And please don't touch his {MADLIB_THING}.
+Please come with me. Don't touch his {MADLIB_THING}. Don't mention {MADLIB_NAME}. Don't look directly at the rocks.
 
 @ RustboroCity_DevonCorp_3F_Text_PleaseGoAhead
-Please, go ahead. Try not to be {MADLIB_ADJ}.
+Please, go ahead. Try not to be {MADLIB_ADJ}. He hates when people are {MADLIB_ADJ}.
 
 @ RustboroCity_DevonCorp_3F_Text_VisitCaptSternShipyard
-If you visit the SHIPYARD in SLATEPORT, you should go see CAPT. STERN.
+If you visit the SHIPYARD in SLATEPORT, you should go see CAPT. STERN. He looks like {MADLIB_CREATURE} with a beard.
 
 @ RustboroCity_DevonCorp_3F_Text_RepeatAndTimerHugelyPopular
-DEVON's new REPEAT BALL and TIMER BALL are more popular than {MADLIB_FOOD}!
+DEVON's new REPEAT BALL and TIMER BALL are more popular than {MADLIB_FOOD}! More popular than {MADLIB_NAME}! We're as shocked as you are!
 
 @ RustboroCity_DevonCorp_3F_Text_RareRocksDisplay
-It's a collection of rare rocks and stones put together by the PRESIDENT. One of them looks like {MADLIB_NAME}.
+It's a collection of rare rocks and stones put together by the PRESIDENT. One of them looks exactly like {MADLIB_NAME}. It has its own little {MADLIB_CLOTHING}.
 
 @ RustboroCity_Flat1_1F_Text_EveryPokemonHasAbility
-Every POKéMON has a special ability. Mine's is {MADLIB_ACTIVITY}. Not useful.
+Every POKéMON has a special ability. Mine's is {MADLIB_ACTIVITY}. Not useful in battle. Very useful at parties.
 
 @ RustboroCity_Flat1_1F_Text_PokemonStrange
-POKéMON are such strange creatures. Stranger than {MADLIB_CREATURE}.
+POKéMON are such strange creatures. Stranger than {MADLIB_CREATURE}. Stranger than {MADLIB_NAME} at the {MADLIB_PLACE}.
 
 @ RustboroCity_Flat1_2F_Text_ComingUpWithMealsIsHard
 Oh, it's so hard every day…
@@ -287,28 +289,28 @@ What's hard? You need to ask?
 
 It's figuring out what to make for meals every day.
 
-It's really not easy. Tonight it's {MADLIB_FOOD} again.
+Tonight it's {MADLIB_FOOD} again. Last night it was {MADLIB_FOOD}. Tomorrow? {MADLIB_FOOD}. I've lost control of my life.
 
 @ RustboroCity_Flat1_2F_Text_HelloDoYouKnowFunnyPhrase
-Oh, hello! Welcome to the PEPPER household.
+Oh, hello! Welcome to the PEPPER household. Mind the {MADLIB_CREATURE}. It bites.
 
 I have a question for you. Have you ever taken care of a baby?
 
-You see, I'm a new father, so raising a child is all new to me.
+You see, I'm a new father, so raising a child is all new to me. Yesterday I put her diaper on my {MADLIB_BODYPART}.
 
-And I have a problem. My daughter WALDA doesn't laugh. Not even at {MADLIB_NAME}.
+And I have a problem. My daughter WALDA doesn't laugh. Not even at {MADLIB_NAME}. EVERYONE laughs at {MADLIB_NAME}.
 
 I think she'd laugh for me if I told her something funny.
 
 Do you know of a funny word or phrase you can tell me?
 
 @ RustboroCity_Flat1_2F_Text_BeenSayingXDoYouKnowBetterPhrase
-I've been saying “{STR_VAR_1}” to amuse her lately.
+I've been saying “{STR_VAR_1}” to amuse her lately. She looked at me like I was {MADLIB_FOOD}.
 
 Do you know of a better word or a phrase that might work?
 
 @ RustboroCity_Flat1_2F_Text_WonderfulLetsHearSuggestion
-Oh, wonderful! Is it about {MADLIB_FOOD}? Let's hear it.
+Oh, wonderful! Is it about {MADLIB_FOOD}? Babies love {MADLIB_FOOD}. Let's hear it.
 
 @ RustboroCity_Flat1_2F_Text_OhIsThatRight
 Oh, is that right?
@@ -316,20 +318,20 @@ Oh, is that right?
 Well, if you come up with something funny, I'm all {MADLIB_BODYPART}.
 
 @ RustboroCity_Flat1_2F_Text_LetsGiveItATry2
-Ah, I see. Well, let's give it a try, shall we?
+Ah, I see. Hold my {MADLIB_DRINK}. Well, let's give it a try, shall we?
 
 @ RustboroCity_Flat1_2F_Text_OhShesLaughing
 {STR_VAR_1}. {STR_VAR_1}.
 
-Oh, yes! She's laughing! Oh, I'm as happy as {MADLIB_CREATURE}!
+Oh, yes! She's laughing! Oh, I'm as happy as {MADLIB_CREATURE} at the {MADLIB_PLACE}!
 
 @ RustboroCity_Flat1_2F_Text_LetsGiveItATry
-Ah, I see. Well, let's give it a try, shall we?
+Ah, I see. Stand back. She's {MADLIB_ADJ} today. Well, let's give it a try, shall we?
 
 @ RustboroCity_Flat1_2F_Text_ShesNotSmilingAtAll
 {STR_VAR_1}. {STR_VAR_1}.
 
-Hmmm… She's not smiling at all. She looks {MADLIB_FEELING}…
+Hmmm… She's not smiling at all. She looks {MADLIB_FEELING}. She's eating my {MADLIB_CLOTHING}.
 
 @ RustboroCity_Flat1_2F_Text_ThinkOfMyOwnPhrase
 Oh, so you don't know any good words. I'd better think up something myself.
@@ -339,19 +341,19 @@ Hmm… How about “{STR_VAR_1}”? Let's see if that will work.
 @ RustboroCity_Flat1_2F_Text_ShesNotSmilingAtAll2
 {STR_VAR_1}. {STR_VAR_1}.
 
-Hmmm… She's not smiling at all. Maybe WALDA is a serious child…
+Hmmm… She's not smiling at all. She just whispered “{MADLIB_SHOUT}.” She's eight months old.
 
 @ RustboroCity_Flat1_2F_Text_OhYouDontKnowAny
-Oh, so you don't know any good words. I guess I'll try amusing her with the saying I used before.
+Oh, so you don't know any good words. I guess I'll try amusing her with the saying I used before. And some {MADLIB_FOOD}.
 
 Anyways, if you have a good suggestion, don't hesitate in telling me, okay?
 
 @ RustboroCity_Flat1_2F_Text_ThankYouIllGiveYouWallpaper
 Thank you!
 
-Thanks to you, my darling WALDA laughed so hard she spit up {MADLIB_FOOD}!
+Thanks to you, my darling WALDA laughed so hard she spit up {MADLIB_FOOD}! On {MADLIB_NAME}! It was beautiful!
 
-Actually, I may not look all that special, but I'm one of DEVON CORPORATION's top researchers.
+Actually, I may not look all that special, but I'm one of DEVON CORPORATION's top researchers. I invented the {MADLIB_THING}.
 
 So, how about I do something in return for you?
 
@@ -359,39 +361,39 @@ I know, I'll add some new wallpaper patterns for the BOXES in the PC POKéMON St
 
 In the wallpaper pattern menu, select “FRIENDS.”
 
-That will give you the new patterns. One has {MADLIB_CREATURE} on it.
+That will give you the new patterns. One has {MADLIB_CREATURE} on it. It's {MADLIB_ADJ}.
 
 @ RustboroCity_Flat1_2F_Text_ItsAPokemonPlushDoll
-It's a POKéMON plush DOLL! It smells like {MADLIB_FOOD}.
+It's a POKéMON plush DOLL! It smells like {MADLIB_FOOD}. It's wearing tiny {MADLIB_CLOTHING}. It's staring at you.
 
 @ RustboroCity_Flat2_1F_Text_DevonWorkersLiveHere
-DEVON CORPORATION's workers live in this building. Next to the {MADLIB_PLACE}.
+DEVON CORPORATION's workers live in this building. Next to the {MADLIB_PLACE}. Above the {MADLIB_CREATURE}. It's loud at night.
 
 @ RustboroCity_Flat2_2F_Text_DevonWasTinyInOldDays
-Way back, DEVON was tiny. It was just one guy and his {MADLIB_CREATURE}.
+Way back, DEVON was tiny. It was just one guy, his {MADLIB_CREATURE}, and a dream about {MADLIB_FOOD}.
 
 @ RustboroCity_Flat2_2F_Text_MyDaddyMadeThisYouCanHaveIt
 My daddy works at DEVON.
 
-My daddy made this! But I can't use it, so you can have it. It's better than {MADLIB_FOOD}!
+My daddy made this! But I can't use it, so you can have it. It's better than {MADLIB_FOOD}! It's better than {MADLIB_NAME}! Daddy said so!
 
 @ RustboroCity_Flat2_2F_Text_GoingToWorkAtDevonToo
 My daddy works at DEVON.
 
-When I grow up, I'm going to work at DEVON too. Or at the {MADLIB_PLACE}.
+When I grow up, I'm going to work at DEVON too. Or at the {MADLIB_PLACE}. Or I'll be {MADLIB_CREATURE}. I haven't decided.
 
 @ RustboroCity_Flat2_3F_Text_PresidentCollectsRareStones
-DEVON's PRESIDENT likes to collect rare stones. And {MADLIB_FOOD}. Mostly stones.
+DEVON's PRESIDENT likes to collect rare stones. And {MADLIB_FOOD}. He keeps them in the same drawer. He's confused them twice.
 
 @ RustboroCity_Flat2_3F_Text_PresidentsSonAlsoCollectsRareStones
-I think the PRESIDENT's son also collects rare stones. He keeps them in his {MADLIB_CLOTHING}.
+I think the PRESIDENT's son also collects rare stones. He keeps them in his {MADLIB_CLOTHING}. All of them. He clanks when he walks.
 
 @ RustboroCity_Gym_Text_GymGuideAdvice
 Yo, how's it going?
 
-Listen, my friend! Would you like to become the CHAMPION of {MADLIB_PLACE}?
+Listen, my friend! Would you like to become the CHAMPION of the {MADLIB_PLACE}?
 
-I'm no TRAINER, not me, but I can sure give you winning advice.
+I'm no TRAINER, not me, but I give the best advice. I once told {MADLIB_NAME} to stop {MADLIB_ACTIVITY}. They didn't. But I told them!
 
 That's settled, then! We'll aim for the POKéMON CHAMPIONSHIP together!
 
@@ -399,7 +401,7 @@ It's your job as a TRAINER to collect GYM BADGES, am I right?
 
 But GYM LEADERS aren't pushovers! They're {MADLIB_ADJ}!
 
-And that's where I come in! I'm here to provide expert advice!
+And that's where I come in! I'm here to provide expert advice! And {MADLIB_DRINK}!
 
 ROXANNE, the GYM LEADER, is a user of ROCK-type POKéMON.
 
@@ -407,83 +409,83 @@ The ROCK type is very durable, but it can't stand WATER-type and GRASS-type move
 
 Come see me afterwards, if you beat the GYM LEADER.
 
-Well, go for it! And maybe eat some {MADLIB_FOOD} first!
+Well, go for it! And maybe eat some {MADLIB_FOOD} first! For courage!
 
 @ RustboroCity_Gym_Text_GymGuidePostVictory
 Whoa! What a breathtaking victory! My advice must have been {MADLIB_ADJ}!
 
 Great! Check your TRAINER CARD.
 
-The STONE BADGE you got should be properly recorded on it.
+The STONE BADGE you got should be properly recorded on it. Next to the {MADLIB_FOOD} stain.
 
 In other words…
 
 You've climbed the first step on the stairs to the CHAMPIONSHIP!
 
-That's got to feel {MADLIB_FEELING}!
+That's got to feel {MADLIB_FEELING}! I feel {MADLIB_FEELING}! I'm going to go lie down!
 
 @ RustboroCity_Gym_Text_JoshIntro
-Don't take this GYM lightly! We eat {MADLIB_FOOD} for breakfast!
+Don't take this GYM lightly! We eat {MADLIB_FOOD} for breakfast! Raw! With our hands!
 
 @ RustboroCity_Gym_Text_JoshDefeat
-You were too good for me… I feel {MADLIB_FEELING}…
+You were too good for me… I feel {MADLIB_FEELING}… And a little bit like {MADLIB_FOOD}…
 
 @ RustboroCity_Gym_Text_JoshPostBattle
-You haven't seen how {MADLIB_ADJ} the ROCK type can be yet!
+You haven't seen how {MADLIB_ADJ} the ROCK type can be yet! Wait until you see ROXANNE's {MADLIB_THING}!
 
 @ RustboroCity_Gym_Text_TommyIntro
-If you can't beat me, you won't stand a chance against ROXANNE! Or her {MADLIB_CREATURE}!
+If you can't beat me, you won't stand a chance against ROXANNE! Or her {MADLIB_CREATURE}! It does homework!
 
 @ RustboroCity_Gym_Text_TommyDefeat
-Wow! You've got some {MADLIB_ADJ} potential!
+Wow! You've got some {MADLIB_ADJ} potential! And some {MADLIB_FOOD} on your shoe!
 
 @ RustboroCity_Gym_Text_TommyPostBattle
-ROXANNE is stronger than me by several times. And she's way better at {MADLIB_ACTIVITY}.
+ROXANNE is stronger than me by several times. And she's way better at {MADLIB_ACTIVITY}. Nobody's better at {MADLIB_ACTIVITY}.
 
 You'd better be on your guard!
 
 @ RustboroCity_Gym_Text_MarcIntro
 We might be in the middle of town, but so what?
 
-My ROCK POKéMON need room to rampage! And to eat {MADLIB_FOOD}!
+My ROCK POKéMON need room to rampage! And to eat {MADLIB_FOOD}! And to cry about {MADLIB_NAME}!
 
 @ RustboroCity_Gym_Text_MarcDefeat
-Oh, man oh man! Our challenger is one {MADLIB_ADJ} kid!
+Oh, man oh man! Our challenger is one {MADLIB_ADJ} kid! Like, alarmingly {MADLIB_ADJ}!
 
 @ RustboroCity_Gym_Text_MarcPostBattle
 I have to hand it to our LEADER.
 
-It took smarts and sense for her to pick the ROCK type at her young age. And a lot of {MADLIB_DRINK}.
+It took smarts for her to pick the ROCK type at her age. And a lot of {MADLIB_DRINK}. Like, a LOT of {MADLIB_DRINK}.
 
 @ RustboroCity_Gym_Text_RoxanneIntro
 Hello, I am ROXANNE, the RUSTBORO POKéMON GYM LEADER.
 
-I became a GYM LEADER so that I might apply what I learned at the POKéMON TRAINER'S SCHOOL in battle. And in {MADLIB_ACTIVITY}.
+I became a GYM LEADER to test what I learned at the TRAINER'S SCHOOL. And in my night class on {MADLIB_ACTIVITY}. I got an A.
 
-Would you kindly demonstrate how you battle, and with which POKéMON?
+I'll be taking notes on your {MADLIB_CLOTHING}. Would you kindly demonstrate how you battle, and with which POKéMON?
 
 @ RustboroCity_Gym_Text_RoxanneDefeat
 So… I lost…
 
-It seems that I still have much more to learn… Mostly about {MADLIB_FOOD}…
+It seems that I still have much more to learn… Mostly about {MADLIB_FOOD}… And {MADLIB_NAME}…
 
 I understand.
 
 The POKéMON LEAGUE's rules state that TRAINERS are to be given this if they defeat a GYM LEADER.
 
-Please accept the official POKéMON LEAGUE STONE BADGE.
+Please accept the official POKéMON LEAGUE STONE BADGE. It smells like {MADLIB_DRINK}. I don't know why.
 
 @ RustboroCity_Gym_Text_StoneBadgeInfoTakeThis
 The STONE BADGE heightens the ATTACK power of your POKéMON.
 
 It also enables them to use the HM move CUT outside of battle.
 
-Please take this with you, too. It's {MADLIB_ADJ}.
+Please take this with you, too. It's {MADLIB_ADJ}. Like me. But less {MADLIB_ADJ}.
 
 @ RustboroCity_Gym_Text_ExplainRockTomb
 That TECHNICAL MACHINE, TM39, contains ROCK TOMB.
 
-It not only inflicts damage by dropping rocks, it also lowers SPEED. Like eating too much {MADLIB_FOOD}.
+It not only inflicts damage by dropping rocks, it also lowers SPEED. Like eating too much {MADLIB_FOOD} before {MADLIB_ACTIVITY}.
 
 If you use a TM, it instantly teaches the move to a POKéMON.
 
@@ -492,26 +494,29 @@ Remember, a TM can be used only once, so think before you use it.
 @ RustboroCity_Gym_Text_RoxannePostBattle
 Since you are so strong, you should challenge other GYM LEADERS.
 
-By battling many TRAINERS, you should learn many things. Like how to stop {MADLIB_ACTIVITY}.
+By battling many TRAINERS, you should learn many things. Like how to stop {MADLIB_ACTIVITY}. I've been trying for years.
 
 @ RustboroCity_Gym_Text_GymStatue
 RUSTBORO CITY POKéMON GYM
+“Quiet, please. Someone is {MADLIB_ACTIVITY}.”
 
 @ RustboroCity_Gym_Text_GymStatueCertified
 RUSTBORO CITY POKéMON GYM
 
 ROXANNE'S CERTIFIED TRAINERS: {PLAYER}
 
+Grade: {MADLIB_ADJ}.
+
 @ RustboroCity_Gym_Text_RoxanneRegisterCall
 … … … … … … … … … … … Beep!
 
-ROXANNE: Oh, hello, {PLAYER}? This is ROXANNE of RUSTBORO CITY.
+ROXANNE: Oh, hello, {PLAYER}? This is ROXANNE of RUSTBORO CITY. I'm calling from the {MADLIB_PLACE}.
 
 I heard from BRAWLY that you're moving up through the ranks of TRAINERS at a really {MADLIB_ADJ} pace.
 
 Well, I'd rather not think that I can't beat you.
 
-I promise, I will shape up my GYM so that you may challenge us again.
+I promise, I will shape up my GYM so that you may challenge us again. I bought {MADLIB_FOOD}. For morale.
 
 I hope you'll be looking forward to that occasion as much as me!
 
@@ -520,100 +525,100 @@ I hope you'll be looking forward to that occasion as much as me!
 @ RustboroCity_Gym_Text_RoxannePreRematch
 ROXANNE: I'm so glad to see you again. I'm ROXANNE, the LEADER here.
 
-I'm sure we've both experienced many battles since we last met. And eaten lots of {MADLIB_FOOD}.
+I'm sure we've both experienced many battles since we last met. And eaten lots of {MADLIB_FOOD}. I've eaten eleven {MADLIB_FOOD}.
 
 I would like to see how much better we've become. Let us battle!
 
 @ RustboroCity_Gym_Text_RoxanneRematchDefeat
-Grr… Again, I have lost… {MADLIB_SHOUT}!
+Grr… Again, I have lost… {MADLIB_SHOUT}! I'm going to go do {MADLIB_ACTIVITY} in the library!
 
 @ RustboroCity_Gym_Text_RoxannePostRematch
 ROXANNE: I still have much to learn when it comes to battling POKéMON.
 
-That awareness makes me love battling even more! Almost as much as {MADLIB_ACTIVITY}!
+That awareness makes me love battling even more! Almost as much as {MADLIB_ACTIVITY}! Almost as much as {MADLIB_NAME}! Don't tell anyone!
 
 @ RustboroCity_House1_Text_IllTradeIfYouWant
-Huh? My POKéMON is cute? Cuter than {MADLIB_NAME}? Sure, I knew that.
+Huh? My POKéMON is cute? Cuter than {MADLIB_NAME}? Sure, I knew that. Everybody knows that. It won a contest. The contest was just us.
 
 But if you really want, I'm willing to trade it to you.
 
 I'll trade you my {STR_VAR_2} for a {STR_VAR_1} if you want.
 
 @ RustboroCity_House1_Text_PleaseBeGoodToMyPokemon
-Eheheh… Please be good to my POKéMON. Feed it {MADLIB_FOOD}.
+Eheheh… Please be good to my POKéMON. Feed it {MADLIB_FOOD}. Sing it songs about {MADLIB_CREATURE}. Every night.
 
 @ RustboroCity_House1_Text_DoesntLookLikeMonToMe
-Huh? That doesn't look anything like a {STR_VAR_1} to me. It looks like {MADLIB_FOOD}.
+Huh? That doesn't look anything like a {STR_VAR_1} to me. It looks like {MADLIB_FOOD} wearing {MADLIB_CLOTHING}.
 
 @ RustboroCity_House1_Text_YouDontWantToThatsOkay
-Oh, if you don't want to, that's okay. But my POKéMON is cute, you know… Cuter than your {MADLIB_CLOTHING}…
+Oh, if you don't want to, that's okay. But my POKéMON is cute, you know… Cuter than your {MADLIB_CLOTHING}… Way cuter…
 
 @ RustboroCity_House1_Text_AnyPokemonCanBeCute
-Any POKéMON can be cute if you raise it with care and {MADLIB_FOOD}.
+Any POKéMON can be cute if you raise it with care and {MADLIB_FOOD}. Even {MADLIB_CREATURE}. Even {MADLIB_NAME}.
 
 @ RustboroCity_House1_Text_AllSortsOfPlaces
 In all sorts of places, there are all sorts of POKéMON and people.
 
-I find that fascinating, so I go to all sorts of places. Even the {MADLIB_PLACE}.
+I find that fascinating, so I go to all sorts of places. Even the {MADLIB_PLACE}. I got banned from the {MADLIB_PLACE}.
 
 @ RustboroCity_House2_Text_TrainerSchoolExcellent
-The TRAINER'S SCHOOL is excellent. They even teach {MADLIB_ACTIVITY}.
+The TRAINER'S SCHOOL is excellent. They even teach {MADLIB_ACTIVITY}. It's an elective. It's very popular.
 
 If you study there, you could become a GYM LEADER.
 
 @ RustboroCity_House2_Text_RoxanneKnowsALot
 ROXANNE, the GYM LEADER, really knows a lot about POKéMON.
 
-She's really {MADLIB_ADJ}, too!
+She's really {MADLIB_ADJ}, too! She once beat {MADLIB_NAME} using only a rock and {MADLIB_FOOD}!
 
 @ RustboroCity_House3_Text_IGivePerfectlySuitedNicknames
-For my own POKéMON, I give them perfectly suited nicknames! Like {MADLIB_NAME}!
+For my own POKéMON, I give them perfectly suited nicknames! Like “{MADLIB_FOOD} Destroyer”! Like “Sir {MADLIB_NAME}”!
 
 It's my expression of, uh… originality, yes, that's it!
 
 @ RustboroCity_House3_Text_NamingPikachuPekachu
-But giving the name PEKACHU to a PIKACHU? It's almost as bad as {MADLIB_FOOD}.
+But giving the name PEKACHU to a PIKACHU? It's almost as bad as naming your kid {MADLIB_FOOD}.
 
 Maybe it's good to give it a name that's easy to understand, but…
 
 @ RustboroCity_Mart_Text_BuyingHealsInCaseOfShroomish
 I'm buying some PARLYZ HEALS and ANTIDOTES.
 
-Just in case I run into SHROOMISH in PETALBURG WOODS. Or {MADLIB_NAME}.
+Just in case I run into SHROOMISH in PETALBURG WOODS. Or {MADLIB_NAME}. Mostly {MADLIB_NAME}.
 
 @ RustboroCity_Mart_Text_ShouldBuySuperPotionsInstead
-My POKéMON evolved. It has a lot of HP now. It's so {MADLIB_ADJ}.
+My POKéMON evolved. It has a lot of HP now. It's so {MADLIB_ADJ}. It's started wearing {MADLIB_CLOTHING}.
 
 I should buy SUPER POTIONS for it instead of ordinary POTIONS.
 
 @ RustboroCity_Mart_Text_GettingEscapeRopeJustInCase
 I'm getting an ESCAPE ROPE just in case I get lost in a cave.
 
-I just need to use it to get back to the entrance. Or out of {MADLIB_ACTIVITY}.
+I just need to use it to get back to the entrance. Or out of {MADLIB_ACTIVITY}. Or away from {MADLIB_NAME}.
 
 @ RustboroCity_PokemonCenter_1F_Text_PokemonHavePersonalities
 My POKéMON has a NAIVE nature, and my friend's has a JOLLY nature.
 
-It's fascinating how POKéMON have personalities! Mine acts like {MADLIB_NAME}.
+It's fascinating how POKéMON have personalities! Mine acts like {MADLIB_NAME} after {MADLIB_DRINK}.
 
 @ RustboroCity_PokemonCenter_1F_Text_MaleAndFemalePokemon
 Just like people, there are male and female POKéMON.
 
-But no one seems to have any idea how they're different. I think it's {MADLIB_FOOD}.
+But no one seems to have any idea how they're different. My theory is {MADLIB_FOOD}. My theory is always {MADLIB_FOOD}.
 
 @ RustboroCity_PokemonCenter_1F_Text_HMCutNextDoor
 The man next door gave me an HM!
 
-I used it to teach my POKéMON how to CUT down skinny trees. And my {MADLIB_CLOTHING}.
+I used it to teach my POKéMON how to CUT down skinny trees. And my {MADLIB_CLOTHING}. And my neighbor's {MADLIB_VEHICLE}. Oops.
 
 @ RustboroCity_PokemonSchool_Text_BlackboardListsStatusChanges
-The blackboard lists status changes that may affect POKéMON in battle. Someone drew {MADLIB_CREATURE} in the corner.
+The blackboard lists status changes that may affect POKéMON in battle. Someone drew {MADLIB_CREATURE} in the corner and wrote “{MADLIB_SHOUT}.”
 
 @ RustboroCity_PokemonSchool_Text_ReadWhichTopic
 Which topic do you want to read?
 
 @ RustboroCity_PokemonSchool_Text_ExplainPoison
-If a POKéMON is poisoned, it will steadily lose HP. Like after bad {MADLIB_FOOD}.
+If a POKéMON is poisoned, it will steadily lose HP. Like after bad {MADLIB_FOOD} at the {MADLIB_PLACE}.
 
 The effects of poison remain after a battle.
 
@@ -622,31 +627,31 @@ A poisoned POKéMON's HP will drop while it is traveling.
 Heal a poisoning using an ANTIDOTE.
 
 @ RustboroCity_PokemonSchool_Text_ExplainParalysis
-If a POKéMON becomes paralyzed, its SPEED drops.
+If a POKéMON becomes paralyzed, its SPEED drops. Like {MADLIB_NAME} on a Monday.
 
 It may also not be able to move while it is in battle.
 
 Paralysis remains after battle. Cure it using a PARLYZ HEAL.
 
 @ RustboroCity_PokemonSchool_Text_ExplainSleep
-If a POKéMON falls asleep, it will be unable to attack. It may dream of {MADLIB_FOOD}.
+If a POKéMON falls asleep, it will be unable to attack. It may dream of {MADLIB_FOOD}. It may sleep-talk about {MADLIB_NAME}.
 
 A POKéMON may wake up on its own, but if a battle ends while it is sleeping, it will stay asleep.
 
 Wake it up using an AWAKENING.
 
 @ RustboroCity_PokemonSchool_Text_ExplainBurn
-A burn reduces ATTACK power, and it also steadily reduces the victim's HP.
+A burn reduces ATTACK power, and it also steadily reduces the victim's HP. Like microwaving {MADLIB_FOOD} too long.
 
 A burn lingers after battle. Cure a burn using a BURN HEAL.
 
 @ RustboroCity_PokemonSchool_Text_ExplainFreeze
-If a POKéMON is frozen, it becomes totally helpless. Like {MADLIB_FOOD} in a freezer.
+If a POKéMON is frozen, it becomes totally helpless. Like {MADLIB_FOOD} in a freezer. Like me at a party.
 
 It remains frozen after battle. Thaw it out using an ICE HEAL.
 
 @ RustboroCity_PokemonSchool_Text_StudentsWhoDontStudyGetQuickClaw
-Students who don't study get a little taste of my QUICK CLAW. And no {MADLIB_FOOD}.
+Students who don't study get a little taste of my QUICK CLAW. And no {MADLIB_FOOD} at lunch. That's the real punishment.
 
 Whether or not you are a good student will be evident from the way you use this item.
 
@@ -655,21 +660,21 @@ A POKéMON holding the QUICK CLAW will occasionally speed up and get to move bef
 
 There are many other items that are meant to be held by POKéMON.
 
-Just those alone will give you many topics to study! Like {MADLIB_ACTIVITY}!
+Just those alone will give you many topics to study! Like {MADLIB_ACTIVITY}! There's a whole semester on {MADLIB_ACTIVITY}!
 
 @ RustboroCity_PokemonSchool_Text_TradingRightNow
-I'm trading POKéMON with my friend right now. And one {MADLIB_ADJ} sandwich.
+I'm trading POKéMON with my friend right now. And one {MADLIB_ADJ} sandwich. The sandwich is the important part.
 
 @ RustboroCity_PokemonSchool_Text_AlwaysWantedSeedot
-I always wanted a SEEDOT, and I'm finally getting one! I'm so {MADLIB_FEELING}!
+I always wanted a SEEDOT, and I'm finally getting one! I'm so {MADLIB_FEELING}! I'm naming it {MADLIB_NAME}!
 
 @ RustboroCity_PokemonSchool_Text_PokemontCantUseManMadeItems
-POKéMON can hold items, but they don't know what to do with man-made items like POTION and ANTIDOTE. Or {MADLIB_THING}.
+POKéMON can hold items, but they don't know what to do with man-made items like POTION and ANTIDOTE. Or {MADLIB_THING}. Mine tried to eat it.
 
 @ RustboroCity_PokemonSchool_Text_ConfusedPokemonAttacksItself
 You know how some POKéMON moves can confuse a POKéMON?
 
-A confused POKéMON will attack itself sometimes. Like me after {MADLIB_DRINK}.
+A confused POKéMON will attack itself sometimes. Like me after {MADLIB_DRINK}. Like {MADLIB_NAME} after {MADLIB_DRINK}.
 
 But once it leaves battle, it will return to normal.
 
@@ -678,7 +683,7 @@ A POKéMON holding a BERRY will heal itself…
 
 There are many kinds of items that POKéMON can hold…
 
-Boy, it sure is hard taking notes down… My {MADLIB_BODYPART} hurts…
+Boy, it sure is hard taking notes down… My {MADLIB_BODYPART} hurts… My pen is {MADLIB_FOOD}… Why is my pen {MADLIB_FOOD}…
 
 @ RustboroCity_PokemonSchool_Text_StudentsNotes
 It's this student's notebook…
@@ -691,10 +696,10 @@ A TRAINER is someone who catches POKéMON, raises them, and battles with them.
 
 A TRAINER's mission is to defeat the strong TRAINERS who await challengers in POKéMON GYMS.
 
-At the bottom, someone wrote “{MADLIB_SHOUT}!”
+At the bottom, someone wrote “{MADLIB_SHOUT}!” and drew {MADLIB_NAME} as {MADLIB_CREATURE}.
 
 @ RustboroCity_PokemonSchool_Text_ScottMetAlreadyCut
-Hello? Didn't we meet before? I think back in PETALBURG CITY.
+Hello? Didn't we meet before? I think back in PETALBURG CITY. I was the one eating {MADLIB_FOOD} behind the bush.
 
 Let me introduce myself. My name's SCOTT.
 
@@ -706,12 +711,12 @@ So, what brings you to this SCHOOL? Are you a TRAINER, too?
 
 The first thing you should do is to have a POKéMON learn the move CUT.
 
-If I remember correctly, someone in this town has CUT.
+If I remember correctly, someone in this town has CUT. He gives it to everybody. He gave one to my {MADLIB_CREATURE}.
 
 @ RustboroCity_PokemonSchool_Text_StudentTalentLevelUnknown
 SCOTT: Hmm…
 
-The talent levels of the students here are unknown. Some just eat {MADLIB_FOOD}.
+The talent levels of the students here are unknown. Some just eat {MADLIB_FOOD}. One is definitely {MADLIB_CREATURE} in a uniform.
 
 @ RustboroCity_PokemonSchool_Text_ScottStoneBadge
 SCOTT: Oh, what's that?
@@ -720,10 +725,10 @@ It's a STONE BADGE, isn't it? That's pretty {MADLIB_ADJ}, I must say.
 
 But, you know, I would've loved to see you in battle.
 
-It's hard to tell what you're like as a TRAINER from a LEAGUE BADGE.
+It's hard to tell what you're like as a TRAINER from a LEAGUE BADGE. Or from your {MADLIB_CLOTHING}. I've been staring at your {MADLIB_CLOTHING}.
 
 @ RustboroCity_PokemonSchool_Text_ScottMetAlreadyStoneBadge
-Hello? Didn't we meet before? I think back in PETALBURG CITY.
+Hello? Didn't we meet before? I think back in PETALBURG CITY. I was the one eating {MADLIB_FOOD} behind the bush.
 
 Let me introduce myself. My name's SCOTT.
 
@@ -737,4 +742,4 @@ That's pretty impressive, I must say, for a starting TRAINER like yourself.
 
 But, you know, I would've loved to see you in battle.
 
-It's hard to tell what you're like as a TRAINER from a LEAGUE BADGE.
+It's hard to tell what you're like as a TRAINER from a LEAGUE BADGE. Or from your {MADLIB_CLOTHING}. I've been staring at your {MADLIB_CLOTHING}.

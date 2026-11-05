@@ -1,0 +1,52 @@
+# Mad Libs: Birch's opening speech. No blanks here: the player hasn't picked any words yet.
+# Birch sets up the joke that the world is missing words and the player will fill them in.
+
+@ gText_Birch_Welcome
+Hi! Sorry to keep you waiting! I was looking for the rest of this sentence.
+
+Welcome to the world of POKéMON! Population: lots! Words: missing!
+
+My name is BIRCH.
+
+But everyone calls me the POKéMON PROFESSOR. Well, they call me the POKéMON BLANK. Somebody lost the word. I'm hoping you can find it.
+
+@ gText_Birch_MainSpeech
+This world is full of creatures known as POKéMON. And, lately, full of holes.
+
+You see, a few weeks ago, something strange happened. All over HOENN, words started disappearing. People stopped mid-sentence. Signs went blank. A man ordered lunch and just pointed at a cow.
+
+Nobody knows where the words went. My theory? A very hungry POKéMON. My other theory? Taxes.
+
+So the world needs someone to fill in the blanks. Every blank. Big ones. Weird ones. Ones that probably shouldn't be said at dinner.
+
+That someone is you. Whatever words you choose will become real. The whole world will repeat them. Forever. No pressure.
+
+To unravel this mystery, I've been undertaking research. That's what I do. Mostly I yell at bushes. They don't know anything either.
+
+@ gText_Birch_AndYouAre
+Please say a noun. And you are?
+
+@ gText_Birch_BoyOrGirl
+Quick, while the words still work! Are you a boy? Or are you a girl?
+
+@ gText_Birch_WhatsYourName
+Great! At least THAT word survived. What's your name?
+
+@ gText_Birch_SoItsPlayer
+Oh, that's a good one. Nobody's eaten that one yet. So it's {PLAYER}{KUN}?
+
+@ gText_Birch_YourePlayer
+Ah, okay!
+
+You're {PLAYER}{KUN}, moving to my hometown of LITTLEROOT. The town formerly known as LITTLE-something.
+
+I get it now! Mostly!
+
+@ gText_Birch_AreYouReady
+All right, are you ready?
+
+Your very own adventure is about to unfold. Somebody is going to ask you for some words soon. Choose wisely. Or badly. Badly is funnier.
+
+Take courage, and leap into the world of POKéMON where dreams, adventure, and gaps in the dialogue await!
+
+Well, I'll be expecting you later. Come see me in my POKéMON LAB. Bring a dictionary.

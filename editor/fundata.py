@@ -221,8 +221,10 @@ def usable(p=None, legendaries=True):
 def evolution_line(c, p=None):
     """[base, stage 2, stage 3] following the first evolution at each step."""
     p = p or pool()
-    while p[c]['evolvesFrom']:
-        c = p[c]['evolvesFrom']
+    seen = {c}
+    while p[c]['evolvesFrom'] and p[c]['evolvesFrom'] in p and p[c]['evolvesFrom'] not in seen:
+        c = p[c]['evolvesFrom']  # some forms point back at each other, so stop on a loop
+        seen.add(c)
     line = [c]
     while True:
         nxt = [t for t in p[line[-1]]['evolvesTo'] if t in p and p[t]['usable'] and t not in line]
