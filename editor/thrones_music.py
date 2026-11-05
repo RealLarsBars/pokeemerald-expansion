@@ -350,12 +350,14 @@ def vs_gym_leader():
     3/4, C minor, war drums, and a big sweeping tune passed from horns to trumpets and choir.
     The tune and figure are new; only the mood and instruments follow the show."""
     s = Song('mus_vs_gym_leader', bpm=162, beats_per_bar=3)
+    cello = s.track(STRINGS, 120)   # the strings sample played low reads as cellos
     horn = s.track(HORN, 116)
     tpt = s.track(TRUMPET, 127)
     choir = s.track(CHOIR, 80)
     strings = s.track(STRINGS, 92)
     drums = s.track(DRUMS, 108)
     taiko = s.track(TAIKO, 112)
+    harp = s.track(HARP, 110, pan=80)   # plucked, close to a hammered dulcimer
 
     fig_m = [0, 0, 7, 0, 8, 7]   # C C G C Ab G: the strings never stop
     fig_M = [0, 0, 7, 0, 9, 7]
@@ -375,15 +377,18 @@ def vs_gym_leader():
         if fill:
             roll(drums, b + 1, SNARE, 2, 80, 124)
 
-    # Intro: the strings start alone, the drums join.
-    ostinato(strings, 0, 'Cm Cm Cm Cm', 3, fig_m, vel=96)
-    for i in range(2, 4):
-        war_drums(3 * i, 1, fill=i == 3)
+    # Intro: a dark opening. Low strings alone, a plucked figure answers, then the drums.
+    ostinato(strings, 0, 'Cm Cm Cm Cm Cm Cm Cm Cm', 3, fig_m, vel=96)
+    ostinato(harp, 12, 'Cm Cm Cm Cm', 3, [24, 19, 24, 27, 24, 19], vel=90, gate=1.0, accent=0)
+    taiko.hits(0, pitch('G2'), [(0, 127)], beats=1)
+    taiko.hits(6, pitch('G2'), [(0, 127)], beats=1)
+    for i in range(4, 8):
+        war_drums(3 * i, 1, fill=i == 7)
 
-    beat = 12
-    # A: the tune on horns, low and broad.
-    ostinato(strings, beat, prog, 3, fig_m, fig_M, vel=90)
-    horn.play(beat, tune, vel=118, gate=0.97)
+    beat = 24
+    # A: the tune on cellos, low and broad.
+    ostinato(strings, beat, prog, 3, fig_m, fig_M, vel=86)
+    cello.play(beat, tune, vel=124, gate=0.99, shift=-12)
     for i in range(16):
         war_drums(beat + 3 * i, i, fill=i == 15)
     beat += 48
@@ -397,14 +402,15 @@ def vs_gym_leader():
     beat += 48
     # Bridge: everything drops back, then builds to the top again.
     ostinato(strings, beat, bridge, 3, fig_m, fig_M, vel=84)
-    horn.play(beat, bridge_tune, vel=110, gate=0.99)
+    cello.play(beat, bridge_tune, vel=120, gate=0.99, shift=-12)
+    ostinato(harp, beat, bridge, 3, [24, 19, 24, 27, 24, 19], [24, 19, 24, 28, 24, 19], vel=84, gate=1.0, accent=0)
     for i in range(8):
         taiko.hits(beat + 3 * i, pitch('C3'), [(0, 100 + 3 * i)], beats=0.5)
         if i >= 4:
             drums.hits(beat + 3 * i, SNARE, [(2, 90), (2.5, 100)])
     roll(drums, beat + 21, SNARE, 3, 70, 127)
     beat += 24
-    s.loop(12, beat)
+    s.loop(24, beat)
     return s
 
 
