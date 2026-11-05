@@ -1482,7 +1482,7 @@ const FUN_DEFAULTS = {
           legendaryLevel: 0, legendaryPercent: 15, regularItems: true },
   caps: { on: false, type: 'hard', mode: 'auto', caps: [15, 19, 24, 29, 31, 33, 42, 46, 58], candyCap: true },
   candy: { on: false },
-  comedy: { on: false, theme: 'thrones', hero: true, adult: false, fakeNews: true, battle: true, houseGyms: true, story: true },
+  comedy: { on: false, theme: 'thrones', hero: true, adult: false, fakeNews: true, battle: true, houseGyms: true, story: true, music: true },
 };
 const COMEDY_THEMES = [
   ['thrones', 'Game of Thrones', 'A real Game of Thrones story told through Hoenn: hand-written dialogue town by town, noble houses, plots and betrayals, and a dragon on the title screen. Only a little silly. Areas not written yet keep their normal text.'],
@@ -1495,6 +1495,7 @@ const COMEDY_SWITCHES = [
   ['battle', 'Battle commentary', 'Battle messages get rewritten: wild Pokémon owe you money, fainting is dramatic.', 'madlibs'],
   ['houseGyms', 'House Gyms', 'Every Gym becomes a noble house with its own wild idea: ghosts in Rustboro\'s library, a cave buffet in Dewford, dragons in Fortree, the Night King in Sootopolis. Gym Guides give the new advice, badges become house sigils. Works with Hard mode too.', 'thrones'],
   ['story', 'Story events', 'New scenes in the real story: a herald with a gift after every badge, a loan from the Iron Bank (the collector comes later), the Red Wedding in Slateport, your rival as your Hand (until they betray you), Wally\'s cape, a spy, and a walk of shame after you white out.', 'thrones'],
+  ['music', 'Thrones music', 'New medieval music, written for this game: war drums and brass in battles, a lute by the hearth in Littleroot, a march on the road, a great hall in every Gym, and the theme on the title screen. More places get music over time.', 'thrones'],
 ];
 const CAP_NAMES = ['Badge 1', 'Badge 2', 'Badge 3', 'Badge 4', 'Badge 5', 'Badge 6', 'Badge 7', 'Badge 8', 'Champion'];
 

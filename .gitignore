@@ -69,3 +69,4 @@ __pycache__
 !windows/*.bat
 !editor/static/*.js
 /my-builds/
+editor/fun/music/preview/
