@@ -3,6 +3,7 @@
 import os
 import subprocess
 import threading
+import time
 
 from common import ROOT
 
@@ -63,10 +64,20 @@ def capture(args):
 
 def build(job):
     job.write('Building your changes...')
+    start = time.monotonic()
     code = run(job, ['make', '-j%d' % (os.cpu_count() or 2)])
+    took = _duration(time.monotonic() - start)
     if code != 0:
         return False, 'The build failed. The lines just above the end of the log say what is wrong.'
-    return True, 'Build finished.'
+    job.write('Build took %s.' % took)
+    return True, 'Build finished in %s.' % took
+
+
+def _duration(seconds):
+    seconds = int(round(seconds))
+    if seconds < 60:
+        return '1 second' if seconds == 1 else '%d seconds' % seconds
+    return '%d min %d s' % (seconds // 60, seconds % 60)
 
 
 def windows_path(linux_path):

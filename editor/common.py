@@ -12,6 +12,14 @@ def read_text(path):
 
 
 def write_text(path, text):
+    # Leave a file alone when nothing in it changed. Rewriting it anyway gives it a
+    # new timestamp, and the build then recompiles everything that uses it.
+    try:
+        with open(path, encoding='utf-8', errors='surrogateescape', newline='') as f:
+            if f.read() == text:
+                return
+    except OSError:
+        pass
     tmp = path + '.editor-tmp'
     with open(tmp, 'w', encoding='utf-8', errors='surrogateescape', newline='') as f:
         f.write(text)
