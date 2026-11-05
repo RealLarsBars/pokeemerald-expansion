@@ -352,6 +352,23 @@ MAXIE          = FD 0B
 KYOGRE         = FD 0C
 GROUDON        = FD 0D
 REGION         = FD 0E
+@ in-game Mad Libs: the word the player picked for each blank (src/data/mad_libs.h)
+MADLIB_THING    = FD 0F
+MADLIB_PLACE    = FD 10
+MADLIB_ADJ      = FD 11
+MADLIB_SHOUT    = FD 12
+MADLIB_FOOD     = FD 13
+MADLIB_DRINK    = FD 14
+MADLIB_PERSON   = FD 15
+MADLIB_BODYPART = FD 16
+MADLIB_ACTIVITY = FD 17
+MADLIB_FEELING  = FD 18
+MADLIB_VEHICLE  = FD 19
+MADLIB_CLOTHING = FD 1A
+MADLIB_CREATURE = FD 1B
+MADLIB_NAME     = FD 1C
+MADLIB_SOUND    = FD 1D
+MADLIB_COLOR    = FD 1E
 
 @ battle string placeholders
 
