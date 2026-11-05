@@ -287,6 +287,9 @@ class Handler(BaseHTTPRequestHandler):
         if path == '/api/play':
             started = S.job.start('Play', lambda job: tasks.play(job, S.mgba))
             return self._send(200, {'started': started})
+        if path == '/api/export':
+            started = S.job.start('Save as .gba', tasks.export)
+            return self._send(200, {'started': started})
         if path == '/api/build':
             started = S.job.start('Build', tasks.build)
             return self._send(200, {'started': started})

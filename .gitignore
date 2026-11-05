@@ -68,3 +68,4 @@ __pycache__
 .map_version
 !windows/*.bat
 !editor/static/*.js
+/my-builds/

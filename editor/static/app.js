@@ -1726,6 +1726,7 @@ async function pollJob() {
     msg.className = j.state === 'done' ? 'ok' : 'bad';
     if (j.state === 'failed') $('#jobLog').classList.remove('hidden');
     $('#playBtn').disabled = false;
+    $('#exportBtn').disabled = false;
     $('#updateBtn').disabled = false;
     if (j.title === 'Update' && j.state === 'done' && /^Updated/.test(j.message)) waitForRestart();
   } catch (e) {
@@ -1739,6 +1740,7 @@ async function startJob(path, title) {
     const res = await api(path, {});
     if (!res.started) { toast('Already working on something, please wait.', true); return; }
     $('#playBtn').disabled = true;
+    $('#exportBtn').disabled = true;
     $('#updateBtn').disabled = true;
     showJob(title);
     pollJob();
@@ -1756,6 +1758,7 @@ function waitForRestart() {
 }
 
 $('#playBtn').addEventListener('click', () => startJob('/api/play', 'Play'));
+$('#exportBtn').addEventListener('click', () => startJob('/api/export', 'Save as .gba'));
 $('#updateBtn').addEventListener('click', async () => {
   const info = await api('/api/updates').catch(e => ({ ok: false, message: e.message }));
   if (!info.ok) { toast(info.message, true); return; }
