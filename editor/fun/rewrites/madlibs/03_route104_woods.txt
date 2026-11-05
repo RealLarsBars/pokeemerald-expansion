@@ -1,0 +1,324 @@
+# Mad Libs: Route 104, Petalburg Woods, Mr. Briney's cottage.
+
+@ PetalburgWoods_Text_NotAOneToBeFound
+Hmmm… Not a single one… Not even one of the {MADLIB_COLOR} ones…
+
+@ PetalburgWoods_Text_HaveYouSeenShroomish
+Hello, have you seen any POKéMON called SHROOMISH around here?
+
+I love that POKéMON more than {MADLIB_FOOD}. And I REALLY love {MADLIB_FOOD}.
+
+@ PetalburgWoods_Text_IWasGoingToAmbushYou
+I was going to ambush you, but you spent forever {MADLIB_ACTIVITY} in PETALBURG WOODS!
+
+I got sick of waiting, so here I am! {MADLIB_SHOUT}!
+
+@ PetalburgWoods_Text_HandOverThosePapers
+You! DEVON RESEARCHER!
+
+Hand over those papers! And your {MADLIB_CLOTHING}!
+
+@ PetalburgWoods_Text_YouHaveToHelpMe
+Aiyeeeh! {MADLIB_SHOUT}!
+
+You're a POKéMON TRAINER, aren't you? Please help me! He wants my {MADLIB_CLOTHING}!
+
+@ PetalburgWoods_Text_NoOneCrossesTeamAqua
+Hunh? What do you think you're doing? Protecting HIM?
+
+Nobody crosses TEAM AQUA! Not even a kid wearing that {MADLIB_CLOTHING}!
+
+Come on and battle me!
+
+@ PetalburgWoods_Text_YoureKiddingMe
+You're kidding me! You're {MADLIB_ADJ}!
+
+@ PetalburgWoods_Text_YouveGotSomeNerve
+Grrr… You've got some nerve, messing with TEAM AQUA! Battle me again!
+
+I wish I could say that, but I'm out of POKéMON… and {MADLIB_DRINK}…
+
+Besides, TEAM AQUA is after something in RUSTBORO too.
+
+I'll let you go today! I'm going to go cry at the {MADLIB_PLACE}.
+
+@ PetalburgWoods_Text_ThatWasAwfullyClose
+Whew… That was awfully close! My {MADLIB_BODYPART} is still shaking.
+
+Thanks to you, he didn't steal these important papers.
+
+I know, I'll give you a GREAT BALL! It smells like {MADLIB_FOOD}. Sorry.
+
+@ PetalburgWoods_Text_TeamAquaAfterSomethingInRustboro
+Didn't that TEAM AQUA thug say they're after something in RUSTBORO, too?
+
+@ PetalburgWoods_Text_ICantBeWastingTime
+Uh-oh! It's a crisis! I can't waste time {MADLIB_ACTIVITY}!
+
+@ PetalburgWoods_Text_YoureLoadedWithItems
+You're loaded with items. Probably {MADLIB_FOOD}. I can't give you this GREAT BALL.
+
+@ PetalburgWoods_Text_GoBugPokemonTeam
+I caught a whole bunch of POKéMON!
+
+Go, go, go! My {MADLIB_ADJ} BUG POKéMON team!
+
+@ PetalburgWoods_Text_ICouldntWin
+I have all these POKéMON, but I couldn't win… I'm so {MADLIB_FEELING}…
+
+@ PetalburgWoods_Text_ImOutOfPokeBalls
+I caught so many POKéMON, now I'm out of POKé BALLS. I'm using my {MADLIB_CLOTHING} now.
+
+@ PetalburgWoods_Text_InstantlyPopularWithBugPokemon
+Bring BUG POKéMON to school and you're instantly popular! More popular than {MADLIB_NAME}!
+
+@ PetalburgWoods_Text_CantBePopularIfILose
+I can't be popular if I lose. {MADLIB_SOUND}.
+
+@ PetalburgWoods_Text_PeopleRespectYou
+If you have a big BUG POKéMON, people respect you. Like they respect {MADLIB_NAME}.
+
+@ PetalburgWoods_Text_IWantRematch1
+I want a rematch when my BUG POKéMON grow up! I'll feed them {MADLIB_FOOD}!
+
+I'm registering you in my POKéNAV!
+
+@ PetalburgWoods_Text_IWantRematch2
+I want a rematch when my BUG POKéMON grow up! I'll feed them {MADLIB_FOOD}!
+
+I'm registering you in my POKéNAV!
+
+@ PetalburgWoods_Text_MyPokemonHaveGrown
+My BUG POKéMON have grown. They're so {MADLIB_ADJ} now. I'll be popular again!
+
+@ PetalburgWoods_Text_CantBePopularIfLose
+I can't be popular if I lose. {MADLIB_SHOUT}.
+
+@ PetalburgWoods_Text_IveBeenTrainingHard
+Strong POKéMON make you popular, right? So I've been training hard. And {MADLIB_ACTIVITY}.
+
+@ PetalburgWoods_Text_StayOutOfTallGrass
+Yo, there! Your POKéMON doing okay? They look {MADLIB_FEELING}.
+
+If your POKéMON are weak and you want to avoid battles, stay out of tall grass.
+
+@ PetalburgWoods_Text_HiddenItemsExplanation
+Sometimes there are things on the ground, even if you can't see them.
+
+That's why I always check where I'm walking. Once I found {MADLIB_NAME}'s {MADLIB_THING}.
+
+@ PetalburgWoods_Text_TryUsingThisItem
+Oh, {MADLIB_SHOUT}! That's the BADGE from RUSTBORO GYM!
+
+You must be a TRAINER. Try using this item.
+
+@ PetalburgWoods_Text_MiracleSeedExplanation
+It's a MIRACLE SEED. If a POKéMON holds it, its GRASS-type moves get stronger.
+
+There are other handy items for POKéMON to hold, too. Not {MADLIB_FOOD}, though. I tried.
+
+@ PetalburgWoods_Text_TrainerTipsExperience
+TRAINER TIPS
+
+Any POKéMON that appears even once in a battle gets EXP Points.
+
+To raise a weak POKéMON, put it first in your team list.
+
+When the battle starts, switch it out. It earns EXP Points without getting hurt. Very {MADLIB_ADJ}.
+
+@ PetalburgWoods_Text_TrainerTipsPP
+TRAINER TIPS
+
+Besides Hit Points (HP), POKéMON have Power Points (PP) that are used for moves in battle.
+
+If a POKéMON runs out of PP, take it to a POKéMON CENTER. Not the {MADLIB_PLACE}.
+
+@ Route104_Text_BrineyLivesInSeasideCottage
+That seaside cottage is where MR. BRINEY lives.
+
+He was once a mighty sailor who feared nothing. Except {MADLIB_FOOD}.
+
+@ Route104_Text_WhatsItLikeAtBottomOfSea
+The sea, huh? I dropped my {MADLIB_THING} in there.
+
+I wonder what it's like at the bottom of the sea?
+
+@ Route104_Text_ThrowBallAtWeakenedPokemon
+Before you throw a POKé BALL, weaken the wild POKéMON first.
+
+It's easier to catch if it's poisoned, burned, asleep, or {MADLIB_FEELING}.
+
+@ Route104_Text_OnlyThrowBallAtWildPokemon
+You're a thief if you try to steal someone else's POKéMON. Like {MADLIB_NAME}.
+
+Throw POKé BALLS only at wild POKéMON.
+
+@ Route104_Text_ImNotATrainer
+Oh, no, I'm not a TRAINER. I'm just the local {MADLIB_PERSON}.
+
+But it's true, if TRAINERS lock eyes, it's a challenge to battle.
+
+If you don't want to battle, stay out of their sight.
+
+@ Route104_Text_LikeFillingMouthWithSeedsTakeThis
+I like filling my mouth with seeds and spitting them out fast! It sounds like {MADLIB_SOUND}!
+
+You can have this, so you try it!
+
+Teach it to a POKéMON, and it'll learn a move that fires seeds rapidly.
+
+@ Route104_Text_TMsAreOneTimeUse
+A word of advice!
+
+A TM, TECHNICAL MACHINE, can only be used once.
+
+Once you use it, it's gone. Like my {MADLIB_FOOD}. Think twice!
+
+@ Route104_Text_DontNeedThisTakeIt
+This FLOWER SHOP just started selling saplings.
+
+I was so {MADLIB_FEELING}, I went overboard shopping.
+
+I don't need this WHITE HERB anymore. Would you take it, please?
+
+@ Route104_Text_FlowerShopSellingSaplings
+This FLOWER SHOP just started selling saplings.
+
+I went overboard shopping. Where should I put them? In my {MADLIB_VEHICLE}?
+
+@ Route104_Text_PrettyPetalFlowShop
+PRETTY PETAL FLOWER SHOP
+Now selling {MADLIB_COLOR} flowers!
+
+@ Route104_Text_TrainerTipsDoubleBattles
+TRAINER TIPS
+
+In HOENN, some TRAINERS team up for 2-on-2 battles called DOUBLE BATTLES. Like {MADLIB_NAME} and their {MADLIB_CREATURE}.
+
+In a DOUBLE BATTLE, you send out the first two POKéMON on your list. Watch your lineup.
+
+@ Route104_Text_MayWeShouldRegister
+MAY: Oh, hi, {PLAYER}{KUN}!
+
+DEVON gave your POKéNAV the MATCH CALL system? {MADLIB_SHOUT}!
+
+Let's register each other so we can talk anytime.
+
+@ Route104_Text_MayHowsYourPokedex
+MAY: Oh, by the way, {PLAYER}{KUN}, how's your POKéDEX coming along?
+
+@ Route104_Text_MayMinesDecentLetsBattle
+Mine's looking pretty {MADLIB_ADJ}. So… How about a little battle?
+
+@ Route104_Text_MayHaventRaisedPokemon
+MAY: Oh, what's the matter?
+
+Haven't you caught or raised many POKéMON? Have you just been {MADLIB_ACTIVITY}?
+
+That's not very good for a TRAINER!
+
+@ Route104_Text_MayLetsBattle
+MAY: So, what do you think? How about a little battle here?
+
+@ Route104_Text_MayIntro
+MAY: You just became a TRAINER, {PLAYER}{KUN}. I'm not going to lose! {MADLIB_SHOUT}!
+
+@ Route104_Text_MayDefeat
+{MADLIB_SHOUT}! You're better than I expected!
+
+@ Route104_Text_MayPostBattle
+MAY: You've gotten pretty good with your POKéMON.
+
+But don't just make them battle. Be like MR. BRINEY.
+
+Be friends with your POKéMON. Share your {MADLIB_FOOD} with them.
+
+@ Route104_Text_BrendanWeShouldRegister
+BRENDAN: Oh, hey, {PLAYER}!
+
+DEVON put the MATCH CALL system on your POKéNAV? That's {MADLIB_ADJ}!
+
+Let's register each other so we can keep in touch.
+
+@ Route104_Text_BrendanHowsYourPokedex
+BRENDAN: {PLAYER}, how's your POKéDEX? Filled in any pages yet?
+
+@ Route104_Text_BrendanDoingGreatLetsBattle
+Me, I'm doing great! I feel {MADLIB_FEELING}!
+
+Want to see how good I am with a battle?
+
+@ Route104_Text_BrendanNoConfidence
+BRENDAN: What's the matter? Too {MADLIB_FEELING} to trust your POKéMON?
+
+@ Route104_Text_BrendanLetsBattle
+BRENDAN: What's up? Want to have a battle with me?
+
+@ Route104_Text_BrendanIntro
+BRENDAN: I know you just became a TRAINER, but I won't go easy! {MADLIB_SHOUT}!
+
+@ Route104_Text_BrendanDefeat
+Hmm… You're pretty {MADLIB_ADJ}.
+
+@ Route104_Text_BrendanPostBattle
+BRENDAN: You've gotten pretty decent with POKéMON.
+
+But you shouldn't just make them battle.
+
+Like MR. BRINEY, be friends with them. Take them to the {MADLIB_PLACE} sometime.
+
+@ Route104_MrBrineysHouse_Text_WaitUpPeeko
+MR. BRINEY: Hold on, lass! Wait up, PEEKO! Come back with my {MADLIB_THING}!
+
+@ Route104_MrBrineysHouse_Text_ItsYouLetsSailToDewford
+Hm? You're {PLAYER}{KUN}! You saved my darling PEEKO! {MADLIB_SHOUT}!
+
+What's that? You want to sail with me?
+
+Hmhm…
+
+You have a LETTER for DEWFORD and a package for SLATEPORT?
+
+Quite the {MADLIB_ADJ} life you lead!
+
+But what you're asking is no problem at all.
+
+You've come to the right man! We'll set sail for DEWFORD.
+
+@ Route104_MrBrineysHouse_Text_SetSailForDewford
+MR. BRINEY: DEWFORD it is, then!
+
+Anchors aweigh! PEEKO, we're setting sail! {MADLIB_SOUND}!
+
+@ Route104_MrBrineysHouse_Text_DeclineDeliverySail
+MR. BRINEY: Is that so? Your deliveries can wait?
+
+Tell me whenever you want to sail! I'll be here, {MADLIB_ACTIVITY}.
+
+@ Route104_MrBrineysHouse_Text_NeedToMakeDeliveriesSailToDewford
+MR. BRINEY: Ahoy! I know exactly what you want to say!
+
+You're delivering a LETTER to DEWFORD and a package to SLATEPORT.
+
+No problem at all. I'm the {MADLIB_PERSON} for the job!
+
+First, we'll set sail for DEWFORD.
+
+@ Route104_MrBrineysHouse_Text_NeedToDeliverPackageSailToDewford
+MR. BRINEY: Ahoy! I know exactly what you want to say!
+
+You're delivering a package to CAPT. STERN in SLATEPORT.
+
+No problem at all. I'm the {MADLIB_PERSON} for the job!
+
+First, we'll set sail for DEWFORD.
+
+@ Route104_MrBrineysHouse_Text_WhereAreWeBound
+MR. BRINEY: Ahoy! For you, I'll sail anytime! I just finished my {MADLIB_DRINK}!
+
+Now, my friend, where are we bound?
+
+@ Route104_MrBrineysHouse_Text_TellMeWheneverYouWantToSail
+MR. BRINEY: Is that so? Well, PEEKO owes you her life.
+
+Tell me whenever you want to set sail! {MADLIB_SHOUT}!
