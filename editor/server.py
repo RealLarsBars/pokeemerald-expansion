@@ -23,7 +23,13 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import configs  # noqa: E402
 import funmodes  # noqa: E402
 import gamedata  # noqa: E402
+import gifts  # noqa: E402
 import maps  # noqa: E402
+import mapview  # noqa: E402
+import movesets  # noqa: E402
+import newtrainer  # noqa: E402
+import shops  # noqa: E402
+import wild  # noqa: E402
 import species  # noqa: E402
 import tasks  # noqa: E402
 import textdb  # noqa: E402
@@ -45,6 +51,7 @@ class State:
         self.maps = maps.MapIndex()
         self.job = tasks.Job()
         self._gamedata = None
+        self.map_list = None   # the Maps tab's list; cleared whenever something is saved
         self.restart_requested = False
 
     def gamedata(self):
@@ -99,6 +106,49 @@ def save_trainer(tid, body):
     return trainer_detail(tid)
 
 
+def make_competitive(body):
+    """Builds strong sets for a team that is being edited (nothing is saved):
+    best ability, four good moves, a fitting held item, nature, EVs and perfect IVs."""
+    import random
+    import fundata
+    import sets
+    party = [m for m in body.get('party', []) if (m.get('species') or '').strip()]
+    for m in party:
+        m['item'] = ''  # pick an item that suits the new set
+        m.setdefault('moves', [])
+        m.setdefault('extra', [])
+    p = fundata.pool()
+    sets.build_team(party, p, random.Random(), boss=True, doubles=bool(body.get('doubles')), items=True)
+    return {'party': party}
+
+
+def valid(kind):
+    """Set of known constants (species, items, moves) for checking input."""
+    return {x['const'] for x in STATE.gamedata()[kind]}
+
+
+def map_page(folder):
+    d = mapview.map_detail(folder, STATE.maps)
+    d['wild'] = wild.for_map(d['id'])
+    d['shops'] = shops.shops_for_map(folder)
+    d['prices'] = shops.prices(sorted({i for sh in d['shops'] for i in sh['items']}))
+    d['gifts'] = gifts.all_gifts(folder)
+    d['trainerRoom'] = newtrainer.room()
+    names = {}
+    STATE.party.refresh()
+    for o in d['objects']:
+        if o['trainer'] and o['trainer'] not in names:
+            t = STATE.party.get(o['trainer'])
+            if t:
+                names[o['trainer']] = '%s %s' % (trainers.field(t, 'Class'), trainers.field(t, 'Name'))
+        o['trainerName'] = names.get(o['trainer'], '')
+    return d
+
+
+ERRORS = (mapview.MapError, wild.WildError, shops.ShopError, gifts.GiftError, movesets.MovesetError,
+          newtrainer.NewTrainerError)
+
+
 def script_path(rel):
     full = project_path(rel)
     if full not in maps.script_files():
@@ -141,6 +191,8 @@ class Handler(BaseHTTPRequestHandler):
             self._get(url.path, q)
         except ApiError as e:
             self._send(e.status, {'error': str(e)})
+        except ERRORS as e:
+            self._send(400, {'error': str(e)})
         except Exception as e:  # keep the app alive, show the error
             traceback.print_exc()
             self._send(500, {'error': '%s: %s' % (type(e).__name__, e)})
@@ -150,10 +202,13 @@ class Handler(BaseHTTPRequestHandler):
         if not self._host_ok() or self.headers.get('X-Emerald') != '1':
             return self._send(403, {'error': 'forbidden'})
         url = urlparse(self.path)
+        STATE.map_list = None
         try:
             self._post(url.path, self._body())
         except ApiError as e:
             self._send(e.status, {'error': str(e)})
+        except ERRORS as e:
+            self._send(400, {'error': str(e)})
         except Exception as e:
             traceback.print_exc()
             self._send(500, {'error': '%s: %s' % (type(e).__name__, e)})
@@ -212,6 +267,38 @@ class Handler(BaseHTTPRequestHandler):
             return self._send(200, out)
         if path == '/api/trainer':
             return self._send(200, trainer_detail(q.get('id', '')))
+        if path == '/api/maps':
+            if S.map_list is not None:
+                return self._send(200, S.map_list)
+            out = mapview.map_list()
+            wild_maps = {e['map'] for e in wild._main_group(wild._load())['encounters']}
+            shop_maps, gift_maps = {}, {}
+            for sh in shops.all_shops():
+                shop_maps[sh['map']] = shop_maps.get(sh['map'], 0) + 1
+            for g in gifts.all_gifts():
+                gift_maps[g['map']] = gift_maps.get(g['map'], 0) + 1
+            for m in out:
+                m['wild'] = m['id'] in wild_maps
+                m['shops'] = shop_maps.get(m['map'], 0)
+                m['gifts'] = gift_maps.get(m['map'], 0)
+            S.map_list = out
+            return self._send(200, out)
+        if path == '/api/map':
+            return self._send(200, map_page(q.get('map', '')))
+        if path == '/api/mapimg':
+            return self._send(200, mapview.map_image(q.get('map', '')), 'image/png')
+        if path == '/api/starters':
+            return self._send(200, gifts.starters())
+        if path == '/api/gifts':
+            return self._send(200, gifts.all_gifts())
+        if path == '/api/shops':
+            return self._send(200, shops.all_shops())
+        if path == '/api/moves/tms':
+            return self._send(200, dict(movesets.tm_list(), tutors=movesets.tutor_moves()))
+        if path == '/api/moves/species':
+            sp = species.read(q.get('id', ''))
+            return self._send(200, {'teach': movesets.teachables(sp.get('teachSymbol'), sp.get('teachingType')),
+                                    'egg': movesets.egg_moves(sp.get('eggSymbol'))})
         if path == '/api/text/search':
             return self._send(200, S.text.search(q.get('q', ''), q.get('case') == '1'))
         if path == '/api/text/get':
@@ -265,6 +352,47 @@ class Handler(BaseHTTPRequestHandler):
         S = STATE
         if path == '/api/trainer':
             return self._send(200, save_trainer(body['id'], body))
+        if path == '/api/map/items':
+            with S.lock:
+                mapview.save_items(body['map'], body.get('items', []), valid('items'), body.get('moves') or {})
+            return self._send(200, map_page(body['map']))
+        if path == '/api/wild':
+            with S.lock:
+                wild.save(body['id'], body.get('entries', []), valid('species'), body.get('map'))
+            return self._send(200, map_page(body['map']) if body.get('map') else {'ok': True})
+        if path == '/api/shop':
+            with S.lock:
+                items = shops.save_shop(body['file'], body['label'], body.get('items', []), valid('items'))
+                if body.get('prices'):
+                    shops.set_prices({k: v for k, v in body['prices'].items() if v is not None and str(v) != ''})
+            return self._send(200, {'items': items, 'prices': shops.prices(items)})
+        if path == '/api/gift':
+            with S.lock:
+                gifts.save_gift(body['file'], int(body['line']), body.get('expect', ''), body['species'],
+                                body.get('level'), body.get('item'), valid('species'), valid('items'))
+            return self._send(200, {'ok': True})
+        if path == '/api/starters':
+            with S.lock:
+                return self._send(200, gifts.save_starters(body['species'], body.get('level', 5), valid('species')))
+        if path == '/api/trainer/new':
+            with S.lock:
+                const = newtrainer.create(body)
+            S._gamedata = None
+            return self._send(200, {'id': const})
+        if path == '/api/moves/tms':
+            with S.lock:
+                return self._send(200, movesets.save_tm_list(body['tms'], body['hms'], valid('moves')))
+        if path == '/api/moves/species':
+            sp = species.read(body['id'])
+            with S.lock:
+                if 'add' in body or 'remove' in body:
+                    movesets.save_teachables(sp.get('teachSymbol'), body.get('add', []), body.get('remove', []), valid('moves'))
+                if 'egg' in body:
+                    movesets.save_egg_moves(sp.get('eggSymbol'), body['egg'], valid('moves'))
+            return self._send(200, {'teach': movesets.teachables(sp.get('teachSymbol'), sp.get('teachingType')),
+                                    'egg': movesets.egg_moves(sp.get('eggSymbol'))})
+        if path == '/api/trainer/competitive':
+            return self._send(200, make_competitive(body))
         if path == '/api/showdown':
             party, warnings = trainers.parse_showdown(body.get('text', ''))
             return self._send(200, {'party': party, 'warnings': warnings})
@@ -305,6 +433,8 @@ class Handler(BaseHTTPRequestHandler):
         if path == '/api/build':
             started = S.job.start('Build', tasks.build)
             return self._send(200, {'started': started})
+        if path == '/api/job/stop':
+            return self._send(200, {'stopped': S.job.stop()})
         if path == '/api/update':
             def do_update(job):
                 ok, msg = tasks.apply_update(job)
