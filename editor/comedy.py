@@ -28,6 +28,7 @@ import textdb
 from common import ROOT
 from maps import BATTLE_RE
 import title_screen
+import house_gyms
 
 SAFE_CODES = {'{PLAYER}', '{RIVAL}', '{KUN}', '{STR_VAR_1}', '{STR_VAR_2}', '{STR_VAR_3}', '{POKEBLOCK}'}
 CODE_WIDTH = {'{PLAYER}': 42, '{RIVAL}': 42, '{KUN}': 0, '{STR_VAR_1}': 48, '{STR_VAR_2}': 48, '{STR_VAR_3}': 48,
@@ -409,6 +410,8 @@ def apply(ov, opt, rng, report):
     gossip = pick_gossipers(ov, ctx, rng, adult) if key == 'thrones' else {}
     rewrites = load_rewrites(key)
     head += title_screen.apply(ov, key)
+    if key == 'thrones' and opt.get('houseGyms', True):
+        head += ['Gyms: ' + line for line in house_gyms.apply(ov, rng)]
 
     # Pass 1: every text the theme can touch.
     files, items = [], []

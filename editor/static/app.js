@@ -1482,7 +1482,7 @@ const FUN_DEFAULTS = {
           legendaryLevel: 0, legendaryPercent: 15, regularItems: true },
   caps: { on: false, type: 'hard', mode: 'auto', caps: [15, 19, 24, 29, 31, 33, 42, 46, 58], candyCap: true },
   candy: { on: false },
-  comedy: { on: false, theme: 'thrones', hero: true, adult: false, fakeNews: true, battle: true },
+  comedy: { on: false, theme: 'thrones', hero: true, adult: false, fakeNews: true, battle: true, houseGyms: true },
 };
 const COMEDY_THEMES = [
   ['thrones', 'Game of Thrones', 'Hoenn is a realm at war over the Poké Ball Throne. Everyone talks like it, every Gym Leader and boss speaks for their noble house, signs carry royal decrees, and one person in each town keeps you up on realm gossip that changes after every badge.'],
@@ -1493,6 +1493,7 @@ const COMEDY_SWITCHES = [
   ['adult', 'Adult humor', 'A small amount of swearing and crude jokes. Only grown-ups say the crude stuff; your character just swears.'],
   ['fakeNews', 'Fake news signs', 'Signs get headlines (royal decrees in Game of Thrones).'],
   ['battle', 'Battle commentary', 'Battle messages get rewritten: wild Pokémon owe you money, fainting is dramatic.'],
+  ['houseGyms', 'House Gyms (Game of Thrones)', 'Every Gym\'s trainers and leader use Pokémon that fit their house: fossils for the scholars of Rustboro, a mouse family for Petalburg. Works with Hard mode too.'],
 ];
 const CAP_NAMES = ['Badge 1', 'Badge 2', 'Badge 3', 'Badge 4', 'Badge 5', 'Badge 6', 'Badge 7', 'Badge 8', 'Champion'];
 
