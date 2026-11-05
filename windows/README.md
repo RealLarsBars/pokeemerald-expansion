@@ -19,6 +19,11 @@ anywhere, for example your Desktop.
      the game). Click **Yes**.
    - If it asks you to restart, restart. Setup carries on by itself after you
      log back in.
+   - It asks where the game folder should go. **Yes** puts it inside Ubuntu
+     (recommended: builds are fastest there). **No** lets you pick a folder on
+     your PC, for example on another drive; setup makes an `Emerald` folder
+     inside it. Avoid folders synced by OneDrive. This is only asked on the
+     first install; later runs keep the folder you chose.
    - The first build takes roughly 5 to 15 minutes.
 3. If it cannot find mGBA, a window opens so you can pick `mGBA.exe`.
 
@@ -38,10 +43,11 @@ You now have three desktop shortcuts:
 
 ## Good to know
 
-- The game folder lives inside Ubuntu (WSL), which makes builds much faster than
-  a normal Windows folder. Its address looks like
+- By default the game folder lives inside Ubuntu (WSL), which makes builds much
+  faster than a normal Windows folder. Its address looks like
   `\\wsl.localhost\Ubuntu\root\Emerald`. It shows up as **Linux** in the left
-  side of File Explorer.
+  side of File Explorer. The **Emerald Project** shortcut always opens the
+  folder, wherever you put it.
 - Nothing changes in the game until you press **Play**. The game cannot pick up
   changes while it is running, so close mGBA, make your edits, then press Play
   again.
