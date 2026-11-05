@@ -1,0 +1,772 @@
+# Mad Libs: Routes 101 to 103, Oldale Town, Petalburg City and the Petalburg Gym.
+
+@ Route101_Text_HelpMe
+H-help me! {MADLIB_SHOUT}!
+
+@ Route101_Text_PleaseHelp
+Hello! You over there! Please! Help!
+
+In my BAG! There's a POKé BALL! Under the {MADLIB_FOOD}!
+
+@ Route101_Text_DontLeaveMe
+Wh-Where are you going?! Don't leave me here with my {MADLIB_BODYPART} out like this!
+
+@ Route101_Text_YouSavedMe
+PROF. BIRCH: Whew…
+
+I was in the tall grass {MADLIB_ACTIVITY} when a wild POKéMON jumped me.
+
+You saved me. I feel so {MADLIB_FEELING}! Thanks a lot!
+
+Oh?
+
+Hi, you're {PLAYER}{KUN}!
+
+I'll make {MADLIB_DRINK}. This is no place to chat, so come by my POKéMON LAB later, okay?
+
+@ Route101_Text_TakeTiredPokemonToPokeCenter
+If POKéMON get tired, take them to a POKéMON CENTER. It's like the {MADLIB_PLACE}, but for healing.
+
+There's one in OLDALE TOWN, right close by.
+
+@ Route101_Text_WildPokemonInTallGrass
+Wild POKéMON jump out at you in tall grass. One jumped out at me and stole my {MADLIB_CLOTHING}.
+
+If you want to catch POKéMON, go into the tall grass and search.
+
+@ OldaleTown_Text_SavingMyProgress
+I want to take a rest, so I'm saving my progress. And my {MADLIB_FOOD}.
+
+@ OldaleTown_Text_IWorkAtPokemonMart
+{MADLIB_SHOUT}! I work at a POKéMON MART.
+
+Can I get you to come with me?
+
+@ OldaleTown_Text_ThisIsAPokemonMart
+This is a POKéMON MART. Just look for our blue roof. And the smell of {MADLIB_FOOD}.
+
+We sell all kinds of things, like POKé BALLS for catching POKéMON. We're out of {MADLIB_THING}, though.
+
+Here, have this. It's free. Very {MADLIB_ADJ} of me.
+
+@ OldaleTown_Text_PotionExplanation
+A POTION can be used anytime. It's more useful than a POKéMON CENTER sometimes. Tastes like {MADLIB_DRINK}.
+
+@ OldaleTown_Text_WaitDontComeInHere
+Aaaaah! Wait! Please don't come in here.
+
+I just found the footprints of a rare POKéMON! They're shaped like {MADLIB_NAME}!
+
+Wait until I finish sketching them, okay?
+
+@ OldaleTown_Text_DiscoveredFootprints
+I just found the footprints of a rare POKéMON! They smell like {MADLIB_FOOD}!
+
+Wait until I finish sketching them, okay?
+
+@ OldaleTown_Text_FinishedSketchingFootprints
+I finished sketching the footprints of a rare POKéMON.
+
+Turns out they were my own footprints. I'm so {MADLIB_FEELING}.
+
+@ OldaleTown_Text_MayLetsGoBack
+MAY: {PLAYER}{KUN}! Over here! Let's hurry home! {MADLIB_SHOUT}!
+
+@ OldaleTown_Text_BrendanLetsGoBack
+BRENDAN: I'm heading back to my dad's LAB. {PLAYER}, you should hustle back too. Fast, like {MADLIB_NAME}.
+
+@ OldaleTown_Text_TownSign
+OLDALE TOWN
+Where things start off scarce. Except {MADLIB_FOOD}.
+
+@ OldaleTown_House1_Text_LeftPokemonGoesOutFirst
+When a POKéMON battle starts, the one at the top of the list goes out first.
+
+When you have more POKéMON, try switching up the order.
+
+It could give you an advantage. It worked for {MADLIB_NAME}.
+
+@ OldaleTown_House2_Text_PokemonLevelUp
+When POKéMON battle, they level up and get stronger. And more {MADLIB_ADJ}.
+
+@ OldaleTown_House2_Text_YoullGoFurtherWithStrongPokemon
+If your POKéMON get stronger, you can go farther. Maybe even to the {MADLIB_PLACE}.
+
+@ OldaleTown_Mart_Text_PokeBallsAreSoldOut
+The clerk says the POKé BALLS are sold out. All they have left is {MADLIB_THING}.
+
+@ OldaleTown_Mart_Text_ImGoingToBuyPokeBalls
+I'm going to buy a bunch of POKé BALLS and catch a bunch of POKéMON! Then go {MADLIB_ACTIVITY}!
+
+@ OldaleTown_Mart_Text_RestoreHPWithPotion
+If a POKéMON loses all its HP and faints, it can't battle.
+
+To stop your POKéMON from fainting, restore its HP with a POTION. Not {MADLIB_DRINK}. I tried.
+
+@ OldaleTown_PokemonCenter_1F_Text_TrainersCanUsePC
+That PC in the corner is for any POKéMON TRAINER to use.
+
+So you can use it too. Just don't open the folder called {MADLIB_NAME}.
+
+@ OldaleTown_PokemonCenter_1F_Text_PokemonCentersAreGreat
+POKéMON CENTERS are {MADLIB_ADJ}!
+
+You can use them as much as you want, and it's all free. Free like {MADLIB_DRINK} refills!
+
+@ OldaleTown_PokemonCenter_1F_Text_WirelessClubNotAvailable
+The POKéMON WIRELESS CLUB upstairs was just built.
+
+But they're still fixing it. Something about somebody's {MADLIB_CREATURE} in the wires.
+
+@ OldaleTown_PokemonCenter_1F_Text_TradedInWirelessClub
+The POKéMON WIRELESS CLUB upstairs was just built.
+
+I traded POKéMON right away. Got one named {MADLIB_NAME}.
+
+@ Route102_Text_WatchMeCatchPokemon
+WALLY: {PLAYER}… POKéMON hide in tall grass like this, don't they?
+
+Please watch and see if I can catch one properly. I'm so {MADLIB_FEELING}.
+
+…Whoa!
+
+@ Route102_Text_WallyIDidIt
+WALLY: I did it… {MADLIB_SHOUT}! It's my… My POKéMON!
+
+@ Route102_Text_ImNotVeryTall
+I'm…not very tall, so I sink right into tall grass.
+
+The grass goes up my {MADLIB_BODYPART} and… Fwafwafwafwafwa…
+
+Fwatchoo!
+
+@ Route102_Text_CatchWholeBunchOfPokemon
+I'm going to catch a whole bunch of POKéMON! And name them all {MADLIB_NAME}!
+
+@ Route103_Text_MayRoute103Pokemon
+MAY: Let's see… The POKéMON found on ROUTE 103 include… a weird {MADLIB_COLOR} one…
+
+@ Route103_Text_MayLetsBattle
+Oh, hi, {PLAYER}{KUN}!
+
+…Oh, I see, my dad gave you a POKéMON as a gift. So {MADLIB_ADJ}!
+
+Since we're here, let's have a quick battle!
+
+I'll give you a taste of what being a TRAINER is like.
+
+@ Route103_Text_MayDefeated
+{MADLIB_SHOUT}! That's great! {PLAYER}{KUN}, you're pretty good!
+
+@ Route103_Text_MayTimeToHeadBack
+MAY: I think I know why my dad has an eye on you now.
+
+You just got that POKéMON, but it already likes you more than {MADLIB_FOOD}.
+
+You might be able to befriend any kind of POKéMON easily.
+
+Well, time to head back to the LAB.
+
+@ Route103_Text_BrendanRoute103Pokemon
+BRENDAN: Okay, so it's this one and that one that live on ROUTE 103… and one weird {MADLIB_COLOR} one…
+
+@ Route103_Text_BrendanLetsBattle
+Hey, it's {PLAYER}!
+
+…Oh, yeah, Dad gave you a POKéMON. {MADLIB_SHOUT}.
+
+Since we're here, how about a little battle?
+
+I'll teach you what being a TRAINER's about!
+
+@ Route103_Text_BrendanDefeated
+Huh, {PLAYER}, that was {MADLIB_ADJ}.
+
+@ Route103_Text_BrendanTimeToHeadBack
+BRENDAN: I think I get it. I know why my dad has his eye on you.
+
+Your POKéMON already likes you, even though you just got it.
+
+{PLAYER}, I think you could befriend any POKéMON. Even a weird {MADLIB_COLOR} one.
+
+We should head back to the LAB.
+
+@ Route103_Text_ShouldHaveBroughtPotion
+My POKéMON is so tired it looks {MADLIB_FEELING}… I should have brought a POTION…
+
+@ Route103_Text_ShortcutToOldale
+If you cross the sea from here, it's a shortcut to OLDALE TOWN. Like riding your {MADLIB_VEHICLE}, but wet.
+
+Fufufu, useful, isn't it?
+
+@ PetalburgCity_Text_WhereIsWally
+Where has our WALLY gone?
+
+We have to leave for VERDANTURF TOWN soon. I packed his {MADLIB_CLOTHING} and everything…
+
+@ PetalburgCity_Text_AreYouRookieTrainer
+Hiya! Are you maybe… A rookie TRAINER?
+
+Do you know what TRAINERS do when they reach a new town?
+
+They check out the GYM first. Then the {MADLIB_PLACE}.
+
+@ PetalburgCity_Text_ThisIsPetalburgGym
+See? This is PETALBURG CITY's GYM. It smells like {MADLIB_DRINK} in there.
+
+@ PetalburgCity_Text_ThisIsGymSign
+This is the GYM's sign. Look for it whenever you want a GYM. Not the {MADLIB_PLACE}. The GYM.
+
+@ PetalburgCity_Text_WaterReflection
+My face is reflected in the water.
+
+It's a grin full of hope… or maybe I look {MADLIB_FEELING}…
+
+Or maybe that's just my {MADLIB_CREATURE}…
+
+What do you see reflected in your face?
+
+@ PetalburgCity_Text_FullPartyExplanation
+Say you have six POKéMON. If you catch another one…
+
+It gets sent to a STORAGE BOX through a PC. Like parking your {MADLIB_VEHICLE}, but digital.
+
+@ PetalburgCity_Text_GymSign
+PETALBURG CITY POKéMON GYM
+LEADER: NORMAN
+A really {MADLIB_ADJ} man in pursuit of power!
+
+@ PetalburgCity_Text_CitySign
+PETALBURG CITY
+Where people mingle with nature. And {MADLIB_NAME}.
+
+@ PetalburgCity_Text_AreYouATrainer
+Excuse me!
+
+From the {MADLIB_CLOTHING} you're wearing, are you a POKéMON TRAINER?
+
+@ PetalburgCity_Text_WellMaybeNot
+… … … … … …
+
+Well, maybe not. Your clothes aren't dirty enough.
+
+You're either a rookie TRAINER, or just some kid who smells like {MADLIB_FOOD}.
+
+@ PetalburgCity_Text_ImLookingForTalentedTrainers
+I'm traveling around looking for {MADLIB_ADJ} TRAINERS.
+
+Sorry to take your time.
+
+@ PetalburgCity_Gym_Text_DadYoureHereWithYourPokemon
+DAD: Hm?
+
+Well, if it isn't {PLAYER}! All moved in?
+
+I'm surprised you got here by yourself. Did you take the {MADLIB_VEHICLE}?
+
+Oh, I see. You're with your POKéMON.
+
+Hm… Then you're going to become a TRAINER like me, {PLAYER}.
+
+{MADLIB_SHOUT}! I'll be looking forward to it!
+
+@ PetalburgCity_Gym_Text_WallyIdLikeAPokemon
+Um… I… I'd like to get a POKéMON, please… Or my own {MADLIB_CREATURE}…
+
+@ PetalburgCity_Gym_Text_DadOhYoureWallyRight
+DAD: Hm? You're… Uh… The kid with the {MADLIB_CLOTHING}. You're WALLY, right?
+
+@ PetalburgCity_Gym_Text_WallyIveNeverCaughtAPokemon
+WALLY: I'm going to stay with my relatives in VERDANTURF TOWN.
+
+I'd be lonely by myself, so I want a POKéMON to take with me. And some {MADLIB_FOOD}.
+
+But I've never caught a POKéMON before. I don't know how…
+
+@ PetalburgCity_Gym_Text_DadHmISee
+DAD: Hm. I see. {MADLIB_SHOUT}.
+
+@ PetalburgCity_Gym_Text_DadPlayerGoWithWally
+DAD: {PLAYER}, you heard that, right?
+
+Go with WALLY and make sure he catches a POKéMON safely. No {MADLIB_ACTIVITY}.
+
+@ PetalburgCity_Gym_Text_WallyOhWowThankYou
+WALLY: Oh, {MADLIB_SHOUT}! Thank you!
+
+@ PetalburgCity_Gym_Text_WouldYouReallyComeWithMe
+{PLAYER}… I'm so {MADLIB_FEELING}… Would you really come with me?
+
+@ PetalburgCity_Gym_Text_DadSoDidItWorkOut
+DAD: So, did it work out?
+
+@ PetalburgCity_Gym_Text_WallyThankYouBye
+WALLY: Thank you, yes, it did. Here's your POKéMON back.
+
+{PLAYER}, thank you for coming with me.
+
+You two are why I caught my POKéMON. I'm naming it {MADLIB_NAME}.
+
+I promise I'll take really good care of it. I'll feed it {MADLIB_FOOD} every day.
+
+Oh! My mom's waiting for me, so I have to go!
+
+Bye, {PLAYER}!
+
+@ PetalburgCity_Gym_Text_DadGoCollectBadges
+DAD: Now…
+
+{PLAYER}, if you want to be a strong TRAINER, here's my advice.
+
+Head for RUSTBORO CITY, past this town.
+
+There, challenge the GYM LEADER, ROXANNE. She's very {MADLIB_ADJ}.
+
+After her, go to other POKéMON GYMS and beat their LEADERS.
+
+Collect their BADGES, understood?
+
+I'm a GYM LEADER too. We'll battle one day, {PLAYER}.
+
+But only after you get stronger. And stop {MADLIB_ACTIVITY}.
+
+@ PetalburgCity_Gym_Text_NormanGoToRustboro
+DAD: Hm? Aren't you going to the GYM in RUSTBORO CITY?
+
+There's no challenge in battling a rookie. Even one with such a really {MADLIB_ADJ} {MADLIB_CLOTHING}.
+
+{PLAYER}, challenge me when you're much stronger.
+
+Show me four GYM BADGES, and I'll battle you, okay?
+
+@ PetalburgCity_Gym_Text_NormanGoToDewford
+DAD: I see… So, you beat the GYM LEADER in RUSTBORO CITY. {MADLIB_SHOUT}.
+
+But there are many TRAINERS stronger than you, {PLAYER}.
+
+Across the sea in DEWFORD TOWN is a GYM LEADER named BRAWLY. He's into {MADLIB_ACTIVITY}.
+
+You should go challenge him.
+
+@ PetalburgCity_Gym_Text_YouHaveGottenStronger
+DAD: Hm… {PLAYER}, you've gotten stronger.
+
+I can tell by your BADGES. And your {MADLIB_BODYPART}. It's bigger.
+
+@ PetalburgCity_Gym_Text_NormanIntro
+DAD: Hm… So, you did get four GYM BADGES.
+
+Fine. As I promised, we will battle.
+
+{PLAYER}…
+
+I'm so {MADLIB_FEELING} that I get to battle my own child.
+
+But a battle is a battle!
+
+I'll do everything in my power as a GYM LEADER to win.
+
+{PLAYER}, give it your best shot too! {MADLIB_SHOUT}!
+
+@ PetalburgCity_Gym_Text_NormanDefeat
+…
+
+I… I can't…
+
+I can't believe it. {PLAYER}…
+
+I lost to {PLAYER}? {MADLIB_SOUND}…
+
+But rules are rules! Here, take this.
+
+@ PetalburgCity_Gym_Text_ExplainBalanceBadgeTakeThis
+DAD: With that BADGE, the DEFENSE of all your POKéMON goes up.
+
+And POKéMON that know the HM move SURF can travel over water. Like a weird {MADLIB_COLOR} {MADLIB_VEHICLE}.
+
+This is my gift to you. {PLAYER}, use it well.
+
+@ PetalburgCity_Gym_Text_ExplainFacade
+DAD: TM42 contains FACADE.
+
+It doubles a move's power if the POKéMON is poisoned, paralyzed or burned.
+
+It can turn a bad situation into a really {MADLIB_ADJ} one.
+
+@ PetalburgCity_Gym_Text_DadHappyAndSad
+DAD: As a GYM LEADER, I'm very {MADLIB_FEELING}…
+
+But as a father, I'm happy and a little sad. It's odd…
+
+@ PetalburgCity_Gym_Text_PleaseComeWithMe
+Ah, there you are, {PLAYER}{KUN}!
+
+Please come with me. I have something {MADLIB_ADJ} for you.
+
+@ PetalburgCity_Gym_Text_LetMeBorrowPlayer
+NORMAN, you don't mind, do you?
+
+Let me borrow {PLAYER}{KUN} for a minute or two. I'll bring them back with {MADLIB_FOOD}.
+
+@ PetalburgCity_Gym_Text_DadGoingToKeepTraining
+DAD: {PLAYER}, visit your mother every so often.
+
+I'll stay here and train twice as hard. Mostly {MADLIB_ACTIVITY}.
+
+It would bother me as a TRAINER not to get revenge on you, {PLAYER}!
+
+@ PetalburgCity_Gym_Text_DadNoAmountOfTrainingIsEnough
+DAD: {PLAYER}, how are things going?
+
+The world of POKéMON is deep. Deeper than the {MADLIB_PLACE}.
+
+No amount of training is ever enough.
+
+@ PetalburgCity_Gym_Text_GymGuideAdvice
+Hey, how's it going, future CHAMPION {PLAYER}?
+
+The doors in this GYM open when you beat the TRAINERS waiting inside.
+
+Whoops! The doors here are already open, so don't attack me! I'm just {MADLIB_ACTIVITY}!
+
+The TRAINERS of PETALBURG GYM use all kinds of items.
+
+The door on the left leads to the SPEED ROOM.
+
+The door on the right leads to the ACCURACY ROOM.
+
+Each room's name is on its door, so choose carefully.
+
+Once you've chosen… Well, {MADLIB_SHOUT}! Go for it!
+
+@ PetalburgCity_Gym_Text_RandallIntro
+Attacking before the other guy…
+
+That alone is a huge advantage. Like showing up to a footrace in your {MADLIB_VEHICLE}! Don't you agree?
+
+@ PetalburgCity_Gym_Text_RandallDefeat
+That was a really {MADLIB_ADJ} battle!
+
+@ PetalburgCity_Gym_Text_RandallPostBattle
+Go on to the next room. A new challenge awaits.
+
+On the left is the CONFUSION ROOM.
+
+On the right is the DEFENSE ROOM. Bring {MADLIB_DRINK}.
+
+@ PetalburgCity_Gym_Text_RandallPostBadge
+Win or lose, you never stop training. Not even for {MADLIB_FOOD}.
+
+That's what being a GYM LEADER is all about.
+
+@ PetalburgCity_Gym_Text_ParkerIntro
+This is the CONFUSION ROOM. It smells like {MADLIB_DRINK}.
+
+Let me see how well bonded you are with your POKéMON!
+
+@ PetalburgCity_Gym_Text_ParkerDefeat
+I couldn't confuse your team enough… You have a really {MADLIB_ADJ} bond.
+
+@ PetalburgCity_Gym_Text_ParkerPostBattle
+The next room is the STRENGTH ROOM. Can you handle brute force?
+
+@ PetalburgCity_Gym_Text_ParkerPostBadge
+After you beat our LEADER, training got a lot tougher. Now we do {MADLIB_ACTIVITY} at 5 AM.
+
+@ PetalburgCity_Gym_Text_GeorgeIntro
+Just when you think you've won, your opponent heals…
+
+Can you imagine how {MADLIB_FEELING} that makes you?
+
+I'll show you exactly how it feels!
+
+@ PetalburgCity_Gym_Text_GeorgeDefeat
+I couldn't heal enough… That ATTACK power… {MADLIB_SHOUT}…
+
+@ PetalburgCity_Gym_Text_GeorgePostBattle
+I should've expected no less from our LEADER's kid.
+
+No, wait! A TRAINER's skill comes only from effort.
+
+I lost because I spent too much time {MADLIB_ACTIVITY}.
+
+Go on! The ONE-HIT KO ROOM is next.
+
+@ PetalburgCity_Gym_Text_GeorgePostBadge
+I'm going to keep training. One day I'll be a LEADER. Of the {MADLIB_PLACE}, maybe.
+
+@ PetalburgCity_Gym_Text_BerkeIntro
+I won't go easy just because you're our LEADER's kid.
+
+I'll show you how a critical hit feels! Like stubbing your {MADLIB_BODYPART}!
+
+@ PetalburgCity_Gym_Text_BerkeDefeat
+Your power… You're {MADLIB_ADJ}.
+
+@ PetalburgCity_Gym_Text_BerkePostBattle
+Your father is really strong. A TRAINER worth respecting.
+
+And I sense the same {MADLIB_COLOR} glow coming from you.
+
+I hope you have a really {MADLIB_ADJ} battle with your father!
+
+@ PetalburgCity_Gym_Text_BerkePostBadge
+Since your dad became LEADER, the TRAINERS of PETALBURG CITY got a lot tougher. And {MADLIB_ADJ}.
+
+@ PetalburgCity_Gym_Text_MaryIntro
+Giggle… This is the ACCURACY ROOM.
+
+Every attack lands here. Like {MADLIB_NAME} at a buffet.
+
+@ PetalburgCity_Gym_Text_MaryDefeat
+You were a cut above me… {MADLIB_SOUND}…
+
+@ PetalburgCity_Gym_Text_MaryPostBattle
+Even stronger TRAINERS are waiting.
+
+The left is the DEFENSE ROOM, the right is the RECOVERY ROOM.
+
+Your POKéMON's ATTACK power will be tested either way.
+
+@ PetalburgCity_Gym_Text_MaryPostBadge
+Do you know what we TRAINERS are trying to achieve?
+
+To be soul mates with our POKéMON. Like me and my {MADLIB_CREATURE}.
+
+@ PetalburgCity_Gym_Text_AlexiaIntro
+The higher my DEFENSE, the more recklessly I can attack. Like {MADLIB_NAME} driving the {MADLIB_VEHICLE}.
+
+@ PetalburgCity_Gym_Text_AlexiaDefeat
+Our defenses weren't enough… I feel {MADLIB_FEELING}…
+
+@ PetalburgCity_Gym_Text_AlexiaPostBattle
+You taught me a really {MADLIB_ADJ} lesson.
+
+Now, go on! The left door goes to the STRENGTH ROOM.
+
+The right door opens to the ONE-HIT KO ROOM.
+
+Both have TRAINERS who love offense.
+
+@ PetalburgCity_Gym_Text_AlexiaPostBadge
+{MADLIB_SHOUT}! Have you tried using SURF?
+
+@ PetalburgCity_Gym_Text_JodyIntro
+Our GYM LEADER told us to go all out and beat you.
+
+Even if you are the LEADER's kid! I've been {MADLIB_ACTIVITY} all morning for this!
+
+@ PetalburgCity_Gym_Text_JodyDefeat
+But… I went all out! {MADLIB_SHOUT}!
+
+@ PetalburgCity_Gym_Text_JodyPostBattle
+The way you use your POKéMON… It's just like your father's style. {MADLIB_ADJ}.
+
+Go on through! Your father is waiting!
+
+@ PetalburgCity_Gym_Text_JodyPostBadge
+Sure, it's fine to make your POKéMON stronger.
+
+But what really decides the winner?
+
+The feelings TRAINERS have for their POKéMON. And {MADLIB_FOOD}.
+
+@ PetalburgCity_Gym_Text_DoorAppearsLocked
+This door is locked. There's a weird {MADLIB_COLOR} sticky note on it…
+
+@ PetalburgCity_Gym_Text_EnterSpeedRoom
+SPEED ROOM, the sign says. Somebody wrote {MADLIB_SHOUT} under it.
+
+Do you want to go through?
+
+@ PetalburgCity_Gym_Text_DoorAppearsLocked2
+This door is locked. It smells like {MADLIB_FOOD} behind it…
+
+@ PetalburgCity_Gym_Text_EnterAccuracyRoom
+ACCURACY ROOM, the sign says. It's a little {MADLIB_ADJ}.
+
+Do you want to go through?
+
+@ PetalburgCity_Gym_Text_EnterConfusionRoom
+CONFUSION ROOM, the sign says. Or maybe it's the {MADLIB_PLACE}. Hard to tell.
+
+Do you want to go through?
+
+@ PetalburgCity_Gym_Text_EnterDefenseRoom
+DEFENSE ROOM, the sign says. It's painted {MADLIB_COLOR}.
+
+Do you want to go through?
+
+@ PetalburgCity_Gym_Text_EnterRecoveryRoom
+RECOVERY ROOM, the sign says. Free {MADLIB_DRINK} inside!
+
+Do you want to go through?
+
+@ PetalburgCity_Gym_Text_EnterStrengthRoom
+STRENGTH ROOM, the sign says. You can hear {MADLIB_SOUND} inside.
+
+Do you want to go through?
+
+@ PetalburgCity_Gym_Text_EnterOHKORoom
+ONE-HIT KO ROOM, the sign says. {MADLIB_NAME} was here.
+
+Do you want to go through?
+
+@ PetalburgCity_Gym_Text_EnterGymLeadersRoom
+GYM LEADER'S ROOM
+
+See for yourself what POKéMON await you! Also, NORMAN is wearing the {MADLIB_CLOTHING} today.
+
+Do you want to go through?
+
+@ PetalburgCity_Gym_Text_GymStatue
+PETALBURG CITY POKéMON GYM
+Sponsored by {MADLIB_FOOD}
+
+@ PetalburgCity_Gym_Text_GymStatueCertified
+PETALBURG CITY POKéMON GYM
+
+NORMAN'S CERTIFIED TRAINERS: {PLAYER}, and one {MADLIB_CREATURE}
+
+@ PetalburgCity_Gym_Text_NormanPreRematch
+DAD: {PLAYER}… I had a feeling you would come.
+
+I would never refuse a challenge from you.
+
+You understand, don't you?
+
+Inside a GYM, it doesn't matter that we're family. Or that you ate my {MADLIB_FOOD}.
+
+…No. Because we're family, we owe each other our best. Isn't that right, {PLAYER}?
+
+@ PetalburgCity_Gym_Text_NormanRematchDefeat
+Uh… Haha… Maybe that was too {MADLIB_ADJ}…
+
+@ PetalburgCity_Gym_Text_NormanPostRematch
+DAD: {PLAYER}… What is your dream?
+
+Mine… Hahaha… It already came true. Well, that and owning my own {MADLIB_VEHICLE}.
+
+@ PetalburgCity_House1_Text_TravelingIsWonderful
+Traveling is wonderful!
+
+When I was young, I roamed the seas and mountains! On my {MADLIB_VEHICLE}!
+
+@ PetalburgCity_House1_Text_GoOnAdventure
+Sigh…
+
+I wish I could go on an adventure with some POKéMON…
+
+Crawl through damp grass… Climb rocky mountains…
+
+Cross raging seas… Explore the {MADLIB_PLACE}…
+
+And sometimes even feel a little {MADLIB_FEELING}…
+
+Traveling must be fabulous!
+
+@ PetalburgCity_House2_Text_NormanBecameGymLeader
+NORMAN became our town's new GYM LEADER.
+
+I think he brought his family from far away. And a weird {MADLIB_COLOR} {MADLIB_VEHICLE}.
+
+@ PetalburgCity_House2_Text_BattledNormanOnce
+I battled NORMAN once, but whew, he was way too strong.
+
+How do I put it?
+
+He lives for POKéMON. And {MADLIB_FOOD}.
+
+@ PetalburgCity_Mart_Text_WeakWillGrowStronger
+Even a weak POKéMON will grow stronger.
+
+The most important thing is love! Love for your POKéMON! And your {MADLIB_CREATURE}!
+
+@ PetalburgCity_Mart_Text_RepelIsUseful
+Do you use REPEL? It keeps POKéMON away. And {MADLIB_NAME}.
+
+@ PetalburgCity_Mart_Text_TakeSomeAntidotesWithYou
+Do you have any ANTIDOTES with you?
+
+A poisoned POKéMON loses HP as you walk until it faints. Take some ANTIDOTES. They taste like {MADLIB_DRINK}.
+
+@ PetalburgCity_PokemonCenter_1F_Text_PCStorageSystem
+That PC Storage System…
+
+Whoever made it must be some kind of {MADLIB_ADJ} wizard!
+
+@ PetalburgCity_PokemonCenter_1F_Text_OranBerryRegainedHP
+When my POKéMON ate an ORAN BERRY, it got its HP back! It tasted like {MADLIB_FOOD}!
+
+@ PetalburgCity_PokemonCenter_1F_Text_ManyTypesOfPokemon
+There are many types of POKéMON.
+
+Every type has strengths and weaknesses. Like {MADLIB_NAME}.
+
+Depending on the types, a battle can be easy or hard.
+
+@ PetalburgCity_PokemonCenter_1F_Text_TreeckoIsGrassType
+For example, your TREECKO is a GRASS type.
+
+It's strong against WATER and GROUND types.
+
+But it's weak against FIRE-type POKéMON. And {MADLIB_FOOD}, probably.
+
+@ PetalburgCity_PokemonCenter_1F_Text_TorchicIsFireType
+For example, your TORCHIC is a FIRE type.
+
+It's strong against GRASS and BUG types.
+
+But it's weak against WATER-type POKéMON. And {MADLIB_DRINK}, probably.
+
+@ PetalburgCity_PokemonCenter_1F_Text_MudkipIsWaterType
+For example, your MUDKIP is a WATER type.
+
+It's strong against FIRE types.
+
+But it's weak against GRASS and ELECTRIC types. And {MADLIB_NAME}, probably.
+
+@ PetalburgCity_WallysHouse_Text_ThanksForPlayingWithWally
+You're… Ah, you must be {PLAYER}{KUN}, right?
+
+Thanks for playing with WALLY earlier.
+
+He's been sickly ever since he was a baby. Allergic to {MADLIB_FOOD}, mostly.
+
+We sent him to stay with my relatives in VERDANTURF TOWN.
+
+The air is much cleaner there.
+
+What's that? Where's WALLY? He already left, our WALLY.
+
+I wonder where he could be by now?
+
+@ PetalburgCity_WallysHouse_Text_WonderHowWallyIsDoing
+I hope he's not {MADLIB_FEELING}. I wonder how our WALLY is doing?
+
+@ PetalburgCity_WallysHouse_Text_SurfGoAllSortsOfPlaces
+If your POKéMON can SURF, you can go all sorts of places. Even the {MADLIB_PLACE}.
+
+@ PetalburgCity_WallysHouse_Text_WallyIsComingHomeSoon
+WALLY's coming home soon. I'm making {MADLIB_FOOD}!
+
+@ PetalburgCity_WallysHouse_Text_YouMetWallyInEverGrandeCity
+Oh? You met WALLY in EVER GRANDE CITY?
+
+Oh, {PLAYER}{KUN}, don't be silly.
+
+He's healthier now, but he can't go that far alone. He can barely ride his {MADLIB_VEHICLE}.
+
+@ PetalburgCity_WallysHouse_Text_WallyWasReallyHappy
+WALLY was so {MADLIB_FEELING} when he told us he caught a POKéMON.
+
+It's been ages since I've seen him smile like that.
+
+@ PetalburgCity_WallysHouse_Text_WallyLeftWithoutTelling
+Keep this a secret from my husband…
+
+Our WALLY left VERDANTURF TOWN without telling anyone.
+
+WALLY is frail, but he's very {MADLIB_ADJ}.
+
+I'm sure he'll come back safe and sound one day!
