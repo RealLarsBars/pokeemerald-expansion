@@ -30,6 +30,7 @@ from maps import BATTLE_RE
 import title_screen
 import house_gyms
 import house_sigils
+import thrones_story
 
 SAFE_CODES = {'{PLAYER}', '{RIVAL}', '{KUN}', '{STR_VAR_1}', '{STR_VAR_2}', '{STR_VAR_3}', '{POKEBLOCK}'}
 CODE_WIDTH = {'{PLAYER}': 42, '{RIVAL}': 42, '{KUN}': 0, '{STR_VAR_1}': 48, '{STR_VAR_2}': 48, '{STR_VAR_3}': 48,
@@ -420,6 +421,9 @@ def apply(ov, opt, rng, report):
         for k, new_lines in house_gyms.boss_lines().items():
             swap.update(zip(L.THRONES_LEADER_LINES[k], new_lines))
         ctx['boss'] = {label: swap.get(line_, line_) for label, line_ in ctx['boss'].items()}
+    if key == 'thrones' and opt.get('story', True):
+        rewrites.update(thrones_story.TEXT)
+        head += thrones_story.apply(ov, widths)
 
     # Pass 1: every text the theme can touch.
     files, items = [], []
