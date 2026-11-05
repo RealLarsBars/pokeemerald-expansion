@@ -346,70 +346,65 @@ def gym():
 
 
 def vs_gym_leader():
-    """Gym Leader battle: steel and fire. War drums, a driving string figure, brass, and the
-    Crown sung by the choir and horns in the second half."""
-    s = Song('mus_vs_gym_leader', bpm=166, beats_per_bar=4)
-    mel = s.track(TRUMPET, 127)
-    horn = s.track(HORN, 104)
-    choir = s.track(CHOIR, 76)
-    strings = s.track(STRINGS, 84)
+    """Gym Leader battle, in the style of the show's opening: a driving low-string figure in
+    3/4, C minor, war drums, and a big sweeping tune passed from horns to trumpets and choir.
+    The tune and figure are new; only the mood and instruments follow the show."""
+    s = Song('mus_vs_gym_leader', bpm=162, beats_per_bar=3)
+    horn = s.track(HORN, 116)
+    tpt = s.track(TRUMPET, 127)
+    choir = s.track(CHOIR, 80)
+    strings = s.track(STRINGS, 92)
     drums = s.track(DRUMS, 108)
-    timp = s.track(TIMPANI, 104)
+    taiko = s.track(TAIKO, 112)
 
-    fig_m = [0, 0, 7, 0, 8, 0, 7, 3]
-    fig_M = [0, 0, 7, 0, 9, 0, 7, 4]
+    fig_m = [0, 0, 7, 0, 8, 7]   # C C G C Ab G: the strings never stop
+    fig_M = [0, 0, 7, 0, 9, 7]
+    prog = 'Cm Cm Ab Eb | Fm Cm G G | Cm Cm Ab Eb | Fm Cm G Cm'
+    tune = ('C4:2 G4:1 | Eb4:1.5 D4:.5 C4:1 | Ab4:2 G4:.5 F4:.5 | G4:3 | '
+            'F4:2 Ab4:1 | G4:1.5 Eb4:.5 C4:1 | D4:1.5 B3:.5 D4:1 | D4:3 | '
+            'C5:2 G4:1 | Bb4:1.5 Ab4:.5 G4:1 | C5:2 Eb5:1 | Bb4:3 | '
+            'Ab4:2 C5:1 | G4:1.5 F4:.5 Eb4:1 | D4:1 G4:1 B4:1 | C5:3')
+    bridge = 'Ab Ab Bb Bb | Cm Cm G G'
+    bridge_tune = 'Eb4:3 | C4:3 | F4:3 | D4:3 | G4:3 | Eb4:3 | D4:3 | B3:3'
 
-    def drum_bar(b, fill=False, crash=False):
-        drums.hits(b, KICK, [(0, 112), (1.5, 96), (2, 104)])
-        drums.hits(b, SNARE, [(1, 100), (3, 104)])
-        if crash:
-            drums.hits(b, CRASH, [(0, 110)])
+    def war_drums(b, bar, fill=False):
+        taiko.hits(b, pitch('C3'), [(0, 124), (1.5, 100)], beats=0.5)
+        drums.hits(b, SNARE, [(2, 96), (2.5, 104)])
+        if bar % 4 == 0:
+            drums.hits(b, CRASH, [(0, 108)])
         if fill:
-            roll(drums, b + 2, SNARE, 2, 80, 120, step=0.25)
+            roll(drums, b + 1, SNARE, 2, 80, 124)
 
-    # Intro: 2 bars of drums and strings on D.
-    ostinato(strings, 0, 'Dm Dm', 4, fig_m, vel=96)
-    timp.hits(0, pitch('D3'), [(0, 120), (1.5, 100), (2, 110), (4, 120), (5.5, 100), (6, 110)], beats=1)
-    roll(drums, 6, SNARE, 2, 70, 124)
+    # Intro: the strings start alone, the drums join.
+    ostinato(strings, 0, 'Cm Cm Cm Cm', 3, fig_m, vel=96)
+    for i in range(2, 4):
+        war_drums(3 * i, 1, fill=i == 3)
 
-    a = 'Dm Dm Bb C | Dm Dm Gm A'
-    tune_a = ('D5:1.5 A4:1.5 D5:1 | E5:.5 F5:.5 E5:.5 D5:.5 C5:1 A4:1 | Bb4:1.5 D5:1.5 F5:1 | E5:2 C5:1 G4:1 | '
-              'A4:1.5 D5:1.5 F5:1 | G5:.5 F5:.5 E5:.5 D5:.5 F5:1 A5:1 | G5:1.5 F5:.5 D5:1 Bb4:1 | C#5:2 E5:1 A4:1')
-    a2 = 'Dm Dm Bb C | Gm Gm A A'
-    tune_a2 = ('D5:1.5 A4:1.5 D5:1 | E5:.5 F5:.5 E5:.5 D5:.5 C5:1 A4:1 | Bb4:1.5 D5:1.5 F5:1 | G5:2 E5:1 C5:1 | '
-               'D5:1.5 Bb4:1.5 G4:1 | A4:.5 Bb4:.5 C5:.5 D5:.5 Eb5:1 D5:1 | C#5:3 A4:1 | E5:4')
-    crown = 'Dm Gm C Dm | F Am Gm A'
-    tune_c = ('D4:2.5 A4:1.5 | Bb4:2 A4:1 G4:1 | F4:1.5 E4:1.5 C4:1 | D4:4 | '
-              'F4:2.5 G4:1.5 | A4:2 Bb4:1 C5:1 | D5:1.5 C5:1.5 Bb4:1 | A4:4')
-    bridge = 'Bb C | Bb A'
-
-    beat = 8
-    for prog, tune in ((a, tune_a), (a2, tune_a2)):
-        ostinato(strings, beat, prog, 4, fig_m, fig_M, vel=92)
-        mel.play(beat, tune, vel=122, gate=0.9)
-        bass(horn, beat, prog, 4, octave=0, vel=70, rhythm=[0, 2.5])
-        for i in range(8):
-            drum_bar(beat + 4 * i, fill=i == 7, crash=i == 0)
-        beat += 32
-    # The Crown, sung over the battle.
-    ostinato(strings, beat, crown, 4, fig_m, fig_M, vel=88)
-    horn.play(beat, tune_c, vel=112, gate=0.98)
-    pad(choir, beat, crown, 4, tones=(1,), base=pitch('F4'), vel=100)
-    for i, c in enumerate(bars(crown)):
-        root, _ = chord(c)
-        timp.hits(beat + 4 * i, root, [(0, 116), (2, 96)], beats=1)
-        drums.hits(beat + 4 * i, KICK, [(0, 108), (3, 90), (3.5, 96)])
-        if i % 4 == 0:
-            drums.hits(beat + 4 * i, CRASH, [(0, 104)])
-    beat += 32
-    # Bridge: climbing back to the fight.
-    ostinato(strings, beat, bridge, 4, fig_m, fig_M, vel=100)
-    mel.play(beat, 'F5:1.5 D5:1.5 Bb4:1 | G5:1.5 E5:1.5 C5:1 | F5:1.5 D5:1.5 Bb4:1 | C#5:1 E5:1 A5:2', vel=108)
-    for i in range(4):
-        drum_bar(beat + 4 * i, fill=i == 3, crash=i == 0)
-        timp.hits(beat + 4 * i, chord(bars(bridge)[i])[0], [(0, 110)], beats=1)
-    beat += 16
-    s.loop(8, beat)
+    beat = 12
+    # A: the tune on horns, low and broad.
+    ostinato(strings, beat, prog, 3, fig_m, fig_M, vel=90)
+    horn.play(beat, tune, vel=118, gate=0.97)
+    for i in range(16):
+        war_drums(beat + 3 * i, i, fill=i == 15)
+    beat += 48
+    # B: trumpets take it, horns an octave below, the choir holds the chords.
+    ostinato(strings, beat, prog, 3, fig_m, fig_M, vel=90)
+    tpt.play(beat, tune, vel=124, gate=0.97, shift=0)
+    horn.play(beat, tune, vel=92, gate=0.97, shift=-12)
+    pad(choir, beat, prog, 3, tones=(2,), base=pitch('G4'), vel=100)
+    for i in range(16):
+        war_drums(beat + 3 * i, i, fill=i == 15)
+    beat += 48
+    # Bridge: everything drops back, then builds to the top again.
+    ostinato(strings, beat, bridge, 3, fig_m, fig_M, vel=84)
+    horn.play(beat, bridge_tune, vel=110, gate=0.99)
+    for i in range(8):
+        taiko.hits(beat + 3 * i, pitch('C3'), [(0, 100 + 3 * i)], beats=0.5)
+        if i >= 4:
+            drums.hits(beat + 3 * i, SNARE, [(2, 90), (2.5, 100)])
+    roll(drums, beat + 21, SNARE, 3, 70, 127)
+    beat += 24
+    s.loop(12, beat)
     return s
 
 
