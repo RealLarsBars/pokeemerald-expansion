@@ -1493,7 +1493,7 @@ const COMEDY_SWITCHES = [
   ['adult', 'Adult humor', 'A small amount of swearing and crude jokes. Only grown-ups say the crude stuff; your character just swears.'],
   ['fakeNews', 'Fake news signs', 'Signs get headlines (royal decrees in Game of Thrones).'],
   ['battle', 'Battle commentary', 'Battle messages get rewritten: wild Pokémon owe you money, fainting is dramatic.'],
-  ['houseGyms', 'House Gyms (Game of Thrones)', 'Every Gym\'s trainers and leader use Pokémon that fit their house: fossils for the scholars of Rustboro, a mouse family for Petalburg. Works with Hard mode too.'],
+  ['houseGyms', 'House Gyms (Game of Thrones)', 'Every Gym becomes a noble house with its own wild idea: ghosts in Rustboro\'s library, a cave buffet in Dewford, dragons in Fortree, the Night King in Sootopolis. Gym Guides give the new advice, badges become house sigils. Works with Hard mode too.'],
 ];
 const CAP_NAMES = ['Badge 1', 'Badge 2', 'Badge 3', 'Badge 4', 'Badge 5', 'Badge 6', 'Badge 7', 'Badge 8', 'Champion'];
 

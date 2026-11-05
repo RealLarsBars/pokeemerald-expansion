@@ -29,6 +29,7 @@ from common import ROOT
 from maps import BATTLE_RE
 import title_screen
 import house_gyms
+import house_sigils
 
 SAFE_CODES = {'{PLAYER}', '{RIVAL}', '{KUN}', '{STR_VAR_1}', '{STR_VAR_2}', '{STR_VAR_3}', '{POKEBLOCK}'}
 CODE_WIDTH = {'{PLAYER}': 42, '{RIVAL}': 42, '{KUN}': 0, '{STR_VAR_1}': 48, '{STR_VAR_2}': 48, '{STR_VAR_3}': 48,
@@ -412,6 +413,13 @@ def apply(ov, opt, rng, report):
     head += title_screen.apply(ov, key)
     if key == 'thrones' and opt.get('houseGyms', True):
         head += ['Gyms: ' + line for line in house_gyms.apply(ov, rng)]
+        # The Gyms changed, so the Gym Guides' advice and the leaders' house lines change too.
+        rewrites.update(house_gyms.text_overrides())
+        head += house_sigils.apply(ov)
+        swap = {}
+        for k, new_lines in house_gyms.boss_lines().items():
+            swap.update(zip(L.THRONES_LEADER_LINES[k], new_lines))
+        ctx['boss'] = {label: swap.get(line_, line_) for label, line_ in ctx['boss'].items()}
 
     # Pass 1: every text the theme can touch.
     files, items = [], []
