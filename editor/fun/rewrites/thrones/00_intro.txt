@@ -1,0 +1,51 @@
+# Game of Thrones: Birch's opening speech, before the game starts.
+
+@ gText_Birch_Welcome
+Hi! Sorry to keep you waiting! I was being bitten.
+
+Welcome to the realm of POKéMON! Seven kingdoms, eight GYMS, one Throne, and absolutely zero adult supervision!
+
+My name is BIRCH.
+
+But everyone calls me the Grand Maester of POKéMON. Nobody gave me that title. I just started saying it and nobody stopped me.
+
+@ gText_Birch_MainSpeech
+This realm is ruled by creatures called POKéMON. Officially it's ruled by people. Unofficially, have you seen a GYARADOS?
+
+We humans live beside them. Some POKéMON are our friends. Some are our servants. One is a duke. Don't ask how.
+
+And sometimes, we band together and wage war on our neighbors over things like land, honor, and who touched whose sandwich.
+
+But despite all that, we don't know everything about POKéMON.
+
+There are secrets. Prophecies. A POKéMON that only appears to people who are about to be betrayed. Ignore that one. Probably.
+
+To unravel these mysteries, I've devoted my life to research. I have been bitten eight hundred times. I keep a journal. It's mostly drawings of teeth.
+
+@ gText_Birch_AndYouAre
+And who are you? Lord? Lady? Spy? Spy in disguise as a lord?
+
+@ gText_Birch_BoyOrGirl
+The scrolls must be accurate. Are you a boy? Or are you a girl?
+
+@ gText_Birch_WhatsYourName
+Very good. Every great ruler needs a name the bards can rhyme. What's your name?
+
+@ gText_Birch_SoItsPlayer
+{PLAYER}{KUN}… The First of Their Name, Breaker of Nothing Yet. So it's {PLAYER}{KUN}?
+
+@ gText_Birch_YourePlayer
+Ah, of course!
+
+You're {PLAYER}{KUN}, heir of House Petalburg, moving to my humble holdfast of LITTLEROOT.
+
+The ravens told me! The ravens tell me everything. They're terrible at keeping secrets. Never trust a raven.
+
+@ gText_Birch_AreYouReady
+All right, are you ready?
+
+Your very own reign is about to begin. Or end. Statistically it's a coin toss.
+
+Take courage, and leap into a realm of POKéMON where dreams, glory, and very elaborate betrayals await!
+
+I'll expect you at my citadel later. It's a LAB. Bring bandages. Not for you. For me.

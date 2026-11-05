@@ -27,6 +27,7 @@ import madlibs_live as ML
 import textdb
 from common import ROOT
 from maps import BATTLE_RE
+import title_screen
 
 SAFE_CODES = {'{PLAYER}', '{RIVAL}', '{KUN}', '{STR_VAR_1}', '{STR_VAR_2}', '{STR_VAR_3}', '{POKEBLOCK}'}
 CODE_WIDTH = {'{PLAYER}': 42, '{RIVAL}': 42, '{KUN}': 0, '{STR_VAR_1}': 48, '{STR_VAR_2}': 48, '{STR_VAR_3}': 48,
@@ -345,6 +346,9 @@ TALKING = ('talk', 'after', 'intro', 'defeat', 'other_battle', 'question')
 
 # ---- the theme runner -------------------------------------------------------------------
 
+# Birch's opening speech is shown by the game's own code. It changes only when a theme has
+# a hand-written version, and the hero (who has no name yet) never answers it.
+INTRO_FILE = 'data/text/birch_speech.inc'
 REWRITES_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'fun', 'rewrites')
 
 
@@ -404,6 +408,7 @@ def apply(ov, opt, rng, report):
         head += ML.install(ov, slots)
     gossip = pick_gossipers(ov, ctx, rng, adult) if key == 'thrones' else {}
     rewrites = load_rewrites(key)
+    head += title_screen.apply(ov, key)
 
     # Pass 1: every text the theme can touch.
     files, items = [], []
@@ -416,7 +421,8 @@ def apply(ov, opt, rng, report):
         for e in textdb.parse_file(path, text):
             if e.kind != 'asm' or not e.raw.endswith('$'):
                 continue
-            if rel.startswith('data/text/') and e.label not in ctx['used']:
+            intro = rel == INTRO_FILE and e.label in rewrites
+            if rel.startswith('data/text/') and e.label not in ctx['used'] and not intro:
                 continue  # shown by the game's own code in a special window
             codes = set(re.findall(r'\{[^}]*\}', e.raw))
             if codes - SAFE_CODES or '\\v' in e.raw or '\\e' in e.raw or len(e.friendly.strip()) < 4:
@@ -424,7 +430,7 @@ def apply(ov, opt, rng, report):
             kind = kind_of(e.label, e.friendly, ctx)
             if kind in ('system', 'cry'):
                 continue  # item jingles and POKéMON cries stay as they are
-            it = {'e': e, 'rel': rel, 'kind': kind, 'staff': staff, 'adult': ctx['adult'].get(e.label, False),
+            it = {'e': e, 'rel': rel, 'kind': kind, 'staff': staff or intro, 'adult': ctx['adult'].get(e.label, False),
                   'final': ctx['final'].get(e.label, False) or kind in ('intro', 'defeat'),
                   'first': ctx['first'].get(e.label, False) or kind == 'intro',
                   'boss': ctx['boss'].get(e.label) if key == 'thrones' else None,

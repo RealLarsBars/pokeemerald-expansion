@@ -196,7 +196,7 @@ MOM: That DAD of yours…
 
 He comes home, eats an entire {MADLIB_FOOD} standing over the sink, and leaves. That's our anniversary.
 
-I married a man and got a {MADLIB_CREATURE} with a GYM.
+I married a man and got some {MADLIB_CREATURE} with a GYM.
 
 @ PlayersHouse_1F_Text_IsThatABreakingStory
 MOM: Breaking news? Is it about {MADLIB_NAME} again?
