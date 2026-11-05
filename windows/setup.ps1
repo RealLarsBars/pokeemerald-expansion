@@ -3,7 +3,8 @@
 # What it does (it is safe to run again; finished steps are skipped):
 #   1. Installs WSL with Ubuntu (asks for admin rights, may need one restart).
 #   2. Installs the build tools inside Ubuntu.
-#   3. Downloads the project into a folder called "Emerald" inside Ubuntu.
+#   3. Downloads the project into a folder called "Emerald": inside Ubuntu
+#      (recommended, fastest) or in a folder you pick on the first install.
 #   4. Builds the game once to check everything works.
 #   5. Finds mGBA and puts "Emerald Editor", "Emerald Project" and "Play Emerald"
 #      shortcuts on the desktop.
@@ -165,10 +166,66 @@ fi
 if ($code -ne 0) { Stop-Setup 'Installing the build tools failed. Check your internet connection and run Setup.bat again.' }
 
 # 3. Project folder ----------------------------------------------------------
-Write-Step "Downloading the project into the '$FolderName' folder"
-$linuxHome = (('echo $HOME' + "`n# end") | & wsl.exe -d $Distro -- bash -s | Select-Object -Last 1).Trim()
+# Runs one command in Ubuntu and returns its last line of output.
+function Get-WslLine([string]$Command) {
+    $out = (($Command + "`n# end") | & wsl.exe -d $Distro -- bash -s | Select-Object -Last 1)
+    if ($out) { return $out.Trim() }
+    return ''
+}
+
+# On the first install, ask where the game folder should go. Later runs keep
+# using the folder that is already set up.
+function Select-ProjectFolder([string]$LinuxHome) {
+    Add-Type -AssemblyName System.Windows.Forms
+    $answer = [System.Windows.Forms.MessageBox]::Show(
+        "Where should the game folder go?`n`n" +
+        "Yes: the recommended place, inside Ubuntu. Builds are fastest there, and you still open it from the 'Emerald Project' shortcut.`n`n" +
+        "No: pick a folder on your PC yourself (for example on another drive). Builds are slower there.",
+        'Emerald setup', 'YesNo', 'Question')
+    if ($answer -ne 'No') { return "$LinuxHome/$FolderName" }
+
+    while ($true) {
+        $dialog = New-Object System.Windows.Forms.FolderBrowserDialog
+        $dialog.Description = "Pick the folder to put the game in. A folder called '$FolderName' will be made inside it."
+        $dialog.ShowNewFolderButton = $true
+        if ($dialog.ShowDialog() -ne [System.Windows.Forms.DialogResult]::OK) {
+            Write-Host 'No folder picked, so the game goes in the recommended place inside Ubuntu.'
+            return "$LinuxHome/$FolderName"
+        }
+        $parent = $dialog.SelectedPath.TrimEnd('\')
+        $problem = ''
+        if ($parent -notmatch '^[A-Za-z]:') { $problem = 'Please pick a folder on a drive of this PC (like C: or D:), not a network folder.' }
+        elseif ($parent -match 'OneDrive') { $problem = 'That folder is synced by OneDrive, which can break the game files while they build. Please pick a folder outside OneDrive.' }
+        elseif (Test-Path (Join-Path $parent $FolderName)) {
+            if (-not (Test-Path (Join-Path $parent "$FolderName\.git"))) {
+                $problem = "There is already a folder called '$FolderName' there. Please pick another place, or rename that folder."
+            }
+        }
+        if ($problem) {
+            [System.Windows.Forms.MessageBox]::Show($problem, 'Emerald setup') | Out-Null
+            continue
+        }
+        $linuxParent = Get-WslLine ("wslpath -a '" + ($parent -replace "'", "'\''") + "'")
+        if (-not $linuxParent) { Stop-Setup "Could not use the folder $parent." }
+        return ($linuxParent.TrimEnd('/') + "/$FolderName")
+    }
+}
+
+$existing = $null
+if (Test-Path $ConfigPath) { $existing = Get-Content $ConfigPath -Raw | ConvertFrom-Json }
+
+$linuxHome = Get-WslLine 'echo $HOME'
 if (-not $linuxHome) { Stop-Setup 'Could not find your Ubuntu home folder.' }
-$linuxProject = "$linuxHome/$FolderName"
+$linuxProject = ''
+if ($existing -and $existing.linuxProject) {
+    if ((Get-WslLine "[ -d '$($existing.linuxProject)/.git' ] && echo yes") -eq 'yes') { $linuxProject = $existing.linuxProject }
+}
+if (-not $linuxProject -and (Get-WslLine "[ -d '$linuxHome/$FolderName/.git' ] && echo yes") -eq 'yes') {
+    $linuxProject = "$linuxHome/$FolderName"
+}
+if (-not $linuxProject) { $linuxProject = Select-ProjectFolder $linuxHome }
+
+Write-Step "Downloading the project into $linuxProject"
 
 $code = Invoke-Wsl @"
 set -e
@@ -182,13 +239,20 @@ if [ -d '$linuxProject/.git' ]; then
     fi
 else
     git clone '$RepoUrl' '$linuxProject'
+    case '$linuxProject' in
+        /mnt/*) git -C '$linuxProject' config core.fileMode false ;;  # Windows folders cannot keep Linux file modes
+    esac
 fi
 "@
 if ($code -ne 0) { Stop-Setup 'Downloading the project failed. Check your internet connection and run Setup.bat again.' }
 
-$uncRoot = "\\wsl.localhost\$Distro"
-if (-not (Test-Path "$uncRoot\")) { $uncRoot = "\\wsl$\$Distro" }
-$windowsProject = $uncRoot + ($linuxProject -replace '/', '\')
+if ($linuxProject -like '/mnt/*') {
+    $windowsProject = Get-WslLine "wslpath -w '$linuxProject'"
+} else {
+    $uncRoot = "\\wsl.localhost\$Distro"
+    if (-not (Test-Path "$uncRoot\")) { $uncRoot = "\\wsl$\$Distro" }
+    $windowsProject = $uncRoot + ($linuxProject -replace '/', '\')
+}
 
 # 4. First build -------------------------------------------------------------
 Write-Step 'Building the game for the first time (about 5 to 15 minutes)'
@@ -199,8 +263,6 @@ if ($code -ne 0) { Stop-Setup 'The build failed. Scroll up to see the error, and
 
 # 5. mGBA, config and shortcuts ----------------------------------------------
 Write-Step 'Finding mGBA'
-$existing = $null
-if (Test-Path $ConfigPath) { $existing = Get-Content $ConfigPath -Raw | ConvertFrom-Json }
 if ($existing -and $existing.mgbaPath -and (Test-Path $existing.mgbaPath)) {
     $mgba = $existing.mgbaPath
 } else {
