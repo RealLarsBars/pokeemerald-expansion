@@ -5,6 +5,7 @@ import subprocess
 import threading
 import time
 
+import common
 from common import ROOT
 
 ROM = os.path.join(ROOT, 'pokeemerald.gba')
@@ -65,7 +66,17 @@ def capture(args):
 def build(job):
     job.write('Building your changes...')
     start = time.monotonic()
-    code = run(job, ['make', '-j%d' % (os.cpu_count() or 2)])
+    common.watch_saves(True)
+    try:
+        code = run(job, ['make', '-j%d' % (os.cpu_count() or 2)])
+    finally:
+        # Anything saved mid-build may have been read before the change, so mark
+        # it as changed again; the next build then picks it up.
+        for path in common.watch_saves(False):
+            try:
+                os.utime(path)
+            except OSError:
+                pass
     took = _duration(time.monotonic() - start)
     if code != 0:
         return False, 'The build failed. The lines just above the end of the log say what is wrong.'

@@ -11,6 +11,19 @@ def read_text(path):
         return f.read()
 
 
+# Files saved while a build is running. make may have already read the old
+# version, so the build marks them as changed again once it finishes.
+_saved_during_build = None
+
+
+def watch_saves(on):
+    """Start (True) or stop (False) noting saved files; stopping returns them."""
+    global _saved_during_build
+    saved = _saved_during_build or set()
+    _saved_during_build = set() if on else None
+    return saved
+
+
 def write_text(path, text):
     # Leave a file alone when nothing in it changed. Rewriting it anyway gives it a
     # new timestamp, and the build then recompiles everything that uses it.
@@ -24,6 +37,8 @@ def write_text(path, text):
     with open(tmp, 'w', encoding='utf-8', errors='surrogateescape', newline='') as f:
         f.write(text)
     os.replace(tmp, path)
+    if _saved_during_build is not None:
+        _saved_during_build.add(path)
 
 
 def project_path(rel):

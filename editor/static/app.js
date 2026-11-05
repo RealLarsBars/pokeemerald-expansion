@@ -1628,14 +1628,14 @@ async function runFun(apply) {
     const res = await api('/api/fun/run', { settings: F.s, apply });
     if (!F.s.seed) { F.s.seed = res.seed; funSave(); }
     showFunReport(res, apply);
-    if (res.applied) { await loadFunStatus(); loadTrainerList().catch(() => {}); }
+    if (res.applied) { await loadFunStatus(); loadTrainerList().catch(() => {}); buildNow(); }
   } catch (e) { toast(e.message, true); }
   F.busy = false; renderFun();
 }
 
 function showFunReport(res, apply) {
   const blocked = res.report.some(r => r.title.startsWith('Problems'));
-  const head = res.applied ? 'Done! Press ▶ Play to try it. Seed: ' + res.seed
+  const head = res.applied ? 'Done! The game is building now, so ▶ Play and Save as .gba will be quick once it finishes. Seed: ' + res.seed
     : blocked ? 'Nothing was changed because of the problems below. Send them to Claude in your project.'
     : apply ? 'Nothing needed changing.' : 'Preview only, nothing changed yet. Seed: ' + res.seed;
   const body = el('div', {},
@@ -1662,7 +1662,15 @@ async function funAction(path, body, question, done) {
     toast(done);
     await loadFunStatus();
     loadTrainerList().catch(() => {});
+    // Undo, Use and Reset change game files, so start building them right away.
+    if (/\/(undo|reset|switch)$/.test(path)) buildNow();
   } catch (e) { toast(e.message, true); }
+}
+
+// Build in the background right after Fun Modes change the game, so Play and
+// Save as .gba only have to wait for whatever is left.
+function buildNow() {
+  startJob('/api/build', 'Getting your game ready', null, true);
 }
 
 function renderFunSide() {
