@@ -20,7 +20,7 @@ from common import ROOT, read_text, write_text, species_const
 PARTY = 'src/data/trainers.party'
 WILD = 'src/data/wild_encounters.json'
 STARTERS = 'src/starter_choose.c'
-CAPS_CFG = 'include/config/caps.h'
+CAPS_CFG = 'include/fun_level_caps.h'  # only the few files that use level caps include it
 CAPS_C = 'src/caps.c'
 ITEMS = 'src/data/items.h'
 
@@ -396,11 +396,14 @@ def gym_caps(ov):
 
 
 def level_caps(ov, opt, report):
-    cfg = ov.read(CAPS_CFG)
     kind = {'hard': 'EXP_CAP_HARD', 'soft': 'EXP_CAP_SOFT', 'off': 'EXP_CAP_NONE'}[opt.get('type', 'hard')]
-    cfg = re.sub(r'(#define B_EXP_CAP_TYPE\s+)\w+', lambda m: m.group(1) + kind, cfg)
-    cfg = re.sub(r'(#define B_LEVEL_CAP_TYPE\s+)\w+', lambda m: m.group(1) + ('LEVEL_CAP_NONE' if kind == 'EXP_CAP_NONE' else 'LEVEL_CAP_FLAG_LIST'), cfg)
-    cfg = re.sub(r'(#define B_RARE_CANDY_CAP\s+)\w+', lambda m: m.group(1) + ('TRUE' if opt.get('candyCap', True) else 'FALSE'), cfg)
+    values = [('B_EXP_CAP_TYPE', kind),
+              ('B_LEVEL_CAP_TYPE', 'LEVEL_CAP_NONE' if kind == 'EXP_CAP_NONE' else 'LEVEL_CAP_FLAG_LIST'),
+              ('B_RARE_CANDY_CAP', 'TRUE' if opt.get('candyCap', True) else 'FALSE')]
+    block = ''.join('#undef %s\n#define %s %s\n' % (name, name, value) for name, value in values)
+    cfg = ov.read(CAPS_CFG)
+    cfg = re.sub(r'(// FUN MODES LEVEL CAPS START\n).*?(// FUN MODES LEVEL CAPS END)',
+                 lambda m: m.group(1) + block + m.group(2), cfg, flags=re.S)
     ov.write(CAPS_CFG, cfg)
     if kind == 'EXP_CAP_NONE':
         report.add('Level caps', ['Turned off'])

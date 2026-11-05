@@ -1,6 +1,8 @@
 #ifndef GUARD_CAPS_H
 #define GUARD_CAPS_H
 
+#include "fun_level_caps.h"
+
 #if B_EXP_CAP_TYPE != EXP_CAP_NONE && B_EXP_CAP_TYPE != EXP_CAP_HARD && B_EXP_CAP_TYPE != EXP_CAP_SOFT
 #error "Invalid choice for B_EXP_CAP_TYPE, must be of [EXP_CAP_NONE, EXP_CAP_HARD, EXP_CAP_SOFT]"
 #endif
