@@ -281,8 +281,21 @@ KhHSSddSSSSSddSShK
 .KSSSWESSSSSEWSSK.
 .KSSSSSSSzsSSSSSK.
 .KSSSSSSSsSSSSSsK.
-..KSSSzWWWWzSSSK..
-...KSSSzzzzSSsK...
+..KSSSSzMMzSSSSK..
+...KSSSSSSSSSsK...
+....KKSSSSSSKK....
+......KKKKKK......
+""")
+
+SEER_HEAD = check(SHORT_HAIR + """
+KhHHHSSHHHHHSSHhhK
+KhHHSSSSSSSSSSShhK
+KhHSSSSSSSSSSSSShK
+KhHSzzzSSSSSzzzShK
+.KSSSSSSSzsSSSSSK.
+.KSSSSSSSsSSSSSsK.
+..KSSSSSSMSSSSSK..
+...KSSSSSSSSSsK...
 ....KKSSSSSSKK....
 ......KKKKKK......
 """)
@@ -396,148 +409,136 @@ def kingsguard():
 
 
 def roxanne():
-    """House Rustboro, the haunted library: a scholar's robe, a big book, a ghost candle."""
+    """House Rustboro, Keeper of the Crypts: grey robes, bone white, a skull and a candle."""
     c = Canvas()
     hair = ramp((56, 52, 80))
     c.ellipse((16, 0, 25, 9), hair)   # hair buns
     c.ellipse((38, 0, 47, 9), hair)
-    robe = ramp((60, 72, 150))
-    hands = body(c, SKIN, robe=robe, boots=ramp((60, 50, 60)), right='chest', left='out', collar=WHITE)
-    # The book, held to the chest.
-    c.poly([(30, 28), (41, 26), (42, 37), (31, 39)], ramp((140, 96, 60)), light=False)
-    c.line([(32, 37), (41, 35)], (236, 226, 196))
-    c.ellipse((33, 32, 39, 38), SKIN)
-    # A candle with a pale ghost flame.
+    hands = body(c, SKIN, robe=ramp((112, 110, 118)), boots=ramp((60, 56, 60)), right='chest', left='out',
+                 collar=ramp((226, 218, 196), 0.6), belt=ramp((226, 218, 196), 0.6))
+    # A skull held to the chest, the house sigil.
+    x0, y0 = hands['right'][0], hands['right'][1]
+    c.grid("""
+.KKKKK.
+KbbbbbK
+KbKbKbK
+KbbbbbK
+.KbKbK.
+..KKK..""", x0 - 1, y0 - 5, {'K': (60, 54, 50), 'b': (232, 224, 204)})
+    c.ellipse((x0 + 1, y0 + 2, x0 + 6, y0 + 7), SKIN)
+    # A tallow candle for the crypts.
     x0, y0 = hands['left'][0] + 2, hands['left'][1]
     c.rect((x0, y0 - 7, x0 + 2, y0 + 1), ramp((236, 226, 196)), light=False)
-    c.ellipse((x0 - 1, y0 - 13, x0 + 3, y0 - 7), ramp((150, 240, 200)))
-    c.dot(x0 + 1, y0 - 10, (240, 255, 248))
+    c.ellipse((x0 - 1, y0 - 13, x0 + 3, y0 - 7), ramp((255, 196, 80)))
+    c.dot(x0 + 1, y0 - 10, (255, 248, 210))
     c.ellipse(hands['left'], SKIN)
-    # A ghost student floating by, still wearing its reading glasses.
-    c.grid("""
-...KKKKKK...
-..KggggggK..
-.KggggggggK.
-KgKKKggKKKgK
-KgKwKKKKwKgK
-KgKKKggKKKgK
-KggggggggggK
-KgggKKKggGGK
-KggggggggGGK
-KgggggggGGK.
-.KgKggKgGK..
-..K.KK.KK...""", 50, 2, {'K': (52, 96, 104), 'g': (210, 250, 240), 'G': (150, 216, 210), 'w': (255, 255, 255)})
     head(c, ROXANNE_HEAD, head_colors(SKIN, hair))
     return c
 
 
 def brawly():
-    """House Dewford, the cave buffet: a fur mantle, a cook's apron, a giant drumstick."""
+    """House Dewford, a reaver captain: salt-stained sea-green leathers, black, a boarding axe."""
     c = Canvas()
     hair = ramp((96, 120, 180))
-    hands = body(c, SKIN, tunic=ramp((52, 64, 110)), legs=ramp((92, 80, 70)), boots=ramp((70, 50, 40)),
-                 cloak=ramp((128, 92, 60)), belt=ramp((64, 44, 36)), right='out', left='down', wide=2,
-                 sleeves=SKIN)
-    c.poly([(24, 30), (39, 30), (41, 52), (22, 52)], ramp((236, 232, 220), 0.5), light=False)  # apron
-    fur = ramp((150, 112, 76))
-    c.ellipse((14, 18, 49, 29), fur)   # fur collar
-    for x in range(17, 47, 4):
-        c.dot(x, 27, fur['line'])
-        c.dot(x + 1, 21, fur['hi'])
-    x0, y0 = hands['right'][0], hands['right'][1]
+    leather = ramp((52, 110, 96))
+    hands = body(c, SKIN, tunic=leather, legs=ramp((44, 44, 52)), boots=ramp((36, 32, 36)),
+                 cloak=ramp((40, 40, 48)), belt=ramp((90, 66, 44)), right='out', left='down', wide=2,
+                 sleeves=leather)
+    c.line([(24, 24), (38, 40)], ramp((90, 66, 44))['mid'], 2)   # baldric
+    # The anchor of his house on the belt buckle.
     c.grid("""
-...KKKK...
-..KmmmmK..
-.KmMMmmmK.
-KmMMmmmmmK
-KmMmmmmmmK
-KmmmmmmmdK
-.KmmmmmddK
-..KmmmddK.
-...KKddK..
-....KWWK..
-....KWWK..
-...KWKKWK.
-...KWK.KK.""", x0 - 3, y0 - 12, {'K': (40, 24, 20), 'm': (176, 100, 48), 'M': (226, 160, 96), 'd': (120, 60, 32),
-                                 'W': (240, 236, 220)})
-    c.ellipse((x0, y0 + 1, x0 + 6, y0 + 6), SKIN)
-    head(c, BRAWLY_HEAD, head_colors(SKIN, hair, {'R': (230, 230, 220), 'r': (180, 180, 170)}))
+.s.
+sss
+.s.
+s.s
+.s.""", 31, 39, {'s': STEEL['hi']})
+    # A boarding axe, held out.
+    x0, y0 = hands['right'][0], hands['right'][1]
+    c.rect((x0 + 2, y0 - 14, x0 + 3, y0 + 14), ramp((110, 76, 48)), light=False)
+    c.poly([(x0 + 4, y0 - 14), (x0 + 9, y0 - 17), (x0 + 10, y0 - 8), (x0 + 4, y0 - 9)], STEEL)
+    c.ellipse(hands['right'], SKIN)
+    head(c, BRAWLY_HEAD, head_colors(SKIN, hair, {'R': (52, 110, 96), 'r': (34, 76, 66)}))
     return c
 
 
-def thief_lord():
-    """House Wattson, the Thieves' Guild: a deep hood, a dagger and a fat bag of coins."""
+def spymaster():
+    """House Wattson, Master of Whispers: black and silver, a deep hood, a raven."""
     c = Canvas()
-    cloth = ramp((80, 62, 92))
-    hands = body(c, SKIN, robe=cloth, boots=ramp((50, 40, 44)), cloak=ramp((52, 40, 60)),
-                 belt=ramp((120, 84, 52)), right='chest', left='down', wide=3)
-    # Coin bag.
-    c.ellipse((31, 30, 42, 41), ramp((150, 120, 70)))
-    c.grid('ab\nba', 35, 33, {'a': GOLD['hi'], 'b': GOLD['mid']})
-    c.ellipse(hands['right'], SKIN)
-    # Dagger.
-    x0, y0 = hands['left'][0], hands['left'][3]
-    c.poly([(x0 + 2, y0), (x0 + 4, y0), (x0 + 3, y0 + 9)], STEEL, light=False)
-    hood = ramp((80, 62, 92))
-    head(c, THIEF_HEAD, head_colors(SKIN, WHITE, {'O': hood['mid'], 'o': hood['lo'], 'q': hood['hi']}), x=22, y=3)
+    hands = body(c, SKIN, robe=ramp((52, 50, 60)), boots=ramp((30, 30, 36)), cloak=ramp((36, 34, 44)),
+                 belt=ramp((180, 184, 196)), right='out', left='down', wide=3)
+    x0, y0 = hands['right'][0], hands['right'][1]
+    c.grid("""
+...KKK.....
+..KbbbK....
+.KbbWbK....
+KyKbbbbK...
+.K.KbbbbK..
+...KbbbbbK.
+...KbbbbbbK
+....KbbbbKK
+.....KKbKK.
+......K.K..""", x0 - 2, y0 - 9, {'K': (16, 14, 22), 'b': (52, 52, 70), 'W': (230, 230, 240), 'y': (130, 130, 140)})
+    c.ellipse((x0, y0 + 1, x0 + 6, y0 + 6), SKIN)
+    hood = ramp((44, 42, 54))
+    head(c, THIEF_HEAD, head_colors(SKIN, WHITE, {'O': hood['mid'], 'o': hood['lo'], 'q': (170, 174, 186)}),
+         x=22, y=3)
     return c
 
 
 def flannery():
-    """House Lavaridge, the nap club: a nightgown, a nightcap and a candle for bed."""
+    """House Lavaridge, priestess of the dream springs: red and white robes, eyes closed in a vision."""
     c = Canvas()
     hair = ramp((214, 72, 56))
     long_hair(c, hair, top=8, bottom=34, half=13)
-    hands = body(c, SKIN, robe=ramp((236, 196, 210), 0.7), boots=ramp((200, 120, 140)), right='chest', left='down')
-    x0, y0 = hands['right'][0], hands['right'][1]
+    red = ramp((176, 36, 44))
+    hands = body(c, SKIN, robe=ramp((236, 230, 222), 0.6), boots=ramp((120, 40, 40)), cloak=red, sleeves=red,
+                 right='chest', left='chest', belt=red)
+    # The open eye of her house, in gold on the robe.
     c.grid("""
-...y...
-..yoy..
-..yOy..
-...K...
-..KwK..
-..KwK..
-..KwK..
-KKKwKKK
-KgggggK
-.KKKKK.""", x0 - 1, y0 - 6, {'y': (255, 220, 90), 'o': (255, 150, 40), 'O': (255, 250, 200), 'K': (60, 40, 30),
-                              'w': (244, 240, 226), 'g': GOLD['mid']})
-    c.ellipse((x0 - 1, y0 + 3, x0 + 4, y0 + 7), SKIN)
-    head(c, SLEEPY_HEAD, head_colors(SKIN, hair, {'C': (196, 52, 64), 'c': (150, 36, 52)}), y=1)
+.ggg.
+gKrKg
+.ggg.""", 29, 44, {'g': GOLD['mid'], 'K': (40, 20, 20), 'r': (176, 36, 44)})
+    # A small brazier held in both hands.
+    c.poly([(26, 31), (37, 31), (35, 37), (28, 37)], GOLD, light=False)
+    c.ellipse((28, 25, 35, 32), ramp((255, 150, 40)))
+    c.dot(31, 28, (255, 240, 180))
+    c.ellipse((23, 32, 29, 38), SKIN)
+    c.ellipse((34, 32, 40, 38), SKIN)
+    head(c, SEER_HEAD, head_colors(SKIN, hair))
     return c
 
 
-def faceless_dad():
-    """House Petalburg, the Faceless Dads: a robe half black, half white, a spare face in hand."""
+def faceless_man():
+    """House Petalburg, trained by the faceless men: charcoal grey, a blank white mask in hand."""
     c = Canvas()
-    hands = body(c, SKIN, robe=BLACK, boots=ramp((40, 36, 44)), right='out', left='down', wide=1)
-    white = ramp((226, 224, 220), 0.6)
-    c.recolor(lambda x, y: x <= 31, {BLACK[k]: white[k] for k in ('hi', 'mid', 'lo', 'line')})
-    c.ellipse((24, 19, 39, 26), ramp((90, 86, 96)))  # cowl
+    grey = ramp((72, 70, 78))
+    hands = body(c, SKIN, robe=grey, boots=ramp((40, 36, 44)), cloak=ramp((52, 50, 58)), right='out', left='down',
+                 wide=1, belt=ramp((40, 38, 46)))
+    c.ellipse((24, 19, 39, 26), ramp((60, 58, 66)))  # cowl
     x0, y0 = hands['right'][0], hands['right'][1]
     c.grid("""
 .KKKKKKKK.
 KppppppppK
+KppppppppK
 KpKKppKKpK
 KppppppppK
 KpppppqppK
-KpppppqppK
-.KppKKppK.
+KppppppppK
 .KppppppK.
 ..KppppK..
-...KKKK...""", x0 - 2, y0 - 9, {'K': (60, 56, 60), 'p': (232, 220, 206), 'q': (196, 180, 166)})
+...KKKK...""", x0 - 2, y0 - 9, {'K': (60, 56, 60), 'p': (240, 236, 228), 'q': (206, 200, 192)})
     c.ellipse((x0, y0 + 1, x0 + 6, y0 + 6), SKIN)
     head(c, NORMAN_HEAD, head_colors(SKIN, ramp((52, 52, 70))))
     return c
 
 
 def dragon_queen():
-    """House Fortree, the Mother of Dragons: silver hair, a blue gown, a baby dragon."""
+    """House Fortree, the Mother of Dragons: silver hair, black and red, a young dragon."""
     c = Canvas()
     hair = ramp((226, 220, 240), 0.6)
     long_hair(c, hair, top=8, bottom=40, half=12)
-    hands = body(c, SKIN, robe=ramp((60, 84, 150)), boots=ramp((50, 50, 70)), cloak=ramp((44, 36, 56)),
-                 right='out', left='down', belt=GOLD)
+    hands = body(c, SKIN, robe=ramp((44, 40, 50)), boots=ramp((30, 28, 34)), cloak=ramp((150, 30, 36)),
+                 right='out', left='down', belt=ramp((150, 30, 36)))
     c.rect((40, 26, 42, 46), hair, light=False)  # braid
     x0, y0 = hands['right'][0], hands['right'][1]
     c.grid("""
@@ -551,41 +552,41 @@ KRERRK.KwwwwK.
 ...KRRRRRRK...
 ...KRKKRRRRKK.
 ...KK.KKRRRRRK
-.........KKKK.""", x0 - 3, y0 - 10, {'K': (60, 20, 20), 'R': (206, 60, 44), 'E': (255, 220, 60),
-                                     'h': (240, 210, 150), 'w': (140, 36, 40)})
+.........KKKK.""", x0 - 3, y0 - 10, {'K': (40, 14, 14), 'R': (196, 52, 40), 'E': (255, 220, 60),
+                                     'h': (240, 210, 150), 'w': (110, 26, 30)})
     c.ellipse(hands['right'], SKIN)
     head(c, WINONA_HEAD, head_colors(SKIN, hair))
     return c
 
 
-def iron_twins():
-    """House Mossdeep, the Iron Throne: twin heirs with crowns in front of a throne of swords."""
+def sword_twins():
+    """House Mossdeep, the Sword Twins: steel and blue, each with a blade from their forge,
+    in front of the throne of swords their forge made."""
     c = Canvas()
     iron = ramp((96, 100, 112))
-    # The throne: a back of swords fanned out.
     for i, x in enumerate(range(14, 51, 4)):
         top = 2 + abs(x - 32) // 2 + (i % 2) * 3
         c.rect((x, top, x + 2, 50), iron, light=False)
         c.dot(x + 1, top - 1, iron['hi'])
     c.rect((10, 40, 53, 52), ramp((80, 84, 96)))
     hair = ramp((46, 54, 96))
-    crown = {'G': GOLD['hi'], 'g': GOLD['mid'], 'k': GOLD['line']}
-    for x0, cloth in ((4, ramp((110, 70, 160))), (32, ramp((180, 56, 80)))):
+    for x0, cloth, flip in ((4, ramp((60, 90, 150)), False), (32, ramp((130, 140, 156)), True)):
         sub = Canvas(28, 64)
         sub.poly([(8, 30), (19, 30), (22, 33), (24, 60), (4, 60), (6, 33)], cloth)
         sub.rect((11, 26, 16, 31), SKIN, light=False)
         sub.poly([(18, 31), (22, 33), (24, 44), (20, 44), (19, 38)], cloth)
         sub.poly([(9, 31), (5, 33), (3, 44), (7, 44), (8, 38)], cloth)
-        sub.ellipse((19, 42, 24, 47), SKIN)
-        sub.ellipse((3, 42, 8, 47), SKIN)
+        sub.rect((9, 46, 18, 48), ramp((90, 66, 44)), light=False)   # smith's belt
         sub.rect((9, 58, 12, 61), ramp((60, 50, 60)))
         sub.rect((15, 58, 18, 61), ramp((60, 50, 60)))
+        # A sword held point-down at the side.
+        sub.rect((21, 47, 22, 61), STEEL, light=False)
+        sub.rect((19, 45, 24, 46), STEEL, light=False)
+        sub.ellipse((19, 42, 24, 47), SKIN)
+        sub.ellipse((3, 42, 8, 47), SKIN)
         sub.grid(TWIN_FACE, 6, 15, head_colors(SKIN, hair))
-        sub.grid("""
-.G.G.G.G.
-.GgGgGgG.
-kgggggggk
-.kkkkkkk.""", 9, 12, crown)
+        if flip:
+            sub.flip()
         for y in range(64):
             for x in range(28):
                 if sub.px[y][x] is not None:
@@ -594,7 +595,7 @@ kgggggggk
 
 
 def night_king():
-    """House Sootopolis, the Night King: icy skin, a crown of ice, black armor, an ice spear."""
+    """House Sootopolis, Lord of the Long Night: icy skin, a crown of ice, black armor, an ice spear."""
     c = Canvas()
     dark = ramp((52, 56, 76))
     cloak = ramp((36, 40, 56))
@@ -616,9 +617,10 @@ def night_king():
 
 LABELS = {
     'birch_intro': 'Grand Maester (Birch)', 'brendan': 'You / your Hand', 'may': 'You / your Hand',
-    'wally': 'Wally, Kingsguard', 'roxanne': 'Roxanne, ghost library', 'brawly': 'Brawly, cave buffet',
-    'wattson': "Wattson, Thieves' Guild", 'flannery': 'Flannery, nap club', 'norman': 'Norman, Faceless Dad',
-    'winona': 'Winona, Mother of Dragons', 'tate_and_liza': 'Tate & Liza, Iron Throne', 'juan': 'Juan, Night King',
+    'wally': 'Wally, Kingsguard', 'roxanne': 'Roxanne, Keeper of the Crypts', 'brawly': 'Brawly, reaver captain',
+    'wattson': 'Wattson, Master of Whispers', 'flannery': 'Flannery, dream priestess', 'norman': 'Norman, faceless',
+    'winona': 'Winona, Mother of Dragons', 'tate_and_liza': 'Tate & Liza, Sword Twins',
+    'juan': 'Juan, Lord of the Long Night',
 }
 
 FRONT = {
@@ -628,11 +630,11 @@ FRONT = {
     'wally': (kingsguard, 'graphics/trainers/front_pics/wally.png'),
     'roxanne': (roxanne, 'graphics/trainers/front_pics/leader_roxanne.png'),
     'brawly': (brawly, 'graphics/trainers/front_pics/leader_brawly.png'),
-    'wattson': (thief_lord, 'graphics/trainers/front_pics/leader_wattson.png'),
+    'wattson': (spymaster, 'graphics/trainers/front_pics/leader_wattson.png'),
     'flannery': (flannery, 'graphics/trainers/front_pics/leader_flannery.png'),
-    'norman': (faceless_dad, 'graphics/trainers/front_pics/leader_norman.png'),
+    'norman': (faceless_man, 'graphics/trainers/front_pics/leader_norman.png'),
     'winona': (dragon_queen, 'graphics/trainers/front_pics/leader_winona.png'),
-    'tate_and_liza': (iron_twins, 'graphics/trainers/front_pics/leader_tate_and_liza.png'),
+    'tate_and_liza': (sword_twins, 'graphics/trainers/front_pics/leader_tate_and_liza.png'),
     'juan': (night_king, 'graphics/trainers/front_pics/leader_juan.png'),
 }
 
@@ -774,71 +776,49 @@ def ow_kingsguard(im, i, d):
 
 
 def ow_roxanne(im, i, d):
-    """Roxanne: a scholar's blue robe."""
-    remap(im, i, {5: 8, 6: 9, 7: 0xa}, rows=(12, 99))
+    """Roxanne, Keeper of the Crypts: pale bone-colored robes."""
+    remap(im, i, {5: 0xe, 6: 8, 7: 9}, rows=(12, 99))
 
 
 def ow_brawly(im, i, d):
-    """Brawly: a fur mantle over his shoulders."""
-    cape(im, i, d, (0xb, 0xc, 0xd, 0xd), 11)
+    """Brawly, reaver captain: a sea-green cloak."""
+    cape(im, i, d, (9, 0xa, 0xa, 0xd), 11)
 
 
 def ow_thief(im, i, d):
-    """Wattson: a deep brown hood and cloak."""
-    remap(im, i, {0xe: 0xc, 4: 0xc, 2: 0xb, 1: 0xb, 3: 0xc, 0xf: 0xd}, rows=(0, 2))
+    """Wattson, Master of Whispers: a black hood and cloak."""
+    remap(im, i, {0xe: 0xd, 4: 0xd, 2: 0xc, 1: 0xc, 3: 0xd, 0xf: 0xd}, rows=(0, 2))
     if d == 'U':
-        remap(im, i, {0xe: 0xc, 2: 0xb, 3: 0xc}, rows=(3, 12))
+        remap(im, i, {0xe: 0xd, 2: 0xc, 3: 0xd}, rows=(3, 12))
     else:
-        remap(im, i, {0xe: 0xc}, rows=(3, 9), cols=(0, 4))
-        remap(im, i, {0xe: 0xc}, rows=(3, 9), cols=(11, 15))
-    remap(im, i, {5: 0xc, 6: 0xd}, rows=(14, 99))
-    cape(im, i, d, (0xb, 0xc, 0xd, 0xd), 12)
+        remap(im, i, {0xe: 0xd}, rows=(3, 9), cols=(0, 4))
+        remap(im, i, {0xe: 0xd}, rows=(3, 9), cols=(11, 15))
+    remap(im, i, {5: 0xd, 6: 0xd, 0xb: 0xc}, rows=(14, 99))
+    cape(im, i, d, (0xc, 0xd, 0xd, 0xf), 12)
 
 
 def ow_flannery(im, i, d):
-    """Flannery: a white nightgown and a nightcap."""
-    remap(im, i, {0xd: 0xe, 0xf: 8, 0xc: 8, 0xa: 9, 9: 8}, rows=(13, 99))
-    top, cx = _top(im, i), _center(im, i)
-    art = """
-........ee
-.....eeeee
-...eeeeee.
-..eeeeeee.
-.8e8e8e8e.""" if d != 'L' else """
-ee........
-eeeee.....
-.eeeeee...
-.eeeeeee..
-.8e8e8e8e."""
-    paint(im, i, art, cx - 4 + (1 if d == 'L' else 0), top - 2, {})
+    """Flannery, dream priestess: white robes and a red cloak."""
+    remap(im, i, {0xd: 0xe, 0xf: 0xe, 0xc: 8, 0xa: 6, 9: 0xe}, rows=(13, 99))
+    cape(im, i, d, (5, 6, 7, 0xa), 13)
 
 
 def ow_faceless(im, i, d):
-    """Norman: a robe half white, half black."""
-    left = (0, 7) if d != 'U' else (8, 15)
-    right = (8, 15) if d != 'U' else (0, 7)
-    if d == 'L':
-        left, right = (0, 15), (16, 16)
-    remap(im, i, {0xb: 0xe, 0xc: 0xb, 0xd: 0xc, 0xf: 0xc}, rows=(10, 99), cols=left)
-    remap(im, i, {0xb: 0xd, 0xc: 7, 0xd: 7}, rows=(10, 99), cols=right)
+    """Norman: charcoal grey from head to toe."""
+    remap(im, i, {0xb: 0xd, 0xc: 0xd, 0xe: 0xc}, rows=(10, 99))
+    cape(im, i, d, (0xc, 0xd, 7, 7), 10)
 
 
 def ow_dragon_queen(im, i, d):
-    """Winona: silver hair and a dark cloak."""
+    """Winona: silver hair, black dress and a red cloak."""
     remap(im, i, {5: 0xb}, rows=(0, 9))
-    remap(im, i, {5: 6}, rows=(12, 99))
-    cape(im, i, d, (5, 6, 7, 7), 12)
+    remap(im, i, {5: 6, 0xb: 6, 0xc: 7}, rows=(12, 99))
+    cape(im, i, d, (8, 9, 0xa, 7), 12)
 
 
 def ow_twin(im, i, d):
-    """Tate and Liza: crowns and red royal cloaks."""
-    top, cx = _top(im, i), _center(im, i)
-    art = """
-b.b.b.b
-bbbbbbb
-cbcbcbc"""
-    paint(im, i, art, cx - 3 + (1 if d == 'L' else 0), top - 2, {})
-    cape(im, i, d, (5, 6, 7, 0xf), 12)
+    """Tate and Liza, the Sword Twins: steel-blue cloaks."""
+    cape(im, i, d, (8, 9, 0xa, 0xf), 12)
 
 
 def ow_night_king(im, i, d):

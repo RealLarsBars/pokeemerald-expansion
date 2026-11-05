@@ -1495,7 +1495,7 @@ const COMEDY_SWITCHES = [
   ['battle', 'Battle commentary', 'Battle messages get rewritten: wild Pokémon owe you money, fainting is dramatic.', 'madlibs'],
   ['houseGyms', 'House Gyms', 'Every Gym becomes a noble house with its own wild idea: ghosts in Rustboro\'s library, a cave buffet in Dewford, dragons in Fortree, the Night King in Sootopolis. Gym Guides give the new advice, badges become house sigils. Works with Hard mode too.', 'thrones'],
   ['story', 'Story events', 'New scenes in the real story: a herald with a gift after every badge, a loan from the Iron Bank (the collector comes later), the Red Wedding in Slateport, your rival as your Hand (until they betray you), Wally\'s cape, a spy, and a walk of shame after you white out.', 'thrones'],
-  ['sprites', 'Medieval sprites', 'New battle pictures and walking sprites for the cast: Prof. Birch as the Grand Maester, you and your Hand, Wally the Kingsguard, and all eight House Gym leaders (a ghost librarian, a feast lord, a hooded thief, a sleepy lady, a Faceless Dad, a dragon queen, twin heirs on a throne of swords, and the Night King).', 'thrones'],
+  ['sprites', 'Medieval sprites', 'New battle pictures and walking sprites for the cast: Prof. Birch as the Grand Maester, you and your Hand, Wally the Kingsguard, and every House Gym leader (the Keeper of the Crypts, a reaver captain, the Master of Whispers, a dream priestess, a faceless man, the Mother of Dragons, the Sword Twins, and the Lord of the Long Night).', 'thrones'],
 ];
 const CAP_NAMES = ['Badge 1', 'Badge 2', 'Badge 3', 'Badge 4', 'Badge 5', 'Badge 6', 'Badge 7', 'Badge 8', 'Champion'];
 
