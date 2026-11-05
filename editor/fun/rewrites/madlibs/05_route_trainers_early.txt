@@ -1,457 +1,459 @@
 # Mad Libs: trainers on Routes 102, 103, 104 and 116.
+# Never write 'a' or 'an' right before a blank, and never add 's' after one.
+# Bar: every entry is funny AND absurd on its own, and gets funnier with the player's words.
 
 @ Route102_Text_CalvinIntro
-If you have POKéMON with you, you're an official TRAINER! You can't say no to me! Or to {MADLIB_FOOD}!
+You have POKéMON! That makes you an official TRAINER! I can tell by your {MADLIB_CLOTHING}! You can't say no to me! I'm {MADLIB_ADJ}!
 
 @ Route102_Text_CalvinDefeated
-Arrgh, I lost… I should have trained instead of {MADLIB_ACTIVITY}…
+Arrgh, I lost… I should have trained instead of {MADLIB_ACTIVITY}… I've been {MADLIB_ACTIVITY} for six hours…
 
 @ Route102_Text_CalvinPostBattle
-Listen, you. If you're that {MADLIB_ADJ}, you should have told me before!
+Listen, you. If you're that {MADLIB_ADJ}, you should've said so! With a sign! On your {MADLIB_BODYPART}!
 
 @ Route102_Text_CalvinRegister
-I've been training hard since I saw you. I even gave up {MADLIB_FOOD}.
+I've trained so hard since we met. I gave up {MADLIB_FOOD}. I gave up {MADLIB_NAME}. I've got nothing left but this.
 
 I'd like to battle you again, so can you register me in your POKéNAV?
 
 @ Route102_Text_CalvinRegisterShort
-I'd like to battle you again, so can you register me in your POKéNAV?
+I haven't stopped thinking about you. Mostly in anger. I'd like to battle you again, so can you register me in your POKéNAV?
 
 @ Route102_Text_CalvinRematchIntro
-Ever since I lost to you, I've trained like {MADLIB_CREATURE}. You can't say no to my challenge!
+Ever since I lost to you, I've trained like {MADLIB_CREATURE}. I ate like {MADLIB_CREATURE}. I smell like {MADLIB_CREATURE}. You can't say no to my challenge!
 
 @ Route102_Text_CalvinRematchDefeated
-Arrgh, I lost… Is my training method too {MADLIB_ADJ}?
+Arrgh, I lost… I trained in {MADLIB_CLOTHING}. Was that the problem? Is my training method too {MADLIB_ADJ}?
 
 @ Route102_Text_CalvinRematchPostBattle
-If you get stronger, I'll get stronger, too. I'll eat more {MADLIB_FOOD}.
+If you get stronger, I'll get stronger, too. I'll eat more {MADLIB_FOOD}. I'll lift my {MADLIB_VEHICLE}. It's going to get weird.
 
 @ Route102_Text_AllenIntro
-Did you just become a TRAINER? We're both beginners! High {MADLIB_BODYPART}!
+Did you just become a TRAINER? Me too! High {MADLIB_BODYPART}! No, the other {MADLIB_BODYPART}! Okay, whatever, let's battle!
 
 @ Route102_Text_AllenDefeated
-I called you over because I thought I could win… I feel {MADLIB_FEELING}…
+I called you over because I thought I could win… I feel {MADLIB_FEELING}… I feel like {MADLIB_FOOD}…
 
 @ Route102_Text_AllenPostBattle
-I haven't won once yet… Not even against {MADLIB_NAME}…
+I haven't won once yet… Not against you… Not against {MADLIB_NAME}… Not against {MADLIB_CREATURE}… It was a really small one…
 
 @ Route102_Text_RickIntro
-Hahah! Our eyes met! My BUG POKéMON smell like {MADLIB_FOOD}!
+Hahah! Our eyes met! That's legally binding! My BUG POKéMON smell like {MADLIB_FOOD} and they're ready to rumble!
 
 @ Route102_Text_RickDefeated
-Ow! {MADLIB_SHOUT}! Down and out!
+Ow! {MADLIB_SHOUT}! Down and out! My bugs are filing a complaint!
 
 @ Route102_Text_RickPostBattle
-If you lock eyes with a TRAINER, you have to battle! It's a rule! Like no {MADLIB_FOOD} in bed!
+If you lock eyes with a TRAINER, you have to battle! It's a rule! Like no {MADLIB_FOOD} in bed! I break that one every night!
 
 @ Route102_Text_TianaIntro
-I'm going to keep winning and be the most {MADLIB_ADJ} TRAINER ever.
+I'm going to keep winning until I'm the most {MADLIB_ADJ} TRAINER in history. Statues. Songs. {MADLIB_FOOD} named after me.
 
-Help me further my career!
+Help me further my career! Lose quietly!
 
 @ Route102_Text_TianaDefeated
-I ended up furthering your career… and your {MADLIB_CLOTHING}…
+I ended up furthering YOUR career… I'm basically your intern now… Do you need {MADLIB_DRINK}…
 
 @ Route102_Text_TianaPostBattle
-To keep winning, I need to catch more POKéMON. And {MADLIB_CREATURE}.
+To keep winning, I need to catch more POKéMON. And {MADLIB_CREATURE}. And maybe {MADLIB_NAME}. Is that legal?
 
 @ Route103_Text_DaisyIntro
-It smells like {MADLIB_FOOD}, right? Did you feel the tug of our soothing fragrance?
+Our perfume is called “Essence of {MADLIB_FOOD}.” It's mostly {MADLIB_DRINK}. Did you feel the tug of our soothing fragrance?
 
 @ Route103_Text_DaisyDefeated
-You weren't fooled by our {MADLIB_FOOD} smell…
+You weren't fooled by our {MADLIB_FOOD} smell… Is your {MADLIB_BODYPART} broken…
 
 @ Route103_Text_DaisyPostBattle
-Aromatherapy heals your mind with smells. My favorite is {MADLIB_DRINK}.
+Aromatherapy heals your mind with smells. Today's smell is {MADLIB_DRINK} and wet {MADLIB_CLOTHING}. Breathe deep.
 
 @ Route103_Text_AmyIntro
-AMY: I'm AMY. And this is my little sister LIV. We battle together! And eat {MADLIB_FOOD} together!
+AMY: I'm AMY. And this is my little sister LIV. We battle together! We eat {MADLIB_FOOD} together! We share one {MADLIB_CLOTHING}!
 
 @ Route103_Text_AmyDefeated
-AMY: Uh-oh, we lost. {MADLIB_SOUND}.
+AMY: Uh-oh, we lost. {MADLIB_SOUND}. That's the noise Mom makes when we lose.
 
 @ Route103_Text_AmyPostBattle
-AMY: Battling two TRAINERS is like juggling {MADLIB_FOOD}. You have to think fast.
+AMY: Battling two TRAINERS is like juggling {MADLIB_FOOD} on {MADLIB_VEHICLE}. You have to think fast.
 
 @ Route103_Text_AmyNotEnoughPokemon
-AMY: Uh-oh, you only have one POKéMON. You can't battle us like that.
+AMY: Uh-oh, you only have one POKéMON. That's not fair to you. It's barely fair to {MADLIB_CREATURE}.
 
 @ Route103_Text_LivIntro
-LIV: We battle together as one {MADLIB_ADJ} team.
+LIV: We're one {MADLIB_ADJ} team! We have matching {MADLIB_CLOTHING}! Mine is on backwards!
 
 @ Route103_Text_LivDefeated
-LIV: Oh, we lost, big sister… I feel {MADLIB_FEELING}…
+LIV: Oh, we lost, big sister… I'm going to go cry into some {MADLIB_FOOD}…
 
 @ Route103_Text_LivPostBattle
-LIV: We work perfectly together, me and my big sister…
+LIV: We have perfect teamwork, me and my big sister…
 
-Like {MADLIB_FOOD} and {MADLIB_DRINK}… But we still lost…
+But we still lost… I think it's the backwards {MADLIB_CLOTHING}…
 
 @ Route103_Text_LivNotEnoughPokemon
-LIV: If you want to battle us, you need two POKéMON! It's not fair if you don't!
+LIV: You need two POKéMON to battle us! One is too few! Three is {MADLIB_NAME}'s birthday party!
 
 @ Route103_Text_AmyLivRegister
-LIV: Really, we're a lot better… It's true! We'll show you next time! At the {MADLIB_PLACE}!
+LIV: We're much better than that, really! We'll prove it! We'll bring {MADLIB_FOOD}!
 
 @ Route103_Text_AmyRematchIntro
-AMY: I'm AMY, and this is LIV. We're back, and we're {MADLIB_ADJ}!
+AMY: I'm AMY, and this is my little sister LIV. We've been practicing! Mostly {MADLIB_ACTIVITY}! Battle us!
 
 @ Route103_Text_AmyRematchDefeated
-AMY: Aww, boo! We couldn't win again… {MADLIB_SHOUT}…
+AMY: Aww, boo! We lost again… {MADLIB_SOUND}… {MADLIB_SOUND}…
 
 @ Route103_Text_AmyRematchNotEnoughPokemon
-AMY: Uh-oh, you only have one POKéMON. You can't battle us like that.
+AMY: Uh-oh, you only have one POKéMON. Go get another one. Or {MADLIB_CREATURE}. We'll wait.
 
 @ Route103_Text_AmyRematchPostBattle
-AMY: Battling two TRAINERS is like juggling {MADLIB_FOOD}. You have to think fast.
+AMY: Two TRAINERS at once means two plans at once. Our plan was {MADLIB_FOOD}. It wasn't a good plan.
 
 @ Route103_Text_LivRematchIntro
-LIV: We battle together as one team. The {MADLIB_COLOR} team!
+LIV: We're one {MADLIB_ADJ} team! Again! The {MADLIB_CLOTHING} is on frontwards this time!
 
 @ Route103_Text_LivRematchDefeated
-LIV: Awww, we lost again… Big sister…
+LIV: Awww, we lost again… Big sister… It wasn't the {MADLIB_CLOTHING}…
 
 @ Route103_Text_LivRematchNotEnoughPokemon
-LIV: If you want to battle us, you need two POKéMON! It's not fair if you don't!
+LIV: Two POKéMON! You need two! Count with me! One! {MADLIB_SHOUT}! See?
 
 @ Route103_Text_LivRematchPostBattle
-LIV: We work perfectly together, me and my big sister…
+LIV: We have perfect teamwork, me and my big sister…
 
-So why did we lose again?
+We even did {MADLIB_ACTIVITY} for practice. So why did we lose again?
 
 @ Route103_Text_AndrewIntro
-Gah! My fishing line's all tangled in my {MADLIB_CLOTHING}! I'm getting mean! Battle me!
+Gah! My line's all tangled! I caught {MADLIB_CLOTHING} and {MADLIB_FOOD}! No fish! I'm so {MADLIB_FEELING}! Battle me!
 
 @ Route103_Text_AndrewDefeated
-Gah! Lost! I'm even more {MADLIB_FEELING} now!
+Gah! Lost that too! {MADLIB_SHOUT}! I'm throwing my rod at {MADLIB_CREATURE}!
 
 @ Route103_Text_AndrewPostBattle
-Gah, I'm still boiling mad… Like hot {MADLIB_DRINK}… Grrrrr…
+Grrrrr… I'm still boiling… Like {MADLIB_DRINK} in a hot {MADLIB_VEHICLE}…
 
 @ Route103_Text_MiguelIntro
-My POKéMON is more adorable than {MADLIB_NAME}! Don't be shy, look!
+My POKéMON is so {MADLIB_ADJ}! It's prettier than {MADLIB_NAME}! It's prettier than a sunset over the {MADLIB_PLACE}! Look at it! Don't touch it!
 
 @ Route103_Text_MiguelDefeated
-Oh, my gosh! My darling {MADLIB_CREATURE}! I mean POKéMON!
+Oh, my gosh! My darling POKéMON! Fetch it some {MADLIB_DRINK}! Fetch it a tiny {MADLIB_CLOTHING}!
 
 @ Route103_Text_MiguelPostBattle
-My darling POKéMON looks {MADLIB_ADJ} even when it's fainted!
+My darling POKéMON is still beautiful even when it's fainted. Like {MADLIB_FOOD} that fell on the floor. Still good. Still beautiful.
 
 @ Route103_Text_MiguelRegister
-I'll get you to come look at my {MADLIB_ADJ} POKéMON again!
+I'll call you so you can admire my darling POKéMON! Every day! At dinner! During {MADLIB_ACTIVITY}!
 
 @ Route103_Text_MiguelRematchIntro
-Hi, you! My POKéMON got even cuter! It wears my {MADLIB_CLOTHING} now!
+Oh, hi! My POKéMON has become even more {MADLIB_ADJ}! It has a modeling contract! It's the face of {MADLIB_FOOD}!
 
 @ Route103_Text_MiguelRematchDefeated
-Oh! My darling POKéMON! {MADLIB_SHOUT}!
+Oh! My darling POKéMON! Its {MADLIB_BODYPART}! Its beautiful {MADLIB_BODYPART}!
 
 @ Route103_Text_MiguelRematchPostBattle
-The longer we're together, the more my POKéMON looks like {MADLIB_FOOD}. Adorable.
+The more time I spend with my POKéMON, the cuter it gets. Yesterday it looked like {MADLIB_NAME}. That's a compliment. Mostly.
 
 @ Route103_Text_PeteIntro
-This little bit of water? You should just swim it! Or ride your {MADLIB_VEHICLE}!
+This little channel? I'll just swim across! In my {MADLIB_CLOTHING}! Holding {MADLIB_FOOD}!
 
 @ Route103_Text_PeteDefeated
-Oh, that's {MADLIB_ADJ} going!
+Oh, now that's one {MADLIB_ADJ} beating! I'm soaked! I wasn't even in the water!
 
 @ Route103_Text_PetePostBattle
-Oh, I get it now.
+Ah, I see now.
 
-If I had a POKéMON that trusty, I'd SURF on it too! Instead of my {MADLIB_VEHICLE}!
+You ride a POKéMON on the water! I've been riding {MADLIB_VEHICLE}! It sinks every time!
 
 @ Route103_Text_IsabelleIntro
-Watch where you're going! We're going to crash! {MADLIB_SHOUT}!
+Watch where you're going! We almost crashed! I'd have sunk like {MADLIB_FOOD} in {MADLIB_DRINK}!
 
 @ Route103_Text_IsabelleDefeated
-Groan… {MADLIB_SOUND}…
+Glub… {MADLIB_SOUND}… Glub…
 
 @ Route103_Text_IsabellePostBattle
-I swim like {MADLIB_FOOD}, so I was practicing… Sorry for almost crashing into you.
+I'm a terrible swimmer, so I'm practicing. My stroke is called “The {MADLIB_CREATURE}.” It's mostly screaming.
 
 @ Route103_Text_RhettIntro
-Whoa! You smell like {MADLIB_FOOD}. How'd you get into a space this small?
+Whoa! How'd you get in here? This is my {MADLIB_ADJ} hiding spot! I've got {MADLIB_FOOD} stashed in here! Is it you who's been eating it?
 
 @ Route103_Text_RhettDefeated
-Whoa! The kid is {MADLIB_ADJ}!
+Whoa! This kid's {MADLIB_ADJ}! Take the {MADLIB_FOOD}! Just leave!
 
 @ Route103_Text_RhettPostBattle
-I come here for {MADLIB_ACTIVITY}. Do you like cramped little spots like this?
+I sleep in here. I have a pillow made of {MADLIB_CLOTHING}. Do you like tight little hiding places like this one?
 
 @ Route103_Text_MarcosIntro
-My guitar's wailing like {MADLIB_CREATURE}! Did it draw you in?
+Every guitarist has one {MADLIB_ADJ} song! Mine is called “{MADLIB_SHOUT}”! Did my music lure you here?
 
 @ Route103_Text_MarcosDefeated
-My one-man show is ruined… {MADLIB_SOUND}…
+My one-man show is ruined… Somebody throw {MADLIB_FOOD} at me… It's tradition…
 
 @ Route103_Text_MarcosPostBattle
-I played my guitar where nobody was around, but a huge crowd showed up for {MADLIB_FOOD}.
+I played where nobody goes, and people came anyway. Also {MADLIB_CREATURE}. It cried.
 
-Heh, maybe I should go pro. At the {MADLIB_PLACE}.
+Heh, maybe I should play at the {MADLIB_PLACE}. Or at {MADLIB_NAME}'s wedding.
 
 @ Route104_Text_GinaIntro
-GINA: Okay, let's battle with our {MADLIB_ADJ} POKéMON!
+GINA: Okay, let's battle with our POKéMON! Mia brought {MADLIB_FOOD}!
 
 @ Route104_Text_GinaDefeat
-GINA: Losing makes me {MADLIB_FEELING}!
+GINA: Losing makes me so {MADLIB_FEELING}! I'm eating all the {MADLIB_FOOD} about it!
 
 @ Route104_Text_GinaPostBattle
-GINA: You are strong! We have to train lots more! And eat less {MADLIB_FOOD}!
+GINA: You're strong! We have to train way more! And bring way more {MADLIB_FOOD}!
 
 @ Route104_Text_GinaNotEnoughMons
-GINA: Oh? Only one POKéMON? Then we won't battle you.
+GINA: Huh? Only one POKéMON? Then we won't battle you.
 
-If there's only one POKéMON, it will be lonely. That's not nice.
+Two against one isn't fair. It's like {MADLIB_CREATURE} versus {MADLIB_NAME}. Just sad.
 
 @ Route104_Text_MiaIntro
-MIA: We are twins, so we battle together. And share {MADLIB_CLOTHING}.
+MIA: We are twins, so we battle together. We also share one {MADLIB_CLOTHING}. It's my turn today.
 
 @ Route104_Text_MiaDefeat
-MIA: We battled together, but we both lost… {MADLIB_SOUND}…
+MIA: We battled together, and we lost together… Right onto the {MADLIB_CLOTHING}…
 
 @ Route104_Text_MiaPostBattle
-MIA: We will train our POKéMON more and be {MADLIB_ADJ} like you.
+MIA: We'll train our POKéMON more and become strong like you. Then we'll buy a second {MADLIB_CLOTHING}.
 
 @ Route104_Text_MiaNotEnoughMons
-MIA: You want to battle with us?
+MIA: You want to battle us? With one POKéMON?
 
-It's a big no-no if you don't have two POKéMON with you. We're too strong for you!
+Not without two POKéMON. We're far too {MADLIB_ADJ} for you!
 
 @ Route104_Text_IvanIntro
-Why keep it a secret? I'm the WATER POKéMON expert! Also {MADLIB_FOOD} expert!
+Why keep it secret? I'm the most {MADLIB_ADJ} WATER POKéMON TRAINER ever! My fans call me “The {MADLIB_FOOD}”! Both of them!
 
-Huh? You don't know me?
+Huh? You've never heard of me?
 
 @ Route104_Text_IvanDefeat
-I thought I wasn't too bad, if I may say so, but I guess not… {MADLIB_SOUND}…
+I thought I was rather good, but no… I'm going to go stand in the sea and feel {MADLIB_FEELING}…
 
 @ Route104_Text_IvanPostBattle
-I got too into fishing. I caught {MADLIB_FOOD} and forgot to raise my POKéMON…
+I spent all my time fishing for {MADLIB_FOOD}. I forgot to raise my POKéMON. I caught somebody's {MADLIB_CLOTHING}, though.
 
 @ Route104_Text_BillyIntro
-Leaving footprints in the sand is so {MADLIB_ADJ}!
+I'm leaving footprints in the sand! Look! This one's shaped like {MADLIB_CREATURE}! This one's shaped like {MADLIB_NAME}!
 
 @ Route104_Text_BillyDefeat
-Waah! I got sand in my {MADLIB_CLOTHING}! It's all gritty!
+Waah! Sand got in my {MADLIB_CLOTHING}! And my {MADLIB_FOOD}!
 
 @ Route104_Text_BillyPostBattle
-I want to leave my footprints everywhere, even the {MADLIB_PLACE}, but they disappear fast…
+I want to leave footprints everywhere, but the tide keeps erasing them. The tide is my enemy. I've named it {MADLIB_NAME}.
 
 @ Route104_Text_HaleyIntro
-Should I… Or should I go eat {MADLIB_FOOD}?
+Should I… Or shouldn't I? I asked my {MADLIB_CREATURE}. It just stared at me. That's a yes.
 
-Okay, sure, I will battle!
+Okay, fine, I'll battle!
 
 @ Route104_Text_HaleyDefeat
-I shouldn't have battled… I should have gone {MADLIB_ACTIVITY}…
+I shouldn't have battled… I should have done {MADLIB_ACTIVITY} instead…
 
 @ Route104_Text_HaleyPostBattle
-If you let someone else choose for you, you'll regret it. I let {MADLIB_NAME} choose my haircut once.
+If you let others decide for you, you'll regret it, whatever happens. That's how I ended up with this {MADLIB_CLOTHING}.
 
 @ Route104_Text_HaleyRegister1
-You're strong, but should I register you in my POKéNAV? Maybe I shouldn't…
+You're strong, but should I register you in my POKéNAV? Maybe I shouldn't… I'll ask my {MADLIB_FOOD}…
 
-Okay, sure, I will register you! {MADLIB_SHOUT}!
+Okay, fine, I'll register you!
 
 @ Route104_Text_HaleyRegister2
-You're strong, but should I register you in my POKéNAV? Maybe I shouldn't…
+You're scary strong. Should I register you in my POKéNAV? I've been thinking about it since {MADLIB_NAME}'s party. Maybe I shouldn't…
 
-Okay, sure, I will register you! {MADLIB_SHOUT}!
+Okay, fine, I'll register you!
 
 @ Route104_Text_HaleyRematchIntro
-Come on, battle with me! I already decided! Probably!
+Come on, battle me! I've already decided! It took me three days and some {MADLIB_DRINK}!
 
 @ Route104_Text_HaleyRematchDefeat
-Ohh… I thought I could win… I feel {MADLIB_FEELING}…
+Ohh… I thought I could win… The {MADLIB_DRINK} was so sure…
 
 @ Route104_Text_HaleyPostRematch
-I made the decision to battle, so I can accept this loss with grace.
+I chose to battle you, so I'll accept losing.
 
-I am still {MADLIB_FEELING} about losing!
+I'm still going to scream “{MADLIB_SHOUT}” into the sea, though!
 
 @ Route104_Text_WinstonIntro
-Oh, sure, I'll accept your challenge. I have a lot of money. And a gold {MADLIB_VEHICLE}.
+Oh, sure, I accept your challenge. I'm extremely rich, you see. I own three {MADLIB_VEHICLE}. I bathe in {MADLIB_DRINK}.
 
 @ Route104_Text_WinstonDefeat
-I even bought golden {MADLIB_FOOD}! Why couldn't I win?
+I paid for everything! The POKéMON! The beach! The {MADLIB_FOOD}! How could I lose?
 
 @ Route104_Text_WinstonPostBattle
-There are some things money can't buy. Like POKéMON… and good {MADLIB_FOOD}…
+Some things money can't buy. Like POKéMON. Like love. Like {MADLIB_NAME}'s respect.
 
 @ Route104_Text_WinstonRematchIntro
-After I lost, I paid {MADLIB_NAME} to teach me about POKéMON.
+Since you beat me, I hired tutors to teach me everything about POKéMON. And one tutor just for {MADLIB_ACTIVITY}.
 
 @ Route104_Text_WinstonRematchDefeat
-I lost again? Why couldn't I win?
+But the tutors were so expensive! One was {MADLIB_CREATURE}! How did I lose again?
 
 @ Route104_Text_WinstonPostRematch
-I'm fabulously wealthy, but I can't win at POKéMON…
+I'm rich beyond words, but I still can't win…
 
-It's so deep, the world of POKéMON… Deeper than my {MADLIB_CLOTHING}…
+I bought the beach. I bought the sea. You still beat me on it. That's just {MADLIB_ADJ}.
 
 @ Route104_Text_CindyIntro
-We must have been fated to meet. Like {MADLIB_FOOD} and {MADLIB_DRINK}. May I ask you for a battle?
+The stars told me we'd meet. They also said “{MADLIB_FOOD}.” I don't know what that means. May I challenge you to a battle?
 
 @ Route104_Text_CindyDefeat
-Oh, my! {MADLIB_SHOUT}!
+Oh, my! The stars lied! I'm so {MADLIB_FEELING}!
 
 @ Route104_Text_CindyPostBattle
-“Hello” is the beginning of “good-bye.” And “{MADLIB_SHOUT}” is the middle.
+Every hello is the start of a goodbye. Every goodbye is the start of a long walk to the {MADLIB_PLACE}.
 
 @ Route104_Text_CindyRegister1
-Hello, we meet again.
+Oh, hello again. The stars said you'd come. They said to bring {MADLIB_FOOD}. I didn't.
 
-We seem to be drawn together. Like {MADLIB_CREATURE} to {MADLIB_FOOD}. Let's register each other.
+We keep meeting. Let's register each other in our POKéNAVS.
 
 @ Route104_Text_CindyRegister2
-We should celebrate how we keep running into each other. With {MADLIB_DRINK}.
+Fate keeps bringing us together. Fate smells like {MADLIB_DRINK}.
 
 Let's register each other in our POKéNAVS.
 
 @ Route104_Text_CindyRematchIntro
-Hello, we meet again. May I ask you for a battle? A really {MADLIB_ADJ} one?
+Oh, hello again. The stars finally explained the {MADLIB_FOOD} thing. It was about you. May I challenge you to a battle?
 
 @ Route104_Text_CindyRematchDefeat
-Oh, my… I did the best that I could… I feel {MADLIB_FEELING}…
+Oh, my… I did all that I could… The stars did nothing…
 
 @ Route104_Text_CindyPostRematch
-“Hello” is the beginning of “good-bye.” And “{MADLIB_SHOUT}” is the middle.
+Every hello is the start of a goodbye. I've said that before. It's on my {MADLIB_CLOTHING}. Goodbye.
 
 @ Route104_Text_DarianIntro
-I fished up a tough-looking POKéMON!
+I just caught something amazing!
 
-It has this {MADLIB_ADJ} quality to it! It surely looks tough, yes it does!
+It flops! It glows! It smells like {MADLIB_FOOD}! It must be a dragon! Or {MADLIB_CREATURE}!
 
 @ Route104_Text_DarianDefeat
-What the {MADLIB_SOUND}…
+What in the {MADLIB_PLACE}… It just lay there… Like {MADLIB_FOOD}…
 
 @ Route104_Text_DarianPostBattle
-Hey, MAGIKARP, you're not really as {MADLIB_ADJ} as you look, are you?
+MAGIKARP, look at me. Look at me. You're not really a dragon, are you? Stop flopping at me like {MADLIB_NAME}. Are you?
 
 @ Route116_Text_ClarkIntro
-If the tunnel doesn't go through, I'll go over the top. In my {MADLIB_VEHICLE}.
+If the tunnel won't go through, I'll climb over the mountain. In my {MADLIB_CLOTHING}. With {MADLIB_FOOD} in my mouth.
 
 @ Route116_Text_ClarkDefeat
-Gasp… Gasp… Losing made me {MADLIB_FEELING}…
+Gasp… Gasp… Losing is so {MADLIB_ADJ}… I need {MADLIB_DRINK}…
 
 @ Route116_Text_ClarkPostBattle
-No tunnel? No big deal. To a HIKER, mountains are roads! And {MADLIB_FOOD} is fuel!
+Who needs a tunnel? Mountains are roads! I've fallen off this road six times! I land on {MADLIB_CREATURE} every time!
 
 @ Route116_Text_JoeyIntro
-My POKéMON rule! They're more {MADLIB_ADJ} than {MADLIB_NAME}!
+My POKéMON is super {MADLIB_ADJ}! It can do {MADLIB_ACTIVITY}! Look at it go!
 
 @ Route116_Text_JoeyDefeat
-Ouch! A scrape on my {MADLIB_BODYPART}! I need a bandage!
+Ouch! I got a scrape! On my {MADLIB_BODYPART}! I'm telling everyone {MADLIB_CREATURE} did it!
 
 @ Route116_Text_JoeyPostBattle
-Bandages are signs of toughness! I've got another one! It's {MADLIB_COLOR}!
+Scrapes mean you're tough! I've got one from a fight, one from {MADLIB_ACTIVITY}, and one from {MADLIB_FOOD}!
 
 @ Route116_Text_JoseIntro
-My BUG POKéMON are tough! They eat {MADLIB_FOOD}! Let's battle!
+My BUG POKéMON are tough! They survived the {MADLIB_FOOD} Incident! I don't want to talk about it! Let's battle!
 
 @ Route116_Text_JoseDefeat
-I lost! I thought I had you! {MADLIB_SHOUT}!
+I lost! I thought I had you surrounded! I surrounded myself! {MADLIB_SHOUT}!
 
 @ Route116_Text_JosePostBattle
-BUG POKéMON evolve fast. Faster than my {MADLIB_VEHICLE}.
+BUG POKéMON evolve fast. They multiply fast too. There are four hundred in my {MADLIB_VEHICLE}. Send help.
 
 @ Route116_Text_JaniceIntro
-Let me show you how strong my {MADLIB_ADJ} POKéMON is!
+Let me show you how {MADLIB_ADJ} my cute POKéMON can be! It bit {MADLIB_NAME}! It bit a cake!
 
 @ Route116_Text_JaniceDefeat
-You're a notch above me… Like {MADLIB_NAME}…
+You're too strong… And your {MADLIB_CLOTHING} is cute… I hate it…
 
 @ Route116_Text_JanicePostBattle
-POKéMON that are cute AND strong, that's ideal. Like {MADLIB_CREATURE}.
+The perfect POKéMON is cute AND dangerous. Like {MADLIB_CREATURE} with a knife. Wait, no. Forget that.
 
 @ Route116_Text_JerryIntro
-We learn all sorts of things at the TRAINER'S SCHOOL. Like {MADLIB_ACTIVITY}.
+We learn all kinds of moves at the TRAINER'S SCHOOL. Like {MADLIB_ACTIVITY}. And crying loudly to distract enemies.
 
-I want to test things out for real!
+I want to try them out on you!
 
 @ Route116_Text_JerryDefeat
-I slacked off in school to go {MADLIB_ACTIVITY}… That's why I lost.
+I skipped class… That's why I lost. I skipped it to go eat {MADLIB_FOOD}. Worth it.
 
 @ Route116_Text_JerryPostBattle
-I'll have to redo some classes. If I don't, ROXANNE will be {MADLIB_ADJ}.
+I'll have to go back and retake some classes. ROXANNE will be {MADLIB_FEELING}. She gets {MADLIB_FEELING} very quietly.
 
 @ Route116_Text_JerryRegister1
-I learned at the TRAINER'S SCHOOL that a POKéNAV can register TRAINERS.
+At school they told us a POKéNAV can register TRAINERS. I registered {MADLIB_CREATURE} by mistake. It calls me at night.
 
-I don't really get what that means, so can I just try it?
+I don't really get it, so can I just try it on you?
 
 @ Route116_Text_JerryRegister2
-I learned at the TRAINER'S SCHOOL that a POKéNAV can register TRAINERS.
+At school they said a POKéNAV can register TRAINERS. I also registered {MADLIB_NAME}. They don't call back.
 
-I don't really get what that means, so can I just try it?
+I don't really get it, so can I just try it on you?
 
 @ Route116_Text_JerryRematchIntro
-I've been studying hard at the TRAINER'S SCHOOL. I quit {MADLIB_ACTIVITY} and everything.
+I've been studying hard at the TRAINER'S SCHOOL. I read a whole book about {MADLIB_FOOD}. I won't lose like last time.
 
 @ Route116_Text_JerryRematchDefeat
-Hunh? I studied so hard my {MADLIB_BODYPART} hurts.
+Hunh? But I did all the reading. It was all about {MADLIB_FOOD}, though.
 
 @ Route116_Text_JerryPostRematch
-I'll have to redo some classes. If I don't, ROXANNE will be {MADLIB_ADJ}.
+More classes for me. ROXANNE sighed at me twice this week. I'm wearing {MADLIB_CLOTHING} to apologize.
 
 @ Route116_Text_KarenIntro
-I study at school, and I study on the way home, too! I study {MADLIB_FOOD}!
+I study at school, and I study on the way home too! I walked into four trees and {MADLIB_NAME} today! Knowledge is power!
 
 @ Route116_Text_KarenDefeat
-I'm in shock. I lost? {MADLIB_SHOUT}?
+I'm in shock. Did I lose? Did I study the {MADLIB_FOOD} book by mistake?
 
 @ Route116_Text_KarenPostBattle
-Awww, I'll never be as {MADLIB_ADJ} as ROXANNE this way!
+Awww, I'll never be as {MADLIB_ADJ} as ROXANNE at this rate! She's never walked into a tree!
 
 @ Route116_Text_KarenRegister1
-Oh, wow! Isn't that a POKéNAV? I have one, too! Mine smells like {MADLIB_FOOD}!
+Oh, wow! Is that a POKéNAV? I have one, too! It's {MADLIB_COLOR}! Please register me!
 
 @ Route116_Text_KarenRegister2
-Oh, wow! Isn't that a POKéNAV? I have one, too! Please register me!
+Oh, wow! That's a POKéNAV! Mine has a dent from a tree! And some {MADLIB_FOOD}! Please register me!
 
 @ Route116_Text_KarenRematchIntro
-I studied a whole lot since I saw you. You must see my {MADLIB_ADJ} achievements!
+I've studied so much since we last met. Nine books. Eleven trees. One {MADLIB_CREATURE}. Behold my learning!
 
 @ Route116_Text_KarenRematchDefeat
-I'm in shock. I lost again?
+I'm in shock. Did I lose again? Do I need a tenth book?
 
 @ Route116_Text_KarenPostRematch
-You've beaten ROXANNE? Then I can't beat you. Not without {MADLIB_FOOD}.
+You beat ROXANNE? Then I can't beat you yet. I'm going to go read in the {MADLIB_PLACE}. Walking. Into things.
 
 @ Route116_Text_SarahIntro
-Just so you know, I've never been beaten at anything. Not even {MADLIB_ACTIVITY}.
+Just so you know, I've never lost at anything. I'm rich. I just have people removed. My butler is {MADLIB_CREATURE}.
 
 @ Route116_Text_SarahDefeat
-Oh, my goodness. This new experience feels so {MADLIB_ADJ}.
+Oh, my goodness. So this is what losing feels like. It feels {MADLIB_ADJ}. I hate it.
 
 @ Route116_Text_SarahPostBattle
-My money buys me everything. Even a solid gold {MADLIB_THING}.
+Money buys me everything I want. Diamonds. {MADLIB_VEHICLE}. A man who hums when I walk in.
 
-But when it comes to POKéMON, my money means nothing.
+But in POKéMON, my money means nothing. Somebody fetch my {MADLIB_DRINK}. And my fainting couch.
 
 @ Route116_Text_DawsonIntro
-When you see my POKéMON's gorgeous fur, you'll be as {MADLIB_FEELING} as me!
+When you see my POKéMON's {MADLIB_ADJ} fur, you'll be too stunned to battle! Six people brush it! One just for the {MADLIB_BODYPART}!
 
 @ Route116_Text_DawsonDefeat
-Oh, baby, say it isn't so! {MADLIB_SHOUT}!
+Oh, no, say it isn't so! The {MADLIB_BODYPART} brusher will be devastated!
 
 @ Route116_Text_DawsonPostBattle
-Oh, no, no, no! You've ruined my POKéMON's fur! And my hair! It looks like {MADLIB_FOOD} now!
+Oh, no, no, no! You've ruined my POKéMON's fur! And my hair! It smells like {MADLIB_FOOD} now! Call my stylist!
 
 @ Route116_Text_DevanIntro
-We'll rock you hard! Like {MADLIB_CREATURE}!
+We'll crush you like {MADLIB_FOOD}! Like {MADLIB_FOOD} under {MADLIB_VEHICLE}!
 
 @ Route116_Text_DevanDefeat
-Aiyiyi! No contest at all! {MADLIB_SOUND}!
+Aiyiyi! {MADLIB_SHOUT}! I got crushed instead!
 
 @ Route116_Text_DevanPostBattle
-I should try different POKéMON types. Maybe the {MADLIB_COLOR} ones.
+I should catch other types of POKéMON. I only have rocks. Even my pet is a rock. I named it {MADLIB_NAME}.
 
 @ Route116_Text_JohnsonIntro
-It's a dead end up here. I'm bored of {MADLIB_ACTIVITY}, so can we battle?
+It's a dead end up here. Nobody comes. I've been here for weeks. I've started naming the clouds after {MADLIB_FOOD}. I'm bored stiff, so can we battle?
 
 @ Route116_Text_JohnsonDefeat
-That was fun even though I lost. More fun than {MADLIB_ACTIVITY}.
+That was fun, even though I lost. Most fun since the cloud that looked like {MADLIB_NAME}.
 
 @ Route116_Text_JohnsonPostBattle
-Want to stay here and eat {MADLIB_FOOD} with me?
+It's lonely up here. It's just me and {MADLIB_CREATURE}. And the {MADLIB_CREATURE} doesn't talk. Want to stay here and hang out with me?
