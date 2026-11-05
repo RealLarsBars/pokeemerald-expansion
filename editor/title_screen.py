@@ -130,6 +130,14 @@ def apply(ov, key):
         return []
     ov.write_bytes(BANNER, banner_png(key))
     ov.write(SKY, sky_pal(key))
+    if key == 'thrones':
+        # A dragon burns a castle while two armies charge, in place of Rayquaza (title_scene.py).
+        for name, game in (('thrones_scene.png', 'graphics/title_screen/rayquaza.png'),
+                           ('thrones_scene.bin', 'graphics/title_screen/rayquaza.bin')):
+            with open(os.path.join(TITLE_DIR, name), 'rb') as f:
+                ov.write_bytes(game, f.read())
+        return ['Title screen: THRONES VERSION banner, a sky on fire, and a dragon burning a castle '
+                'while two armies charge, in place of Rayquaza']
     return ['Title screen: %s VERSION banner and a new sky' % TITLES[key]['word']]
 
 
