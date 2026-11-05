@@ -221,3 +221,26 @@ main { flex: 1; min-height: 0; }
 .picker .pick.active { background: var(--accent-soft); }
 .picker .pick.chosen { font-weight: 600; }
 .picker .pick.none { color: var(--muted); cursor: default; }
+
+/* Fun Modes */
+.funcard .funhead { font-size: 15px; font-weight: 700; }
+.funcard.on { border-color: var(--accent); }
+.funcard .funbody { margin-top: 10px; }
+.funcard .field .check { margin: 2px 0; white-space: normal; }
+.capgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 8px; margin-top: 10px; }
+.packs { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 8px; margin-top: 10px; }
+.pack { display: flex; gap: 8px; align-items: flex-start; border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; cursor: pointer; }
+.pack.on { border-color: var(--accent); background: var(--accent-soft); }
+.pack input { margin-top: 3px; accent-color: var(--accent); }
+.pack .note { margin: 2px 0 0; }
+.funstatus { margin: 10px; padding: 10px 12px; border-radius: 8px; background: var(--panel-2); }
+.funstatus.on { background: var(--accent-soft); }
+.funstatus ul { margin: 6px 0 8px; padding-left: 18px; font-size: 13px; }
+.versions { padding: 6px; overflow: auto; flex: 1; min-height: 80px; }
+.version .btn { flex-shrink: 0; }
+.funreport { margin: 6px 0; }
+.funreport summary { cursor: pointer; font-weight: 600; }
+.funreport ul { margin: 6px 0; padding-left: 18px; font-size: 13px; max-height: 320px; overflow: auto; }
+.funcard .field .check { flex-direction: row; align-items: center; }
+.funcard .check input, .funcard .chips input { width: auto; flex: none; accent-color: var(--accent); }
+.funcard .chips .check { white-space: nowrap; padding: 3px 10px; }

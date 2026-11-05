@@ -1471,6 +1471,231 @@ views.settings = {
 };
 
 // ---------------------------------------------------------------------------
+// Fun Modes: randomizers, hard mode, level caps, shops, comedy dialogue
+// ---------------------------------------------------------------------------
+const FUN_DEFAULTS = {
+  seed: '', keepEdited: true,
+  wild: { on: false, mode: 'similar', legendaries: false },
+  trainers: { on: false, mode: 'similar', keepTheme: true, legendaries: false },
+  starters: { on: false, mode: 'triangle', species: ['', '', ''] },
+  hard: { on: false, bossTeams: true, levelBoost: 10, biggerBossTeams: true, doublesPercent: 20, doublesMinLevel: 20,
+          legendaryLevel: 0, legendaryPercent: 15, regularItems: true },
+  caps: { on: false, type: 'hard', mode: 'auto', caps: [15, 19, 24, 29, 31, 33, 42, 46, 58], candyCap: true },
+  candy: { on: false },
+  comedy: { on: false, intensity: 'medium', packs: { moodRing: true, slang: true, madlibs: true, narrator: true, hero: true,
+            fakeNews: true, thrones: true, chaos: true, battle: true }, styles: ['pirate', 'genz', 'shakespeare', 'corporate', 'conspiracy', 'noir', 'surfer', 'dramatic'] },
+};
+const COMEDY_PACKS = [
+  ['moodRing', 'Mood ring towns', 'Each town and route gets its own way of talking (pick which below).'],
+  ['slang', 'Modern slang', 'No cap, bussin, rizz, touch grass, it\'s giving...'],
+  ['madlibs', 'Mad Libs', 'Random nouns get swapped for things like "haunted toaster" or "emotional support Wailord".'],
+  ['narrator', 'Narrator', 'A sarcastic narrator comments on what just happened.'],
+  ['hero', 'Hero talks back', 'Your character finally says what they think about this absurd world.'],
+  ['fakeNews', 'Fake news signs', 'Signs get BREAKING NEWS headlines.'],
+  ['thrones', 'Game of Thrones storyline', 'Hoenn is a realm at war over the Poké Ball Throne. Every Gym is a noble house with its own words, and townsfolk gossip about you as you go from nobody to Pretender to Usurper to ruler.'],
+  ['chaos', 'Chaos NPCs', 'Random people share unhinged schemes and life stories.'],
+  ['battle', 'Battle commentary', 'Battle messages get rewritten: wild Pokémon owe you money, fainting is dramatic.'],
+];
+const MOOD_STYLES = [['pirate', 'Pirate'], ['genz', 'Gen Z'], ['shakespeare', 'Shakespeare'], ['corporate', 'Corporate'],
+  ['conspiracy', 'Conspiracy theorist'], ['noir', 'Detective noir'], ['surfer', 'Surfer'], ['dramatic', 'Soap opera']];
+const CAP_NAMES = ['Badge 1', 'Badge 2', 'Badge 3', 'Badge 4', 'Badge 5', 'Badge 6', 'Badge 7', 'Badge 8', 'Champion'];
+
+const F = { s: null, status: null, busy: false };
+
+function funLoad() {
+  let saved = {};
+  try { saved = JSON.parse(localStorage.getItem('emerald.fun') || '{}'); } catch (e) { /* ignore */ }
+  const merge = (d, s) => {
+    if (Array.isArray(d)) return Array.isArray(s) ? s : d;
+    if (d && typeof d === 'object') {
+      const out = {};
+      for (const k of Object.keys(d)) out[k] = merge(d[k], s ? s[k] : undefined);
+      return out;
+    }
+    return s === undefined ? d : s;
+  };
+  F.s = merge(FUN_DEFAULTS, saved);
+}
+function funSave() { try { localStorage.setItem('emerald.fun', JSON.stringify(F.s)); } catch (e) { /* ignore */ } }
+
+function funSwitch(obj, key, label) {
+  const cb = el('input', { type: 'checkbox', checked: !!obj[key], onchange: () => { obj[key] = cb.checked; funSave(); renderFun(); } });
+  return el('label', { class: 'switch' }, cb, el('span', {}, label));
+}
+function funCheck(obj, key, label) {
+  const cb = el('input', { type: 'checkbox', checked: !!obj[key], onchange: () => { obj[key] = cb.checked; funSave(); } });
+  return el('label', { class: 'check' }, cb, label);
+}
+function funSelect(label, obj, key, options, rerender) {
+  return el('label', { class: 'field' }, el('span', {}, label),
+    el('select', { onchange: e => { obj[key] = e.target.value; funSave(); if (rerender) renderFun(); } },
+      options.map(([v, t]) => el('option', { value: v, selected: obj[key] === v }, t))));
+}
+function funNumber(label, obj, key, min, max, suffix) {
+  return el('label', { class: 'field' }, el('span', {}, label),
+    el('input', { type: 'number', min, max, value: obj[key], oninput: e => { obj[key] = Number(e.target.value) || 0; funSave(); } }),
+    suffix ? el('small', { class: 'note' }, suffix) : null);
+}
+function funCard(title, obj, intro, body) {
+  return el('div', { class: 'card funcard' + (obj.on ? ' on' : '') },
+    el('div', { class: 'funhead' }, funSwitch(obj, 'on', title)),
+    el('p', { class: 'note' }, intro),
+    obj.on ? el('div', { class: 'funbody' }, body) : null);
+}
+
+function renderFun() {
+  const s = F.s;
+  const seedInput = el('input', { type: 'text', value: s.seed, placeholder: 'Leave empty for a new random seed',
+    oninput: e => { s.seed = e.target.value; funSave(); } });
+  const header = el('div', { class: 'card' },
+    el('h3', {}, 'Fun Modes'),
+    el('p', { class: 'note' }, 'Tick the modes you want, press Preview to see what changes, then Apply. Your game is saved as a version first, so Undo Fun Modes on the left always takes you back. Then press Play to try it.'),
+    el('div', { class: 'row', style: 'align-items:flex-end' },
+      el('label', { class: 'field', style: 'flex:1;min-width:220px' }, el('span', {}, 'Seed (same seed + same settings = same game)'), seedInput),
+      el('button', { class: 'btn', onclick: () => { s.seed = String(Math.floor(Math.random() * 1e8)); funSave(); renderFun(); } }, '🎲 New seed')),
+    el('div', { style: 'margin-top:10px' }, funCheck(s, 'keepEdited', 'Leave trainers I changed by hand alone')));
+
+  const wild = funCard('Randomize wild Pokémon', s.wild, 'Changes what you find in grass, water, caves and fishing spots.', [
+    el('div', { class: 'grid' },
+      funSelect('How', s.wild, 'mode', [['similar', 'Similar strength (fair)'], ['random', 'Anything goes'], ['global', 'Swap each species everywhere (1 to 1)']]),
+      el('div', { class: 'field' }, el('span', {}, 'Extras'), funCheck(s.wild, 'legendaries', 'Allow legendaries in the wild')))]);
+
+  const tr = funCard('Randomize trainer teams', s.trainers, 'Every trainer gets new Pokémon. Your rival always carries the starter you did not pick.', [
+    el('div', { class: 'grid' },
+      funSelect('How', s.trainers, 'mode', [['similar', 'Similar strength (fair)'], ['random', 'Anything goes']]),
+      el('div', { class: 'field' }, el('span', {}, 'Extras'),
+        funCheck(s.trainers, 'keepTheme', 'Gym Leaders keep their type'),
+        funCheck(s.trainers, 'legendaries', 'Allow legendaries')))]);
+
+  const st = funCard('Randomize starters', s.starters, 'Changes the three Pokémon in Professor Birch\'s bag, and the rival\'s teams to match.', [
+    el('div', { class: 'grid' },
+      funSelect('How', s.starters, 'mode', [['triangle', 'Random Grass, Fire and Water'], ['random', 'Any three (that evolve twice)'], ['custom', 'I pick them']], true)),
+    s.starters.mode === 'custom' ? el('div', { class: 'grid', style: 'margin-top:8px' },
+      [0, 1, 2].map(i => el('label', { class: 'field' }, el('span', {}, ['Left', 'Middle', 'Right'][i] + ' ball'),
+        el('input', { type: 'text', value: s.starters.species[i] || '', 'data-list': 'dl-species',
+          oninput: e => { s.starters.species[i] = e.target.value; funSave(); } })))) : null]);
+
+  const h = s.hard;
+  const hard = funCard('Hard mode', h, 'Smart AI everywhere, real movesets with STAB and coverage, held items, natures and EVs for bosses. Tough but fair.', [
+    el('div', { class: 'grid' },
+      el('div', { class: 'field' }, el('span', {}, 'Bosses'),
+        funCheck(h, 'bossTeams', 'Hand-built teams for Gym Leaders, Elite Four, Wallace, Wally, Maxie and Archie'),
+        funCheck(h, 'biggerBossTeams', 'Other bosses get one more Pokémon'),
+        funCheck(h, 'regularItems', 'Regular trainers hold items too')),
+      funNumber('Trainer levels +%', h, 'levelBoost', 0, 100, 'Hand-built teams keep their own levels.'),
+      funNumber('Double battles: % of trainers', h, 'doublesPercent', 0, 100),
+      funNumber('...from level', h, 'doublesMinLevel', 1, 100, 'So you have two Pokémon by then.'),
+      funNumber('Legendaries from level (0 = never)', h, 'legendaryLevel', 0, 100, 'Bosses at or above this level bring one. The big ones show up 15 levels later.'),
+      funNumber('...and % of regular trainers', h, 'legendaryPercent', 0, 100))]);
+
+  const c = s.caps;
+  const caps = funCard('Level caps', c, 'Your Pokémon stop gaining EXP at the cap until you win the next badge.', [
+    el('div', { class: 'grid' },
+      funSelect('Type', c, 'type', [['hard', 'Hard: no EXP at the cap'], ['soft', 'Soft: much less EXP at the cap']]),
+      funSelect('Cap levels', c, 'mode', [['auto', 'Match each Gym Leader\'s strongest Pokémon'], ['custom', 'I set them']], true),
+      el('div', { class: 'field' }, el('span', {}, 'Rare Candy'), funCheck(c, 'candyCap', 'Rare Candy cannot go past the cap'))),
+    c.mode === 'custom' ? el('div', { class: 'capgrid' }, CAP_NAMES.map((n, i) => el('label', { class: 'field' }, el('span', {}, 'Until ' + n),
+      el('input', { type: 'number', min: 1, max: 100, value: c.caps[i], oninput: e => { c.caps[i] = Number(e.target.value) || 1; funSave(); } })))) : null]);
+
+  const candy = funCard('Free Rare Candy in every shop', s.candy, 'Every Poké Mart sells Rare Candy for ₽0. Pairs well with level caps.', []);
+
+  const cm = s.comedy;
+  const comedy = funCard('Comedy dialogue', cm, 'An absurd, funny Hoenn. Tick any mix of packs; one line can get several. Everything reaches every line the game can safely change: people, signs, nurses, shops, items, the PC and battles.', [
+    el('div', { class: 'grid' }, funSelect('How much of the game', cm, 'intensity', [['light', 'Light'], ['medium', 'Medium'], ['chaos', 'Chaos'], ['everything', 'Everything: every line, start to end']])),
+    el('div', { class: 'packs' }, COMEDY_PACKS.map(([k, t, d]) => {
+      const cb = el('input', { type: 'checkbox', checked: !!cm.packs[k], onchange: () => { cm.packs[k] = cb.checked; funSave(); renderFun(); } });
+      return el('label', { class: 'pack' + (cm.packs[k] ? ' on' : '') }, cb, el('div', {}, el('b', {}, t), el('div', { class: 'note' }, d)));
+    })),
+    cm.packs.moodRing ? el('div', { class: 'field', style: 'margin-top:8px' }, el('span', {}, 'Mood ring styles to use'),
+      el('div', { class: 'chips' }, MOOD_STYLES.map(([k, t]) => {
+        const cb = el('input', { type: 'checkbox', checked: cm.styles.includes(k), onchange: () => {
+          cm.styles = cb.checked ? [...new Set([...cm.styles, k])] : cm.styles.filter(x => x !== k); funSave(); } });
+        return el('label', { class: 'check chip' }, cb, t);
+      }))) : null]);
+
+  const anyOn = ['wild', 'trainers', 'starters', 'hard', 'caps', 'candy', 'comedy'].some(k => s[k].on);
+  const bar = el('div', { class: 'savebar funbar' },
+    el('h2', {}, 'Fun Modes'),
+    el('button', { class: 'btn', disabled: !anyOn || F.busy, onclick: () => runFun(false) }, 'Preview'),
+    el('button', { class: 'btn primary', disabled: !anyOn || F.busy, onclick: () => runFun(true) }, 'Apply'));
+  $('#funEditor').replaceChildren(bar, header, wild, tr, st, hard, caps, candy, comedy);
+}
+
+async function runFun(apply) {
+  if (apply && !confirm('Apply these Fun Modes to your game? Your current game is saved first, and Undo Fun Modes puts it back.')) return;
+  F.busy = true; renderFun();
+  toast(apply ? 'Applying... this takes a few seconds.' : 'Working out what would change...');
+  try {
+    const res = await api('/api/fun/run', { settings: F.s, apply });
+    if (!F.s.seed) { F.s.seed = res.seed; funSave(); }
+    showFunReport(res, apply);
+    if (res.applied) { await loadFunStatus(); loadTrainerList().catch(() => {}); }
+  } catch (e) { toast(e.message, true); }
+  F.busy = false; renderFun();
+}
+
+function showFunReport(res, apply) {
+  const blocked = res.report.some(r => r.title.startsWith('Problems'));
+  const head = res.applied ? 'Done! Press ▶ Play to try it. Seed: ' + res.seed
+    : blocked ? 'Nothing was changed because of the problems below. Send them to Claude in your project.'
+    : apply ? 'Nothing needed changing.' : 'Preview only, nothing changed yet. Seed: ' + res.seed;
+  const body = el('div', {},
+    el('p', { class: blocked ? 'warnbox' : 'note' }, head),
+    res.report.map(sec => el('details', { class: 'funreport', open: res.report.length <= 2 },
+      el('summary', {}, `${sec.title} (${sec.count})`),
+      el('ul', {}, sec.lines.map(l => el('li', {}, l)), sec.count > sec.lines.length ? el('li', { class: 'note' }, `...and ${sec.count - sec.lines.length} more`) : null))),
+    !res.applied && !blocked && res.files.length ? el('div', { class: 'row', style: 'justify-content:flex-end;margin-top:12px' },
+      el('button', { class: 'btn primary', onclick: () => { closeModal(); runFun(true); } }, 'Apply this')) : null);
+  openModal(res.applied ? 'Fun Modes applied' : 'Fun Modes preview', body);
+}
+
+async function loadFunStatus() {
+  try { F.status = await api('/api/fun/status'); } catch (e) { F.status = { error: e.message }; }
+  renderFunSide();
+}
+
+function fmtTime(t) { return new Date(t * 1000).toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'short' }); }
+
+async function funAction(path, body, question, done) {
+  if (question && !confirm(question)) return;
+  try {
+    await api(path, body || {});
+    toast(done);
+    await loadFunStatus();
+    loadTrainerList().catch(() => {});
+  } catch (e) { toast(e.message, true); }
+}
+
+function renderFunSide() {
+  const st = F.status || {};
+  const box = $('#funSide');
+  if (st.error) { box.replaceChildren(el('div', { class: 'warnbox' }, st.error)); return; }
+  const fun = st.fun || { active: false, applied: [] };
+  const nameInput = el('input', { class: 'search', type: 'text', placeholder: 'Name this version, e.g. Pirate Nuzlocke' });
+  box.replaceChildren(
+    el('div', { class: 'funstatus ' + (fun.active ? 'on' : '') },
+      el('b', {}, fun.active ? 'Fun Modes are on' : 'Fun Modes are off'),
+      fun.active ? el('ul', {}, fun.applied.map(a => el('li', {}, `${a.summary.modes.join(', ')} (seed ${a.summary.seed})`))) : el('div', { class: 'note' }, 'Your game is as you left it.'),
+      fun.active ? el('button', { class: 'btn', onclick: () => funAction('/api/fun/undo', {}, 'Put your game back to how it was before Fun Modes? (The fun version is saved, so you can come back to it.)', 'Fun Modes undone.') }, '↩ Undo Fun Modes') : null),
+    el('div', { class: 'grouphead' }, 'Saved versions'),
+    el('div', { class: 'searchrow' }, nameInput,
+      el('button', { class: 'btn small', onclick: () => funAction('/api/fun/version/save', { name: nameInput.value }, null, 'Version saved.') }, 'Save')),
+    el('div', { class: 'versions' }, (st.versions || []).length ? st.versions.map(v => el('div', { class: 'item version' },
+      el('div', { class: 'meta', style: 'flex:1' }, el('div', { class: 'title' }, v.name), el('div', { class: 'sub' }, (v.auto ? 'Automatic · ' : '') + fmtTime(v.time))),
+      el('button', { class: 'btn small', title: 'Switch the game to this version', onclick: () => funAction('/api/fun/version/switch', { id: v.id }, `Switch your game to "${v.name}"? Your current game is saved as a version first.`, 'Switched.') }, 'Use'),
+      el('button', { class: 'btn small ghost', title: 'Delete this version', onclick: () => funAction('/api/fun/version/delete', { id: v.id }, `Delete the saved version "${v.name}"?`, 'Deleted.') }, '✕')))
+      : el('div', { class: 'note', style: 'padding:8px' }, 'No saved versions yet.')),
+    el('div', { class: 'grouphead' }, 'Start over'),
+    el('div', { style: 'padding:0 10px 12px' },
+      el('button', { class: 'btn danger', onclick: () => funAction('/api/fun/reset', {}, 'Reset every game file to the original pokeemerald-expansion? Your current game is saved as a version first, so you can switch back.', 'Reset to the base game.') }, 'Reset to base game'),
+      el('p', { class: 'note' }, 'Puts every game file back to the original. The editor itself is not changed.')));
+}
+
+views.fun = {
+  onShow: () => { if (!F.s) funLoad(); renderFun(); loadFunStatus(); },
+};
+
+// ---------------------------------------------------------------------------
 // Play / Update jobs
 // ---------------------------------------------------------------------------
 let jobNext = 0;
