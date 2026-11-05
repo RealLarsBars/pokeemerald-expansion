@@ -1,0 +1,243 @@
+# Game of Thrones: Rustboro City streets. House Stone (Devon) rules here.
+
+@ RustboroCity_Text_WeShortenItToDevon
+House Stone… The DEVON CORPORATION… We just call them DEVON. Never to their faces.
+
+They make everything in this city. They own everything, too. Including, probably, me.
+
+@ RustboroCity_Text_SneakyLookingManWentAroundCorner
+Hm? A man skulking like a spy?
+
+Aye, now that you mention it, a shady sort in a bandana slipped around that corner.
+
+@ RustboroCity_Text_HaveYouChallengedGym
+Have you taken the GYM challenge?
+
+Hold a GYM BADGE in your hand, and you start to feel the weight of the crown. Heavy, isn't it?
+
+@ RustboroCity_Text_HeyThatsRustborosGymBadge
+Hey, that's the banner of House Rustboro!
+
+Of all the GYM BADGES in the realm, RUSTBORO's is the finest. I'm not biased. I'm sworn to it.
+
+@ RustboroCity_Text_YoureNewAroundHere
+Hm? Who might you be? A new face in our city.
+
+Are you a new student at the POKéMON TRAINER'S SCHOOL? Or a spy?
+
+@ RustboroCity_Text_GymLeaderIsntEasyWithFire
+I challenged Lady ROXANNE, but…
+
+Fire against stone walls? It's like trying to burn down a castle with a candle…
+
+FIRE-type POKéMON don't stand a chance against ROCK-type POKéMON…
+
+@ RustboroCity_Text_MrBrineyWalksInTheTunnel
+The old sea lord MR. BRINEY lives in a cottage by the shore.
+
+He walks in the tunnel sometimes. Haunting it, some say.
+
+@ RustboroCity_Text_MrBrineyLovesPeeko
+The old sea lord MR. BRINEY lives in a cottage by the shore.
+
+He said he was off to SLATEPORT to buy gifts for PEEKO, his WINGULL.
+
+That old sea dog would burn a fleet for that bird.
+
+@ RustboroCity_Text_WowYouHavePokemon
+Wow, you have POKéMON with you, too.
+
+When I'm big, I'll ride out with my own army of POKéMON. And a crown.
+
+@ RustboroCity_Text_CatchRarePokemonIfIGoToSchool
+The POKéMON TRAINER'S SCHOOL! The citadel of learning!
+
+If I study here, will I be able to catch rare POKéMON easily?
+
+@ RustboroCity_Text_PokemonCanChangeLookFromExp
+When a POKéMON wins enough battles, its very shape can change. Like a squire becoming a knight.
+
+@ RustboroCity_Text_PokemonChangeShape
+A POKéMON changes shape? That's skinchanger magic! I'd faint!
+
+@ RustboroCity_Text_TradePokemonGrowFast
+A POKéMON from a trade grows quickly. Like a hostage raised by another house.
+
+But without enough GYM BADGES, it may refuse your orders. Loyalty must be earned.
+
+@ RustboroCity_Text_OutOfTheWay
+Move! Out of my way, peasant!
+
+@ RustboroCity_Text_WaitDontTakeMyGoods
+Wait! Pleeeaaase!
+
+Not the GOODS! House Stone will have my head!
+
+@ RustboroCity_Text_HelpMeIWasRobbed
+Oh, it's you!
+
+You're the brave knight who saved me in PETALBURG WOODS!
+
+Help me! Lord Archie's sea brigands robbed me! I must get the DEVON GOODS back!
+
+If I don't… House Stone will throw me in the dungeon.
+
+@ RustboroCity_Text_ShadyCharacterTookOffTowardsTunnel
+That brigand ran off toward the tunnel over there. Hunt him down!
+
+@ RustboroCity_Text_YouGotItThankYou
+Oh! How did it go? The DEVON GOODS?
+
+You did it! You got them back!
+
+You truly are a great knight!
+
+I know! Another GREAT BALL, with the thanks of my house!
+
+@ RustboroCity_Text_YoureLoadedWithItems
+You're carrying too much loot. I can't give you this GREAT BALL.
+
+@ RustboroCity_Text_PleaseComeWithMe
+Pardon me! House Stone requests your presence! Please come with me!
+
+@ RustboroCity_Text_MayHiLetsRegister
+MAY: Oh, hi, {PLAYER}{KUN}!
+
+House Stone put the MATCH CALL system in your POKéNAV! Faster than ravens!
+
+Let's register each other, so our houses can talk anytime!
+
+… … … … … …
+
+@ RustboroCity_Text_RegisteredMay
+MAY has been added to your POKéNAV. An alliance is formed.
+
+@ RustboroCity_Text_MayPassedBrineyWantToBattle
+MAY: Oh, by the way, I passed MR. BRINEY in PETALBURG WOODS.
+
+I guess he's heading home to his cottage by the sea.
+
+How's your POKéDEX scroll coming along, {PLAYER}{KUN}? Mine's looking pretty good!
+
+So… How about a little duel?
+
+@ RustboroCity_Text_MayOhHaventRaisedPokemonEnough
+MAY: Oh, what's the matter?
+
+Haven't you recruited or trained many POKéMON yet?
+
+A ruler needs an army, you know!
+
+@ RustboroCity_Text_MayWantToBattle
+MAY: So, what do you say? A little duel, right here in the square?
+
+@ RustboroCity_Text_MayImNotGoingToLose
+MAY: You only just became a TRAINER, {PLAYER}{KUN}. House Birch doesn't lose to squires!
+
+@ RustboroCity_Text_MayDefeat
+Yikes! You fight better than the songs say!
+
+@ RustboroCity_Text_MayMrBrineyHint
+MAY: Oh, about MR. BRINEY, who I just passed…
+
+{PLAYER}{KUN}, you're new to the realm, so you might not know this, but MR. BRINEY was once a legendary sea lord.
+
+@ RustboroCity_Text_BrendanHiLetsRegister
+BRENDAN: Oh, hey, {PLAYER}!
+
+House Stone put MATCH CALL in your POKéNAV! Nice!
+
+Let's register each other, so our houses can send word anytime!
+
+… … … … … …
+
+@ RustboroCity_Text_RegisteredBrendan
+BRENDAN has been added to your POKéNAV. An alliance is formed.
+
+@ RustboroCity_Text_BrendanPassedBrineyWantToBattle
+BRENDAN: By the way, {PLAYER}, I passed MR. BRINEY in PETALBURG WOODS.
+
+I bet he was heading home to his cottage by the sea.
+
+{PLAYER}, how's your POKéDEX scroll? Filled in any pages yet?
+
+Mine's legendary.
+
+Want to duel and see how far you've come?
+
+@ RustboroCity_Text_BrendanNoConfidenceInPokemon
+BRENDAN: What's the matter? Don't you trust your bannermen?
+
+@ RustboroCity_Text_BrendanWantToBattle
+BRENDAN: What's up? Want to duel me?
+
+@ RustboroCity_Text_BrendanIWontGoEasy
+BRENDAN: I know you're new to this, but House Birch shows no mercy!
+
+@ RustboroCity_Text_BrendanDefeat
+Hmm… You're a real contender.
+
+@ RustboroCity_Text_BrendanMrBrineyHint
+BRENDAN: By the way, you know MR. BRINEY? The old man I just passed?
+
+You're new here, {PLAYER}, so you wouldn't know, but MR. BRINEY was once a famous sea lord.
+
+@ RustboroCity_Text_TunnelNearingCompletion
+“Royal tunnel nearly finished! By order of the Crown!”
+
+…But someone painted a giant red “X” across the sign. Rebels, probably.
+
+@ RustboroCity_Text_DevonCorpSign
+DEVON CORPORATION
+Seat of House Stone
+“We Make It All.”
+
+@ RustboroCity_Text_GymSign
+HALL OF HOUSE RUSTBORO
+LADY ROXANNE
+“We Did The Reading.”
+
+@ RustboroCity_Text_DevonCorpBranchOfficeSign
+HOUSE STONE OUTPOST
+“Sworn members of House Stone only. Trespassers will be fired.”
+
+@ RustboroCity_Text_CitySign
+RUSTBORO CITY
+“Stone walls, steel minds. Seat of House Stone.”
+
+@ RustboroCity_Text_TrainersSchoolSign
+POKéMON TRAINER'S SCHOOL
+“A citadel for young Maesters. We teach everything.”
+
+@ RustboroCity_Text_DevelopedNewPokenavFeature
+I've been forging a new feature for the POKéNAV…
+
+And it's a masterpiece!
+
+{PLAYER}, may I see that POKéNAV? The one our lord gave you?
+
+@ RustboroCity_Text_AddedMatchCallPleaseCallMrStone
+There you go, {PLAYER}!
+
+I've added a new feature called MATCH CALL to your POKéNAV.
+
+With MATCH CALL, you can speak to anyone registered in your POKéNAV. Like a raven that never gets lost.
+
+{PLAYER}, our lord, MR. STONE, should already be in your POKéNAV.
+
+Try it out. Give our lord a call. He gets lonely.
+
+@ RustboroCity_Text_PleaseSelectPokenav
+Please select the POKéNAV.
+
+@ RustboroCity_Text_IdBetterGetBackToWork
+Well, back to the forge for me. Take care, {PLAYER}!
+
+@ RustboroCity_Text_YouCanHave2On2Battle
+Did you know this?
+
+You can fight a 2-on-2 battle even without an ally.
+
+If two TRAINERS see you while you have two or more POKéMON, they'll both attack at once. Like an ambush.
+
+Wouldn't it be glorious to beat two foes by yourself?

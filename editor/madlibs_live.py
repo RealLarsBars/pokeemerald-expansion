@@ -154,17 +154,27 @@ def fill_blanks(text, rng, chance, limit=2):
 
 # ---- game files ------------------------------------------------------------------
 
+def word_count(slots):
+    return min(len(words) for _, _, words in slots)
+
+
+def with_words(extra):
+    """SLOTS with extra answers added to each blank, e.g. the Adult humor words."""
+    return [(key, ask, words + list(extra.get(key, []))) for key, ask, words in SLOTS]
+
+
 def header_text(slots=SLOTS):
+    count = word_count(slots)
     out = ['// In-game Mad Libs words. Written by the Emerald Editor (editor/madlibs_live.py).',
            '// The player picks words in data/scripts/mad_libs.inc; src/mad_libs.c shows them.', '',
            '#ifndef GUARD_DATA_MAD_LIBS_H', '#define GUARD_DATA_MAD_LIBS_H', '',
-           '#define MADLIB_SLOT_COUNT %d' % len(slots), '#define MADLIB_WORD_COUNT %d' % WORD_COUNT, '',
+           '#define MADLIB_SLOT_COUNT %d' % len(slots), '#define MADLIB_WORD_COUNT %d' % count, '',
            'static const u16 sMadLibVars[MADLIB_SLOT_COUNT] =', '{']
     out += ['    %s,' % var_name(key) for key, *_ in slots]
     out += ['};', '', 'static const u8 *const sMadLibWords[MADLIB_SLOT_COUNT][MADLIB_WORD_COUNT] =', '{']
     for key, _, words in slots:
         out.append('    { // %s' % key)
-        for k in range(0, WORD_COUNT, 5):
+        for k in range(0, count, 5):
             out.append('        ' + ' '.join('COMPOUND_STRING("%s"),' % w for w in words[k:k + 5]))
         out.append('    },')
     out += ['};', '', '#endif // GUARD_DATA_MAD_LIBS_H', '']
@@ -207,7 +217,7 @@ def script_text(slots=SLOTS):
     texts = []
     for key, ask, words in slots:
         name = key.title()
-        words = words[:WORD_COUNT]
+        words = words[:word_count(slots)]
         out += ['MadLibs_EventScript_Pick%s::' % name,
                 '\tsetvar VAR_0x8004, %d' % index[key],
                 '\tgoto_if_eq VAR_0x8005, NO, MadLibs_EventScript_Random',
@@ -249,12 +259,12 @@ START_HOOK = ('\tmsgbox PlayersHouse_2F_Text_ClockIsStopped, MSGBOX_DEFAULT\n'
 START_FILE = 'data/scripts/players_house.inc'
 
 
-def install(ov):
+def install(ov, slots=SLOTS):
     """Write the words and menus, then show the menus right after you set the clock at
     home, and after each of the 8 Gym badges."""
     import glob
-    ov.write(HEADER, header_text())
-    ov.write(SCRIPT, script_text())
+    ov.write(HEADER, header_text(slots))
+    ov.write(SCRIPT, script_text(slots))
     text = ov.read(START_FILE)
     if 'MadLibs_EventScript_Start' not in text and START_HOOK in text:
         ov.write(START_FILE, text.replace(START_HOOK, START_HOOK + '\tcall MadLibs_EventScript_Start\n', 1))
@@ -274,7 +284,7 @@ def install(ov):
         if new != text:
             ov.write(rel, new)
     return ['In-game Mad Libs: you fill in %d blanks after setting the clock at home, and 4 more after each of %d '
-            'Gym badges (%d answers each, or Surprise me)' % (len(SLOTS), badges, WORD_COUNT)]
+            'Gym badges (%d answers each, or Surprise me)' % (len(slots), badges, word_count(slots))]
 
 
 def write_defaults():

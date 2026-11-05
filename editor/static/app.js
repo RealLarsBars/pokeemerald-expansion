@@ -1482,23 +1482,18 @@ const FUN_DEFAULTS = {
           legendaryLevel: 0, legendaryPercent: 15, regularItems: true },
   caps: { on: false, type: 'hard', mode: 'auto', caps: [15, 19, 24, 29, 31, 33, 42, 46, 58], candyCap: true },
   candy: { on: false },
-  comedy: { on: false, intensity: 'medium', packs: { liveMadLibs: true, moodRing: true, slang: true, madlibs: true, narrator: true, hero: true,
-            fakeNews: true, thrones: true, chaos: true, battle: true }, styles: ['pirate', 'genz', 'shakespeare', 'corporate', 'conspiracy', 'noir', 'surfer', 'dramatic'] },
+  comedy: { on: false, theme: 'thrones', hero: true, adult: false, fakeNews: true, battle: true },
 };
-const COMEDY_PACKS = [
-  ['liveMadLibs', 'In-game Mad Libs', 'You fill in 16 blanks from a menu at the start of the game (a thing, a place, a food, a name...), and 4 more after every Gym. People all over Hoenn use your words for the rest of the game. Pick "Surprise me" to let the game choose.'],
-  ['moodRing', 'Mood ring towns', 'Each town and route gets its own way of talking (pick which below).'],
-  ['slang', 'Modern slang', 'No cap, bussin, rizz, touch grass, it\'s giving...'],
-  ['madlibs', 'Random Mad Libs', 'Random nouns get swapped for things like "haunted toaster" or "emotional support Wailord".'],
-  ['narrator', 'Narrator', 'A sarcastic narrator comments on what just happened.'],
-  ['hero', 'Hero talks back', 'Your character finally says what they think about this absurd world.'],
-  ['fakeNews', 'Fake news signs', 'Signs get BREAKING NEWS headlines.'],
-  ['thrones', 'Game of Thrones storyline', 'Hoenn is a realm at war over the Poké Ball Throne. Every Gym is a noble house with its own words, and townsfolk gossip about you as you go from nobody to Pretender to Usurper to ruler.'],
-  ['chaos', 'Chaos NPCs', 'Random people share unhinged schemes and life stories.'],
+const COMEDY_THEMES = [
+  ['thrones', 'Game of Thrones', 'Hoenn is a realm at war over the Poké Ball Throne. Everyone talks like it, every Gym Leader and boss speaks for their noble house, signs carry royal decrees, and one person in each town keeps you up on realm gossip that changes after every badge.'],
+  ['madlibs', 'Mad Libs', 'You fill in 16 blanks from a menu at the start (a thing, a place, a food, a name...) and 4 more after every Gym. People all over Hoenn use your words, trainers build their trash talk around them, and signs run news about them.'],
+];
+const COMEDY_SWITCHES = [
+  ['hero', 'Hero talks back', 'Now and then your character answers, in the theme\'s own style.'],
+  ['adult', 'Adult humor', 'A small amount of swearing and crude jokes. Only grown-ups say the crude stuff; your character just swears.'],
+  ['fakeNews', 'Fake news signs', 'Signs get headlines (royal decrees in Game of Thrones).'],
   ['battle', 'Battle commentary', 'Battle messages get rewritten: wild Pokémon owe you money, fainting is dramatic.'],
 ];
-const MOOD_STYLES = [['pirate', 'Pirate'], ['genz', 'Gen Z'], ['shakespeare', 'Shakespeare'], ['corporate', 'Corporate'],
-  ['conspiracy', 'Conspiracy theorist'], ['noir', 'Detective noir'], ['surfer', 'Surfer'], ['dramatic', 'Soap opera']];
 const CAP_NAMES = ['Badge 1', 'Badge 2', 'Badge 3', 'Badge 4', 'Badge 5', 'Badge 6', 'Badge 7', 'Badge 8', 'Champion'];
 
 const F = { s: null, status: null, busy: false };
@@ -1601,18 +1596,17 @@ function renderFun() {
   const candy = funCard('Free Rare Candy in every shop', s.candy, 'Every Poké Mart sells Rare Candy for ₽0. Pairs well with level caps.', []);
 
   const cm = s.comedy;
-  const comedy = funCard('Comedy dialogue', cm, 'An absurd, funny Hoenn. Tick any mix of packs; one line can get several. Everything reaches every line the game can safely change: people, signs, nurses, shops, items, the PC and battles.', [
-    el('div', { class: 'grid' }, funSelect('How much of the game', cm, 'intensity', [['light', 'Light'], ['medium', 'Medium'], ['chaos', 'Chaos'], ['everything', 'Everything: every line, start to end']])),
-    el('div', { class: 'packs' }, COMEDY_PACKS.map(([k, t, d]) => {
-      const cb = el('input', { type: 'checkbox', checked: !!cm.packs[k], onchange: () => { cm.packs[k] = cb.checked; funSave(); renderFun(); } });
-      return el('label', { class: 'pack' + (cm.packs[k] ? ' on' : '') }, cb, el('div', {}, el('b', {}, t), el('div', { class: 'note' }, d)));
+  const comedy = funCard('Comedy dialogue', cm, 'Pick one theme and the whole game goes all in on it. No joke is used twice, and at most one is added to each conversation.', [
+    el('div', { class: 'field' }, el('span', {}, 'Theme')),
+    el('div', { class: 'packs' }, COMEDY_THEMES.map(([k, t, d]) => {
+      const rb = el('input', { type: 'radio', name: 'comedyTheme', checked: cm.theme === k, onchange: () => { cm.theme = k; funSave(); renderFun(); } });
+      return el('label', { class: 'pack' + (cm.theme === k ? ' on' : '') }, rb, el('div', {}, el('b', {}, t), el('div', { class: 'note' }, d)));
     })),
-    cm.packs.moodRing ? el('div', { class: 'field', style: 'margin-top:8px' }, el('span', {}, 'Mood ring styles to use'),
-      el('div', { class: 'chips' }, MOOD_STYLES.map(([k, t]) => {
-        const cb = el('input', { type: 'checkbox', checked: cm.styles.includes(k), onchange: () => {
-          cm.styles = cb.checked ? [...new Set([...cm.styles, k])] : cm.styles.filter(x => x !== k); funSave(); } });
-        return el('label', { class: 'check chip' }, cb, t);
-      }))) : null]);
+    el('div', { class: 'field', style: 'margin-top:8px' }, el('span', {}, 'Extras')),
+    el('div', { class: 'packs' }, COMEDY_SWITCHES.map(([k, t, d]) => {
+      const cb = el('input', { type: 'checkbox', checked: !!cm[k], onchange: () => { cm[k] = cb.checked; funSave(); renderFun(); } });
+      return el('label', { class: 'pack' + (cm[k] ? ' on' : '') }, cb, el('div', {}, el('b', {}, t), el('div', { class: 'note' }, d)));
+    }))]);
 
   const anyOn = ['wild', 'trainers', 'starters', 'hard', 'caps', 'candy', 'comedy'].some(k => s[k].on);
   const bar = el('div', { class: 'savebar funbar' },

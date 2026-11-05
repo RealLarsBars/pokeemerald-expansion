@@ -1,0 +1,327 @@
+# Game of Thrones: Route 104, Petalburg Woods, Mr. Briney's cottage.
+
+@ PetalburgWoods_Text_NotAOneToBeFound
+Hmmm… Not a single one in the whole forest… A curse, surely…
+
+@ PetalburgWoods_Text_HaveYouSeenShroomish
+Well met. Have you seen any POKéMON called SHROOMISH in these woods?
+
+I've pledged my heart to that POKéMON. It doesn't know yet.
+
+@ PetalburgWoods_Text_IWasGoingToAmbushYou
+I was going to ambush you, like a proper villain, but you took FOREVER walking through PETALBURG WOODS!
+
+I got bored of hiding in a bush, so here I am! Surprise!
+
+@ PetalburgWoods_Text_HandOverThosePapers
+You! Scribe of House DEVON!
+
+Hand over those scrolls, in the name of Lord Archie!
+
+@ PetalburgWoods_Text_YouHaveToHelpMe
+Aiyeeeh!
+
+You're a POKéMON TRAINER, aren't you? A knight? Please, protect me! I'm only a scribe!
+
+@ PetalburgWoods_Text_NoOneCrossesTeamAqua
+Hunh? What do you think you're doing? You're going to protect HIM?
+
+Nobody crosses Lord Archie's sea army and walks away! Not even a squire!
+
+Draw your POKéMON and fight me!
+
+@ PetalburgWoods_Text_YoureKiddingMe
+You're kidding me! You fight like a sellsword!
+
+@ PetalburgWoods_Text_YouveGotSomeNerve
+Grrr… You've got some nerve, crossing TEAM AQUA! Fight me again!
+
+I'd like to say that, but my POKéMON have all fled the battlefield…
+
+And besides, Lord Archie's army is after something in RUSTBORO too.
+
+I'll spare you. Today. Don't tell my liege.
+
+@ PetalburgWoods_Text_ThatWasAwfullyClose
+Whew… That was awfully close!
+
+Thanks to you, the sea brigand didn't steal House DEVON's secret scrolls.
+
+I know! A GREAT BALL, as a reward from my house!
+
+@ PetalburgWoods_Text_TeamAquaAfterSomethingInRustboro
+Didn't that sea brigand say Lord Archie's army was after something in RUSTBORO, too?
+
+@ PetalburgWoods_Text_ICantBeWastingTime
+Uh-oh! A crisis for my house! I can't waste a moment!
+
+@ PetalburgWoods_Text_YoureLoadedWithItems
+You're carrying too much loot already. I can't give you this GREAT BALL.
+
+@ PetalburgWoods_Text_GoBugPokemonTeam
+I've raised a whole army of POKéMON!
+
+Charge! My BUG POKéMON legion!
+
+@ PetalburgWoods_Text_ICouldntWin
+I have a whole legion, but I still lost…
+
+@ PetalburgWoods_Text_ImOutOfPokeBalls
+I recruited so many POKéMON, I ran out of POKé BALLS. The war chest is empty.
+
+@ PetalburgWoods_Text_InstantlyPopularWithBugPokemon
+If you bring BUG POKéMON to school, everyone wants to be your bannerman!
+
+@ PetalburgWoods_Text_CantBePopularIfILose
+Nobody pledges loyalty to a loser.
+
+@ PetalburgWoods_Text_PeopleRespectYou
+With a big BUG POKéMON, people fear you. Fear is basically respect.
+
+@ PetalburgWoods_Text_IWantRematch1
+When my BUG POKéMON grow up, I'll challenge you again!
+
+I'm sending your name to my POKéNAV. By raven.
+
+@ PetalburgWoods_Text_IWantRematch2
+When my BUG POKéMON grow up, I'll challenge you again!
+
+I'm sending your name to my POKéNAV. By raven.
+
+@ PetalburgWoods_Text_MyPokemonHaveGrown
+My BUG POKéMON have grown. My bannermen will return!
+
+@ PetalburgWoods_Text_CantBePopularIfLose
+Nobody pledges loyalty to a loser. Again.
+
+@ PetalburgWoods_Text_IveBeenTrainingHard
+Strong POKéMON earn you loyal followers, right? So I've been training hard. I have two followers now.
+
+@ PetalburgWoods_Text_StayOutOfTallGrass
+Hail, traveler! Your POKéMON well?
+
+If your POKéMON are weak and you want to avoid fights, stay out of the tall grass. The grass is lawless.
+
+@ PetalburgWoods_Text_HiddenItemsExplanation
+Sometimes there's treasure on the ground, even if you can't see it. Buried by old kings.
+
+That's why I always check where I walk.
+
+@ PetalburgWoods_Text_TryUsingThisItem
+Oh! That's the banner of House Rustboro! The STONE BADGE!
+
+You must be a TRAINER. Here, try this.
+
+@ PetalburgWoods_Text_MiracleSeedExplanation
+It's a MIRACLE SEED. If a POKéMON holds it, its GRASS-type moves grow stronger.
+
+There are other holy relics for POKéMON to hold, too. Find them all.
+
+@ PetalburgWoods_Text_TrainerTipsExperience
+TRAINER TIPS
+By order of the Maesters
+
+Any POKéMON that appears in a battle, even once, earns EXP Points.
+
+To raise a weak POKéMON, put it first in your list.
+
+When the battle starts, switch it out. It earns EXP Points without getting hurt. Like a prince watching from the hill.
+
+@ PetalburgWoods_Text_TrainerTipsPP
+TRAINER TIPS
+By order of the Maesters
+
+Besides Hit Points (HP), POKéMON have Power Points (PP), used for moves in battle.
+
+A POKéMON with no PP left must be taken to a POKéMON CENTER. Even knights run out of arrows.
+
+@ Route104_Text_BrineyLivesInSeasideCottage
+That seaside cottage belongs to MR. BRINEY.
+
+He was once a mighty sea lord who feared no storm. Now he fears only for his Wingull.
+
+@ Route104_Text_WhatsItLikeAtBottomOfSea
+The sea, huh? Lord Archie claims all of it.
+
+Probably more of his stuff down there. I wonder what's at the bottom of the sea?
+
+@ Route104_Text_ThrowBallAtWeakenedPokemon
+Before you throw a POKé BALL, weaken the wild POKéMON first. Make them bend the knee.
+
+They're easier to capture if they're poisoned, burned, or asleep.
+
+@ Route104_Text_OnlyThrowBallAtWildPokemon
+Stealing someone else's POKéMON is a crime against the realm. They cut off your hand. Or your POKéNAV.
+
+Throw POKé BALLS only at wild POKéMON.
+
+@ Route104_Text_ImNotATrainer
+Oh, no, I'm no TRAINER. I'm just a peasant.
+
+But it's true: if TRAINERS lock eyes, it's a challenge to a duel. That's the law.
+
+If you don't want to fight, stay out of their sight.
+
+@ Route104_Text_LikeFillingMouthWithSeedsTakeThis
+I like filling my mouth with seeds and spitting them out fast! Like a siege engine!
+
+Here, take this and try it yourself!
+
+Teach it to a POKéMON, and it'll learn a move that fires seeds rapidly.
+
+@ Route104_Text_TMsAreOneTimeUse
+A word of advice from a wise old peasant!
+
+A TM, TECHNICAL MACHINE, can only be used once.
+
+Once you use it, it's gone. Like a promise in this realm. Think twice!
+
+@ Route104_Text_DontNeedThisTakeIt
+This FLOWER SHOP just started selling saplings.
+
+I was so happy, I bought half the shop. My lord husband is furious.
+
+I don't need this WHITE HERB anymore. Will you take it, please?
+
+@ Route104_Text_FlowerShopSellingSaplings
+This FLOWER SHOP just started selling saplings.
+
+I was so happy, I bought half the shop. Where should I put them all?
+
+@ Route104_Text_PrettyPetalFlowShop
+PRETTY PETAL FLOWER SHOP
+Official florist of every royal wedding. Most of them ended well.
+
+@ Route104_Text_TrainerTipsDoubleBattles
+TRAINER TIPS
+By order of the Maesters
+
+In HOENN, some TRAINERS fight in pairs, in 2-on-2 battles called DOUBLE BATTLES. Alliances!
+
+In a DOUBLE BATTLE, you must send out the first two POKéMON on your list. Choose your front line wisely.
+
+@ Route104_Text_MayWeShouldRegister
+MAY: Oh, well met, {PLAYER}{KUN}!
+
+House DEVON gave your POKéNAV the MATCH CALL system? Like a raven, but faster!
+
+We should register each other, so our houses can talk anytime.
+
+@ Route104_Text_MayHowsYourPokedex
+MAY: Oh, by the way, {PLAYER}{KUN}, how's your POKéDEX scroll coming along?
+
+@ Route104_Text_MayMinesDecentLetsBattle
+Mine's looking pretty good. So… How about a little duel?
+
+@ Route104_Text_MayHaventRaisedPokemon
+MAY: Oh, what's the matter?
+
+Haven't you recruited or trained many POKéMON yet?
+
+That's not very good for a future ruler!
+
+@ Route104_Text_MayLetsBattle
+MAY: So, what do you say? A little duel, right here?
+
+@ Route104_Text_MayIntro
+MAY: You only just became a TRAINER, {PLAYER}{KUN}. My house won't lose to a squire!
+
+@ Route104_Text_MayDefeat
+Yikes! You fight better than the songs say!
+
+@ Route104_Text_MayPostBattle
+MAY: You command your POKéMON well now.
+
+But don't only send them to war. Be like MR. BRINEY.
+
+A good ruler makes friends of their POKéMON, too.
+
+@ Route104_Text_BrendanWeShouldRegister
+BRENDAN: Oh, hey, {PLAYER}!
+
+House DEVON put the MATCH CALL system in your POKéNAV? Nice.
+
+Let's register each other, so our houses can send word anytime.
+
+@ Route104_Text_BrendanHowsYourPokedex
+BRENDAN: {PLAYER}, how's your POKéDEX scroll? Filled in any pages yet?
+
+@ Route104_Text_BrendanDoingGreatLetsBattle
+Me? My scroll is doing great!
+
+Want to test me in a duel?
+
+@ Route104_Text_BrendanNoConfidence
+BRENDAN: What's the matter? Don't trust your bannermen?
+
+@ Route104_Text_BrendanLetsBattle
+BRENDAN: So? Want to duel?
+
+@ Route104_Text_BrendanIntro
+BRENDAN: I know you're new to this, but my house shows no mercy!
+
+@ Route104_Text_BrendanDefeat
+Hmm… You fight like a real lord.
+
+@ Route104_Text_BrendanPostBattle
+BRENDAN: You've gotten good at commanding POKéMON.
+
+But you know, you shouldn't just send them to war.
+
+Like MR. BRINEY, you should be friends with your POKéMON. Loyalty is earned.
+
+@ Route104_MrBrineysHouse_Text_WaitUpPeeko
+MR. BRINEY: Hold, lass! Come back, PEEKO! My first mate!
+
+@ Route104_MrBrineysHouse_Text_ItsYouLetsSailToDewford
+Hm? You're {PLAYER}{KUN}! You saved my darling PEEKO! I owe you a life debt!
+
+What's that? You need passage by sea?
+
+Hmhm…
+
+A LETTER for DEWFORD and a package for SLATEPORT? Delivered by the heir of House Petalburg?
+
+Quite the busy life for a young noble!
+
+But, certainly, your request is no trouble at all.
+
+You've found the right sea lord! We set sail for DEWFORD.
+
+@ Route104_MrBrineysHouse_Text_SetSailForDewford
+MR. BRINEY: DEWFORD it is, then!
+
+Raise the anchor! PEEKO, we set sail, my darling!
+
+@ Route104_MrBrineysHouse_Text_DeclineDeliverySail
+MR. BRINEY: Is that so? Your deliveries can wait?
+
+Just tell me whenever you want to set sail! My ship is yours.
+
+@ Route104_MrBrineysHouse_Text_NeedToMakeDeliveriesSailToDewford
+MR. BRINEY: Ahoy! I know exactly what you want to say!
+
+You must deliver a LETTER to DEWFORD and a package to SLATEPORT. Royal business.
+
+No trouble at all. I'm the sea lord for the job!
+
+First, we set sail for DEWFORD.
+
+@ Route104_MrBrineysHouse_Text_NeedToDeliverPackageSailToDewford
+MR. BRINEY: Ahoy! I know exactly what you want to say!
+
+You must deliver a package to CAPT. STERN in SLATEPORT. Royal business.
+
+No trouble at all. I'm the sea lord for the job!
+
+First, we set sail for DEWFORD.
+
+@ Route104_MrBrineysHouse_Text_WhereAreWeBound
+MR. BRINEY: Ahoy! For you, I'd sail into any storm!
+
+Now, my liege, where are we bound?
+
+@ Route104_MrBrineysHouse_Text_TellMeWheneverYouWantToSail
+MR. BRINEY: Is that so? Well, PEEKO owes you her life.
+
+Just tell me whenever you want to set sail!

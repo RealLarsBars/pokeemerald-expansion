@@ -1,0 +1,684 @@
+# Game of Thrones: Littleroot Town, your house, the rival's house, Professor Birch's lab.
+# '@ Label' starts an entry. A blank line starts a new text box.
+
+@ LittlerootTown_Text_OurNewHomeLetsGoInside
+MOM: {PLAYER}, we've arrived, my heir!
+
+Forgive the moving cart. Our house no longer has a carriage. Long story. Your father lost it in a bet with a Wattson.
+
+Behold: LITTLEROOT TOWN. The smallest holdfast in the realm. No lord, no castle, no taxes. Very relaxing.
+
+Nobody here has tried to poison anyone in years. Isn't it lovely?
+
+And you get your own chamber, {PLAYER}! A true heir's chamber. Let's go inside.
+
+@ LittlerootTown_Text_WearTheseRunningShoes
+MOM: {PLAYER}! {PLAYER}! Did you present yourself to Maester BIRCH?
+
+Oh! A POKéMON! Your first bannerman! Your father will weep. Quietly. In his Gym.
+
+You are your father's heir, all right. You already look like trouble for the realm.
+
+Here, my heir! Every knight needs boots. These are RUNNING SHOES, forged by the finest cobblers in Hoenn.
+
+Flee from danger faster than any squire alive!
+
+@ LittlerootTown_Text_ExplainRunningShoes
+MOM: {PLAYER}, the cobbler wrote down the secret of the shoes.
+
+By royal instruction: Press the B Button while wearing these RUNNING SHOES to run extra-fast!
+
+Also: Never run from a duel. Unless you're losing. Then run extra-fast.
+
+@ LittlerootTown_Text_ComeHomeIfAnythingHappens
+… … … … … … … … … … … … … … … …
+
+My heir has a POKéMON of their own. Your father will be overjoyed. He'll show it by nodding once.
+
+…But be careful out there. The realm eats children. If anything happens, come home. Our walls are short, but they're ours.
+
+Go on. Go claim something, my heir!
+
+@ LittlerootTown_Text_CanUsePCToStoreItems
+If you use a PC, you can store items and POKéMON. The Maesters call it the Iron Bank of Stuff.
+
+I keep my whole fortune in there. It's three Potions.
+
+@ LittlerootTown_Text_BirchSpendsDaysInLab
+Maester BIRCH stays in his LAB for days, writing scrolls. Then he runs off into the wild screaming about research…
+
+His lady wife says he's either a genius or hiding from her. When does Maester BIRCH ever come home?
+
+@ LittlerootTown_Text_IfYouGoInGrassPokemonWillJumpOut
+Um, um, um!
+
+If you walk into the tall grass, wild POKéMON will jump out! The grass belongs to nobody! There is no law in the grass!
+
+@ LittlerootTown_Text_DangerousIfYouDontHavePokemon
+The grass is lawless. Don't go in there without a sworn POKéMON to protect you.
+
+@ LittlerootTown_Text_CanYouGoSeeWhatsHappening
+Um, hello, squire!
+
+There are terrible beasts on the road north! I can hear them screaming! It sounds like a war!
+
+I'd go myself, but I have no POKéMON and also no courage…
+
+Will you ride north and see what's happening, for the good of the holdfast?
+
+@ LittlerootTown_Text_YouSavedBirch
+You saved Maester BIRCH! The songs will be sung! Small songs. It's a small holdfast.
+
+@ LittlerootTown_Text_GoodLuckCatchingPokemon
+You're going to recruit POKéMON for your army? May the old gods guide your POKé BALLS!
+
+@ LittlerootTown_Text_TownSign
+LITTLEROOT TOWN
+A holdfast too small to have a lord.
+
+@ LittlerootTown_Text_ProfBirchsLab
+MAESTER BIRCH'S POKéMON CITADEL
+(It's a LAB. He calls it a citadel.)
+
+@ LittlerootTown_Text_BirchSomethingToShowYouAtLab
+Maester BIRCH: Well, well, {PLAYER}{KUN}! You fought like a true knight out there!
+
+I knew there was something about you the moment I saw you. I didn't expect you to save my life on day one, though. Very embarrassing for me.
+
+Oh, yes. You still have the POKéDEX I gave you? The scroll of all beasts?
+
+I have something to show you. Come to my citadel. My LAB. Same thing.
+
+@ PlayersHouse_1F_Text_IsntItNiceInHere
+MOM: See, {PLAYER}? A real house, with a real roof. Isn't it nice in here, too?
+
+@ PlayersHouse_1F_Text_MoversPokemonGoSetClock
+The movers' POKéMON did all the lifting. Very loyal. I paid them in Berries. I think they've sworn fealty to us now.
+
+{PLAYER}, your chamber is upstairs. Go see it, my heir!
+
+Your lord father sent you a new clock, to mark our arrival. In this realm, an heir must always know the hour. Don't forget to set it!
+
+@ PlayersHouse_1F_Text_ArentYouInterestedInRoom
+MOM: Well, {PLAYER}?
+
+Every heir needs a chamber. Aren't you interested in seeing your very own?
+
+@ PlayersHouse_1F_Text_GoSetTheClock
+MOM: {PLAYER}.
+
+Go set the clock in your chamber, my heir. Time waits for no lord.
+
+@ PlayersHouse_1F_Text_OhComeQuickly
+MOM: Oh! {PLAYER}, {PLAYER}! Quick! Come quickly! The ravens are on TV!
+
+@ PlayersHouse_1F_Text_MaybeDadWillBeOn
+MOM: Look! It's the Hall of House Petalburg! Maybe your lord father will be on!
+
+@ PlayersHouse_1F_Text_ItsOverWeMissedHim
+MOM: Oh… It's over.
+
+I think your father was on, but we missed him. He was probably just nodding.
+
+@ PlayersHouse_1F_Text_GoIntroduceYourselfNextDoor
+Oh, yes. One of your father's bannermen lives in this holdfast.
+
+His name is Maester BIRCH.
+
+He lives right next door. Present yourself to him. Bow a little. Not too much. We're nobility. Ish.
+
+@ PlayersHouse_1F_Text_SeeYouHoney
+MOM: Gods keep you, my heir!
+
+@ PlayersHouse_1F_Text_DidYouMeetProfBirch
+MOM: Did you present yourself to Maester BIRCH?
+
+@ PlayersHouse_1F_Text_YouShouldRestABit
+MOM: How fares my heir, {PLAYER}? You look like you just fought a small war.
+
+Rest a bit. Even conquerors need naps.
+
+@ PlayersHouse_1F_Text_TakeCareHoney
+MOM: Take care, my heir! Trust no one! Except me!
+
+@ PlayersHouse_1F_Text_GotDadsBadgeHeresSomethingFromMom
+MOM: Oh? You took a BADGE from your own father's hall?
+
+Then here's a gift from your lady mother! I'm not saying I'm proud. I'm very proud.
+
+@ PlayersHouse_1F_Text_DontPushYourselfTooHard
+Don't push yourself too hard, my heir. This house is always yours.
+
+Now go. Conquer politely.
+
+@ PlayersHouse_1F_Text_IsThatAPokenav
+MOM: What is that, my heir? A POKéNAV? House Stone of DEVON gave it to you? A gift from the richest house in Hoenn?
+
+Well, then. Let your lady mother send you ravens on it!
+
+… … …
+
+@ PlayersHouse_1F_Text_ReportFromPetalburgGym
+HERALD: …We bring you this report from the gates of the Hall of House Petalburg.
+
+@ PlayersHouse_1F_Text_TheresAMovieOnTV
+There's a play on TV.
+
+Two knights are dueling on a giant piano. Everyone dies. It's a comedy.
+
+Better get going!
+
+@ PlayersHouse_1F_Text_TicketFromBrineyCameForYou
+DAD: Hm?
+
+So. It's {PLAYER}.
+
+It's been a while, my heir. You look… stronger. Like someone with a claim.
+
+Don't get ideas. Your old man still holds his hall.
+
+Oh, yes. A raven came for you, from a sea lord named MR. BRINEY.
+
+@ PlayersHouse_1F_Text_PortsInSlateportLilycove
+DAD: Hm, passage on a ferry?
+
+If I recall, the ports of the realm are SLATEPORT and LILYCOVE. Ships, sailors and pirates. Mostly pirates.
+
+@ PlayersHouse_1F_Text_BetterGetBackToGym
+I must return to my hall in PETALBURG.
+
+My lady, thank you for holding the house while I'm away. Keep the walls up.
+
+@ PlayersHouse_1F_Text_DadShouldStayLonger
+MOM: That lord father of yours…
+
+He comes home once a season, and all he talks about is POKéMON and border disputes.
+
+He should stay. Eat something. Smile once.
+
+@ PlayersHouse_1F_Text_IsThatABreakingStory
+MOM: Is that the ravens with urgent news?
+
+@ PlayersHouse_1F_Text_LatiEmergencyNewsFlash
+Hear ye! An urgent raven from the realm!
+
+All over HOENN, folk have seen a BZZT…colored POKéMON flying over the holdfasts.
+
+Is it a dragon? Is it an omen? The Maesters don't know. The Maesters never know.
+
+We now return you to the regular play.
+
+@ PlayersHouse_1F_Text_WhatColorDidTheySay
+MOM: {PLAYER}, did you hear that? An omen!
+
+What color did the herald say that POKéMON was?
+
+@ PlayersHouse_1F_Text_StillUnknownPokemon
+MOM: Well, isn't that something! There are still beasts in this realm that nobody has claimed.
+
+@ PlayersHouse_2F_Text_ClockIsStopped
+The clock is stopped…
+
+An heir who doesn't know the time is late for their own coronation. Better set it!
+
+@ PlayersHouse_2F_Text_HowDoYouLikeYourRoom
+MOM: {PLAYER}, how do you like your chamber?
+
+Good! Everything is in its place. Very orderly. Like a well-run castle.
+
+The movers finished downstairs, too.
+
+Those POKéMON movers are so loyal! I think they want land.
+
+Oh, and make sure everything's on your desk. A good heir keeps their scrolls in order.
+
+@ PlayersHouse_2F_Text_ItsAGameCube
+It's a Nintendo GameCube. A war-game machine.
+
+A Game Boy Advance is connected to command the troops.
+
+@ RivalsHouse_1F_Text_OhYoureTheNewNeighbor
+Oh, hello. And who rides into my house?
+
+… … … … … … … … … … … … … … … … … …
+
+Oh, you're {PLAYER}{KUN}! Heir of House Petalburg, our new neighbor! Well met!
+
+We have a {STR_VAR_1} about your age. Our heir.
+
+Our {STR_VAR_1} has been excited all week about making an ally.
+
+Our {STR_VAR_1} is upstairs, I think. Plotting, probably. It's a family hobby.
+
+@ RivalsHouse_1F_Text_LikeChildLikeFather
+Like child, like father.
+
+My husband the Maester is as wild about POKéMON as our heir.
+
+If he's not in his citadel, he's crawling through the grass like a spy for the old gods.
+
+@ RivalsHouse_1F_Text_TooBusyToNoticeVisit
+That {RIVAL}!
+
+Our heir is so busy with POKéMON, they didn't notice a noble visitor, {PLAYER}{KUN}. Shameful.
+
+@ RivalsHouse_1F_Text_WentOutToRoute103
+Oh, {RIVAL} rode out to ROUTE 103 just a little while ago.
+
+Like father, like heir. {RIVAL} can't stay inside the walls.
+
+@ RivalsHouse_1F_Text_ShouldGoHomeEverySoOften
+It's a fine thing to travel the realm with POKéMON.
+
+But return home now and then so your lady mother knows you're alive.
+
+She'll never say it, but every raven that isn't from you scares her, {PLAYER}{KUN}.
+
+@ RivalsHouse_1F_Text_MayWhoAreYou
+Huh? Who… Who goes there?
+
+… … … … … … … … … … … … … … … …
+
+Oh, you're {PLAYER}{KUN}. Heir of House Petalburg. So you arrived today.
+
+Um… I'm MAY. Daughter of the Maester. Well met!
+
+I… I have a dream. To make an alliance with every POKéMON in the realm.
+
+I… I heard about you, {PLAYER}{KUN}, from my father, Maester BIRCH.
+
+I was hoping you'd be kind, {PLAYER}{KUN}, and that our houses could be allies.
+
+Oh, this is silly, isn't it? I… I just met you and I'm already proposing a treaty.
+
+Eheheh…
+
+Oh, no! I forgot!
+
+I promised to help Father capture some wild POKéMON!
+
+{PLAYER}{KUN}, I'll catch you later! For the realm!
+
+@ RivalsHouse_1F_Text_BrendanWhoAreYou
+Hey! You…
+
+Who goes there?
+
+Oh, you're {PLAYER}, aren't you? Heir of House Petalburg? Moved in next door?
+
+I didn't know you were a girl.
+
+Father, Maester BIRCH, said our neighbor was the heir of a GYM LEADER, so I assumed you'd be some big guy with a sword.
+
+I'm BRENDAN. Son of the Maester. So, well met, neighbor!
+
+Huh? Hey, {PLAYER}, you don't have a POKéMON? An heir with no bannermen?
+
+Want me to go recruit you one?
+
+Aw, darn, I forgot…
+
+I'm supposed to help my father capture some wild POKéMON.
+
+For the realm! Some other time, okay?
+
+@ RivalsHouse_1F_Text_DoYouHavePokemon
+Well met, neighbor!
+
+Have you sworn in your own POKéMON yet?
+
+@ RivalsHouse_2F_Text_MayWhoAreYou
+Huh? Who… Who goes there?
+
+… … … … … … … … … … … … … … … …
+
+Oh, you're {PLAYER}{KUN}. Heir of House Petalburg. So you arrived today.
+
+Um… I'm MAY. Daughter of the Maester. Well met!
+
+I… I have a dream. To make an alliance with every POKéMON in the realm.
+
+I… I heard about you, {PLAYER}{KUN}, from my father, Maester BIRCH.
+
+I was hoping you'd be kind, {PLAYER}{KUN}, and that our houses could be allies.
+
+Oh, this is silly, isn't it? I… I just met you and I'm already proposing a treaty.
+
+Eheheh…
+
+Oh, no! I forgot!
+
+I promised to help Father capture some wild POKéMON!
+
+{PLAYER}{KUN}, I'll catch you later! For the realm!
+
+@ RivalsHouse_2F_Text_MayGettingReady
+POKéMON fully restored! Supplies ready for the campaign, and…
+
+@ RivalsHouse_2F_Text_BrendanWhoAreYou
+Hey! You…
+
+Who goes there?
+
+Oh, you're {PLAYER}, aren't you? Heir of House Petalburg? Moved in next door?
+
+I didn't know you were a girl.
+
+Father, Maester BIRCH, said our neighbor was the heir of a GYM LEADER, so I assumed you'd be some big guy with a sword.
+
+I'm BRENDAN. Son of the Maester. So, well met, neighbor!
+
+Huh? Hey, {PLAYER}, you don't have a POKéMON? An heir with no bannermen?
+
+Want me to go recruit you one?
+
+Aw, darn, I forgot…
+
+I'm supposed to help my father capture some wild POKéMON.
+
+For the realm! Some other time, okay?
+
+@ RivalsHouse_2F_Text_BrendanGettingReady
+POKéMON fully restored… Supplies packed for the campaign, and…
+
+@ RivalsHouse_2F_Text_ItsRivalsPokeBall
+It's {RIVAL}'s POKé BALL!
+
+Touching another heir's POKé BALL is an act of war. Better leave it.
+
+@ RivalsHouse_2F_Text_MayJustCheckingMyPokedex
+MAY: {PLAYER}{KUN}!
+
+I was just reading my POKéDEX. The great scroll of beasts.
+
+There are so many POKéMON I've seen but haven't sworn in yet.
+
+And so many that will evolve into something bigger and scarier. Like politicians.
+
+Where should I ride out next to recruit POKéMON?
+
+@ RivalsHouse_2F_Text_MayWhereShouldIGoNext
+MAY: Where should I ride out next to recruit POKéMON?
+
+Wouldn't it be funny if our armies met on the road, {PLAYER}{KUN}?
+
+@ RivalsHouse_2F_Text_BrendanJustCheckingMyPokedex
+BRENDAN: Hey, it's {PLAYER}.
+
+I was just reading my POKéDEX. The great scroll of beasts.
+
+There are tons of POKéMON I still need for my army, but the scroll is looking pretty good.
+
+Reading it makes me want to ride out again. Campaign season never ends.
+
+@ RivalsHouse_2F_Text_BrendanWhereShouldIGoNext
+BRENDAN: I can't decide where to ride out next.
+
+Hey, {PLAYER}, if our armies cross paths out there, I'll challenge you to a duel. Honor demands it.
+
+@ LittlerootTown_ProfessorBirchsLab_Text_BirchAwayOnFieldwork
+Hunh? Maester BIRCH?
+
+The Maester is away on fieldwork. Ergo, he isn't here. Ergo, I'm in charge. Kneel.
+
+Oh, let me explain what fieldwork is.
+
+It's when a Maester leaves his scrolls and goes outside to study things in the wild, in fields and mountains. Very dangerous. Very muddy.
+
+The Maester hates desk work. He'd rather get bitten by a POKéMON than read about one.
+
+@ LittlerootTown_ProfessorBirchsLab_Text_BirchIsntOneForDeskWork
+The Maester hates desk work. He'd rather get bitten by a POKéMON than read about one. He gets bitten a lot.
+
+@ LittlerootTown_ProfessorBirchsLab_Text_BirchEnjoysRivalsHelpToo
+Maester BIRCH studies where POKéMON live and how they spread across the realm.
+
+His heir {RIVAL} helps him. A Maester and his heir, working together. There's a lot of love there. And a lot of mud.
+
+@ LittlerootTown_ProfessorBirchsLab_Text_WhyNotGiveNicknameToMon
+Maester BIRCH: A sworn POKéMON deserves a title. Why not give a nickname to that {STR_VAR_1}?
+
+@ LittlerootTown_ProfessorBirchsLab_Text_MightBeGoodIdeaToGoSeeRival
+Maester BIRCH: Train hard and earn your scars, and you'll be a fearsome TRAINER. Maybe even a lord.
+
+My heir, {RIVAL}, is also studying POKéMON, while helping me.
+
+Every heir needs a rival. Or an ally. It's usually both.
+
+{PLAYER}{KUN}, don't you think you should go meet {RIVAL}?
+
+@ LittlerootTown_ProfessorBirchsLab_Text_GetRivalToTeachYou
+Maester BIRCH: Splendid! {RIVAL} will be thrilled.
+
+Have {RIVAL} teach you the ways of a TRAINER. And how to survive a betrayal. Mostly the TRAINER part.
+
+@ LittlerootTown_ProfessorBirchsLab_Text_DontBeThatWay
+Maester BIRCH: Oh, don't be like that. Alliances start with a hello. Go meet my heir.
+
+@ LittlerootTown_ProfessorBirchsLab_Text_BirchRivalGoneHome
+Maester BIRCH: {RIVAL}? Gone home, I think.
+
+Or crawling through the tall grass somewhere, like I raised them to…
+
+If you or your POKéMON grow weary, rest at home. Even knights sleep.
+
+@ LittlerootTown_ProfessorBirchsLab_Text_HeardYouBeatRivalTakePokedex
+Maester BIRCH: Ah, {PLAYER}{KUN}!
+
+I hear you defeated {RIVAL} in your very first duel. Excellent! Humbling for my house, but excellent!
+
+{RIVAL} has served my research for years.
+
+{RIVAL} has been a TRAINER for a long time. And you beat them on day one. The bards will love this.
+
+Here, {PLAYER}{KUN}. I ordered this for my research, but you should have it. It's a POKéDEX. The great scroll of beasts.
+
+@ LittlerootTown_ProfessorBirchsLab_Text_ExplainPokedex
+Maester BIRCH: The POKéDEX is a magic scroll that records every POKéMON you meet or capture. The Maesters of old would have killed for this. Some did.
+
+My heir, {RIVAL}, carries one everywhere.
+
+Whenever my heir catches a rare POKéMON, {RIVAL} hunts me down in the wild to show me. Usually while I'm being bitten.
+
+@ LittlerootTown_ProfessorBirchsLab_Text_CountlessPokemonAwait
+Maester BIRCH: Countless POKéMON await you, all over the realm!
+
+Argh, now I want to go crawl in the grass again!
+
+@ LittlerootTown_ProfessorBirchsLab_Text_MayGotPokedexTooTakeThese
+MAY: Oh, wow, {PLAYER}{KUN}! You got a POKéDEX, too!
+
+Now we're both keepers of the great scroll! Here, an ally's gift!
+
+@ LittlerootTown_ProfessorBirchsLab_Text_CatchCutePokemonWithPokeBalls
+MAY: The more POKéMON you have, the bigger your army!
+
+I'm going to search the whole realm for different POKéMON.
+
+When I find cute ones, I'll recruit them with POKé BALLS! A cute army is still an army!
+
+@ LittlerootTown_ProfessorBirchsLab_Text_OhYourBagsFull
+Oh? Your BAG's full. Even a knight can only carry so much loot.
+
+@ LittlerootTown_ProfessorBirchsLab_Text_MayWhereShouldIGoNext
+MAY: Where should I ride out next to look for POKéMON?
+
+@ LittlerootTown_ProfessorBirchsLab_Text_BrendanGotPokedexTooTakeThese
+BRENDAN: Huh… So you got a POKéDEX, too. The Maester likes you.
+
+Fine. Here. A gift between houses.
+
+@ LittlerootTown_ProfessorBirchsLab_Text_CatchCoolPokemonWithPokeBalls
+BRENDAN: A real lord has a big army of POKéMON.
+
+I'm going to ride all over the realm to recruit different POKéMON.
+
+If I find strong ones, you bet I'll capture them with POKé BALLS. Before you do.
+
+@ LittlerootTown_ProfessorBirchsLab_Text_HeyYourBagsFull
+Hey, your BAG's full. Too much loot.
+
+@ LittlerootTown_ProfessorBirchsLab_Text_BrendanWhereShouldIGoNext
+BRENDAN: Where should I ride out next to recruit POKéMON…
+
+@ LittlerootTown_ProfessorBirchsLab_Text_SeriousLookingMachine
+It's a serious-looking machine. The Maester uses it for research. Or sorcery. Hard to tell.
+
+@ LittlerootTown_ProfessorBirchsLab_Text_PCUsedForResearch
+It's the Maester's PC, full of secret scrolls. Better not touch it.
+
+@ LittlerootTown_ProfessorBirchsLab_Text_CrammedWithBooksOnPokemon
+It's crammed with scrolls on POKéMON. One is titled: Which POKéMON Bite Maesters, Volume 9.
+
+@ LittlerootTown_ProfessorBirchsLab_Text_BookTooHardToRead
+It's a book too hard to read. It's in High Maester. Nobody speaks High Maester.
+
+@ LittlerootTown_ProfessorBirchsLab_Text_OtherRegionsUpgradeToNational
+Maester BIRCH: Now…
+
+{PLAYER}{KUN} and {RIVAL}, you've both served my research faithfully.
+
+Thanks to you, new truths have come to light.
+
+It seems the realm of HOENN also holds POKéMON from distant lands across the sea.
+
+Hoenn's wilds are rich and varied. Like its politics.
+
+So I must upgrade your POKéDEX scrolls to the NATIONAL Mode. Knowledge of all realms!
+
+Here, give me your POKéDEX units.
+
+@ LittlerootTown_ProfessorBirchsLab_Text_MayUpgradeSoCool
+MAY: Eheheh!
+
+Even my POKéDEX got upgraded! We know about other kingdoms now!
+
+It's because you went out and conquered so many POKéMON, {PLAYER}{KUN}!
+
+@ LittlerootTown_ProfessorBirchsLab_Text_BrendanYouCanThankMe
+BRENDAN: I rode all over HOENN studying POKéMON.
+
+So you can thank me for the NATIONAL Mode POKéDEX.
+
+Yep. You're lucky to have an ally like me, {PLAYER}!
+
+@ LittlerootTown_ProfessorBirchsLab_Text_OkayAllDone
+Maester BIRCH: There! All done! By the old gods, that was easy.
+
+@ LittlerootTown_ProfessorBirchsLab_Text_GrassyPatchWaiting2
+Maester BIRCH: But listen. You sit on the Throne now, but your journey isn't over.
+
+The road of POKéMON has no end. Unlike most reigns.
+
+Somewhere, there's a patch of tall grass waiting for its ruler!
+
+@ LittlerootTown_ProfessorBirchsLab_Text_MayTakeBreakFromFieldwork
+MAY: I'm taking a short break from the field campaign.
+
+I'll stay at the citadel and help Father for a while.
+
+@ LittlerootTown_ProfessorBirchsLab_Text_BrendanTakeBreakFromFieldwork
+BRENDAN: For now, I'm taking a break from the field campaign.
+
+I'll guard the citadel and help Father for a while.
+
+@ LittlerootTown_ProfessorBirchsLab_Text_CompletedDexChoosePokemon
+Maester BIRCH: Oh, {PLAYER}{KUN}! Let me read your POKéDEX.
+
+… … … … … … … … … … … …
+
+By the old gods. There's no doubt.
+
+You have completed the great scroll of HOENN's POKéDEX.
+
+No Maester in history has done that. Most of them got bitten first.
+
+I have a reward for you.
+
+A tribute, for your service to the realm.
+
+A rare POKéMON, from a distant kingdom across the sea!
+
+You may claim any one of these three!
+
+@ LittlerootTown_ProfessorBirchsLab_Text_CanHaveAnyOneOfRarePokemon
+Maester BIRCH: These are rare POKéMON from a distant kingdom!
+
+You may claim any one of these three!
+
+@ LittlerootTown_ProfessorBirchsLab_Text_YoullTakeCyndaquil
+Maester BIRCH: The FIRE POKéMON CYNDAQUIL caught your eye! A dragon in the making! Sort of!
+
+You're as sharp as ever!
+
+So you claim the CYNDAQUIL?
+
+@ LittlerootTown_ProfessorBirchsLab_Text_YoullTakeTotodile
+Maester BIRCH: The WATER POKéMON TOTODILE! The sea houses will be jealous.
+
+You know how to pick a bannerman.
+
+So, you claim the TOTODILE?
+
+@ LittlerootTown_ProfessorBirchsLab_Text_YoullTakeChikorita
+Maester BIRCH: The GRASS POKéMON CHIKORITA! Loyal, leafy and underrated. Like a good Hand of the King.
+
+You know what you're doing.
+
+So, you claim the CHIKORITA?
+
+@ LittlerootTown_ProfessorBirchsLab_Text_TakeYourTimeAllInvaluable
+Maester BIRCH: Take your time. A wise ruler never chooses in haste.
+
+They're all priceless POKéMON.
+
+@ LittlerootTown_ProfessorBirchsLab_Text_PickedFinePokemon
+Maester BIRCH: I see! A fine POKéMON for a fine ruler!
+
+@ LittlerootTown_ProfessorBirchsLab_Text_NicknameJohtoStarter
+Grant a title to the {STR_VAR_1} you received?
+
+@ LittlerootTown_ProfessorBirchsLab_Text_GrassyPatchWaiting
+Maester BIRCH: Listen, {PLAYER}{KUN}. You've completed the HOENN POKéDEX, but your journey isn't over.
+
+The road of POKéMON has no end. Unlike most reigns.
+
+Somewhere, there's a patch of tall grass waiting for its ruler!
+
+@ LittlerootTown_ProfessorBirchsLab_Text_DontHaveAnyRoomForPokemon
+Oh, your army is full. No room for another POKéMON.
+
+@ LittlerootTown_ProfessorBirchsLab_Text_MayWhatNextImStayingHere
+MAY: {PLAYER}{KUN}, after this… What will you do with your reign?
+
+Will you keep dueling and sharpening your blade?
+
+Or will you try to fill the NATIONAL POKéDEX, with beasts from every kingdom?
+
+I'm staying here to serve the Maester.
+
+@ LittlerootTown_ProfessorBirchsLab_Text_BrendanPreferCollectingSlowly
+BRENDAN: I'd rather raise one loyal POKéMON slowly than collect a huge army. Loyalty is rare in this realm.
+
+@ LittlerootTown_ProfessorBirchsLab_Text_MayHaveYouGoneToBattleFrontier
+MAY: Oh, hi, {PLAYER}{KUN}! Have you been to that free city, the BATTLE FRONTIER?
+
+@ LittlerootTown_ProfessorBirchsLab_Text_BrendanHaveYouGoneToBattleFrontier
+BRENDAN: Hey, {PLAYER}! Have you been to that free city, the BATTLE FRONTIER?
+
+@ LittlerootTown_ProfessorBirchsLab_Text_ScottAboardSSTidalCall
+… … … … … … … … … … … Beep!
+
+SCOTT: Hi, hi, {PLAYER}! It's me, SCOTT, envoy of the free city.
+
+I'm aboard the S.S. TIDAL now. The sea air is wonderful for scheming!
+
+By the way…
+
+There's a place I'd like to invite you to. A place where rulers go to be humbled.
+
+If you're interested, take a ferry from SLATEPORT or LILYCOVE.
+
+I'll tell you everything when we meet. I'll be waiting!
+
+… … … … … … … … … … … Click!

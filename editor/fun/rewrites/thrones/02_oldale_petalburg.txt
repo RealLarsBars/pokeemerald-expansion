@@ -1,0 +1,773 @@
+# Game of Thrones: Routes 101 to 103, Oldale Town, Petalburg City and the Petalburg Gym.
+
+@ Route101_Text_HelpMe
+H-help me! Guards! Anyone! I'm a Maester!
+
+@ Route101_Text_PleaseHelp
+You there! Squire! Please! Help!
+
+In my BAG! There's a POKé BALL! Take up arms!
+
+@ Route101_Text_DontLeaveMe
+Wh-Where are you going?! A true knight never abandons a Maester!
+
+@ Route101_Text_YouSavedMe
+Maester BIRCH: Whew…
+
+I was in the tall grass studying wild POKéMON when one of them ambushed me. Like a wedding.
+
+You saved my life. I owe you a life debt now. That's serious in this realm.
+
+Oh?
+
+Why, you're {PLAYER}{KUN}! Heir of House Petalburg!
+
+The grass has ears. Come to my citadel later and we'll talk, okay?
+
+@ Route101_Text_TakeTiredPokemonToPokeCenter
+If your POKéMON are wounded, take them to a POKéMON CENTER. The healers there serve every house, even the small ones.
+
+There's one in OLDALE TOWN, close by.
+
+@ Route101_Text_WildPokemonInTallGrass
+Wild POKéMON ambush you in the tall grass. It's a lawless place.
+
+If you want to recruit POKéMON, you have to go in and look for them. Bravely. Or quickly.
+
+@ OldaleTown_Text_SavingMyProgress
+I'm resting, so I'm writing my deeds in the chronicle. A good knight always saves their progress.
+
+@ OldaleTown_Text_IWorkAtPokemonMart
+Well met! I'm a merchant of the POKéMON MART, the realm's finest market.
+
+Will you come with me, squire?
+
+@ OldaleTown_Text_ThisIsAPokemonMart
+This is a POKéMON MART. Look for the blue roof. Blue is our house color.
+
+We sell everything a campaign needs, including POKé BALLS for recruiting POKéMON.
+
+Here. A gift, so you remember which market treated you kindly. Merchants have long memories.
+
+@ OldaleTown_Text_PotionExplanation
+A POTION can be used anytime, even in the middle of a war. Sometimes it's better than a whole POKéMON CENTER.
+
+@ OldaleTown_Text_WaitDontComeInHere
+Aaaaah! Halt! Don't take another step.
+
+I found the footprints of a rare POKéMON! A sign from the old gods!
+
+Wait until I finish drawing them, okay?
+
+@ OldaleTown_Text_DiscoveredFootprints
+I found the footprints of a rare POKéMON! A sign from the old gods!
+
+Wait until I finish drawing them, okay?
+
+@ OldaleTown_Text_FinishedSketchingFootprints
+I finished drawing the sacred footprints of a rare POKéMON.
+
+Then I realized they were my own footprints. I've sent a raven to cancel the prophecy.
+
+@ OldaleTown_Text_MayLetsGoBack
+MAY: {PLAYER}{KUN}! Over here! Let's ride home!
+
+@ OldaleTown_Text_BrendanLetsGoBack
+BRENDAN: I'm heading back to my father's citadel. {PLAYER}, you should hurry back too.
+
+@ OldaleTown_Text_TownSign
+OLDALE TOWN
+Where things start off scarce. Like loyalty.
+
+@ OldaleTown_House1_Text_LeftPokemonGoesOutFirst
+When a POKéMON battle starts, the one at the top of your list goes out first. The vanguard.
+
+When your army grows, change the order of your POKéMON.
+
+A good commander always picks who dies first. Faints first. I meant faints.
+
+@ OldaleTown_House2_Text_PokemonLevelUp
+When POKéMON fight, they level up and grow stronger. Like a lord's grudges.
+
+@ OldaleTown_House2_Text_YoullGoFurtherWithStrongPokemon
+With stronger POKéMON in your service, you'll be able to ride much farther from this holdfast.
+
+@ OldaleTown_Mart_Text_PokeBallsAreSoldOut
+The merchant says the POKé BALLS are all sold out. Some lord bought them all for his war.
+
+@ OldaleTown_Mart_Text_ImGoingToBuyPokeBalls
+I'm going to buy every POKé BALL in the market and raise an army of POKéMON!
+
+@ OldaleTown_Mart_Text_RestoreHPWithPotion
+If a POKéMON loses all its HP and faints, it can't fight. It's out of the war.
+
+To keep your POKéMON on their feet, restore their HP with a POTION. The healers of the realm swear by it.
+
+@ OldaleTown_PokemonCenter_1F_Text_TrainersCanUsePC
+That PC in the corner is for any POKéMON TRAINER to use. Any house, any rank.
+
+Even you, squire.
+
+@ OldaleTown_PokemonCenter_1F_Text_PokemonCentersAreGreat
+POKéMON CENTERS are wonderful!
+
+They heal any POKéMON, from any house, as often as you like, for free. The only free thing left in this realm.
+
+@ OldaleTown_PokemonCenter_1F_Text_WirelessClubNotAvailable
+The POKéMON WIRELESS CLUB upstairs was just built.
+
+They say the magic isn't working yet. The Maesters are on it.
+
+@ OldaleTown_PokemonCenter_1F_Text_TradedInWirelessClub
+The POKéMON WIRELESS CLUB upstairs was just built.
+
+I traded POKéMON with another house right away. Good for diplomacy.
+
+@ Route102_Text_WatchMeCatchPokemon
+WALLY: {PLAYER}… POKéMON hide in tall grass like this, don't they? Like assassins?
+
+Please watch me and see if I can recruit one properly.
+
+…Whoa!
+
+@ Route102_Text_WallyIDidIt
+WALLY: I did it… My first bannerman… My POKéMON!
+
+@ Route102_Text_ImNotVeryTall
+I'm…not very tall, so the tall grass swallows me whole. Like a dungeon.
+
+The grass goes up my nose and… Fwafwafwafwafwa…
+
+Fwatchoo!
+
+@ Route102_Text_CatchWholeBunchOfPokemon
+I'm going to recruit a whole army of POKéMON! Then I'm going to march on my parents!
+
+@ Route103_Text_MayRoute103Pokemon
+MAY: Let's see… The POKéMON who swear allegiance to ROUTE 103 are…
+
+@ Route103_Text_MayLetsBattle
+Oh, well met, {PLAYER}{KUN}!
+
+…Oh, I see, my father gave you a POKéMON. A sworn bannerman!
+
+Since we're both here, let's have a quick duel!
+
+I'll show you what it means to be a TRAINER in this realm.
+
+@ Route103_Text_MayDefeated
+Wow! You fight like a knight, {PLAYER}{KUN}!
+
+@ Route103_Text_MayTimeToHeadBack
+MAY: I think I know why my father has an eye on you now.
+
+You just got that POKéMON, but it's already loyal to you. Loyalty is rare in this realm.
+
+You could make an ally of any POKéMON, I bet.
+
+Well, it's time to ride back to the citadel.
+
+@ Route103_Text_BrendanRoute103Pokemon
+BRENDAN: Okay, so these POKéMON serve ROUTE 103, and those ones serve… nobody. Rebels.
+
+@ Route103_Text_BrendanLetsBattle
+Hey, it's {PLAYER}!
+
+…Oh, yeah, my father gave you a POKéMON.
+
+Since we're here, how about a little duel?
+
+I'll teach you what it means to be a TRAINER!
+
+@ Route103_Text_BrendanDefeated
+Huh, {PLAYER}, you fight better than most knights.
+
+@ Route103_Text_BrendanTimeToHeadBack
+BRENDAN: I think I get it. I know why my father has his eye on you now.
+
+Your POKéMON is already loyal to you, and you only just got it.
+
+{PLAYER}, I think you could make an ally of any POKéMON. That's dangerous. In a good way.
+
+We should ride back to the citadel.
+
+@ Route103_Text_ShouldHaveBroughtPotion
+My POKéMON is staggering like a knight after a feast… I should have brought a POTION…
+
+@ Route103_Text_ShortcutToOldale
+If you cross the sea from here, you'll reach OLDALE TOWN quicker. A smuggler's route.
+
+Fufufu, useful, isn't it?
+
+@ PetalburgCity_Text_WhereIsWally
+Where has our WALLY gone?
+
+We have to leave for VERDANTURF TOWN very soon. The carriage won't wait.
+
+@ PetalburgCity_Text_AreYouRookieTrainer
+Well met! Are you maybe… A new squire?
+
+Do you know what a TRAINER does upon entering a new holdfast?
+
+First, they find the GYM, and find out which noble house holds it.
+
+@ PetalburgCity_Text_ThisIsPetalburgGym
+See? This is the Hall of House Petalburg. PETALBURG CITY's GYM.
+
+@ PetalburgCity_Text_ThisIsGymSign
+This is the GYM's banner. Look for it whenever you seek a noble house to challenge.
+
+@ PetalburgCity_Text_WaterReflection
+My face is reflected in the water.
+
+Is it the face of a future king, shining with hope…
+
+Or the face of a doomed bastard, staring at a short, sad reign…
+
+What do you see reflected in your face?
+
+@ PetalburgCity_Text_FullPartyExplanation
+Say you have six POKéMON. If you capture another one…
+
+It's sent to a STORAGE BOX through a PC. Like a reserve army in a castle.
+
+@ PetalburgCity_Text_GymSign
+HALL OF HOUSE PETALBURG
+LORD: NORMAN
+House words: Family Is Complicated.
+
+@ PetalburgCity_Text_CitySign
+PETALBURG CITY
+Seat of House Petalburg. Please wipe your feet.
+
+@ PetalburgCity_Text_AreYouATrainer
+Pardon me, squire!
+
+Let me guess, from the look of you, you're a POKéMON TRAINER?
+
+@ PetalburgCity_Text_WellMaybeNot
+… … … … … …
+
+Well, maybe not. Your clothes aren't muddy enough.
+
+You're either a brand new squire or just a peasant. No offense.
+
+@ PetalburgCity_Text_ImLookingForTalentedTrainers
+I roam the realm looking for talented TRAINERS. Champions for my lord.
+
+Forgive me for taking your time.
+
+@ PetalburgCity_Gym_Text_DadYoureHereWithYourPokemon
+DAD: Hm?
+
+So. It's {PLAYER}. Have you finished moving into the new house?
+
+You rode here alone? That's very brave. Or very foolish.
+
+Oh, I see. You have a POKéMON with you.
+
+Hm… Then you'll be a TRAINER, like me. Following your father's path.
+
+Good. One day you'll come for my hall. I'll be waiting.
+
+@ PetalburgCity_Gym_Text_WallyIdLikeAPokemon
+Um… I… I'd like a POKéMON, please, my lord…
+
+@ PetalburgCity_Gym_Text_DadOhYoureWallyRight
+DAD: Hm? You're… Uh… The boy from the house down the road. You're WALLY, right?
+
+@ PetalburgCity_Gym_Text_WallyIveNeverCaughtAPokemon
+WALLY: I'm being sent to live with my relatives in VERDANTURF TOWN.
+
+I'd be lonely there by myself, so I want a POKéMON to bring along. A sworn friend.
+
+But I've never captured a POKéMON before. I don't know how…
+
+@ PetalburgCity_Gym_Text_DadHmISee
+DAD: Hm. I see. A worthy quest.
+
+@ PetalburgCity_Gym_Text_DadPlayerGoWithWally
+DAD: {PLAYER}, you heard him?
+
+Ride with WALLY and make sure he safely captures a POKéMON. Consider it your first quest.
+
+@ PetalburgCity_Gym_Text_WallyOhWowThankYou
+WALLY: Oh, wow! Thank you, my lord!
+
+@ PetalburgCity_Gym_Text_WouldYouReallyComeWithMe
+{PLAYER}… Would you really ride with me?
+
+@ PetalburgCity_Gym_Text_DadSoDidItWorkOut
+DAD: So. Was the quest a success?
+
+@ PetalburgCity_Gym_Text_WallyThankYouBye
+WALLY: It was, my lord. Here's your POKéMON back.
+
+{PLAYER}, thank you for riding with me.
+
+Because of you two, I captured my first POKéMON.
+
+I swear by the old gods I'll take good care of it.
+
+Oh! My mother's waiting for me, so I must go!
+
+Gods keep you, {PLAYER}!
+
+@ PetalburgCity_Gym_Text_DadGoCollectBadges
+DAD: Now…
+
+{PLAYER}, if you want to become a strong TRAINER, hear my counsel.
+
+Ride for RUSTBORO CITY, past this town.
+
+There, challenge the Lady of House Rustboro, ROXANNE.
+
+Then march on the other GYMS and defeat their lords and ladies.
+
+Take their BADGES. Each one is a banner bent to your will.
+
+Yes, I'm a GYM LEADER too. One day we'll fight, {PLAYER}.
+
+But only once you're strong enough to deserve it.
+
+@ PetalburgCity_Gym_Text_NormanGoToRustboro
+DAD: Hm? Aren't you riding to the GYM in RUSTBORO CITY?
+
+There's no honor in crushing a green squire, even my own.
+
+{PLAYER}, challenge me when you're much stronger.
+
+Bring me four GYM BADGES, and I'll accept your challenge, okay?
+
+@ PetalburgCity_Gym_Text_NormanGoToDewford
+DAD: I see… So, House Rustboro has bent the knee to you.
+
+But there are far stronger TRAINERS in this realm, {PLAYER}.
+
+Across the sea, in DEWFORD TOWN, is the lord of the Dewford Tide, BRAWLY.
+
+Go challenge him. Bring a towel.
+
+@ PetalburgCity_Gym_Text_YouHaveGottenStronger
+DAD: Hm… {PLAYER}, you have grown stronger.
+
+I can tell by the banners you carry. Your BADGES speak loudly.
+
+@ PetalburgCity_Gym_Text_NormanIntro
+DAD: Hm… So. You've brought four GYM BADGES.
+
+Very well. As I swore, we will fight.
+
+{PLAYER}…
+
+To face my own heir in my own hall. It's the proudest day of my life.
+
+But a duel is a duel!
+
+I'll fight with everything I have to hold this hall.
+
+{PLAYER}, you'd better fight like your claim depends on it!
+
+@ PetalburgCity_Gym_Text_NormanDefeat
+…
+
+I… I can't…
+
+I can't believe it. {PLAYER}…
+
+I lost my hall to my own heir?
+
+But the law is the law! Here, take this.
+
+@ PetalburgCity_Gym_Text_ExplainBalanceBadgeTakeThis
+DAD: With that BADGE, the DEFENSE of all your POKéMON rises. Like a castle wall.
+
+And POKéMON that know the HM move SURF can now travel over water.
+
+This is my gift to you. {PLAYER}, I trust you to use it with honor.
+
+@ PetalburgCity_Gym_Text_ExplainFacade
+DAD: TM42 contains FACADE.
+
+It doubles a move's power if the POKéMON is poisoned, paralyzed or burned.
+
+It turns a wound into a weapon. Every lord should know that trick.
+
+@ PetalburgCity_Gym_Text_DadHappyAndSad
+DAD: As lord of this hall, I'm furious…
+
+But as a father, I'm proud. And a little sad. Mostly proud. Don't tell anyone.
+
+@ PetalburgCity_Gym_Text_PleaseComeWithMe
+Ah, there you are, {PLAYER}{KUN}!
+
+Please come with me. I bring a gift, on behalf of my house.
+
+@ PetalburgCity_Gym_Text_LetMeBorrowPlayer
+Lord NORMAN, you don't mind, do you?
+
+Allow me to borrow your heir {PLAYER}{KUN} for a minute or two. Politics.
+
+@ PetalburgCity_Gym_Text_DadGoingToKeepTraining
+DAD: {PLAYER}, visit your lady mother now and then.
+
+I'll stay here and train twice as hard.
+
+A lord who loses his hall must win it back, {PLAYER}! Even from his own heir!
+
+@ PetalburgCity_Gym_Text_DadNoAmountOfTrainingIsEnough
+DAD: {PLAYER}, how goes your campaign?
+
+The world of POKéMON is as deep as the sea.
+
+No amount of training is ever enough. That's why I never rest. Your mother hates it.
+
+@ PetalburgCity_Gym_Text_GymGuideAdvice
+Hey, how goes it, future ruler {PLAYER}?
+
+The doors in this hall open when you defeat the knights waiting behind them.
+
+Whoa! The doors here are already open, so don't attack me! I'm just the herald!
+
+The knights of House Petalburg use all kinds of items in battle.
+
+The left door leads to the SPEED ROOM.
+
+The right door leads to the ACCURACY ROOM.
+
+Each room's name is on its door. Choose your path carefully.
+
+Once you've chosen… Well, may the old gods be with you!
+
+@ PetalburgCity_Gym_Text_RandallIntro
+A knight who strikes first…
+
+Usually wins. Or at least gets a better song. Wouldn't you agree?
+
+@ PetalburgCity_Gym_Text_RandallDefeat
+A magnificent duel! I'll tell the bards!
+
+@ PetalburgCity_Gym_Text_RandallPostBattle
+Go on to the next chamber. Another knight awaits.
+
+On the left is the CONFUSION ROOM.
+
+On the right, the DEFENSE ROOM.
+
+@ PetalburgCity_Gym_Text_RandallPostBadge
+Whether you win or lose, you never stop training yourself and your POKéMON.
+
+That's what it means to hold a hall in this realm.
+
+@ PetalburgCity_Gym_Text_ParkerIntro
+This is the CONFUSION ROOM. Many knights have lost their minds in here.
+
+Let's see how loyal your POKéMON really are!
+
+@ PetalburgCity_Gym_Text_ParkerDefeat
+I couldn't confuse your army… Your bond with them is unbreakable.
+
+@ PetalburgCity_Gym_Text_ParkerPostBattle
+Next is the STRENGTH ROOM. Can you survive brute force?
+
+@ PetalburgCity_Gym_Text_ParkerPostBadge
+Since you defeated our lord, he trains us twice as hard. Thanks a lot, heir.
+
+@ PetalburgCity_Gym_Text_GeorgeIntro
+Just when you think you've won, your enemy heals…
+
+Do you know how awful that feels? Like a lord who won't stay dead?
+
+I'll show you exactly how awful it feels!
+
+@ PetalburgCity_Gym_Text_GeorgeDefeat
+I couldn't heal fast enough… Such ATTACK power…
+
+@ PetalburgCity_Gym_Text_GeorgePostBattle
+I should have expected no less from our lord's heir.
+
+No, wait! In this realm, strength is earned, not inherited.
+
+I lost because I didn't train hard enough.
+
+Go on! The ONE-HIT KO ROOM is next.
+
+@ PetalburgCity_Gym_Text_GeorgePostBadge
+I'll keep training in the halls. One day, I'll be a lord too.
+
+@ PetalburgCity_Gym_Text_BerkeIntro
+I won't go easy on you just because you're our lord's heir.
+
+I'll show you what a critical hit feels like!
+
+@ PetalburgCity_Gym_Text_BerkeDefeat
+Your power… You're the true heir.
+
+@ PetalburgCity_Gym_Text_BerkePostBattle
+Your father is a mighty lord. A TRAINER worthy of my sword.
+
+And I see the same fire in you.
+
+I hope you give him the fight of his life. Then let him win. No, don't. Win.
+
+@ PetalburgCity_Gym_Text_BerkePostBadge
+Since your father took this hall, the knights of PETALBURG CITY have grown much tougher.
+
+@ PetalburgCity_Gym_Text_MaryIntro
+Giggle… This is the ACCURACY ROOM.
+
+Every arrow finds its mark in here.
+
+@ PetalburgCity_Gym_Text_MaryDefeat
+You're a cut above me… Like a well-sharpened sword.
+
+@ PetalburgCity_Gym_Text_MaryPostBattle
+Stronger knights wait ahead.
+
+Left is the DEFENSE ROOM. Right is the RECOVERY ROOM.
+
+Your POKéMON's ATTACK power will be tested either way.
+
+@ PetalburgCity_Gym_Text_MaryPostBadge
+Do you know what TRAINERS fight for?
+
+Not land. Not gold. To be sworn soul mates with their POKéMON.
+
+@ PetalburgCity_Gym_Text_AlexiaIntro
+The thicker my armor, the more recklessly I can charge.
+
+@ PetalburgCity_Gym_Text_AlexiaDefeat
+Our walls have fallen…
+
+@ PetalburgCity_Gym_Text_AlexiaPostBattle
+You've taught me a valuable lesson. Walls aren't everything.
+
+Now, onward! The left door leads to the STRENGTH ROOM.
+
+The right door opens to the ONE-HIT KO ROOM.
+
+Both hold knights skilled in offense.
+
+@ PetalburgCity_Gym_Text_AlexiaPostBadge
+Well met! Have you tried crossing the sea with SURF?
+
+@ PetalburgCity_Gym_Text_JodyIntro
+Our lord ordered us to fight with everything we have.
+
+Even against his own heir!
+
+@ PetalburgCity_Gym_Text_JodyDefeat
+But… I fought with everything I have!
+
+@ PetalburgCity_Gym_Text_JodyPostBattle
+The way you command your POKéMON… It's your father's style.
+
+Go on! Your father, lord of this hall, is waiting!
+
+@ PetalburgCity_Gym_Text_JodyPostBadge
+Sure, strong POKéMON matter.
+
+But what truly decides a war?
+
+The loyalty between a TRAINER and their POKéMON.
+
+@ PetalburgCity_Gym_Text_DoorAppearsLocked
+This door is barred. Like a castle under siege…
+
+@ PetalburgCity_Gym_Text_EnterSpeedRoom
+SPEED ROOM, the banner says.
+
+Do you want to go through?
+
+@ PetalburgCity_Gym_Text_DoorAppearsLocked2
+This door is barred. Somebody's hiding something…
+
+@ PetalburgCity_Gym_Text_EnterAccuracyRoom
+ACCURACY ROOM, the banner says.
+
+Do you want to go through?
+
+@ PetalburgCity_Gym_Text_EnterConfusionRoom
+CONFUSION ROOM, the banner says.
+
+Do you want to go through?
+
+@ PetalburgCity_Gym_Text_EnterDefenseRoom
+DEFENSE ROOM, the banner says.
+
+Do you want to go through?
+
+@ PetalburgCity_Gym_Text_EnterRecoveryRoom
+RECOVERY ROOM, the banner says.
+
+Do you want to go through?
+
+@ PetalburgCity_Gym_Text_EnterStrengthRoom
+STRENGTH ROOM, the banner says.
+
+Do you want to go through?
+
+@ PetalburgCity_Gym_Text_EnterOHKORoom
+ONE-HIT KO ROOM, the banner says.
+
+Do you want to go through?
+
+@ PetalburgCity_Gym_Text_EnterGymLeadersRoom
+THRONE ROOM OF LORD NORMAN
+
+See for yourself what POKéMON guard the lord! the banner says.
+
+Do you want to go through?
+
+@ PetalburgCity_Gym_Text_GymStatue
+HALL OF HOUSE PETALBURG
+
+@ PetalburgCity_Gym_Text_GymStatueCertified
+HALL OF HOUSE PETALBURG
+
+KNIGHTS SWORN BY LORD NORMAN: {PLAYER}
+
+@ PetalburgCity_Gym_Text_NormanPreRematch
+DAD: {PLAYER}… I knew you'd come.
+
+I never refuse a challenge from you.
+
+You understand, don't you?
+
+In this hall, we are not parent and child. We are two houses.
+
+…No. Because we are family, we owe each other our very best. Isn't that right, {PLAYER}?
+
+@ PetalburgCity_Gym_Text_NormanRematchDefeat
+Uh… Haha… Maybe I trained a little too hard…
+
+@ PetalburgCity_Gym_Text_NormanPostRematch
+DAD: {PLAYER}… What is your dream?
+
+Mine… Hahaha… It came true. It's standing right in front of me.
+
+@ PetalburgCity_House1_Text_TravelingIsWonderful
+Traveling the realm is wonderful!
+
+In my youth, I sailed the seas and climbed the mountains! I was a knight errant! Mostly errant.
+
+@ PetalburgCity_House1_Text_GoOnAdventure
+Sigh…
+
+I wish I could go on a quest with some POKéMON…
+
+Crawl through wet grass… Climb rugged mountains…
+
+Cross the raging seas… Explore dark caves full of dragons…
+
+And, sometimes, even miss home a little…
+
+Questing must be glorious!
+
+@ PetalburgCity_House2_Text_NormanBecameGymLeader
+NORMAN became lord of our town's GYM. He took the hall in a week.
+
+I hear he brought his family from some far-off land. A new house, rising.
+
+@ PetalburgCity_House2_Text_BattledNormanOnce
+I dueled NORMAN once. Whew. He crushed me.
+
+How do I put it?
+
+He doesn't just fight with POKéMON. He lives for them. Like a lord lives for his land.
+
+@ PetalburgCity_Mart_Text_WeakWillGrowStronger
+Even a weak POKéMON grows strong in time.
+
+What matters most is loyalty! Love your POKéMON, and they'll die for you! Faint! I meant faint!
+
+@ PetalburgCity_Mart_Text_RepelIsUseful
+Do you use REPEL? It keeps POKéMON away. Useful when you're fleeing. Or late.
+
+@ PetalburgCity_Mart_Text_TakeSomeAntidotesWithYou
+Do you carry ANTIDOTES?
+
+This realm loves poison. A poisoned POKéMON loses HP with every step until it faints.
+
+Carry ANTIDOTES. Always. Trust me.
+
+@ PetalburgCity_PokemonCenter_1F_Text_PCStorageSystem
+That PC Storage System…
+
+Whoever made it must be a sorcerer. Or a Maester. Same thing.
+
+@ PetalburgCity_PokemonCenter_1F_Text_OranBerryRegainedHP
+When my POKéMON ate an ORAN BERRY, it healed its wounds! The old gods provide!
+
+@ PetalburgCity_PokemonCenter_1F_Text_ManyTypesOfPokemon
+There are many types of POKéMON. Like the great houses.
+
+Every type has allies and enemies.
+
+Depending on which houses face each other, a battle can be easy or hard.
+
+@ PetalburgCity_PokemonCenter_1F_Text_TreeckoIsGrassType
+Take your TREECKO. It's of the GRASS house.
+
+It crushes the WATER and GROUND houses.
+
+But it falls to the FIRE house. Old feud.
+
+@ PetalburgCity_PokemonCenter_1F_Text_TorchicIsFireType
+Take your TORCHIC. It's of the FIRE house.
+
+It burns the GRASS and BUG houses.
+
+But it falls to the WATER house. Old feud.
+
+@ PetalburgCity_PokemonCenter_1F_Text_MudkipIsWaterType
+Take your MUDKIP. It's of the WATER house.
+
+It drowns the FIRE house.
+
+But it falls to the GRASS and ELECTRIC houses. Old feud.
+
+@ PetalburgCity_WallysHouse_Text_ThanksForPlayingWithWally
+You're… Ah, you must be {PLAYER}{KUN}, heir of the new lord.
+
+Thank you for riding out with WALLY earlier.
+
+He's been frail and sickly since he was a baby.
+
+We've sent him to my kin in VERDANTURF TOWN for a while.
+
+The air there is much cleaner than here.
+
+What's that? Where's WALLY? He's already gone, our WALLY.
+
+I wonder how far he's gotten by now?
+
+@ PetalburgCity_WallysHouse_Text_WonderHowWallyIsDoing
+I wonder how our WALLY is faring?
+
+@ PetalburgCity_WallysHouse_Text_SurfGoAllSortsOfPlaces
+If your POKéMON can SURF, you can sail anywhere in the realm.
+
+@ PetalburgCity_WallysHouse_Text_WallyIsComingHomeSoon
+WALLY is coming home soon. My heart is glad.
+
+@ PetalburgCity_WallysHouse_Text_YouMetWallyInEverGrandeCity
+Oh? You met WALLY in EVER GRANDE CITY? At the gates of the Throne?
+
+Oh, {PLAYER}{KUN}, don't be silly.
+
+He's healthier now, but he could never travel so far alone.
+
+@ PetalburgCity_WallysHouse_Text_WallyWasReallyHappy
+WALLY was so happy when he told us he'd captured a POKéMON.
+
+I haven't seen him smile like that in ages.
+
+@ PetalburgCity_WallysHouse_Text_WallyLeftWithoutTelling
+Keep this a secret from my husband…
+
+Our WALLY left VERDANTURF TOWN without telling anyone.
+
+WALLY is frail, but he has the will of a king.
+
+I'm sure he'll come back safe one day!
