@@ -1,0 +1,242 @@
+# Mad Libs: Rustboro City streets.
+
+@ RustboroCity_Text_WeShortenItToDevon
+The DEVON CORPORATION… We all just shorten it to DEVON.
+
+That company makes all sorts of stuff. Even {MADLIB_FOOD}-flavored {MADLIB_THING}.
+
+@ RustboroCity_Text_SneakyLookingManWentAroundCorner
+Hm? A sneaky-looking man?
+
+Come to think of it, yes, a shady guy in some {MADLIB_COLOR} bandana went around the corner.
+
+@ RustboroCity_Text_HaveYouChallengedGym
+Have you taken the POKéMON GYM challenge?
+
+When you get that shiny GYM BADGE, you suddenly feel {MADLIB_FEELING}. Like after {MADLIB_DRINK}.
+
+@ RustboroCity_Text_HeyThatsRustborosGymBadge
+Hey, that's RUSTBORO's GYM BADGE!
+
+Out of all the GYM BADGES, RUSTBORO's is the most {MADLIB_ADJ}, I'd say.
+
+@ RustboroCity_Text_YoureNewAroundHere
+Oh? Who might you be? You're a new face around here. A really {MADLIB_ADJ} one.
+
+Have you just transferred into the POKéMON TRAINER'S SCHOOL?
+
+@ RustboroCity_Text_GymLeaderIsntEasyWithFire
+I challenged the GYM LEADER, but…
+
+It's not going to be easy with my FIRE-type POKéMON… It's about as useful as {MADLIB_FOOD}…
+
+FIRE-type POKéMON don't match up well against ROCK-type POKéMON…
+
+@ RustboroCity_Text_MrBrineyWalksInTheTunnel
+The old sailor MR. BRINEY lives in a cottage by the sea.
+
+He goes {MADLIB_ACTIVITY} in the tunnel every so often.
+
+@ RustboroCity_Text_MrBrineyLovesPeeko
+The old sailor MR. BRINEY lives in a cottage by the sea.
+
+He said he was going to SLATEPORT to buy {MADLIB_FOOD} for his pet, PEEKO.
+
+That old sea dog loves that bird more than {MADLIB_NAME}.
+
+@ RustboroCity_Text_WowYouHavePokemon
+Wow, you have POKéMON with you, too.
+
+When I get bigger, I'm going to the {MADLIB_PLACE} with my POKéMON!
+
+@ RustboroCity_Text_CatchRarePokemonIfIGoToSchool
+POKéMON TRAINER'S SCHOOL! I hear they serve {MADLIB_FOOD} at lunch!
+
+If I go to this school, will I be able to catch rare POKéMON easily?
+
+@ RustboroCity_Text_PokemonCanChangeLookFromExp
+If a POKéMON gains enough experience, it can change how it looks. Mine started looking like {MADLIB_NAME}.
+
+@ RustboroCity_Text_PokemonChangeShape
+A POKéMON changes shape? If one did that, I would yell “{MADLIB_SHOUT}!”
+
+@ RustboroCity_Text_TradePokemonGrowFast
+A POKéMON you get in a trade grows fast. Like {MADLIB_CREATURE}.
+
+But if you don't have certain GYM BADGES, it may not obey you…
+
+@ RustboroCity_Text_OutOfTheWay
+Get out! Out of the way, {MADLIB_CREATURE}!
+
+@ RustboroCity_Text_WaitDontTakeMyGoods
+Wait! Pleeeaaase! {MADLIB_SHOUT}!
+
+Don't take my GOODS!
+
+@ RustboroCity_Text_HelpMeIWasRobbed
+Oh, it's you!
+
+You're that {MADLIB_ADJ} TRAINER who helped me in PETALBURG WOODS!
+
+Help me! TEAM AQUA robbed me! I have to get the DEVON GOODS back!
+
+If I don't… I'll be stuck {MADLIB_ACTIVITY} forever.
+
+@ RustboroCity_Text_ShadyCharacterTookOffTowardsTunnel
+That shady guy took off towards the tunnel over there. He was eating {MADLIB_FOOD}.
+
+@ RustboroCity_Text_YouGotItThankYou
+Oh! How did it go? The DEVON GOODS?
+
+You did! You got them back! {MADLIB_SHOUT}!
+
+You really are a great TRAINER!
+
+I know! As thanks, I'll give you another GREAT BALL!
+
+@ RustboroCity_Text_YoureLoadedWithItems
+Your bag is stuffed with {MADLIB_FOOD}. I can't give you this GREAT BALL.
+
+@ RustboroCity_Text_PleaseComeWithMe
+Excuse me, please! Please come with me! Bring your {MADLIB_CLOTHING}!
+
+@ RustboroCity_Text_MayHiLetsRegister
+MAY: Oh, hi, {PLAYER}{KUN}!
+
+You got the MATCH CALL feature on your POKéNAV!
+
+Let's register each other! I'll call you about {MADLIB_FOOD}!
+
+… … … … … …
+
+@ RustboroCity_Text_RegisteredMay
+Registered MAY in the POKéNAV. She's {MADLIB_ADJ}.
+
+@ RustboroCity_Text_MayPassedBrineyWantToBattle
+MAY: Oh, by the way, I passed MR. BRINEY in PETALBURG WOODS. He was {MADLIB_ACTIVITY}.
+
+I guess he's on his way home to his cottage by the sea.
+
+How's your POKéDEX coming along, {PLAYER}{KUN}? Mine's looking pretty {MADLIB_ADJ}!
+
+So… How about a little battle?
+
+@ RustboroCity_Text_MayOhHaventRaisedPokemonEnough
+MAY: Oh, what's the matter?
+
+Haven't you caught or raised your POKéMON very much?
+
+Were you busy {MADLIB_ACTIVITY} again?
+
+@ RustboroCity_Text_MayWantToBattle
+MAY: So, what do you think? How about a little battle by the {MADLIB_PLACE}?
+
+@ RustboroCity_Text_MayImNotGoingToLose
+MAY: You just became a TRAINER, {PLAYER}{KUN}. I'm not losing to someone in that {MADLIB_CLOTHING}!
+
+@ RustboroCity_Text_MayDefeat
+Yikes! You're more {MADLIB_ADJ} than I expected!
+
+@ RustboroCity_Text_MayMrBrineyHint
+MAY: Oh, by the way, MR. BRINEY, who I just passed…
+
+{PLAYER}{KUN}, you might not know this, but MR. BRINEY was once a famous sailor. He sailed the seas in his {MADLIB_VEHICLE}!
+
+@ RustboroCity_Text_BrendanHiLetsRegister
+BRENDAN: Oh, hey, {PLAYER}!
+
+You got MATCH CALL on your POKéNAV! {MADLIB_SHOUT}!
+
+Let's register each other so we can get in touch anytime!
+
+… … … … … …
+
+@ RustboroCity_Text_RegisteredBrendan
+Registered BRENDAN in the POKéNAV. He smells like {MADLIB_FOOD}.
+
+@ RustboroCity_Text_BrendanPassedBrineyWantToBattle
+BRENDAN: By the way, {PLAYER}, I walked by MR. BRINEY in PETALBURG WOODS.
+
+He was carrying {MADLIB_FOOD}. Weird.
+
+{PLAYER}, how's your POKéDEX? Have you filled in any pages yet?
+
+Mine's {MADLIB_ADJ}.
+
+Want to have a battle to test how far you've come?
+
+@ RustboroCity_Text_BrendanNoConfidenceInPokemon
+BRENDAN: What's the matter? Are your POKéMON too busy {MADLIB_ACTIVITY}?
+
+@ RustboroCity_Text_BrendanWantToBattle
+BRENDAN: What's up? Want to have a battle with me?
+
+@ RustboroCity_Text_BrendanIWontGoEasy
+BRENDAN: I know you just became a TRAINER, but I won't go easy! I ate {MADLIB_FOOD} for this!
+
+@ RustboroCity_Text_BrendanDefeat
+Hmm… You're pretty {MADLIB_ADJ}.
+
+@ RustboroCity_Text_BrendanMrBrineyHint
+BRENDAN: By the way, you know MR. BRINEY? The guy I just passed?
+
+You just moved here, {PLAYER}, so you might not know, but MR. BRINEY was once a great sailor. Before the {MADLIB_FOOD} incident.
+
+@ RustboroCity_Text_TunnelNearingCompletion
+“{MADLIB_ADJ} tunnel nearing completion!”
+
+…Is what the sign says, but someone painted a big {MADLIB_COLOR} “X” across it…
+
+@ RustboroCity_Text_DevonCorpSign
+DEVON CORPORATION
+“For all your {MADLIB_THING} needs, we make it all.”
+
+@ RustboroCity_Text_GymSign
+RUSTBORO CITY POKéMON GYM
+LEADER: ROXANNE
+“The ROCK-loving {MADLIB_ADJ} student!”
+
+@ RustboroCity_Text_DevonCorpBranchOfficeSign
+DEVON CORP. BRANCH OFFICE
+“DEVON employees only. No {MADLIB_CREATURE} allowed.”
+
+@ RustboroCity_Text_CitySign
+RUSTBORO CITY
+“The city mixing nature, science, and {MADLIB_FOOD}.”
+
+@ RustboroCity_Text_TrainersSchoolSign
+POKéMON TRAINER'S SCHOOL
+“We'll teach you anything! Even {MADLIB_ACTIVITY}!”
+
+@ RustboroCity_Text_DevelopedNewPokenavFeature
+I've been working on a new feature for the POKéNAV…
+
+And it turned out {MADLIB_ADJ}!
+
+{PLAYER}, may I see that POKéNAV? The one our PRESIDENT gave you?
+
+@ RustboroCity_Text_AddedMatchCallPleaseCallMrStone
+There you go, {PLAYER}!
+
+I added a new feature named MATCH CALL to your POKéNAV.
+
+With MATCH CALL, you can chat with anyone registered in your POKéNAV. About {MADLIB_FOOD}, mostly.
+
+{PLAYER}, our PRESIDENT STONE should be registered in your POKéNAV.
+
+Test it out. Please give our PRESIDENT a call.
+
+@ RustboroCity_Text_PleaseSelectPokenav
+Please select the POKéNAV.
+
+@ RustboroCity_Text_IdBetterGetBackToWork
+Okay, I'd better get back to {MADLIB_ACTIVITY}. Take care, {PLAYER}!
+
+@ RustboroCity_Text_YouCanHave2On2Battle
+Did you know this?
+
+You can have a 2-on-2 battle even if you're alone.
+
+If two TRAINERS see you when you have two or more POKéMON, they'll both challenge you.
+
+Wouldn't it be {MADLIB_ADJ} to beat two TRAINERS by yourself?
