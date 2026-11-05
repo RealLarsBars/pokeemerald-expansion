@@ -2,117 +2,250 @@
 
 Only characters the game's font has: plain letters, digits, é, and
 ! ? . , ' - : ; ( ) & + = % / ~ and the ellipsis. No double quotes.
-{PLAYER} and {RIVAL} are filled in by the game."""
+{PLAYER} and {RIVAL} are filled in by the game. {TOWN} is filled in by the
+editor with the name of the place where the line is said.
+
+Every line is written for a moment, so it makes sense where it lands:
+- talk:   after someone finishes talking to you
+- house:  after someone talks to you inside their own house
+- thing:  after you examine an object (a bookshelf, a locked door...)
+- intro:  after a trainer challenges you, right before the battle
+- defeat: after a trainer loses to you
+- after:  when you talk to a trainer you already beat
+Lines about a topic (shops, Gyms, the sea...) are used when the text is
+about that topic. Nothing here assumes the player's age or gender."""
 
 # ---- the hero finally says something (out loud, on the last lines) -----------
-HERO = [
-    "{PLAYER}: I did not ask for any of this.",
-    "{PLAYER}: Cool. Cool cool cool. Anyway.",
-    "{PLAYER}: Why does everyone in this region monologue at children?",
-    "{PLAYER}: I'm ten. I have a pet rat with lightning powers. Who let this happen?",
-    "{PLAYER}: Nobody in Hoenn has a normal job.",
-    "{PLAYER}: Mom sent me out with no money and a hat. Great parenting.",
-    "{PLAYER}: I've walked into six strangers' houses today and nobody called the cops.",
-    "{PLAYER}: Was that a threat or a hobby?",
-    "{PLAYER}: Please stop telling me your life story. I just wanted a Potion.",
-    "{PLAYER}: I'm going to pretend that made sense.",
-    "{PLAYER}: I could just leave. I could go home. I won't, but I could.",
-    "{PLAYER}: This is the fourth person today who's been waiting here specifically for me.",
-    "{PLAYER}: Do these people sleep standing up?",
-    "{PLAYER}: Wow. Okay. Healing that one in therapy later.",
-    "{PLAYER}: Respectfully, what?",
-    "{PLAYER}: I've seen this guy walk into the same wall for an hour.",
-    "{PLAYER}: Professor Birch owes me so much money.",
-    "{PLAYER}: Every adult here outsources their problems to a child.",
-    "{PLAYER}: I'm going to remember that and bring it up at the worst moment.",
-    "{PLAYER}: Love that for you. Truly. Goodbye.",
-    "{PLAYER}: I think I'm the only sane person in this region and I talk to a bird.",
-    "{PLAYER}: Is anyone going to explain the man in the bush?",
-    "{PLAYER}: That's a lot of confidence for someone standing in tall grass.",
-    "{PLAYER}: I nodded. Nodding is all I can do. I am trapped in nodding.",
-    "{PLAYER}: Noted. Ignored. Archived.",
-    "{PLAYER}: My backpack holds 999 rocks and somehow THIS is the weird part.",
-    "{PLAYER}: If one more person says follow your dreams I'm releasing everything.",
-    "{PLAYER}: Not me getting life advice from a man in swim trunks on a mountain.",
-    "{PLAYER}: I'm putting this conversation in the PC and never withdrawing it.",
-    "{PLAYER}: Hoenn has three governments and none of them are in charge.",
-    "{PLAYER}: Okay but who's paying for all these Gyms?",
-    "{PLAYER}: There's no way that's legal.",
-    "{PLAYER}: I've been awake for three days. The music never stops.",
-    "{PLAYER}: {RIVAL} would have handled this worse. That's my only comfort.",
-    "{PLAYER}: I'm about to commit a crime and nobody is going to stop me.",
-    "{PLAYER}: That's the most normal thing I've heard all week, which is concerning.",
-]
+HERO = {
+    'talk': [
+        "{PLAYER}: Cool. Cool cool cool. Anyway.",
+        "{PLAYER}: I'm going to pretend that made sense.",
+        "{PLAYER}: Respectfully, what?",
+        "{PLAYER}: Noted. Ignored. Archived.",
+        "{PLAYER}: You said that with your whole chest.",
+        "{PLAYER}: I nodded. Nodding is all I can do. I am trapped in nodding.",
+        "{PLAYER}: That's the most normal thing I've heard all week, which is concerning.",
+        "{PLAYER}: I'm putting this conversation in the PC and never taking it out.",
+        "{PLAYER}: Wow. Okay. Unpacking that in therapy later.",
+        "{PLAYER}: Love that for you. Truly. Bye.",
+        "{PLAYER}: Why does everyone here talk to me like I'm a quest board?",
+        "{PLAYER}: I've heard that exact sentence from three different people today.",
+        "{PLAYER}: Do you just stand there all day waiting to tell someone that?",
+        "{PLAYER}: Was that advice or a threat? Blink twice.",
+        "{PLAYER}: I'm going to remember that and bring it up at the worst moment.",
+        "{PLAYER}: I could just leave. I could go home. I won't, but I could.",
+        "{PLAYER}: Nobody in {TOWN} has a normal job, huh?",
+        "{PLAYER}: I think I'm the only sane person in {TOWN}, and I keep a bird in a ball.",
+    ],
+    'house': [
+        "{PLAYER}: I just walked into your house uninvited and you started chatting. Nobody here locks a door.",
+        "{PLAYER}: I'm a total stranger standing in your living room and your move is small talk?",
+        "{PLAYER}: Nice place. I'm going to check your bookshelf and your PC now, and then leave without a word.",
+        "{PLAYER}: You don't know my name and I'm standing in your kitchen. Hoenn is wild.",
+        "{PLAYER}: I'm going to check every pot in this house for items. That's normal here, right?",
+    ],
+    'thing': [
+        "{PLAYER}: Riveting.",
+        "{PLAYER}: Yep. That's a thing alright.",
+        "{PLAYER}: Five stars. Would examine again.",
+        "{PLAYER}: I'm leaving a review.",
+        "{PLAYER}: Nobody saw me do that. Good.",
+        "{PLAYER}: Pressing A on everything is my whole personality now.",
+        "{PLAYER}: I was hoping for an item. I'm always hoping for an item.",
+    ],
+    'intro': [
+        "{PLAYER}: We made eye contact for one second. Apparently that's a legal contract here.",
+        "{PLAYER}: You've been standing in that exact spot all day waiting for someone to look at you, huh?",
+        "{PLAYER}: Fine. But I'm taking your money and I'm not saying sorry.",
+        "{PLAYER}: I've beaten ten people like you today. I counted. I'm counting you now.",
+        "{PLAYER}: Can I just walk past? No? Cool.",
+        "{PLAYER}: Okay, but if I win, you have to stop talking.",
+        "{PLAYER}: Big speech for someone about to lose to a kid with a backpack.",
+    ],
+    'defeat': [
+        "{PLAYER}: I'll take my prize money in cash, thanks.",
+        "{PLAYER}: You lost to a kid with a backpack. Take a minute.",
+        "{PLAYER}: Good game. I mean that. No I don't.",
+        "{PLAYER}: Okay, now go stand in your spot and think about what you did.",
+        "{PLAYER}: Same time tomorrow? I'll bring a bigger wallet.",
+        "{PLAYER}: My POKéMON say gg. They're lying.",
+    ],
+    'after': [
+        "{PLAYER}: You lost to me five minutes ago and you're giving me advice?",
+        "{PLAYER}: Bold of you to keep talking after that.",
+        "{PLAYER}: I'd love to stay and chat, but I'm going to go beat up your neighbors.",
+        "{PLAYER}: You're still standing in the exact same spot. Do you live here?",
+        "{PLAYER}: I already took your money. What else do you want from me?",
+    ],
+}
 
 # ---- narrator asides ------------------------------------------------------------
-NARRATOR = [
-    "(Narrator: They did not, in fact, have a plan.)",
-    "(Narrator: This would come up again. It would be worse.)",
-    "(Narrator: Somewhere, a Wingull laughed.)",
-    "(Narrator: {PLAYER} would think about this every night for a week.)",
-    "(Narrator: Nobody clapped.)",
-    "(Narrator: That was a lie. Everyone could tell.)",
-    "(Narrator: At this point, the budget for this region ran out.)",
-    "(Narrator: Three of those words were made up.)",
-    "(Narrator: This person would later be arrested for something unrelated.)",
-    "(Narrator: The tall grass rustled with judgment.)",
-    "(Narrator: And that's how the tax fraud started.)",
-    "(Narrator: Little did they know, the call was coming from inside the POKéNAV.)",
-    "(Narrator: Our hero chose violence.)",
-    "(Narrator: It was, objectively, a terrible speech.)",
-    "(Narrator: The Zigzagoon in the corner had seen everything.)",
-    "(Narrator: This would not hold up in court.)",
-    "(Narrator: Professor Birch, meanwhile, was being chased again.)",
-    "(Narrator: Things were going great. This is called foreshadowing.)",
-    "(Narrator: Mom was, at that moment, watching TV and not worried at all.)",
-    "(Narrator: The vibes were rancid.)",
-    "(Narrator: Hoenn has a population of 400, and they all have opinions.)",
-    "(Narrator: Nobody in this town has ever left this spot.)",
-    "(Narrator: And yet, somehow, it got weirder.)",
-    "(Narrator: They meant every word. That was the scary part.)",
-    "(Narrator: Our hero considered moving to Kanto.)",
-    "(Narrator: The sun set dramatically, for no reason.)",
-    "(Narrator: That conversation lasted exactly as long as it needed to. Too long.)",
-    "(Narrator: Behind the scenes, the Elite Four were eating cereal.)",
-    "(Narrator: Their POKéMON looked embarrassed.)",
-    "(Narrator: Nobody learned anything.)",
-]
+NARRATOR = {
+    'talk': [
+        "(Narrator: They had been rehearsing that line for weeks.)",
+        "(Narrator: Nobody clapped.)",
+        "(Narrator: That was a lie. Everyone could tell.)",
+        "(Narrator: This person would later be arrested for something unrelated.)",
+        "(Narrator: They meant every word. That was the scary part.)",
+        "(Narrator: {PLAYER} would think about this every night for a week.)",
+        "(Narrator: This would come up again. It would be worse.)",
+        "(Narrator: The conversation lasted exactly as long as it needed to. Too long.)",
+        "(Narrator: They went right back to staring at nothing.)",
+        "(Narrator: {TOWN} has a population of about nine, and all of them have opinions.)",
+        "(Narrator: Meanwhile, the rest of {TOWN} pretended not to listen. Badly.)",
+        "(Narrator: Somewhere, a Wingull laughed.)",
+    ],
+    'thing': [
+        "(Narrator: It was, in every way, exactly that.)",
+        "(Narrator: {PLAYER} stared at it for an uncomfortable amount of time.)",
+        "(Narrator: Behind it, there was nothing. There is never anything.)",
+        "(Narrator: This was the most interesting thing for miles.)",
+        "(Narrator: A lesser hero would have walked past. {PLAYER} pressed A.)",
+        "(Narrator: Somewhere, a hidden item was watching and judging.)",
+    ],
+    'intro': [
+        "(Narrator: This person had not won a battle since the last game.)",
+        "(Narrator: Their POKéMON already looked embarrassed.)",
+        "(Narrator: They had been waiting in that exact spot since the game came out.)",
+        "(Narrator: The music changed. Things were about to get loud.)",
+        "(Narrator: {PLAYER} chose violence.)",
+    ],
+    'defeat': [
+        "(Narrator: They would tell everyone it was close. It was not close.)",
+        "(Narrator: Their POKéMON were already looking for a new trainer.)",
+        "(Narrator: That prize money was the last of their savings.)",
+        "(Narrator: Nobody learned anything.)",
+    ],
+    'after': [
+        "(Narrator: They would stand there, defeated, until the end of time.)",
+        "(Narrator: Their POKéMON were still not speaking to them.)",
+        "(Narrator: They had told their whole family they won.)",
+    ],
+}
+NARRATOR['house'] = NARRATOR['talk']
 
-# ---- absurd non-sequiturs (adult cartoon / sitcom energy) ------------------------
+# ---- the person keeps talking and overshares (sitcom energy) --------------------
 CHAOS = [
     "I've been standing in this exact spot for eleven years. Nobody has ever asked why.",
     "My Wingull does my taxes. He's not good at it, but he's cheap.",
-    "Okay, here's the plan. We steal the Gym. We sell the Gym. We buy a bigger Gym.",
-    "Don't look at my house. My house is fine. Nothing is happening in my house.",
-    "I'm not a regular person. I'm a guy who knows a guy who knows Steven.",
-    "I sold my bike for a single Rare Candy and I'd do it again.",
+    "Don't look in my basement. There's no basement. Stop looking for the basement.",
+    "I put all my savings into Poké Ball futures. Now I just say stuff to strangers.",
+    "I'm in a feud with my neighbor. They don't know. That's the power move.",
     "Every night I hear the Wurmple singing. Every night the song gets longer.",
-    "I'm technically the mayor. Nobody voted. I just started wearing a sash.",
+    "I'm technically the mayor of {TOWN}. Nobody voted. I just started wearing a sash.",
     "My therapist is a Chimecho. Sessions are mostly ringing.",
-    "Have you ever eaten a Pecha Berry so fast you saw the future? Because I did. It's bad.",
-    "I'm starting a business. It's a POKéMON CENTER but for feelings. It's just a couch.",
-    "I put all my savings into Poké Ball futures and now I live in this bush.",
-    "My dad left to get Potions twelve years ago. He's on Route 119. I can see him.",
-    "Being an adult in Hoenn is just watching children solve the crimes.",
-    "I trained my Zigzagoon to steal. Now he steals FROM me. Circle of life.",
-    "I'm in a feud with the guy next door. He doesn't know. That's the power move.",
-    "We don't talk about the incident at the Contest Hall. Three judges are still missing.",
-    "If you see a man in a Wailord costume, no you didn't.",
+    "If you see someone in a Wailord costume, no you didn't.",
     "I'm not crying, my Lotad is just leaking again.",
-    "I invented a new sport. It's battling, but everyone is angrier.",
-    "I've got a scheme. It's foolproof. It involves forty Magikarp and a lawyer.",
     "I licked a Grimer once. On a dare. I still taste it on Tuesdays.",
-    "The Pokémart guy and I have a rivalry. He doesn't know my name. I know his blood type.",
-    "Life is short. Unless you're a Torkoal. Then it's just smoky.",
-    "My kid wants to be a Gym Leader. I told him no, be a regular criminal like your dad.",
-    "I once lost a battle so badly the other guy apologized.",
-    "Everybody keeps saying evolve. I'm comfortable. I'm a Pupitar of a man.",
-    "Do you ever just stare at a Spinda and think, this is what I look like inside?",
-    "I'm saving up for a boat. It's a regular boat. I just want to leave.",
-    "I'm not supposed to tell you this, but the POKéMON CENTER nurse is a franchise.",
+    "Do you ever stare at a Spinda and think, that's what I look like inside?",
     "Want to buy a Shuckle? It's been in my family for nine generations. It's the same Shuckle.",
-    "I punched a Makuhita once. It punched back. We're married now.",
+    "I'm not supposed to tell you this, but I'm three Zigzagoon in a coat.",
 ]
+
+# How someone changes the subject before oversharing.
+CHAOS_LEADS = ['Also, unrelated:', 'Random, but', 'Anyway, fun fact:', 'Oh, and', 'Not that you asked, but']
+
+# ---- lines about what the text is about --------------------------------------------
+# Checked in order; the first topic whose words appear in a text wins.
+TOPICS = [
+    ('villain', ['team aqua', 'team magma', 'aqua', 'magma', 'maxie', 'archie', 'grunt']),
+    ('rival', ['{rival}']),
+    ('gym', ['gym', 'badge']),
+    ('center', ['pokémon center', 'heal', 'nurse', 'potion']),
+    ('shop', ['buy', 'sell', 'shop', 'mart', 'money', '¥', 'price', 'customer']),
+    ('contest', ['contest', 'pokéblock', 'ribbon']),
+    ('science', ['prof.', 'professor', 'research', 'pokédex', 'devon', 'scientist']),
+    ('family', ['mom', 'dad', 'mother', 'father', 'grandpa', 'grandma', 'son', 'daughter', 'husband', 'wife',
+                'brother', 'sister']),
+    ('sea', ['sea', 'ocean', 'boat', 'ship', 'surf', 'beach', 'swim', 'sail', 'fish']),
+    ('nature', ['berry', 'berries', 'flower', 'tree', 'plant', 'grass', 'bug']),
+    ('battle', ['battle', 'strong', 'train']),
+]
+TOPIC_HERO = {
+    'villain': ["{PLAYER}: Your whole plan is to change the planet's geography, and you dress alike for it.",
+                "{PLAYER}: Why are the evil teams always hiring? Is the pay good? Asking for a friend.",
+                "{PLAYER}: Hoenn's entire police strategy is: let the kid handle it."],
+    'rival': ["{PLAYER}: Wherever I go, {RIVAL} was there five minutes earlier. Are they following me from the front?",
+              "{PLAYER}: {RIVAL} keeps saying we're rivals. I keep winning. That's not a rivalry, that's a routine."],
+    'gym': ["{PLAYER}: So the plan is I beat up the local government and they give me jewelry.",
+            "{PLAYER}: Who designs these Gyms? Why is there always a puzzle? I just want to fight.",
+            "{PLAYER}: The badges don't do anything. They just make strangers nervous. I love them."],
+    'center': ["{PLAYER}: Free healing, free PC, free counter to lean on. Only working institution in Hoenn.",
+               "{PLAYER}: My POKéMON were on fire five seconds ago. Now they're fine. Nobody asks questions.",
+               "{PLAYER}: I've slept in more POKéMON CENTERS than at home. Mom thinks I'm at camp."],
+    'shop': ["{PLAYER}: Why does every shop in Hoenn sell the same twelve things?",
+             "{PLAYER}: I have 99 Potions and I'm still going to buy more. This is an illness.",
+             "{PLAYER}: I pay for all this by fighting strangers. Hoenn has one job and it's that."],
+    'contest': ["{PLAYER}: Judges rating how pretty my POKéMON are? We fight in the dirt. We are not pretty.",
+                "{PLAYER}: Blending Berries into candy for a ribbon. This region has hobbies, I'll give it that.",
+                "{PLAYER}: My POKéMON's Cool stat is low because it has seen things."],
+    'science': ["{PLAYER}: Every scientist here hands important stuff to strangers. Do you guys have security?",
+                "{PLAYER}: Professor Birch still owes me for saving his life in a bush.",
+                "{PLAYER}: I'm filling a whole encyclopedia for free, for a guy who hides in tall grass."],
+    'family': ["{PLAYER}: Everybody in Hoenn has a family member who's a problem. I'm starting to think mine is me.",
+               "{PLAYER}: My dad runs a Gym and never calls. I don't need your family drama too.",
+               "{PLAYER}: Tell your family I said hi. Or don't. I won't remember them."],
+    'sea': ["{PLAYER}: My POKéMON is going to carry me across the ocean on its back and everyone's fine with that.",
+            "{PLAYER}: Most of Hoenn is water, and most of the water is Tentacool.",
+            "{PLAYER}: I'm not getting on a boat with you. I've seen what happens on boats here."],
+    'nature': ["{PLAYER}: I'm not eating anything that grew in this region. I've seen the soil.",
+               "{PLAYER}: Hoenn has a plant for every problem and a POKéMON hiding in every plant."],
+    'battle': ["{PLAYER}: Everybody here wants to fight me. Is it the hat?",
+               "{PLAYER}: I've had more fights than conversations this week. Wait, this is a conversation. Close one."],
+}
+TOPIC_NARRATOR = {
+    'villain': ["(Narrator: Team Aqua and Team Magma once shared an office. It ended badly.)",
+                "(Narrator: The grunts were paid in exposure.)",
+                "(Narrator: Nobody on either team has ever opened a geography book.)"],
+    'rival': ["(Narrator: {RIVAL} was, at that exact moment, losing to a Bug Catcher.)",
+              "(Narrator: {RIVAL} had practiced all of this in a mirror.)"],
+    'gym': ["(Narrator: Every Gym in Hoenn is required by law to have one guy at the door giving advice.)",
+            "(Narrator: The Gym's insurance did not cover any of what was about to happen.)",
+            "(Narrator: The Leader was, at that moment, striking a dramatic pose in an empty room.)"],
+    'center': ["(Narrator: The nurse's smile did not move. It has never moved.)",
+               "(Narrator: Nobody has ever seen the back room. Nobody ever will.)",
+               "(Narrator: The healing jingle is the only song everyone in Hoenn knows by heart.)"],
+    'shop': ["(Narrator: {PLAYER} would later sell a Nugget here for way less than it was worth.)",
+             "(Narrator: Capitalism, but make it POKéMON.)"],
+    'contest': ["(Narrator: The judges had been bribed with Pokéblocks. All of them. By each other.)",
+                "(Narrator: Contest Halls run on glitter, spite and hope.)"],
+    'science': ["(Narrator: This research was funded by Devon. Devon would be taking all of it.)",
+                "(Narrator: Science in Hoenn is mostly shouting at birds.)"],
+    'family': ["(Narrator: The next family dinner would be a bloodbath.)",
+               "(Narrator: The family group chat was already blowing up about this.)",
+               "(Narrator: Somewhere, a grandparent sensed they were being talked about.)"],
+    'sea': ["(Narrator: Out at sea, a Wailmer did a flip. Nobody saw. It was very sad about that.)",
+            "(Narrator: The sea had heard all this before. The sea did not care.)"],
+    'nature': ["(Narrator: The tall grass rustled with judgment.)",
+               "(Narrator: Somewhere, a Berry tree grew one Oran Berry out of spite.)"],
+    'battle': ["(Narrator: They talked a big game. The game, it turned out, was small.)"],
+}
+TOPIC_CHAOS = {
+    'villain': ["I joined Team Magma for the hoodie and stayed for the dental. Then I left. The hoodie stayed.",
+                "My cousin's in Team Aqua. He doesn't know what they do either. He just likes saying yo ho."],
+    'gym': ["I failed the Gym puzzle so many times they gave me a chair.",
+            "I trained nine years to beat that Gym. Yesterday I found out there's a type chart."],
+    'center': ["I come here to sit in the lobby. I'm not hurt. I just like the jingle.",
+               "I asked the nurse to heal my emotional damage. She put me in a Poké Ball for six seconds. It helped."],
+    'shop': ["I bought a Repel once. Now nothing comes near me. Not POKéMON. Not people. Not love.",
+             "My whole business plan is selling Potions to kids who just got free Potions."],
+    'contest': ["I lost a Beauty Contest to a Feebas once. I still wake up screaming.",
+                "My Pokéblock recipe is a family secret. The secret is it's just one Pecha Berry."],
+    'science': ["I'm doing research. Mostly I write down what Zigzagoon eat. It's everything. They eat everything.",
+                "My thesis says Magikarp is secretly the strongest POKéMON. I've been fired from four labs."],
+    'family': ["My grandpa says when he was young there were only 151 POKéMON, and they were all angrier.",
+               "My family has a cursed heirloom. It's a Poké Ball. It's always empty. It's always warm."],
+    'sea': ["I tried to Surf on a Magikarp once. It went badly for both of us.",
+            "I've fished here for twenty years. I've caught 4,000 Tentacool. I named them all Greg."],
+    'nature': ["I talk to my Berry plants every day. Yesterday one talked back. It was a Lotad.",
+               "Ever eaten a Pecha Berry so fast you saw the future? I have. The future is bad."],
+    'battle': ["I trained my Zigzagoon to steal. Now it steals FROM me. Circle of life.",
+               "I invented a new kind of battle. It's the same, but everyone's angrier."],
+}
+
+# ---- Game of Thrones gossip: how someone changes the subject ------------------------
+GOSSIP_LEADS = ['Anyway. Realm news:', 'Oh, and keep this between us:', 'Also, have you heard?',
+                'Unrelated, but huge:', "Don't tell anyone I told you this, but:"]
 
 # ---- fake news (added to signs) --------------------------------------------------
 NEWS = [
@@ -139,7 +272,7 @@ NEWS = [
     "STEVEN STONE ADDS 400TH ROCK TO COLLECTION. RELATIONSHIPS STRUGGLE.",
     "NURSE JOY QUESTIONED ABOUT IDENTICAL COUSINS. REFUSES TO ELABORATE.",
     "SHEDINJA DECLARED LEGALLY ALIVE. BARELY.",
-    "PETALBURG DAD SPENDS ANOTHER YEAR AT WORK. SON NOW TALLER.",
+    "PETALBURG DAD SPENDS ANOTHER YEAR AT WORK. KID NOW TALLER.",
     "WEATHER INSTITUTE PREDICTS WEATHER. IS WRONG. IS HAPPY.",
     "ABANDONED SHIP NOT ABANDONED. JUST SHY.",
     "OLDALE TOWN STILL NOT OLD. RESIDENTS DEMAND NAME CHANGE.",
@@ -152,7 +285,30 @@ NEWS = [
     "TEAM MAGMA RECRUITMENT DRIVE OFFERS FREE HOODIES, CAUSES HEATSTROKE.",
     "EVER GRANDE CITY: THE CHAMPION WILL SEE YOU NOW (IN 6-8 WEEKS).",
     "BREAKING: GRASS STILL TALL.",
+    "AREA MAN WALKS INTO 40 STRANGERS' HOMES IN ONE DAY. NOBODY CALLS POLICE. HOENN HAS NO POLICE.",
+    "STUDY: ROUTE TRAINERS HAVE NOT MOVED IN 20 YEARS. SCIENTISTS AFRAID TO ASK.",
+    "POTION PRICES UP 300%. EXPERTS BLAME CHILDREN WITH 900 POTIONS.",
+    "MAN STILL WAITING FOR SOMEONE TO MAKE EYE CONTACT SO HE CAN BATTLE. DAY 6.",
+    "HM SLAVE INDUSTRY UNDER FIRE. BIBAREL UNION DEMANDS ANSWERS.",
+    "LOCAL BIKE SHOP GIVES AWAY FREE BIKE. ECONOMISTS STILL CONFUSED.",
+    "POLL: 0% OF HOENN READ THE SIGNS. YOU ARE READING THIS ONE. WEIRD.",
+    "CHILD SEEN RUNNING INDOORS WITH SHOES. MOMS ACROSS HOENN SPEECHLESS.",
+    "PC STORAGE SYSTEM NOW HOLDS 420 POKéMON. NOBODY KNOWS WHERE THEY PHYSICALLY ARE.",
+    "WILD POKéMON ATTACK RATE IN TALL GRASS: 100%. TALL GRASS ATTENDANCE: ALSO 100%.",
 ]
+# Fake news that fits the sign: a Gym sign gets Gym news, and so on.
+NEWS_TOPIC = {
+    'gym': ["GYM LEADER HAS NOT LEFT GYM IN 9 YEARS. CALLS IT DEDICATION.",
+            "GYM PUZZLE DESIGNER ARRESTED. CHARGES: BEING LIKE THIS.",
+            "LEADER LOSES TO CHILD, GIVES CHILD A BADGE AND A TM. CHILD WANTS MORE.",
+            "GYM GUIDE GIVES SAME ADVICE FOR 30 YEARS. NOBODY HAS EVER LISTENED."],
+    'center': ["POKéMON CENTER HEALS FOR FREE. HOSPITALS IN SHAMBLES.",
+               "NURSE SAYS WE HOPE TO SEE YOU AGAIN 10,000 TIMES IN ONE DAY. VOICE HOLDS UP."],
+    'shop': ["POKé MART STILL ONLY SELLS 12 THINGS. CUSTOMERS STILL BUY ALL 12.",
+             "CLERK SAYS IS THERE ANYTHING ELSE I MAY DO FOR YOU. THERE IS NOT."],
+    'battle': ["TRAINER TIPS SIGN STILL GIVING TIPS. NOBODY ASKED.",
+               "LOCAL KID BATTLES EVERYONE, SPEAKS TO NO ONE. HERO OR MENACE?"],
+}
 
 
 # ---- Mad Libs ----------------------------------------------------------------------
@@ -160,30 +316,35 @@ MADLIB_NOUNS = ['house', 'home', 'town', 'city', 'forest', 'road', 'boat', 'ship
                 'dream', 'dreams', 'heart', 'world', 'friend', 'friends', 'brother', 'sister', 'dad', 'mom',
                 'grandpa', 'grandma', 'father', 'mother', 'store', 'shop', 'bike', 'Gym', 'girlfriend', 'boyfriend',
                 'secret', 'treasure', 'tower', 'beach', 'route', 'family', 'child', 'kid', 'man', 'woman',
-                'person', 'people', 'sister', 'love', 'life']
+                'person', 'people', 'life']
 MADLIB_FILL = ['haunted toaster', 'emotional support Wailord', 'cursed spoon', 'tax return', 'damp sandwich',
-               'secret third cousin', 'ex-wife', 'mortgage', 'sentient bush', 'cardboard throne', 'Magikarp lawyer',
-               'business plan', 'garden gnome', 'timeshare', 'jar of mayonnaise', 'side hustle', 'beef jerky',
+               'secret third cousin', 'ex-roommate', 'mortgage', 'sentient bush', 'cardboard throne', 'Magikarp lawyer',
+               'business plan', 'garden gnome', 'timeshare', 'jar of mayonnaise', 'side hustle', 'beef jerky statue',
                'midlife crisis', 'karaoke machine', 'wet sock', 'conspiracy board', 'nemesis', 'pyramid scheme',
-               'Slakoth in a trenchcoat', 'podcast', 'crypto wallet', 'cursed VHS tape', 'emotional baggage',
-               'one weird toe', 'hot tub', 'raccoon gang', 'divorce papers', 'decorative sword']
+               'Slakoth in a trenchcoat', 'podcast', 'crypto wallet', 'cursed VHS tape', 'suitcase of regrets',
+               'weird extra toe', 'hot tub', 'raccoon gang', 'divorce lawyer', 'decorative sword']
 
 # ---- modern slang ------------------------------------------------------------------
 SLANG_WORDS = {
-    'very': 'lowkey', 'really': 'fr', 'good': 'bussin', 'great': 'fire', 'cool': 'fire', 'amazing': 'goated',
+    'very': 'lowkey', 'really': 'fr', 'good': 'bussin', 'great': 'goated', 'cool': 'drippy', 'amazing': 'goated',
     'awesome': 'goated', 'strong': 'cracked', 'stronger': 'more cracked', 'strongest': 'most cracked', 'weak': 'mid',
-    'friend': 'bestie', 'friends': 'besties', 'angry': 'pressed', 'mad': 'pressed', 'lie': 'cap', 'lying': 'capping',
-    'true': 'no cap', 'cute': 'adorbs', 'suspicious': 'sus', 'strange': 'sus', 'weird': 'sus', 'talk': 'yap',
-    'talking': 'yapping', 'boring': 'mid', 'impressive': 'built different', 'excited': 'hyped', 'win': 'take the W',
-    'lose': 'take the L', 'lost': 'took the L', 'won': 'took the W', 'beautiful': 'stunning, it ate', 'okay': 'bet',
-    'ok': 'bet', 'serious': 'deadass', 'seriously': 'deadass', 'tired': 'cooked', 'finished': 'cooked',
-    'charm': 'rizz', 'charming': 'rizzy', 'old': 'unc', 'leader': 'final boss', 'battle': 'throwdown',
-    'Hello': 'Yo', 'Hi': 'Ayo', 'Yes': 'Bet', 'Wow': 'Sheesh', 'Oh': 'Bruh', 'Hey': 'Ayo', 'Thank you': 'W',
+    'friend': 'bestie', 'friends': 'besties', 'angry': 'pressed', 'mad': 'pressed', 'lying': 'capping',
+    'cute': 'adorbs', 'suspicious': 'sus', 'strange': 'sus', 'weird': 'sus', 'talk': 'yap',
+    'talking': 'yapping', 'boring': 'mid', 'impressive': 'built different', 'excited': 'hyped', 
+    
+    'serious': 'deadass', 'seriously': 'deadass', 'tired': 'cooked', 'finished': 'cooked',
+    'charm': 'rizz', 'charming': 'rizzy',
+    'Hello': 'Yo', 'Hi': 'Ayo', 'Yes': 'Bet', 'Wow': 'Sheesh', 'Oh': 'Bruh', 'Hey': 'Ayo',
 }
-SLANG_TAGS = ['No cap.', 'Fr fr.', "It's giving main character.", 'Slay.', 'Respectfully.', "I'm screaming.",
-              'Touch grass.', 'Big yikes.', 'Caught in 4K.', 'Living rent free in my head.', 'The aura is insane.',
-              'Hits different.', 'Say less.', 'Ate and left no crumbs.', "Bro's cooked.", 'Vibe check passed.',
-              'Delulu is the solulu.', 'Ratio.', 'That is so real.', "It's the audacity for me."]
+# Said at the end of someone's line. The ones for battles fit who is winning.
+SLANG_TAGS = ['No cap.', 'Fr fr.', 'Respectfully.', 'Say less.', 'That is so real.', 'Just saying.', 'Periodt.',
+              'Lowkey.', "And that's on everything.", 'Hits different.', 'Not me being honest rn.', 'Deadass.']
+SLANG_BATTLE = {
+    'intro': ["Let's get it.", "It's on, bestie.", 'Prepare to get cooked.', 'Run it.', 'No cap.',
+              "You're about to take the L."],
+    'defeat': ["I'm cooked.", 'Big L.', 'Down bad.', 'This is so not bussin.', 'I fumbled.', 'Rip bozo. Me. I\'m bozo.'],
+    'after': ['Still cooked btw.', "I'm healing.", "We don't talk about it.", 'Respectfully, rematch.'],
+}
 
 # ---- mood ring speech styles (one per town/route) ----------------------------------
 STYLES = {
@@ -199,23 +360,26 @@ STYLES = {
     'genz': {
         'label': 'Gen Z',
         'words': SLANG_WORDS,
-        'open': ['Bro.', 'Ngl,', 'Okay so like,', 'Not gonna lie,', 'Lowkey,', 'Bestie,'],
+        'open': ['Bro.', 'Ngl,', 'Okay so like,', 'Bestie,'],
         'close': SLANG_TAGS,
     },
     'shakespeare': {
         'label': 'Shakespeare',
-        'words': {'you': 'thou', 'your': 'thy', 'are': 'art', 'Yes': 'Aye', 'yes': 'aye', 'No': 'Nay', 'no': 'nay',
+        'words': {'you': 'thou', 'your': 'thy', 'you are': 'thou art', 'are you': 'art thou', 'Yes': 'Aye',
                   'Hello': 'Good morrow', 'Hi': 'Hail', 'Hey': 'Hark', 'before': 'ere', 'often': 'oft',
-                  'does': 'doth', 'has': 'hath', 'here': 'hither', 'there': 'thither', 'why': 'wherefore'},
+                  'does': 'doth', 'has': 'hath', 'do you': 'dost thou', 'you do': 'thou dost', 'have you': 'hast thou',
+                  'you have': 'thou hast', 'you will': 'thou wilt', 'you would': 'thou wouldst', 'you can': 'thou canst',
+                  'can you': 'canst thou', 'you may': 'thou mayst', 'will you': 'wilt thou', 'would you': 'wouldst thou',
+                  "you're": 'thou art', "you've": 'thou hast', "you'd": 'thou wouldst', "you'll": 'thou wilt',
+                  'why': 'wherefore'},
         'open': ['Hark!', 'Forsooth,', 'Prithee, listen.', 'Alas!'],
         'close': ['Verily.', 'Huzzah.', 'Fare thee well.', 'Such is the tragedy of Hoenn.'],
     },
     'corporate': {
         'label': 'Corporate',
-        'words': {'problem': 'challenge', 'problems': 'challenges', 'help': 'support', 'battle': 'sync',
-                  'battles': 'syncs', 'fight': 'alignment meeting', 'talk': 'circle back', 'idea': 'value-add',
+        'words': {'problem': 'challenge', 'problems': 'challenges', 'help': 'support', 'fight': 'alignment meeting', 'talk': 'circle back', 'idea': 'value-add',
                   'friend': 'stakeholder', 'friends': 'stakeholders', 'money': 'budget', 'win': 'deliver',
-                  'lose': 'miss targets', 'work': 'bandwidth', 'POKéMON': 'assets', 'Trainer': 'associate',
+                  'lose': 'miss targets', 'POKéMON': 'assets', 'Trainer': 'associate',
                   'TRAINER': 'ASSOCIATE', 'goal': 'KPI', 'dream': 'roadmap'},
         'open': ['Per my last message,', 'Quick sync:', 'Just looping you in:', 'Hope this finds you well.'],
         'close': ["Let's take this offline.", 'Thanks in advance.', 'Circling back later.', 'Per HR, this is fine.'],
@@ -232,9 +396,10 @@ STYLES = {
         'label': 'Detective noir',
         'words': {'town': 'rotten little town', 'city': 'city of broken dreams', 'kid': 'gumshoe',
                   'girl': 'dame', 'boy': 'kid', 'money': 'dough', 'police': 'the bulls'},
-        'open': ['The rain hit the route like a bad memory.', 'It was a dark and grassy night.',
-                 'Another day, another Zigzagoon.'],
-        'close': ['Hoenn never sleeps.', 'Some cases close themselves.', 'I lit a Poké Ball and stared at the sea.'],
+        'open': ['Listen, kid.', "I've seen things, kid.", 'Another day, another Zigzagoon.',
+                 'The rain never stops around here.'],
+        'close': ['Hoenn never sleeps.', "That's how it goes in this business.", 'Trust no one, kid.',
+                  'The rain kept falling.'],
     },
     'surfer': {
         'label': 'Surfer',
@@ -247,9 +412,8 @@ STYLES = {
         'label': 'Soap opera',
         'words': {'friend': 'secret twin', 'mom': 'birth mother', 'dad': 'estranged father', 'brother': 'evil brother',
                   'sister': 'secret sister'},
-        'open': ['GASP!', 'How DARE you.', 'I can no longer keep this secret.', 'Tell me it isn\'t true!'],
-        'close': ['...And that is why I wear this hat.', 'I have amnesia now.', 'We were never here.',
-                  'To be continued.'],
+        'open': ['GASP!', 'Oh, the drama!', 'Brace yourself.'],
+        'close': ['Dun dun DUNNN.', 'To be continued.', 'Cue the dramatic music.', 'Nobody move.'],
     },
 }
 
@@ -306,68 +470,90 @@ BATTLE = {
 }
 
 # ---- Game of Thrones storyline ------------------------------------------------------
-# Gossip changes as you earn badges. NPCs who share it are chosen by seed.
-# Chapter 0: no badges. 1: Stone/Knuckle badges. 2: Dynamo/Heat. 3: Balance/Feather.
-# 4: Mind/Rain. 5: Champion.
+# Gossip follows your progress: one chapter per badge, so people only talk
+# about what has already happened. 0: no badges. 1: Roxanne. 2: Brawly.
+# 3: Wattson. 4: Flannery. 5: Norman. 6: Winona. 7: Tate & Liza. 8: Juan.
+# 9: Champion.
 THRONES_CHAPTERS = [
-    [  # 0 - nobody
-        "Have you heard? The Poké Ball Throne at Ever Grande sits empty half the year. Wallace keeps leaving to get his hair done.",
-        "Eight Great Houses hold the Gyms of Hoenn. Each one swears it is loyal to the Throne. Each one is lying.",
+    [  # 0 - nobody yet
+        "Eight Great Houses hold the Gyms of Hoenn. Each one swears loyalty to the Poké Ball Throne at Ever Grande. Each one is lying.",
         "Lord Maxie claims the land. Lord Archie claims the sea. Both claims were written on napkins.",
-        "Some kid left Littleroot with a hat and a lab POKéMON. The lords haven't noticed. Lords never notice kids. Until they do.",
-        "House Stone of Rustboro runs Devon, the banks, and the rocks. Mostly the rocks. Never insult a rock in Rustboro.",
-        "The old saying goes: whoever holds all eight badges may challenge for the Throne. Nobody has managed it in years. Mostly because of the paperwork.",
-        "Professor Birch is neutral in the war of the Houses. He mostly runs from it. Literally. Every day.",
-        "My grandmother swore fealty to House Petalburg. Then Norman moved in and she swore at him instead.",
+        "The Throne sits empty half the year. Wallace keeps leaving to get his hair done.",
+        "House Stone runs Devon, the banks, and the rocks. Mostly the rocks. Never insult a rock in Rustboro.",
+        "The Small Council rules Hoenn. It's four Gym Leaders and a Slakoth. The Slakoth has the most power. Nobody knows how.",
+        "Whoever wins all eight badges may challenge for the Throne. Nobody's done it in years. Mostly because of the paperwork.",
+        "Some kid from Littleroot just got a POKéMON from Professor Birch. The lords don't care. Lords never care about kids. Until they do.",
     ],
-    [  # 1 - first badges
-        "Word from Rustboro: a Littleroot child beat Lady Roxanne. House Stone is pretending it isn't worried. It's worried.",
-        "They're calling you the Littleroot Pretender, {PLAYER}. It's not a compliment. It's not NOT a compliment.",
-        "Brawly of Dewford says he bowed to you out of respect. Witnesses say he fell over.",
-        "Lord Maxie has sent spies to watch the Pretender. The spies wear bright red hoodies. Stealth is not their thing.",
-        "Team Aqua's sailors mutiny every Tuesday. Archie calls it team building.",
-        "Steven Stone, heir of House Stone, is missing. He left a note that said: rocks. Nothing else. Just rocks.",
-        "The Small Council met about you, {PLAYER}. Minutes were taken by a Slakoth. Nothing was written down.",
-        "Somebody painted LONG LIVE THE PRETENDER on a fence in Slateport. Somebody else painted WHO? under it.",
+    [  # 1 - Roxanne
+        "Word from Rustboro: a kid from Littleroot beat Lady Roxanne. House Stone says it isn't worried. House Stone is buying a lot of rocks.",
+        "They're calling you the Littleroot Pretender, {PLAYER}. It isn't a compliment. It isn't NOT a compliment.",
+        "Brawly of Dewford heard about you. He's been punching the ocean to get ready. The ocean is winning.",
+        "Lord Maxie sent spies to watch the Pretender. They wear bright red hoodies. Stealth is not the brand.",
+        "Somebody painted LONG LIVE THE PRETENDER on a fence in Petalburg. Somebody else painted WHO? under it.",
+        "The Small Council met about you. The Slakoth took notes. The notes are a drawing of a Slakoth.",
     ],
-    [  # 2 - Dynamo and Heat
-        "Lord Wattson of Mauville controls the power grid. He swore the Pretender would never take his badge. Then the lights went out.",
-        "Mt. Chimney is being called the Ash Wedding. Nobody got married. Everybody got ash in their shoes.",
-        "Lady Flannery inherited House Lavaridge last week and she's already lost a badge to a ten-year-old. Rough first week.",
-        "Four badges, {PLAYER}? The lords stopped calling you the Pretender. Now they call you That Problem.",
-        "House Petalburg has gone quiet. Lord Norman knows his own child is coming for his seat. Family dinners are going to be tense.",
-        "Maxie and Archie both offered you a marriage alliance. You're ten. The answer is no. The answer is always no.",
-        "A raven came from Fortree. Well, a Swablu. It said Winona is watching. Then it pooped on my roof.",
-        "The bards of Verdanturf are already writing songs about you. They don't know your name. They rhymed Pretender with blender.",
+    [  # 2 - Brawly
+        "Two badges. Brawly says he went easy on you. His Makuhita says otherwise. His Makuhita has never lied.",
+        "Team Aqua tried to rob the Slateport Museum. The plan was to walk in. That's it. That was the plan.",
+        "Steven Stone, heir of House Stone, got a letter in a cave. He wrote back one word: rocks.",
+        "Lord Wattson of Mauville runs the power grid. He swears the Pretender will never take his badge. Then he laughed for six minutes.",
+        "Archie's sailors mutiny every Tuesday. He calls it team building.",
+        "The bards are writing songs about you, {PLAYER}. They don't know your name. They rhymed Pretender with blender.",
     ],
-    [  # 3 - Balance and Feather
-        "You beat your own father in his own hall. The whole realm is talking. Mostly about how awkward Thanksgiving is going to be.",
-        "Lady Winona of the High Skies has declared for you, {PLAYER}. Her words are: Our Wings Are Higher. She means it as a threat to everyone else.",
-        "Six badges. The Gym Leaders call it the Usurper's Road now. The tourism board loves it.",
-        "Team Magma stole the Meteorite. Team Aqua stole it back. Then they both lost it at a car wash. That's war.",
-        "The Small Council voted to stop you. Three votes yes, one vote no, and the Slakoth abstained by being asleep.",
-        "Lord Norman sent word: I'm proud of you. Also you're grounded. Both are binding by law.",
-        "They say the old gods sleep under Hoenn. One in the sea, one in the land, one in the sky. Maxie and Archie keep trying to wake them up like it's a sleepover.",
-        "A Kingsguard knight of the Elite Four was seen buying your trading card. For research, he said. He framed it.",
+    [  # 3 - Wattson
+        "The lights in Mauville went out the day you beat Wattson. He says that's unrelated. He's been laughing about it nervously ever since.",
+        "Three badges. The lords stopped calling you the Pretender. Now they call you That Problem.",
+        "Lord Maxie is marching his army up Mt. Chimney. Nobody knows why. Nobody has ever known why, with Maxie.",
+        "Lady Flannery of House Lavaridge just inherited her Gym. She's been practicing her scary voice. It's going okay.",
+        "A Swablu from Fortree brought a message: Winona is watching. Then it pooped on my roof. Message received.",
+        "House Petalburg has gone very quiet. Lord Norman knows who's coming for his seat. Family dinners are about to get tense.",
     ],
-    [  # 4 - Mind and Rain
+    [  # 4 - Flannery
+        "They're calling Mt. Chimney the Ash Wedding. Nobody got married. Everybody got ash in their shoes.",
+        "Lady Flannery lost a badge in her first month on the job. She's taking it well. By that I mean the Gym is on fire.",
+        "Four badges. Next on the road is Petalburg. You know who's in Petalburg. Bring a card. Maybe flowers.",
+        "Maxie and Archie both offered you an alliance. You said no. Correctly. Their benefits package is terrible.",
+        "The Small Council voted to stop you. Three votes yes, one vote no. The Slakoth abstained by being asleep.",
+        "There's a betting pool on the Pretender versus Petalburg. The odds are terrible. For your dad.",
+    ],
+    [  # 5 - Norman
+        "You beat your own father in his own hall. The whole realm is talking. Mostly about how awkward dinner is going to be.",
+        "Lord Norman sent a raven: I'm proud of you. Also, you're grounded. Both are binding by law.",
+        "Five badges, {PLAYER}. They call this stretch the Usurper's Road now. The tourism board loves it.",
+        "Team Aqua is circling the Weather Institute. If they control the weather it rains forever. Route 119 won't even notice.",
+        "Lady Winona of the High Skies has heard of you. She hasn't decided if that's good. Her birds have decided it's bad.",
+        "Wally from Petalburg has been training. Nobody's worried about Wally. Somebody should be worried about Wally.",
+    ],
+    [  # 6 - Winona
+        "Lady Winona has declared for you. Her house words are: Our Wings Are Higher. It's mostly a threat.",
+        "Six badges. The Kingsguard of the Elite Four started looking up your stats. One of them made a spreadsheet.",
+        "Team Magma and Team Aqua are both heading for Mt. Pyre. It's a graveyard. Nothing good ever started in a graveyard.",
+        "The old gods sleep beneath Hoenn. One in the sea, one in the land, one in the sky. Maxie and Archie keep trying to wake them like it's a sleepover.",
         "The Twin House of Mossdeep has a succession crisis. Tate says he's the heir. Liza says she's the heir. The house cat is acting regent.",
-        "The old gods woke up. Groudon and Kyogre are fighting over Sootopolis. That's what happens when you skip the Small Council meeting.",
-        "Lord Juan of Sootopolis says beauty is a weapon. Then he lost to a child in shorts. Beauty is not a very good weapon.",
-        "Eight badges, {PLAYER}. By the ancient law of Hoenn, you may now march on Ever Grande. Bring snacks. Victory Road is long.",
-        "The Kingsguard of Ever Grande are sharpening their POKéMON. Sidney says he's not scared. He's scared.",
-        "Steven Stone returned from the rock wilderness. He says he supports your claim. He also says he has 400 rocks to show you.",
-        "Maxie and Archie both lost. Now they share a cell and argue about the ocean all day. The guards wear earplugs.",
-        "The realm is splitting in two: people who think you'll take the Throne, and people who haven't met you.",
+        "Lilycove's department store has five floors and no exit strategy. That's not political. I just think about it a lot.",
     ],
-    [  # 5 - Champion
-        "All hail {PLAYER}, First of Their Name, Champion of Hoenn, Breaker of Gyms, Mother of Zigzagoons.",
-        "The new ruler of the Poké Ball Throne is ten years old. Honestly? Best ruler we've had.",
+    [  # 7 - Tate & Liza
+        "You beat both Mossdeep heirs at once. The succession crisis is over. The house cat is still regent. Nobody wants to tell it.",
+        "Maxie really did wake Groudon. It ran off. Now Archie wants Kyogre. Two grown men are about to ruin the weather for everyone.",
+        "Seven badges, {PLAYER}. Every lord in Hoenn has your poster up. Half of them are dartboards.",
+        "Steven Stone is back from the rock wilderness. He supports your claim. He also has 400 rocks to show you.",
+        "Lord Juan of Sootopolis says beauty is a weapon. He's very calm about it. Too calm.",
+        "The Small Council called an emergency meeting about the gods. The Slakoth came. First time anyone's seen it move.",
+    ],
+    [  # 8 - Juan
+        "Eight badges. By the ancient law you may now march on Ever Grande. Bring snacks. Victory Road is long and full of rude people.",
+        "Rayquaza came down from the sky and told Groudon and Kyogre to knock it off. Like a parent. It was humiliating for everyone.",
+        "Maxie and Archie lost everything, and now they're kind of friends? They get lunch. The realm is confused.",
+        "Lord Juan lost to you and called it beautiful. He calls everything beautiful. He called his parking ticket beautiful.",
+        "The Kingsguard are sharpening their POKéMON. Sidney says he isn't scared. He's scared.",
+        "Wallace has been practicing his I-am-not-nervous face in the mirror. The mirror is nervous.",
+    ],
+    [  # 9 - Champion
+        "All hail {PLAYER}, First of Their Name, Champion of Hoenn, Breaker of Gyms, Haver of Way Too Many Potions.",
         "Wallace bent the knee. Then he asked if you'd seen his comb. It's in your bag, {PLAYER}. Give it back.",
-        "Every lord in Hoenn wants a favor from the new Champion. Roxanne wants homework due dates moved.",
-        "The Small Council is yours now, {PLAYER}. It's still just four Gym Leaders and a Slakoth. The Slakoth got a raise.",
+        "The Small Council is yours now. It's still four Gym Leaders and a Slakoth. The Slakoth got a raise.",
         "House Petalburg is the most powerful house in the realm. Lord Norman is unbearable about it at the grocery store.",
-        "Rumors say a new challenger is coming for the Throne. Rumors also say it's Professor Birch. He's still running.",
+        "Every lord in Hoenn wants a favor from the new Champion. Roxanne wants her homework due dates moved.",
         "Uneasy lies the head that wears the cap. You're going to need a bigger cap.",
     ],
 ]
@@ -375,7 +561,7 @@ THRONES_LEADER_LINES = {
     'ROXANNE': ("I am Roxanne of House Rustboro, sworn to House Stone. Our words are: We Did The Reading.",
                 "You beat me, so by law my rocks are... still mine. But my respect is yours. Mostly."),
     'BRAWLY': ("I'm Brawly of the Dewford Tide! Our words are: Hit First, Ask Never!",
-               "The Tide pledges its fists to you, little lord. Don't make it weird."),
+               "The Tide pledges its fists to you, little ruler. Don't make it weird."),
     'WATTSON': ("Wahahaha! House Wattson keeps the lights on in Mauville! Our words: The Bills Are Paid!",
                 "My house yields! Do NOT tell the power company."),
     'FLANNERY': ("I'm Flannery of House Lavaridge, and I've been a lady for one week! Our words: The Floor Is Lava!",
