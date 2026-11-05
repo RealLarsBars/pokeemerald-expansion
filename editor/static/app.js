@@ -1730,16 +1730,20 @@ async function pollJob() {
     $('#exportBtn').disabled = false;
     $('#updateBtn').disabled = false;
     if (j.title === 'Update' && j.state === 'done' && /^Updated/.test(j.message)) waitForRestart();
+    if (jobDone) { const cb = jobDone; jobDone = null; cb(j); }
   } catch (e) {
     jobTimer = setTimeout(pollJob, 1000);
   }
 }
 
-async function startJob(path, title) {
-  if (anyDirty() && !confirm('Some changes are not saved yet and will not be included. Continue?')) return;
+let jobDone = null;   // called once when the current job finishes
+
+async function startJob(path, title, onDone = null, confirmed = false) {
+  if (!confirmed && anyDirty() && !confirm('Some changes are not saved yet and will not be included. Continue?')) return;
   try {
     const res = await api(path, {});
     if (!res.started) { toast('Already working on something, please wait.', true); return; }
+    jobDone = onDone;
     $('#playBtn').disabled = true;
     $('#exportBtn').disabled = true;
     $('#updateBtn').disabled = true;
@@ -1759,7 +1763,52 @@ function waitForRestart() {
 }
 
 $('#playBtn').addEventListener('click', () => startJob('/api/play', 'Play'));
-$('#exportBtn').addEventListener('click', () => startJob('/api/export', 'Save as .gba'));
+$('#exportBtn').addEventListener('click', saveAsGba);
+
+// "Save as .gba": ask where to save first (while the click still counts, so the
+// browser allows the window), then build, then write the new game file there.
+async function saveAsGba() {
+  if (anyDirty() && !confirm('Some changes are not saved yet and will not be included. Continue?')) return;
+  const d = new Date();
+  const pad = n => String(n).padStart(2, '0');
+  const name = `Emerald ${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())} ${pad(d.getHours())}${pad(d.getMinutes())}.gba`;
+  let handle = null;
+  if (window.showSaveFilePicker) {
+    try {
+      handle = await window.showSaveFilePicker({
+        id: 'emerald-gba',          // the browser remembers the last folder used
+        suggestedName: name,
+        types: [{ description: 'Game Boy Advance game', accept: { 'application/octet-stream': ['.gba'] } }],
+      });
+    } catch (e) {
+      if (e.name === 'AbortError') return;   // the user closed the window
+      handle = null;
+    }
+  }
+  startJob('/api/build', 'Save as .gba', async (j) => {
+    if (j.state !== 'done') return;
+    const msg = $('#jobMessage');
+    try {
+      if (handle) {
+        const res = await fetch('/api/rom');
+        if (!res.ok) throw new Error('Could not read the built game.');
+        const w = await handle.createWritable();
+        await w.write(await res.blob());
+        await w.close();
+        msg.textContent = 'Saved your game as ' + handle.name;
+      } else {
+        // No save window in this browser: download it instead (usually to Downloads).
+        const a = el('a', { href: '/api/rom?name=' + encodeURIComponent(name), download: name });
+        document.body.append(a); a.click(); a.remove();
+        msg.textContent = 'Saved your game as ' + name + ' in your Downloads folder.';
+      }
+      msg.className = 'ok';
+    } catch (e) {
+      msg.textContent = 'Built, but saving failed: ' + e.message;
+      msg.className = 'bad';
+    }
+  }, true);
+}
 $('#updateBtn').addEventListener('click', async () => {
   const info = await api('/api/updates').catch(e => ({ ok: false, message: e.message }));
   if (!info.ok) { toast(info.message, true); return; }

@@ -1,13 +1,8 @@
 """Long-running jobs: building the game, opening it in mGBA, and updating the editor."""
 
-import base64
-import json
-import ntpath
 import os
-import shutil
 import subprocess
 import threading
-import time
 
 from common import ROOT
 
@@ -97,85 +92,6 @@ def play(job, mgba):
                      stdin=subprocess.DEVNULL, start_new_session=True)
     job.write('Opening mGBA.')
     return True, 'Started the game. If an older mGBA window is still open, close it.'
-
-
-# ---- save a copy of the game as a new .gba ---------------------------------
-
-EXPORT_SETTINGS = os.path.join(os.path.expanduser('~'), '.emerald-editor.json')
-EXPORT_DIR = os.path.join(ROOT, 'my-builds')   # used when no Windows dialog is available
-
-
-def _settings():
-    try:
-        with open(EXPORT_SETTINGS, encoding='utf-8') as f:
-            return json.load(f)
-    except (OSError, ValueError):
-        return {}
-
-
-def _save_settings(data):
-    try:
-        with open(EXPORT_SETTINGS, 'w', encoding='utf-8') as f:
-            json.dump(data, f)
-    except OSError:
-        pass
-
-
-def _ask_where_to_save(default_name, start_dir):
-    """Shows a Windows "Save as" box and returns the chosen Windows path,
-    '' if the user cancelled, or None if no Windows dialog is available."""
-    ps = shutil.which('powershell.exe')
-    if not ps:
-        return None
-    script = (
-        "[Console]::OutputEncoding = [Text.Encoding]::UTF8\n"
-        "Add-Type -AssemblyName System.Windows.Forms\n"
-        "$owner = New-Object System.Windows.Forms.Form -Property @{ TopMost = $true }\n"
-        "$d = New-Object System.Windows.Forms.SaveFileDialog\n"
-        "$d.Title = 'Save your game as'\n"
-        "$d.Filter = 'Game Boy Advance game (*.gba)|*.gba'\n"
-        "$d.DefaultExt = 'gba'\n"
-        "$d.OverwritePrompt = $true\n"
-        "$d.FileName = %s\n"
-        "%s"
-        "if ($d.ShowDialog($owner) -eq 'OK') { $d.FileName }\n"
-    ) % (_ps_quote(default_name),
-         ("$d.InitialDirectory = %s\n" % _ps_quote(start_dir)) if start_dir else '')
-    encoded = base64.b64encode(script.encode('utf-16-le')).decode('ascii')
-    cwd = '/mnt/c' if os.path.isdir('/mnt/c') else '/'
-    r = subprocess.run([ps, '-NoProfile', '-STA', '-EncodedCommand', encoded], cwd=cwd,
-                       capture_output=True, text=True, encoding='utf-8', errors='replace')
-    lines = [l.strip() for l in r.stdout.splitlines() if l.strip()]
-    return lines[-1] if lines else ''
-
-
-def _ps_quote(text):
-    return "'" + text.replace("'", "''") + "'"
-
-
-def export(job):
-    """Builds the game and saves it as a new .gba file where the user picks."""
-    ok, message = build(job)
-    if not ok:
-        return ok, message
-    name = time.strftime('Emerald %Y-%m-%d %H%M.gba')
-    settings = _settings()
-    job.write('Asking where to save it (look for the "Save your game as" window)...')
-    chosen = _ask_where_to_save(name, settings.get('exportDir', ''))
-    if chosen == '':
-        return True, 'Built, but not saved anywhere because the save window was cancelled.'
-    if chosen is None:
-        os.makedirs(EXPORT_DIR, exist_ok=True)
-        target = os.path.join(EXPORT_DIR, name)
-        shown = target
-    else:
-        target = linux_path(chosen)
-        shown = chosen
-        settings['exportDir'] = ntpath.dirname(chosen)
-        _save_settings(settings)
-    shutil.copyfile(ROM, target)
-    job.write('Saved %s' % shown)
-    return True, 'Saved your game as %s' % shown
 
 
 # ---- updates ------------------------------------------------------------------

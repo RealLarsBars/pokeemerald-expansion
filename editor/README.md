@@ -28,7 +28,7 @@ Only the trainers and texts you change are rewritten; the rest of each file
 stays exactly as it was. Before saving a trainer, the editor checks that every
 Pokémon, move, item and ability exists, so a typo cannot break the build.
 
-**Save as .gba** builds the game and asks where to save it as a new `.gba` file (named with the date and time, and starting in the folder you used last), so each version you make is kept. Without Windows it saves into `my-builds/` instead.
+**Save as .gba** asks where to save (the name starts as the date and time, in the folder you used last), builds the game, and writes it there as a new `.gba` file, so each version you make is kept.
 
 **Play** runs `make` and opens the ROM in mGBA (the path comes from the
 `EMERALD_MGBA` environment variable or `--mgba`). **Update** commits your
