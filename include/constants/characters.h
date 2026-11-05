@@ -270,6 +270,8 @@
 #define PLACEHOLDER_ID_KYOGRE        0xC
 #define PLACEHOLDER_ID_GROUDON       0xD
 #define PLACEHOLDER_ID_REGION        0xE
+#define PLACEHOLDER_ID_MADLIB_FIRST  0xF // in-game Mad Libs blanks: FD 0F to FD 1E (src/mad_libs.c)
+#define PLACEHOLDER_MADLIB_COUNT     16
 
 // battle placeholders are located in battle_message.h
 

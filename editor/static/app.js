@@ -1482,13 +1482,14 @@ const FUN_DEFAULTS = {
           legendaryLevel: 0, legendaryPercent: 15, regularItems: true },
   caps: { on: false, type: 'hard', mode: 'auto', caps: [15, 19, 24, 29, 31, 33, 42, 46, 58], candyCap: true },
   candy: { on: false },
-  comedy: { on: false, intensity: 'medium', packs: { moodRing: true, slang: true, madlibs: true, narrator: true, hero: true,
+  comedy: { on: false, intensity: 'medium', packs: { liveMadLibs: true, moodRing: true, slang: true, madlibs: true, narrator: true, hero: true,
             fakeNews: true, thrones: true, chaos: true, battle: true }, styles: ['pirate', 'genz', 'shakespeare', 'corporate', 'conspiracy', 'noir', 'surfer', 'dramatic'] },
 };
 const COMEDY_PACKS = [
+  ['liveMadLibs', 'In-game Mad Libs', 'You fill in 16 blanks from a menu at the start of the game (a thing, a place, a food, a name...), and 4 more after every Gym. People all over Hoenn use your words for the rest of the game. Pick "Surprise me" to let the game choose.'],
   ['moodRing', 'Mood ring towns', 'Each town and route gets its own way of talking (pick which below).'],
   ['slang', 'Modern slang', 'No cap, bussin, rizz, touch grass, it\'s giving...'],
-  ['madlibs', 'Mad Libs', 'Random nouns get swapped for things like "haunted toaster" or "emotional support Wailord".'],
+  ['madlibs', 'Random Mad Libs', 'Random nouns get swapped for things like "haunted toaster" or "emotional support Wailord".'],
   ['narrator', 'Narrator', 'A sarcastic narrator comments on what just happened.'],
   ['hero', 'Hero talks back', 'Your character finally says what they think about this absurd world.'],
   ['fakeNews', 'Fake news signs', 'Signs get BREAKING NEWS headlines.'],

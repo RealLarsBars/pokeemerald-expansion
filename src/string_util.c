@@ -3,6 +3,7 @@
 #include "text.h"
 #include "strings.h"
 #include "union_room_chat.h"
+#include "mad_libs.h"
 
 EWRAM_DATA u8 gStringVar1[0x100] = {0};
 EWRAM_DATA u8 gStringVar2[0x100] = {0};
@@ -544,6 +545,8 @@ const u8 *GetExpandedPlaceholder(u32 id)
         [PLACEHOLDER_ID_REGION]       = ExpandPlaceholder_Region,
     };
 
+    if (id >= PLACEHOLDER_ID_MADLIB_FIRST && id < PLACEHOLDER_ID_MADLIB_FIRST + PLACEHOLDER_MADLIB_COUNT)
+        return GetMadLibWord(id - PLACEHOLDER_ID_MADLIB_FIRST);
     if (id >= ARRAY_COUNT(funcs))
         return gText_ExpandedPlaceholder_Empty;
     else

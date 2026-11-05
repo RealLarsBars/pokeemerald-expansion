@@ -12,6 +12,7 @@ import os
 import re
 
 import comedy_lines as L
+import madlibs_live as ML
 import textdb
 from common import ROOT
 from maps import BATTLE_RE
@@ -352,6 +353,11 @@ def apply(ov, opt, rng, report):
     for path in maps_ + scripts:
         merge_ctx(ctx, classify(ov.read(os.path.relpath(path, ROOT))))
 
+    if packs.get('liveMadLibs'):
+        # Each blank is as wide as its longest word, so text never runs off the box.
+        for key, _, words in ML.SLOTS:
+            CODE_WIDTH[ML.code(key)] = max(_width(w, widths) for w in words)
+            SAFE_CODES.add(ML.code(key))
     samples = []
     touched = 0
     for path in maps_ + scripts + shared_text_files():
@@ -398,6 +404,8 @@ def apply(ov, opt, rng, report):
             counts.setdefault(L.STYLES[s]['label'], []).append(a)
         head = ['Mood ring: %s talks %s' % (', '.join(sorted(v)[:6]) + ('...' if len(v) > 6 else ''), k)
                 for k, v in sorted(counts.items())]
+    if packs.get('liveMadLibs'):
+        head = ML.install(ov) + head
     if packs.get('thrones'):
         head += thrones_storyline(ov, opt, rng, widths)
     if packs.get('battle'):
@@ -518,6 +526,22 @@ def _pick(rng, pools, place):
     return None
 
 
+LIVE_SHARE = 0.4  # how often an added line is one built around the player's own words
+
+
+def _live_pool(rng, packs, who, moment):
+    """With in-game Mad Libs on, sometimes use a line built around the player's words."""
+    if not packs.get('liveMadLibs') or rng.random() >= LIVE_SHARE:
+        return None
+    pool = L.MADLIB_LINES[who]
+    return pool if isinstance(pool, list) else pool.get(moment)
+
+
+def _live(rng, packs, who, moment):
+    pool = _live_pool(rng, packs, who, moment)
+    return rng.choice(pool) if pool else None
+
+
 def _chaos(rng, topic, place):
     """The person keeps talking: about the same thing if we have a line for it, otherwise
     they admit they're changing the subject."""
@@ -551,6 +575,15 @@ def _transform(label, friendly, rng, level, packs, style, ctx, place, widths):
     # 1. Mad Libs first, on the original words only.
     if packs.get('madlibs') and rng.random() < level * 0.7:
         boxes = [madlibs(b, rng, 0.6) for b in boxes]
+    # 1b. In-game Mad Libs: some words become blanks the player fills in inside the game.
+    if packs.get('liveMadLibs') and rng.random() < min(1.0, 0.25 + level * 0.6):
+        left = 2
+        for i, b in enumerate(boxes):
+            nb = ML.fill_blanks(b, rng, 0.6, limit=left)
+            left -= nb.count('{MADLIB_') - b.count('{MADLIB_')
+            boxes[i] = nb
+            if left <= 0:
+                break
     # 2. Word swaps: the town's voice, then slang. Only people talk in a voice.
     use_style = talking and style and rng.random() < level
     use_slang = talking and packs.get('slang') and rng.random() < level
@@ -582,24 +615,28 @@ def _transform(label, friendly, rng, level, packs, style, ctx, place, widths):
     if packs.get('thrones') and ctx['boss'].get(label):
         said.append(ctx['boss'][label])  # the boss speaks for their house
     if packs.get('chaos') and kind == 'talk' and rng.random() < level * 0.3:
-        said.append(_chaos(rng, topic if rng.random() < 0.7 else None, place))
+        said.append(_live(rng, packs, 'chaos', moment) or _chaos(rng, topic if rng.random() < 0.7 else None, place))
     if packs.get('hero') and rng.random() < level * 0.4:
-        hero_line = _pick(rng, [L.TOPIC_HERO.get(topic) if rng.random() < 0.6 else None,
+        hero_line = _pick(rng, [_live_pool(rng, packs, 'hero', moment),
+                                L.TOPIC_HERO.get(topic) if rng.random() < 0.6 else None,
                                 L.HERO[moment] if moment == 'house' and rng.random() < 0.5 else None,
                                 L.HERO['talk' if moment == 'house' else moment]], place)
     if packs.get('narrator') and rng.random() < level * 0.3:
-        narrator = _pick(rng, [L.TOPIC_NARRATOR.get(topic) if rng.random() < 0.6 else None, L.NARRATOR[moment]], place)
+        narrator = _pick(rng, [_live_pool(rng, packs, 'narrator', moment),
+                               L.TOPIC_NARRATOR.get(topic) if rng.random() < 0.6 else None, L.NARRATOR[moment]], place)
     if not said and not hero_line and not narrator and boxes == orig and level >= 1:
         # Everything: every line gets something that fits it.
         options = (['hero'] * bool(packs.get('hero')) + ['narrator'] * bool(packs.get('narrator'))
                    + ['chaos'] * bool(packs.get('chaos') and kind == 'talk'))
         pick = rng.choice(options) if options else None
         if pick == 'hero':
-            hero_line = _pick(rng, [L.TOPIC_HERO.get(topic), L.HERO['talk' if moment == 'house' else moment]], place)
+            hero_line = _pick(rng, [_live_pool(rng, packs, 'hero', moment), L.TOPIC_HERO.get(topic),
+                                    L.HERO['talk' if moment == 'house' else moment]], place)
         elif pick == 'narrator':
-            narrator = _pick(rng, [L.TOPIC_NARRATOR.get(topic), L.NARRATOR[moment]], place)
+            narrator = _pick(rng, [_live_pool(rng, packs, 'narrator', moment), L.TOPIC_NARRATOR.get(topic),
+                                   L.NARRATOR[moment]], place)
         elif pick == 'chaos':
-            said.append(_chaos(rng, topic, place))
+            said.append(_live(rng, packs, 'chaos', moment) or _chaos(rng, topic, place))
     boxes += [_fill(s, place) for s in said[:2]]
     if hero_line:
         # The hero answers right there, on new lines of the same text box.

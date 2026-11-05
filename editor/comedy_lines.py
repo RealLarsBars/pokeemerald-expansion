@@ -589,3 +589,55 @@ THRONES_LEADER_LINES = {
     'MATT': ("Hah! Lord Archie's sworn shield stands before you! Hah!", "Hah... my shield has a hole in it."),
     'COURTNEY': ("...Lord Maxie's will. ...Analyzing. ...You are a threat. ...Fun.", "...Recalculating my loyalty. ...Recalculating."),
 }
+
+
+# ---- in-game Mad Libs: lines built around the player's own words --------------------
+# {MADLIB_...} blanks show the words the player picked in the game. Never put 'a' or 'an'
+# right before a blank: the word could start with any letter.
+MADLIB_LINES = {
+    'hero': {
+        'talk': ["{PLAYER}: Cool story. Has anyone seen my {MADLIB_CLOTHING}? I left it at the {MADLIB_PLACE}.",
+                 "{PLAYER}: I'd trade every badge I own for the last {MADLIB_FOOD} at the food court.",
+                 "{PLAYER}: That's the most {MADLIB_ADJ} thing I've heard since {MADLIB_NAME} fell into the {MADLIB_PLACE}.",
+                 "{PLAYER}: {MADLIB_SHOUT}. I need to go sit in the {MADLIB_PLACE} and think about that.",
+                 "{PLAYER}: Hearing that made my {MADLIB_BODYPART} feel {MADLIB_FEELING}.",
+                 "{PLAYER}: Okay, but have you tried {MADLIB_ACTIVITY}? Changed my life.",
+                 "{PLAYER}: You sound exactly like my {MADLIB_PERSON}. That's not a compliment."],
+        'thing': ["{PLAYER}: Still no {MADLIB_THING}. The search continues.",
+                  "{PLAYER}: Smells like {MADLIB_DRINK} over here. Why does everything smell like {MADLIB_DRINK}?",
+                  "{PLAYER}: I was hoping to find my {MADLIB_CREATURE} back here."],
+        'intro': ["{PLAYER}: Fine. Loser has to say {MADLIB_SOUND} in front of everyone.",
+                  "{PLAYER}: My {MADLIB_CREATURE} could beat you, and it's not even here.",
+                  "{PLAYER}: Bold move, challenging someone in this {MADLIB_CLOTHING}."],
+        'defeat': ["{PLAYER}: {MADLIB_SHOUT}! Go cry to {MADLIB_NAME} about it.",
+                   "{PLAYER}: I'm celebrating with some {MADLIB_DRINK}. You're not invited.",
+                   "{PLAYER}: That was {MADLIB_ADJ}. For you, I mean. I was great."],
+        'after': ["{PLAYER}: Still {MADLIB_FEELING} about losing? Go eat the {MADLIB_FOOD} you brought. Feel better.",
+                  "{PLAYER}: You lost to me AND you smell like {MADLIB_DRINK}. Rough week."],
+    },
+    'narrator': {
+        'talk': ["(Narrator: Somewhere, {MADLIB_NAME} was {MADLIB_ACTIVITY} in the {MADLIB_PLACE}.)",
+                 "(Narrator: Their {MADLIB_BODYPART} twitched. That meant they were {MADLIB_FEELING}.)",
+                 "(Narrator: Nobody mentioned the {MADLIB_CREATURE} wearing the {MADLIB_CLOTHING}. Nobody ever does.)",
+                 "(Narrator: This conversation was brought to you by the {MADLIB_FOOD} industry.)",
+                 "(Narrator: In the distance, someone yelled {MADLIB_SHOUT}. It felt right.)"],
+        'thing': ["(Narrator: It smelled faintly like the {MADLIB_FOOD} from last week.)",
+                  "(Narrator: It was painted {MADLIB_COLOR}. Nobody knows who did that.)",
+                  "(Narrator: A single {MADLIB_SOUND} echoed. Then nothing.)"],
+        'intro': ["(Narrator: The battle music was briefly replaced by {MADLIB_SOUND}.)",
+                  "(Narrator: They had trained for this by {MADLIB_ACTIVITY}. It would not be enough.)"],
+        'defeat': ["(Narrator: They left on their {MADLIB_VEHICLE}. Emotionally.)",
+                   "(Narrator: Their {MADLIB_BODYPART} would never be the same.)"],
+        'after': ["(Narrator: They had spent their prize money on {MADLIB_DRINK}.)"],
+    },
+    'chaos': ["My {MADLIB_CREATURE}, {MADLIB_NAME}, runs the {MADLIB_PLACE} now. I just work there.",
+              "I keep {MADLIB_DRINK} in my {MADLIB_CLOTHING}. For emergencies.",
+              "Every night I hear {MADLIB_SOUND} from the {MADLIB_PLACE}. Every night it gets closer.",
+              "{MADLIB_SHOUT}! Sorry. I do that whenever I think about the {MADLIB_FOOD} I dropped in 2019.",
+              "I've been {MADLIB_ACTIVITY} since sunrise. My {MADLIB_BODYPART} is gone. I feel {MADLIB_FEELING}.",
+              "I'm saving up for my own {MADLIB_VEHICLE}. Painted {MADLIB_COLOR}. Don't laugh.",
+              "My cousin quit being a Trainer. Now they're the {MADLIB_PERSON} at the {MADLIB_PLACE}.",
+              "Some {MADLIB_PERSON} sold me this {MADLIB_THING}. It doesn't do anything. I love it."],
+}
+MADLIB_LINES['narrator']['house'] = MADLIB_LINES['narrator']['talk']
+MADLIB_LINES['hero']['house'] = MADLIB_LINES['hero']['talk']
