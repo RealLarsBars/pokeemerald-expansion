@@ -20,8 +20,6 @@ SAFE_CODES = {'{PLAYER}', '{RIVAL}', '{KUN}', '{STR_VAR_1}', '{STR_VAR_2}', '{ST
 CODE_WIDTH = {'{PLAYER}': 42, '{RIVAL}': 42, '{KUN}': 0, '{STR_VAR_1}': 48, '{STR_VAR_2}': 48, '{STR_VAR_3}': 48,
               '{POKEBLOCK}': 60}
 INTENSITY = {'light': 20, 'medium': 40, 'chaos': 80, 'everything': 100}
-BOSS_WORDS = ('ROXANNE', 'BRAWLY', 'WATTSON', 'FLANNERY', 'NORMAN', 'WINONA', 'TATE', 'JUAN', 'SIDNEY', 'PHOEBE',
-              'GLACIA', 'DRAKE', 'WALLACE', 'MAXIE', 'ARCHIE', 'TABITHA', 'SHELLY', 'MATT', 'COURTNEY')
 
 
 SHARED_SKIP = ('braille', 'match_call', 'apprentice', 'secret_base_trainers', 'questionnaire', 'cable_club',
@@ -128,7 +126,8 @@ def _join(box):
 
 def classify(text):
     """Labels used as signs, battle texts, boss texts and Yes/No questions in one script file."""
-    signs, battle, boss, questions, used = set(), set(), set(), set(), set()
+    signs, battle, questions, used = set(), set(), set(), set()
+    boss = {}  # text label -> what that boss adds in the Game of Thrones storyline
     lines = text.split('\n')
     for i, line in enumerate(lines):
         mm = re.match(r'\s*(?:msgbox|message|messageautoscroll|pokenavcall)\s+(\w+)', line)
@@ -148,11 +147,15 @@ def classify(text):
         b = BATTLE_RE.match(line)
         if b:
             args = [a.strip() for a in (b.group(3) or '').split(',')]
-            for a in args:
-                if re.fullmatch(r'\w+_Text_\w+', a):
-                    battle.add(a)
-                    if any(w in b.group(2) for w in BOSS_WORDS):
-                        boss.add(a)
+            texts = [a for a in args if re.fullmatch(r'\w+_Text_\w+', a)]
+            battle.update(texts)
+            key = next((k for k in L.THRONES_LEADER_LINES if b.group(2)[len('TRAINER_'):].startswith(k)), None)
+            if key:
+                intro, defeat = L.THRONES_LEADER_LINES[key]
+                roles = [defeat] if b.group(1) == 'trainerbattle_no_intro' else [intro, defeat]
+                for label, line in zip(texts, roles):
+                    if line:
+                        boss[label] = line
     return signs, battle, boss, questions, used
 
 
@@ -177,10 +180,10 @@ def apply(ov, opt, rng, report):
     chosen_styles = [s for s in opt.get('styles', list(L.STYLES)) if s in L.STYLES] or list(L.STYLES)
 
     # What each text is used for, across every script in the game.
-    signs, battle, boss, questions, used = set(), set(), set(), set(), set()
+    signs, battle, boss, questions, used = set(), set(), {}, set(), set()
     for path in maps_ + scripts:
         for acc, found in zip((signs, battle, boss, questions, used), classify(ov.read(os.path.relpath(path, ROOT)))):
-            acc |= found
+            acc.update(found)
 
     samples = []
     touched = 0
@@ -208,7 +211,7 @@ def apply(ov, opt, rng, report):
                 style = L.STYLES[rng.choice(chosen_styles)]
             new = _transform(e.label, friendly, rng, level, packs, style,
                              is_sign=e.label in signs, is_battle=e.label in battle,
-                             is_boss=e.label in boss, is_question=e.label in questions or friendly.rstrip().endswith('?'),
+                             boss_line=boss.get(e.label), is_question=e.label in questions or friendly.rstrip().endswith('?'),
                              widths=widths)
             if new is None or new == friendly:
                 continue
@@ -227,9 +230,59 @@ def apply(ov, opt, rng, report):
             counts.setdefault(L.STYLES[s]['label'], []).append(a)
         head = ['Mood ring: %s talks %s' % (', '.join(sorted(v)[:6]) + ('...' if len(v) > 6 else ''), k)
                 for k, v in sorted(counts.items())]
+    if packs.get('thrones'):
+        head += thrones_storyline(ov, opt, rng, widths)
     if packs.get('battle'):
         head += battle_messages(ov, rng)
     report.add('Comedy dialogue', head + samples, count=touched)
+
+
+EVENT_SCRIPTS = 'data/event_scripts.s'
+GOSSIP_SHARE = {'light': 0.15, 'medium': 0.3, 'chaos': 0.6, 'everything': 1.0}
+NPC_RE = re.compile(r'^(\w+)::\n\tmsgbox (\w+), MSGBOX_NPC\n\tend$', re.M)
+CHAPTER_FLAGS = ['FLAG_IS_CHAMPION', 'FLAG_BADGE07_GET', 'FLAG_BADGE05_GET', 'FLAG_BADGE03_GET', 'FLAG_BADGE01_GET']
+
+
+def thrones_storyline(ov, opt, rng, widths):
+    """Add the realm's gossip script, then let chosen townsfolk share it after their own line.
+    What they say depends on how many badges you have."""
+    out = ['', '@ ---- Fun Modes: Game of Thrones storyline (added by Emerald Editor) ----',
+           'Thrones_EventScript_Gossip::']
+    for chapter, flag in zip((5, 4, 3, 2, 1), CHAPTER_FLAGS):
+        out.append('\tgoto_if_set %s, Thrones_EventScript_Chapter%d' % (flag, chapter))
+    out.append('\tgoto Thrones_EventScript_Chapter0')
+    texts = []
+    for c, lines in enumerate(L.THRONES_CHAPTERS):
+        out += ['', 'Thrones_EventScript_Chapter%d:' % c, '\trandom %d' % len(lines), '\tswitch VAR_RESULT']
+        out += ['\tcase %d, Thrones_EventScript_C%d_%d' % (i, c, i) for i in range(len(lines))]
+        out.append('\treturn')
+        for i, line in enumerate(lines):
+            out += ['Thrones_EventScript_C%d_%d:' % (c, i), '\tmsgbox Thrones_Text_C%d_%d, MSGBOX_DEFAULT' % (c, i), '\treturn']
+            raw = textdb.friendly_to_raw(wrap_box(line, widths), True)
+            texts += ['', 'Thrones_Text_C%d_%d:' % (c, i)] + ['\t.string "%s"' % ch for ch in textdb.split_string_lines(raw)]
+    text = ov.read(EVENT_SCRIPTS)
+    if 'Thrones_EventScript_Gossip::' not in text:
+        ov.write(EVENT_SCRIPTS, text.rstrip('\n') + '\n' + '\n'.join(out + texts) + '\n')
+
+    share = GOSSIP_SHARE.get(opt.get('intensity', 'medium'), 0.3)
+    hooked = 0
+    for path in map_files():
+        rel = os.path.relpath(path, ROOT)
+        text = ov.read(rel)
+
+        def hook(m):
+            nonlocal hooked
+            if rng.random() >= share:
+                return m.group(0)
+            hooked += 1
+            return ('%s::\n\tlock\n\tfaceplayer\n\tmsgbox %s, MSGBOX_DEFAULT\n'
+                    '\tcall Thrones_EventScript_Gossip\n\trelease\n\tend' % (m.group(1), m.group(2)))
+        new = NPC_RE.sub(hook, text)
+        if new != text:
+            ov.write(rel, new)
+    return ['Game of Thrones: every Gym Leader, Elite Four member, Wallace, Maxie, Archie and their admins speak for their house',
+            'Game of Thrones: %d people share realm gossip that changes as you earn badges (6 chapters, %d lines)'
+            % (hooked, sum(len(c) for c in L.THRONES_CHAPTERS))]
 
 
 BATTLE_FILE = 'src/battle_message.c'
@@ -251,7 +304,7 @@ def battle_messages(ov, rng):
     return done
 
 
-def _transform(label, friendly, rng, level, packs, style, is_sign, is_battle, is_boss, is_question, widths):
+def _transform(label, friendly, rng, level, packs, style, is_sign, is_battle, boss_line, is_question, widths):
     boxes = [_join(b) for b in _boxes(friendly)]
     if not boxes:
         return None
@@ -279,10 +332,8 @@ def _transform(label, friendly, rng, level, packs, style, is_sign, is_battle, is
     if not is_question:
         extra = []
         hero_line = None
-        if packs.get('thrones') and is_boss and rng.random() < 0.8:
-            extra.append(rng.choice(L.THRONES_BOSS))
-        elif packs.get('thrones') and not is_battle and rng.random() < level * 0.3:
-            extra.append(rng.choice(L.THRONES_NPC))
+        if packs.get('thrones') and boss_line:
+            extra.append(boss_line)  # the storyline: each house has its own words
         if packs.get('chaos') and not is_battle and rng.random() < level * 0.3:
             extra.append(rng.choice(L.CHAOS))
         if packs.get('narrator') and rng.random() < level * 0.3:
@@ -291,7 +342,7 @@ def _transform(label, friendly, rng, level, packs, style, is_sign, is_battle, is
             hero_line = rng.choice(L.HERO)
         if not extra and not hero_line and boxes == orig and level >= 1:
             pool = [L.NARRATOR] * bool(packs.get('narrator')) + [L.HERO] * bool(packs.get('hero')) \
-                + [L.CHAOS] * bool(packs.get('chaos') and not is_battle) + [L.THRONES_NPC] * bool(packs.get('thrones') and not is_battle) \
+                + [L.CHAOS] * bool(packs.get('chaos') and not is_battle) \
                 + [L.SLANG_TAGS] * bool(packs.get('slang'))
             if pool:
                 picked = rng.choice(pool)

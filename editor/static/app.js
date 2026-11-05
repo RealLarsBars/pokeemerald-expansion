@@ -1492,7 +1492,7 @@ const COMEDY_PACKS = [
   ['narrator', 'Narrator', 'A sarcastic narrator comments on what just happened.'],
   ['hero', 'Hero talks back', 'Your character finally says what they think about this absurd world.'],
   ['fakeNews', 'Fake news signs', 'Signs get BREAKING NEWS headlines.'],
-  ['thrones', 'Game of Thrones politics', 'Gym Leaders are scheming noble houses fighting over the Poké Ball Throne.'],
+  ['thrones', 'Game of Thrones storyline', 'Hoenn is a realm at war over the Poké Ball Throne. Every Gym is a noble house with its own words, and townsfolk gossip about you as you go from nobody to Pretender to Usurper to ruler.'],
   ['chaos', 'Chaos NPCs', 'Random people share unhinged schemes and life stories.'],
   ['battle', 'Battle commentary', 'Battle messages get rewritten: wild Pokémon owe you money, fainting is dramatic.'],
 ];
