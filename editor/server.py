@@ -168,6 +168,21 @@ class Handler(BaseHTTPRequestHandler):
             return self._static('index.html')
         if path.startswith('/static/'):
             return self._static(path[len('/static/'):])
+        if path == '/api/rom':
+            # The built game, for "Save as .gba" (the page writes it where the user chose).
+            if not os.path.isfile(tasks.ROM):
+                raise ApiError('The game has not been built yet.', 404)
+            name = re.sub(r'[^A-Za-z0-9 ._-]', '', q.get('name', '')) or 'Emerald.gba'
+            with open(tasks.ROM, 'rb') as f:
+                data = f.read()
+            self.send_response(200)
+            self.send_header('Content-Type', 'application/octet-stream')
+            self.send_header('Content-Length', str(len(data)))
+            self.send_header('Content-Disposition', 'attachment; filename="%s"' % name)
+            self.send_header('Cache-Control', 'no-store')
+            self.end_headers()
+            self.wfile.write(data)
+            return
         if path == '/img':
             rel = q.get('path', '')
             if not rel.startswith('graphics/') or not rel.endswith('.png'):
@@ -286,9 +301,6 @@ class Handler(BaseHTTPRequestHandler):
             return self._fun(path, body)
         if path == '/api/play':
             started = S.job.start('Play', lambda job: tasks.play(job, S.mgba))
-            return self._send(200, {'started': started})
-        if path == '/api/export':
-            started = S.job.start('Save as .gba', tasks.export)
             return self._send(200, {'started': started})
         if path == '/api/build':
             started = S.job.start('Build', tasks.build)
