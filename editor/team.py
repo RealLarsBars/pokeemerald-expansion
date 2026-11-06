@@ -337,6 +337,12 @@ def fetch_team():
     return code, msg
 
 
+def _not_public():
+    """Leaves out the public game's own history (its hundreds of authors, and editor updates),
+    so lists only show what people shared in this team game."""
+    return ['--not', '--remotes=origin'] if git_out('remote', 'get-url', 'origin') else []
+
+
 def status(fetch=False):
     me = _load()
     repo = team_repo()
@@ -361,16 +367,16 @@ def status(fetch=False):
     out['syncError'] = git_out('config', 'emerald.syncError')
     out['github'] = None
     if have:
-        parts = git_out('log', '-1', '--format=%an%x09%ct%x09%s', ref).split('\t', 2)
+        parts = git_out('log', '-1', '--format=%an%x09%ct%x09%s', ref, *_not_public()).split('\t', 2)
         if len(parts) == 3:
             out['github'] = {'who': parts[0], 'time': int(parts[1]), 'what': parts[2]}
     out['recent'] = []
     out['people'] = []
     if have:
-        for n in git_out('log', '-300', '--no-merges', '--format=%an', ref).splitlines():
+        for n in git_out('log', '-300', '--no-merges', '--format=%an', ref, *_not_public()).splitlines():
             if n and n not in out['people'] and n != 'Emerald Editor':
                 out['people'].append(n)
-        for line in git_out('log', '-12', '--no-merges', '--format=%an%x09%at%x09%s', ref).splitlines():
+        for line in git_out('log', '-12', '--no-merges', '--format=%an%x09%at%x09%s', ref, *_not_public()).splitlines():
             parts = line.split('\t', 2)
             if len(parts) == 3:
                 out['recent'].append({'who': parts[0], 'time': int(parts[1]), 'what': parts[2]})
