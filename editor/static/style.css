@@ -348,3 +348,13 @@ main { flex: 1; min-height: 0; }
 .item.project .sub { word-break: break-all; }
 .tag { display: inline-block; font-size: 11px; font-weight: 600; padding: 1px 7px; border-radius: 10px; margin-left: 6px; background: var(--panel-2); color: var(--muted); border: 1px solid var(--line); }
 .tag.team { color: var(--accent); }
+.mk.person.sel { outline: 3px solid var(--accent); outline-offset: 1px; border-radius: 4px; z-index: 3; }
+.personcard .textedit { grid-template-columns: 1fr; gap: 8px; }
+.personcard .textedit textarea { min-height: 80px; font-family: inherit; }
+.personcard .idtag { color: var(--muted); font-size: 11px; font-weight: 400; margin-left: 6px; }
+.personcard .persontext { margin-bottom: 12px; }
+.personcard .personscript { margin-bottom: 10px; }
+.personcard .personscript textarea.code { width: 100%; }
+.personcard details summary { cursor: pointer; }
+.personsteps .steptextwrap { grid-template-columns: 1fr; }
+.personsteps .stepcard { padding: 10px; }
