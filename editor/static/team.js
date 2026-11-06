@@ -296,7 +296,7 @@ function teamCodeBox(st) {
       el('ol', { class: 'teamsteps' },
         el('li', {}, el('a', { class: 'btn primary small', href: st.codeTokenUrl, target: '_blank' }, 'Open the GitHub page')),
         el('li', {}, 'Under Repository access pick "Only select repositories" and choose ', el('b', {}, repoName),
-          '. Check that Contents says "Read and write". Click "Generate token" at the bottom and copy the code.'),
+          '. Check that Contents and Workflows both say "Read and write". Click "Generate token" at the bottom and copy the code.'),
         el('li', {}, 'Paste it here:', el('div', { class: 'searchrow' }, paste, el('button', { class: 'btn primary', onclick: go }, 'Make code')))),
       el('p', { class: 'note' }, 'This code only opens this one game, nothing else on your GitHub.'));
   };
