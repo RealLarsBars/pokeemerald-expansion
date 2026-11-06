@@ -38,7 +38,7 @@ async function openPictureImport(kind, target, name, onDone) {
   let info;
   try { info = await api(`/api/picture/info?kind=${kind}&target=${encodeURIComponent(target)}`); } catch (e) { toast(e.message, true); return; }
   if (kind === 'trainer' && info.shared) {
-    openModal('Use my own picture', el('div', {}, el('p', {}, "This is the player's picture. Its colours are shared with the back picture used in battle, so it cannot be replaced here."),
+    openModal('Use my own picture', el('div', {}, el('p', {}, 'This picture shares its colours with a back picture used in battle (the player, or someone who teams up with you, like Steven), so it cannot be replaced here.'),
       el('p', { class: 'note' }, 'Pick a different battle picture for this trainer first, then use your own picture on that one.')));
     return;
   }

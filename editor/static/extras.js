@@ -236,7 +236,7 @@ const HELP = {
     'Pick a map on the left to see it drawn.',
     'Click an empty spot to place an item ball or a hidden item. Drag items and people to move them.',
     'Click a person to see what they say and their script, and edit both.',
-    'Click a door (the blue squares) to choose where it leads, or press "Go there" to jump to that map. Click a sign to change what it says.',
+    'Click a door, ladder or stairs (the blue squares) to see where it leads, with a button to go there (or double-click it). Click a sign to change what it says.',
     'Below the map: wild Pokémon, shop items and prices, gift Pokémon, and "+ New trainer".',
   ]],
   pokemon: ['Pokémon data', [
