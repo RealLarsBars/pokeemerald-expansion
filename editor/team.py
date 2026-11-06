@@ -31,7 +31,7 @@ REMOTE = 'team'
 BRANCH = 'main'
 MARKER = 'Emerald Editor team game'
 TOKEN_FILE = os.path.expanduser('~/.config/emerald-editor/github.json')
-TOKEN_URL = ('https://github.com/settings/tokens/new?scopes=repo'
+TOKEN_URL = ('https://github.com/settings/tokens/new?scopes=repo,workflow'
              '&description=Emerald%20Editor')
 
 
@@ -153,9 +153,28 @@ def sign_in(tok):
     code, user = gh('GET', '/user', tok=tok)
     if code != 200 or not user:
         raise TeamError('GitHub did not accept that token. Make a new one and paste it right away.')
+    scopes = _token_scopes(tok)
+    if scopes is not None and not {'repo', 'workflow'} <= scopes:
+        raise TeamError('That code is missing a permission the team game needs. Open the GitHub sign-in page again '
+                        'with the button above (it ticks "repo" and "workflow" for you), click "Generate token" and paste the new code.')
     _save({'token': tok, 'login': user['login'], 'name': user.get('name') or user['login'], 'id': user['id']})
     _set_identity()
     return {'login': user['login']}
+
+
+def _token_scopes(tok):
+    """The permissions a classic GitHub token has, or None when GitHub does not list them."""
+    req = urllib.request.Request(API + '/user')
+    req.add_header('Authorization', 'token ' + tok)
+    req.add_header('User-Agent', 'Emerald-Editor')
+    try:
+        with urllib.request.urlopen(req, timeout=30) as res:
+            raw = res.headers.get('X-OAuth-Scopes')
+    except (urllib.error.URLError, OSError):
+        return None
+    if raw is None:
+        return None
+    return {x.strip() for x in raw.split(',') if x.strip()}
 
 
 def sign_out():
@@ -199,7 +218,7 @@ CODE_PREFIX = 'EMERALD-'
 def code_token_url(repo):
     owner, name = (repo.split('/', 1) + [''])[:2]
     return ('https://github.com/settings/personal-access-tokens/new?name=%s&description=%s'
-            '&target_name=%s&expires_in=none&contents=write' % (
+            '&target_name=%s&expires_in=none&contents=write&workflows=write' % (
                 urllib.request.quote('Emerald team code ' + name),
                 urllib.request.quote('Lets friends with the team code share changes to ' + repo),
                 urllib.request.quote(owner)))
@@ -438,9 +457,26 @@ def _access_hint():
     return 'GitHub did not accept your sign-in. It may have expired: click Team and sign in again.'
 
 
+def _someone_else_shared(msg):
+    """True only when GitHub turned the upload down because it has newer changes (not for a refusal)."""
+    if 'remote rejected' in msg:
+        return False
+    return 'fetch first' in msg or 'non-fast-forward' in msg or '[rejected]' in msg
+
+
 def _friendly_git_error(msg):
     low = msg.lower()
     code_user = _load().get('viaCode')
+    if 'remote rejected' in low and 'workflow' in low:
+        if code_user:
+            return ('GitHub turned the upload down because the team code is missing the "Workflows" permission. '
+                    'Ask the owner to make a new team code in Team (the link now asks for it) and send it to you.')
+        return ('GitHub turned the upload down because your sign-in is missing the "workflow" permission '
+                '(the game includes GitHub build settings). Click Team, then Sign out at the bottom, and sign in again: '
+                'the GitHub page now ticks "workflow" for you. Your upload carries on where it stopped.')
+    if 'remote rejected' in low:
+        m = re.search(r'\[remote rejected\][^\n(]*\(([^)\n]+)\)', msg)
+        return 'GitHub turned the upload down: ' + (m.group(1) if m else msg[-300:])
     if 'authentication failed' in low or 'could not read username' in low or '403' in low:
         return _access_hint() if code_user else 'GitHub did not let you in. Sign in again, and check you accepted the invite.'
     if 'not found' in low:
@@ -601,7 +637,7 @@ def push(job):
             job.write('Uploading part %d of %d...' % (i + 1, len(stops)))
         code, msg = run_git(job, *_PUSH_OPTS, 'push', '--progress', REMOTE, '%s:refs/heads/%s' % (stop, BRANCH))
         if code != 0:
-            if 'rejected' in msg or 'fetch first' in msg or 'non-fast-forward' in msg:
+            if _someone_else_shared(msg):
                 return False, 'retry'
             done = (' %d of %d parts arrived and are kept; click Share my changes to send the rest.' % (i, len(stops))) if i else ''
             err = 'The upload did not work: ' + _friendly_git_error(msg) + done
