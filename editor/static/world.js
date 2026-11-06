@@ -113,16 +113,20 @@ function renderMapCanvas() {
   };
   for (const w of d.warps) {
     const n = el('div', { class: 'mk warp' + (W.tab === 'doors' && W.door === w.index ? ' sel' : ''),
-      title: (w.toName ? `Door to ${w.toName}` : 'Door') + ' – click to change where it leads' });
+      title: (w.toName ? `Door to ${w.toName}` : 'Door') + ' – click to see where it leads and go there, double-click to go straight there' });
     n.style.width = n.style.height = cell + 'px';
-    n.addEventListener('click', e => { if (W.mode !== 'select') return; e.stopPropagation(); openDoor(w.index); });
+    // Any mode: a click shows the door on the right (with "Go to"), a double-click goes straight there.
+    n.addEventListener('mousedown', e => e.stopPropagation());
+    n.addEventListener('click', e => { e.stopPropagation(); openDoor(w.index); });
+    n.addEventListener('dblclick', e => { e.stopPropagation(); if (w.toFolder) goThroughDoor(w); });
     place(n, w.x, w.y);
     wrap.append(n);
   }
   for (const sg of d.signs || []) {
     const n = el('div', { class: 'mk signmk' + (W.tab === 'doors' && W.sign === sg.index ? ' sel' : ''), title: 'Sign – click to change what it says' }, '✎');
     n.style.width = n.style.height = cell + 'px';
-    n.addEventListener('click', e => { if (W.mode !== 'select') return; e.stopPropagation(); openSign(sg.index); });
+    n.addEventListener('mousedown', e => e.stopPropagation());
+    n.addEventListener('click', e => { e.stopPropagation(); openSign(sg.index); });
     place(n, sg.x, sg.y);
     wrap.append(n);
   }
@@ -234,7 +238,7 @@ function renderMapEditor() {
     el('button', { class: 'btn small ghost', title: 'Zoom out', onclick: () => { W.zoom = Math.max(1, W.zoom - 1); renderMapEditor(); } }, '−'),
     el('span', { class: 'note', style: 'margin:0' }, `${W.zoom}×`),
     el('button', { class: 'btn small ghost', title: 'Zoom in', onclick: () => { W.zoom = Math.min(4, W.zoom + 1); renderMapEditor(); } }, '+'));
-  const hint = { select: 'Drag items and people to move them. Click someone to see their script and what they say. Click a door (blue square) or a sign (✎) to change it.', ball: 'Click a spot on the map to place an item ball there.',
+  const hint = { select: 'Drag items and people to move them. Click someone to see their script and what they say. Click a door, ladder or stairs (blue square) to go to that map or change where it leads, or a sign (✎) to change what it says.', ball: 'Click a spot on the map to place an item ball there.',
     hidden: 'Click a spot to hide an item there.', trainer: 'Click where the new trainer should stand.' }[W.mode];
   const left = el('div', { class: 'mapleft' }, tools,
     el('div', { class: 'note maphint' }, hint, ' ', el('span', { id: 'mapCoords' })),
@@ -756,6 +760,18 @@ async function openSign(idx) {
   renderMapEditor();
 }
 
+// Opens the map a door, ladder or stairs leads to, with the door you come out of picked.
+async function goThroughDoor(w) {
+  if (!w.toFolder) return;
+  const from = W.map.map;
+  await openMap(w.toFolder, false);
+  if (W.map?.map !== w.toFolder) return;   // stayed (unsaved changes kept)
+  const back = W.map.warps.find(x => x.index === w.toWarp) || W.map.warps.find(x => x.toFolder === from);
+  if (back) await openDoor(back.index);
+  const mk = document.querySelector('.mk.warp.sel');
+  if (mk) mk.scrollIntoView({ block: 'center', inline: 'center' });
+}
+
 function renderDoorCard() {
   const w = W.map.warps.find(x => x.index === W.door);
   if (!w) return null;
@@ -769,8 +785,8 @@ function renderDoorCard() {
   return el('div', { class: 'card personcard', style: 'padding:12px' },
     el('div', { class: 'rowline', style: 'margin-bottom:8px' },
       el('div', { class: 'grow' }, el('h3', { style: 'margin:0' }, `Door ${w.index + 1}`), el('div', { class: 'note', style: 'margin:0' }, `x ${w.x}, y ${w.y} · leads to ${w.toName || 'nowhere yet'}`)),
-      w.toFolder ? el('button', { class: 'btn small', title: 'Open the map this door leads to', onclick: () => openMap(w.toFolder, false) }, 'Go there →') : null,
       el('button', { class: 'iconbtn', title: 'Close', onclick: () => { W.door = null; W.dirty.delete('door'); renderMapEditor(); } }, '✕')),
+    w.toFolder ? el('button', { class: 'btn primary', style: 'width:100%;margin:4px 0 10px', title: 'Open the map this leads to (or double-click the door on the map)', onclick: () => goThroughDoor(w) }, `Go to ${w.toName} →`) : null,
     w.to === 'MAP_DYNAMIC' ? el('p', { class: 'note' }, 'This door takes the player back to wherever they came in from (like the exit of a Pokémon Center). You can point it at a fixed place instead.') : null,
     el('label', { class: 'field' }, el('span', {}, 'Leads to the map'), mapSel),
     el('label', { class: 'field' }, el('span', {}, 'Comes out at'), ed.dest ? (ed.warps ? warpSel : el('span', { class: 'note' }, 'Loading its doors…')) : el('span', { class: 'note' }, 'Pick a map first.')),
@@ -818,11 +834,12 @@ function renderDoorsPanel() {
   const out = el('div', {});
   const card = W.door !== null && W.door !== undefined ? renderDoorCard() : W.sign !== null && W.sign !== undefined ? renderSignCard() : null;
   if (card) out.append(card);
-  else out.append(el('p', { class: 'note' }, 'Click a door (blue square) or a sign (✎) on the map, or pick one below.'));
+  else out.append(el('p', { class: 'note' }, 'Click a door, ladder or stairs (blue square) or a sign (✎) on the map, or pick one below. Double-click a door to go straight through it.'));
   const doors = W.map.warps.map(w => el('div', { class: 'rowline mapitem' + (W.door === w.index ? ' sel' : ''), style: 'cursor:pointer', onclick: () => openDoor(w.index) },
     el('span', { class: 'kindtag ball' }, 'Door ' + (w.index + 1)),
     el('div', { class: 'grow' }, 'to ' + (w.toName || '?')),
-    el('span', { class: 'note', style: 'margin:0' }, `x ${w.x}, y ${w.y}`)));
+    el('span', { class: 'note', style: 'margin:0' }, `x ${w.x}, y ${w.y}`),
+    w.toFolder ? el('button', { class: 'btn small', title: 'Go to ' + w.toName, onclick: e => { e.stopPropagation(); goThroughDoor(w); } }, 'Go →') : null));
   out.append(el('h3', { class: 'sectionhead' }, 'Doors and exits'), doors.length ? el('div', { class: 'rows' }, doors) : el('p', { class: 'note' }, 'No doors on this map.'));
   const signs = (W.map.signs || []).map(sg => el('div', { class: 'rowline mapitem' + (W.sign === sg.index ? ' sel' : ''), style: 'cursor:pointer', onclick: () => openSign(sg.index) },
     el('span', { class: 'kindtag hid' }, 'Sign'), el('div', { class: 'grow' }, camelWords(sg.script.replace(/^.*_EventScript_/, ''))),

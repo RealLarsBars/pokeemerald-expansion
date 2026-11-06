@@ -236,10 +236,18 @@ def with_alpha(png):
 
 def _trainer_target(pic_const):
     gfx = read_text(TRAINERS_GFX)
-    m = re.search(r'\[' + re.escape(pic_const) + r'\]\s*=\s*\{\s*\.frontPic\s*=\s*TRAINER_FRONT_PIC\((\w+),\s*(\w+)\)', gfx)
-    if not m:
-        raise PictureError('Could not find that battle picture.')
-    pic_sym, pal_sym = m.group(1), m.group(2)
+    # Some pictures pass extra numbers (like Steven's: ..., 0, 7, 0x188), so only the first two matter.
+    entries = {c: (a, b) for c, a, b in re.findall(
+        r'\[(TRAINER_PIC_\w+)\]\s*=\s*\{\s*\.frontPic\s*=\s*TRAINER_FRONT_PIC\(\s*(\w+)\s*,\s*(\w+)', gfx)}
+    found = entries.get(pic_const)
+    if not found:
+        # Names written a little differently (COOL_TRAINER vs COOLTRAINER...) still count.
+        squash = re.sub(r'[^A-Z0-9]', '', pic_const.upper())
+        found = next((v for c, v in entries.items() if re.sub(r'[^A-Z0-9]', '', c) == squash), None)
+    if not found:
+        raise PictureError('Could not find the battle picture %s. Pick a picture from the gallery first '
+                           '(click the picture), then try again.' % pic_const.replace('TRAINER_PIC_', '').replace('_', ' ').title())
+    pic_sym, pal_sym = found
     png = re.search(re.escape(pic_sym) + r'\[\]\s*=\s*INCGFX_U32\("([^"]+)"', gfx)
     pal = re.search(re.escape(pal_sym) + r'\[\]\s*=\s*INCGFX_U16\("([^"]+)"', gfx)
     if not png or not pal:
@@ -319,8 +327,8 @@ def convert(body, save=False):
     if kind == 'trainer':
         png, pal, shared = _trainer_target(target)
         if shared and save:
-            raise PictureError("This is the player's picture. Its colours are shared with the back picture used in battle, "
-                               'so it cannot be replaced here. Pick another battle picture.')
+            raise PictureError('This picture shares its colours with a back picture used in battle (the player, or '
+                           'someone who teams up with you), so it cannot be replaced here. Pick another battle picture.')
         # Most battle pictures take their colours from the PNG itself; a few have a .pal file.
         pal_full = os.path.join(ROOT, pal)
         bg = (_png_palette(pal_full) or [(152, 208, 160)])[0] if pal.endswith('.png') else read_pal(pal_full)[0]
