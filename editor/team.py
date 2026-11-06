@@ -88,12 +88,27 @@ def run_git(job, *args):
 
 # ---- sign-in -------------------------------------------------------------------
 
-def _load():
+def _project_file():
+    """Sign-in kept with this game folder only (a team code joins one project)."""
+    return os.path.join(ROOT, '.git', 'emerald-team.json')
+
+
+def _read(path):
     try:
-        with open(TOKEN_FILE, encoding='utf-8') as f:
+        with open(path, encoding='utf-8') as f:
             return json.load(f)
     except (OSError, ValueError):
         return {}
+
+
+def _load():
+    """Your GitHub sign-in (shared by all your projects), overridden by this project's own."""
+    data = _read(TOKEN_FILE)
+    local = _read(_project_file())
+    if local.get('token'):
+        data = {}
+    data.update(local)
+    return data
 
 
 def token():
@@ -140,8 +155,9 @@ def sign_in(tok):
 
 
 def sign_out():
+    path = _project_file() if _read(_project_file()).get('token') else TOKEN_FILE
     try:
-        os.remove(TOKEN_FILE)
+        os.remove(path)
     except OSError:
         pass
 
@@ -157,12 +173,13 @@ def _set_identity():
         git('config', 'user.email', '%s+%s@users.noreply.github.com' % (me['id'], me['login']))
 
 
-def _save(data):
-    os.makedirs(os.path.dirname(TOKEN_FILE), exist_ok=True)
-    fd = os.open(TOKEN_FILE + '.tmp', os.O_WRONLY | os.O_CREAT | os.O_TRUNC, 0o600)
+def _save(data, project=False):
+    path = _project_file() if project else TOKEN_FILE
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    fd = os.open(path + '.tmp', os.O_WRONLY | os.O_CREAT | os.O_TRUNC, 0o600)
     with os.fdopen(fd, 'w', encoding='utf-8') as f:
         json.dump(data, f)
-    os.replace(TOKEN_FILE + '.tmp', TOKEN_FILE)
+    os.replace(path + '.tmp', path)
 
 
 # ---- team codes: friends join with one shared code, no GitHub account ----------
@@ -206,15 +223,22 @@ def make_code(tok):
     if r.returncode != 0 and ('403' in r.stderr or 'denied' in r.stderr.lower() or 'not found' in r.stderr.lower()):
         raise TeamError('That code can read the game but not change it. On the GitHub page set Contents to "Read and write".')
     team_code = CODE_PREFIX + base64.urlsafe_b64encode(json.dumps({'r': repo, 't': tok}).encode()).decode().rstrip('=')
-    me = _load()
-    me['teamCode'] = team_code
-    _save(me)
+    local = _read(_project_file())
+    local['teamCode'] = team_code
+    _save(local, project=True)
     return {'code': team_code}
 
 
 def team_code():
+    """The team code for this project's team game (only shown to its owner)."""
     me = _load()
-    return me.get('teamCode', '') if me.get('teamCode') and team_repo() and not me.get('viaCode') else ''
+    c = me.get('teamCode', '')
+    if not c or me.get('viaCode') or not team_repo():
+        return ''
+    try:
+        return c if read_code(c)[0] == team_repo() else ''
+    except TeamError:
+        return ''
 
 
 def read_code(text):
@@ -241,7 +265,7 @@ def join_with_code(job, text, name, save_my_changes):
     code, _ = gh('GET', '/repos/' + repo, tok=tok)
     if code != 200:
         return False, 'That team code no longer works. Ask the owner for the new one.'
-    _save({'token': tok, 'login': name, 'name': name, 'id': 0, 'viaCode': True})
+    _save({'token': tok, 'login': name, 'name': name, 'id': 0, 'viaCode': True}, project=True)
     return join(job, repo, None, save_my_changes)
 
 

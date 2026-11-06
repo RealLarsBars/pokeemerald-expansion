@@ -26,6 +26,7 @@ import gamedata  # noqa: E402
 import gifts  # noqa: E402
 import maps  # noqa: E402
 import mapview  # noqa: E402
+import projects  # noqa: E402
 import movesets  # noqa: E402
 import newtrainer  # noqa: E402
 import shops  # noqa: E402
@@ -54,6 +55,7 @@ class State:
         self._gamedata = None
         self.map_list = None   # the Maps tab's list; cleared whenever something is saved
         self.restart_requested = False
+        self.restart_target = None   # another project's folder to switch to
 
     def gamedata(self):
         if self._gamedata is None:
@@ -335,6 +337,8 @@ class Handler(BaseHTTPRequestHandler):
             return self._send(200, S.job.snapshot(int(q.get('since', 0))))
         if path == '/api/updates':
             return self._send(200, tasks.check_updates())
+        if path == '/api/projects':
+            return self._send(200, projects.listing())
         if path == '/api/team':
             return self._send(200, team.status(fetch=q.get('fetch') == '1'))
         if path == '/api/team/details':
@@ -436,6 +440,8 @@ class Handler(BaseHTTPRequestHandler):
             return self._send(200, {'ok': True})
         if path.startswith('/api/fun/'):
             return self._fun(path, body)
+        if path.startswith('/api/projects/'):
+            return self._send(200, _projects_post(path, body))
         if path.startswith('/api/team/'):
             return self._send(200, _team_post(path, body))
         if path == '/api/play':
@@ -484,6 +490,29 @@ def _team_job(title, fn):
             msg = (msg + ' ' if msg else '') + 'They include a newer editor, so it will restart in a moment.'
         return ok, msg
     return {'started': S.job.start(title, wrapped)}
+
+
+def _projects_post(path, body):
+    S = STATE
+    if path == '/api/projects/create':
+        return {'started': S.job.start('New project', lambda job: projects.create(
+            job, body.get('name', ''), body.get('kind', 'fresh'), tasks.save_my_changes))}
+    try:
+        if path == '/api/projects/rename':
+            projects.rename(body['path'], body.get('name', ''))
+            return {'ok': True}
+        if path == '/api/projects/forget':
+            projects.forget(body['path'])
+            return {'ok': True}
+        if path == '/api/projects/open':
+            if S.job.snapshot()['state'] == 'running':
+                raise ApiError('Wait for the editor to finish what it is doing first.')
+            S.restart_target = projects.target(body['path'])
+            S.restart_requested = True
+            return {'ok': True}
+    except (KeyError, ValueError) as e:
+        raise ApiError(str(e).strip("'"))
+    raise ApiError('Not found', 404)
 
 
 def _team_post(path, body):
@@ -577,12 +606,23 @@ def _fun_post(handler, path, body):
         return {'ok': True}
 
 
+def _switch_to(folder):
+    """Runs the editor from another project's folder (its own editor code and game)."""
+    script = os.path.join(folder, 'editor', 'server.py')
+    os.chdir(folder)
+    os.execv(sys.executable, [sys.executable, script] + sys.argv[1:])
+
+
 def main():
     global STATE
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument('--port', type=int, default=8765)
     ap.add_argument('--mgba', default=os.environ.get('EMERALD_MGBA', ''), help='Windows path to mGBA.exe')
     args = ap.parse_args()
+    # Open the project used last time (Setup always starts the editor in its own folder).
+    other = projects.startup_target()
+    if other:
+        _switch_to(other)
     STATE = State(args.mgba)
     server = ThreadingHTTPServer(('127.0.0.1', args.port), Handler)
     server.daemon_threads = True
@@ -595,6 +635,9 @@ def main():
                 time.sleep(1.5)  # let the page read the final job state
                 server.shutdown()
                 server.server_close()
+                if STATE.restart_target and STATE.restart_target != ROOT:
+                    print('Opening project %s...' % STATE.restart_target, flush=True)
+                    _switch_to(STATE.restart_target)
                 print('Restarting after update...', flush=True)
                 os.execv(sys.executable, [sys.executable] + sys.argv)
     except KeyboardInterrupt:
