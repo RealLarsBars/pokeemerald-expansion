@@ -36,7 +36,10 @@ Pokémon, move, item and ability exists, so a typo cannot break the build.
 **Play** runs `make` and opens the ROM in mGBA (the path comes from the
 `EMERALD_MGBA` environment variable or `--mgba`). **Update** commits your
 edits, then merges the newest version of the editor from GitHub. If both changed
-the same lines, it asks which version to keep (see below).
+the same lines, it asks which version to keep (see below). The editor also does
+this by itself each time it opens (turn it off in the Update window). That
+automatic update skips quietly when offline, when a job is running, or when an
+update touches lines you edited, and the Update button shows a badge instead.
 
 **Team** lets friends work on one game. Each person keeps their own game folder
 and builds it themselves; the team's game lives in a private GitHub repository

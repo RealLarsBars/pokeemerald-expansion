@@ -1859,14 +1859,32 @@ async function saveAsGba() {
     }
   }, true);
 }
+// Auto update: on by default, turned off with the box in the Update window.
+function autoUpdateOn() {
+  try { return localStorage.getItem('emerald.autoUpdate') !== 'off'; } catch (e) { return true; }
+}
+function autoUpdateBox() {
+  const box = el('input', { type: 'checkbox' });
+  box.checked = autoUpdateOn();
+  box.addEventListener('change', () => {
+    try { localStorage.setItem('emerald.autoUpdate', box.checked ? 'on' : 'off'); } catch (e) { /* ignore */ }
+    toast(box.checked ? 'The editor will update itself when you open it.' : 'Auto update is off. Use the Update button.');
+  });
+  return el('label', { class: 'row', style: 'gap:8px;margin-top:12px' }, box, 'Update automatically when the editor opens');
+}
 $('#updateBtn').addEventListener('click', async () => {
   const info = await api('/api/updates').catch(e => ({ ok: false, message: e.message }));
   if (!info.ok) { toast(info.message, true); return; }
-  if (!info.count) { toast('You already have the latest version.'); $('#updateBadge').classList.add('hidden'); return; }
+  if (!info.count) {
+    $('#updateBadge').classList.add('hidden');
+    openModal('Update the editor', el('div', {}, el('p', {}, 'You already have the latest version.'), autoUpdateBox()));
+    return;
+  }
   const body = el('div', {},
     el('p', {}, `${info.count} update(s) are ready:`),
     el('ul', {}, info.changes.map(c => el('li', {}, c))),
     el('p', { class: 'note' }, 'Your own changes are saved first and kept. If an update touches the same lines you changed, nothing is changed and I will tell you.'),
+    autoUpdateBox(),
     el('div', { class: 'row', style: 'justify-content:flex-end' },
       el('button', { class: 'btn primary', onclick: () => { closeModal(); startJob('/api/update', 'Update', async () => { const st = await teamRefresh().catch(() => null); if (st && st.merging) openConflicts(); }); } }, 'Update now')));
   openModal('Update the editor', body);
@@ -1890,15 +1908,39 @@ $('#jobLogToggle').addEventListener('click', () => {
   $('#jobLogToggle').textContent = log.classList.contains('hidden') ? 'Show details' : 'Hide details';
 });
 
+function showUpdateBadge(count) {
+  const b = $('#updateBadge');
+  b.textContent = count || '!';
+  b.classList.remove('hidden');
+}
+
 async function checkUpdatesQuietly() {
   try {
     const info = await api('/api/updates');
-    if (info.ok && info.count) {
-      const b = $('#updateBadge');
-      b.textContent = info.count;
-      b.classList.remove('hidden');
-    }
+    if (info.ok && info.count) showUpdateBadge(info.count);
   } catch (e) { /* offline is fine */ }
+}
+
+// When the editor opens, bring in new features by itself. Offline, busy, or an
+// update that touches lines you changed: it quietly leaves things as they are
+// and the Update button shows a badge instead.
+async function autoUpdateOnOpen() {
+  if (!autoUpdateOn()) return checkUpdatesQuietly();
+  let info;
+  try { info = await api('/api/updates'); } catch (e) { return; }
+  if (!info.ok || !info.count) return;
+  try {
+    const j = await api('/api/job?since=0');
+    if (j.state === 'running' || anyDirty()) { showUpdateBadge(info.count); return; }
+    const res = await api('/api/update', { auto: true });
+    if (!res.started) { showUpdateBadge(info.count); return; }
+  } catch (e) { showUpdateBadge(info.count); return; }
+  jobDone = (j) => {
+    if (/^Skipped/.test(j.message) || j.state !== 'done') showUpdateBadge(info.count);
+  };
+  setJobButtons(true);
+  showJob('Updating the editor');
+  pollJob();
 }
 
 // ---------------------------------------------------------------------------
@@ -1913,8 +1955,8 @@ async function checkUpdatesQuietly() {
     try { view = localStorage.getItem('emerald.view') || 'trainers'; trainer = localStorage.getItem('emerald.trainer'); } catch (e) { /* ignore */ }
     showView(views[view] ? view : 'trainers');
     if (trainer && T.list.some(t => t.id === trainer)) openTrainer(trainer);
-    setTimeout(checkUpdatesQuietly, 2000);
-    resumeJob();
+    await resumeJob();
+    setTimeout(autoUpdateOnOpen, 1500);
   } catch (e) {
     const msg = 'The editor could not load: ' + e.message + ' (send this to Claude in your project)';
     $('#trainerList').replaceChildren(el('div', { class: 'warnbox' }, msg));

@@ -55,6 +55,7 @@ You now have three desktop shortcuts:
   folder and survives rebuilds.
 - **Update** in the editor saves your own changes first, then brings in new
   editor features from GitHub. If an update touches the same lines you edited,
-  it stops and changes nothing.
+  it stops and changes nothing. The editor updates itself this way every time
+  you open it (untick the box in the Update window to stop that).
 - Settings are stored in `%LOCALAPPDATA%\EmeraldTools\config.json`. Running
   `Setup.bat` again is safe: it skips anything that is already done.
