@@ -451,8 +451,10 @@ class Handler(BaseHTTPRequestHandler):
         if path == '/api/job/stop':
             return self._send(200, {'stopped': S.job.stop()})
         if path == '/api/update':
+            auto = bool(body.get('auto')) if isinstance(body, dict) else False
+
             def do_update(job):
-                ok, msg = tasks.apply_update(job)
+                ok, msg = tasks.apply_update(job, auto=auto)
                 _fun_changed()
                 if ok and msg.startswith('Updated'):
                     S.restart_requested = True

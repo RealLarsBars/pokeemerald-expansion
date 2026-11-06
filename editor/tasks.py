@@ -100,8 +100,13 @@ def run(job, args, cwd=ROOT):
             job.proc = None
 
 
-def capture(args):
-    r = subprocess.run(args, cwd=ROOT, capture_output=True, text=True, errors='replace')
+def capture(args, timeout=None):
+    env = dict(os.environ, GIT_TERMINAL_PROMPT='0')   # never sit waiting for a password
+    try:
+        r = subprocess.run(args, cwd=ROOT, capture_output=True, text=True, errors='replace',
+                           timeout=timeout, env=env)
+    except subprocess.TimeoutExpired:
+        return 124, 'Timed out (no internet?)'
     return r.returncode, (r.stdout + r.stderr).strip()
 
 
@@ -170,7 +175,7 @@ def _upstream():
 def check_updates():
     upstream = _upstream()
     branch = upstream.split('/', 1)[1]
-    code, out = capture(['git', 'fetch', '--quiet', 'origin', branch])
+    code, out = capture(['git', 'fetch', '--quiet', 'origin', branch], timeout=60)
     if code != 0:
         return {'ok': False, 'message': 'Could not reach GitHub: ' + out[-300:]}
     code, out = capture(['git', 'rev-list', '--count', 'HEAD..' + upstream])
@@ -194,18 +199,29 @@ def save_my_changes(job=None, message='My changes (saved by Emerald Editor)'):
     return True
 
 
-def apply_update(job):
+def apply_update(job, auto=False):
+    """Brings in new editor features. With auto (when the editor opens), it never
+    asks anything: if an update touches the same lines you changed, it puts
+    everything back the way it was and leaves it for the Update button."""
     info = check_updates()
     if not info['ok']:
         return False, info['message']
     if info['count'] == 0:
         return True, 'You already have the latest version.'
     import team
+    if auto and team.merging():
+        return True, 'Skipped: finish picking versions first.'
     job.write('Bringing in %d update(s)...' % info['count'])
     ok, msg = team.merge_in(job, _upstream(), 'update', save_my_changes, quiet=True)
     if not ok:
         return ok, msg
     if msg == 'conflict':
+        if auto:
+            team.git('merge', '--abort')
+            team.git('config', '--unset', 'emerald.mergeWhy')
+            team.git('config', '--unset', 'emerald.mergeBefore')
+            job.write('An update touches lines you changed, so I left everything as it was.')
+            return True, 'Skipped: an update changes lines you edited. Click Update to pick which to keep.'
         return False, ('An update changes the same lines you edited. Pick which version to keep '
                        'in the window that just opened.')
     return True, 'Updated! The editor will restart in a moment.'
