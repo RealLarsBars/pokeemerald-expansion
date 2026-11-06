@@ -65,10 +65,20 @@ function teamSignInBody(st) {
     } catch (e) { toast(e.message, true); }
   };
   box.addEventListener('keydown', e => { if (e.key === 'Enter') signIn(); });
+  const myName = el('input', { class: 'search', type: 'text', placeholder: 'Your name (friends see it next to your changes)' });
+  const code = el('input', { class: 'search', type: 'text', placeholder: 'Team code (starts with EMERALD-)' });
+  const joinCode = () => teamJob('/api/team/joincode', { code: code.value, name: myName.value }, 'Join a team game');
+  code.addEventListener('keydown', e => { if (e.key === 'Enter') joinCode(); });
   return el('div', { class: 'team' },
     el('p', {}, 'Everyone on the team keeps their own copy of the game and plays it on their own PC. ' +
       'Your copies stay in sync through a private space on GitHub that only your team can see.'),
-    el('p', {}, 'Sign in once and the editor remembers you:'),
+    el('div', { class: 'card' },
+      el('h3', {}, 'Join a friend\'s game with their team code'),
+      el('p', { class: 'note' }, 'No GitHub account needed. Your own unsaved edits are kept and combined with the team\'s game.'),
+      el('div', { class: 'searchrow' }, myName),
+      el('div', { class: 'searchrow' }, code, el('button', { class: 'btn primary', onclick: joinCode }, 'Join'))),
+    el('h3', { class: 'teamsub' }, 'Start your own team game'),
+    el('p', {}, 'The person who starts the game signs in to GitHub once (the editor remembers you):'),
     el('ol', { class: 'teamsteps' },
       el('li', {}, 'No GitHub account yet? ', el('a', { href: 'https://github.com/signup', target: '_blank' }, 'Make one here'), ' (it is free).'),
       el('li', {}, el('a', { class: 'btn primary small', href: st.tokenUrl, target: '_blank' }, 'Open the GitHub sign-in page'),
@@ -132,11 +142,11 @@ function teamMainBody(st) {
     catch (e) { toast(e.message, true); }
   };
   invite.addEventListener('keydown', e => { if (e.key === 'Enter') doInvite(); });
-  loadPeople();
+  if (!st.viaCode) loadPeople();
   const mine = st.outgoing || st.unsaved;
   return el('div', { class: 'team' },
     st.fetchError ? el('div', { class: 'warnbox' }, st.fetchError) : null,
-    el('p', {}, 'Team game ', el('b', {}, st.repo), '. Signed in as ', el('b', {}, st.login), '.'),
+    el('p', {}, 'Team game ', el('b', {}, st.repo), st.viaCode ? '. You are ' : '. Signed in as ', el('b', {}, st.login), '.'),
     el('label', { class: 'autosync' },
       el('input', { type: 'checkbox', checked: st.auto, onchange: async (e) => {
         try { await api('/api/team/auto', { on: e.target.checked }); await teamRefresh(); toast(e.target.checked ? 'Auto-sync is on.' : 'Auto-sync is off. Use the buttons below.'); }
@@ -163,16 +173,56 @@ function teamMainBody(st) {
           : el('div', { class: 'note' }, 'Nothing shared yet.')),
       el('div', { class: 'card grow' },
         el('h3', {}, 'Team'),
-        people,
-        el('div', { class: 'searchrow', id: 'teamInviteRow' }, invite, el('button', { class: 'btn', onclick: doInvite }, 'Invite')),
-        el('p', { class: 'note' }, 'Friends need a free GitHub account and the same Emerald setup. After you invite them, they open the editor, click Team, sign in and click Join.'))),
+        st.people.length ? el('div', { class: 'note' }, 'Shared changes so far: ' + st.people.join(', ')) : null,
+        st.viaCode ? null : teamCodeBox(st),
+        st.viaCode ? null : el('details', { class: 'teammore' },
+          el('summary', {}, 'Or invite by GitHub username'),
+          people,
+          el('div', { class: 'searchrow', id: 'teamInviteRow' }, invite, el('button', { class: 'btn', onclick: doInvite }, 'Invite')),
+          el('p', { class: 'note' }, 'Invited friends sign in with their own GitHub account and click Join.')))),
     el('p', { class: 'note' },
-      el('a', { href: '#', onclick: async (e) => { e.preventDefault(); await api('/api/team/signout', {}); openTeam(); } }, 'Sign out'), ' · ',
+      st.viaCode ? null : el('a', { href: '#', onclick: async (e) => { e.preventDefault(); await api('/api/team/signout', {}); openTeam(); } }, 'Sign out'), st.viaCode ? null : ' · ',
       el('a', { href: '#', onclick: async (e) => {
         e.preventDefault();
         if (!confirm('Stop syncing this folder with the team? Your game stays as it is, and you can join again later.')) return;
-        await api('/api/team/leave', {}); openTeam();
+        await api('/api/team/leave', {});
+        if (st.viaCode) await api('/api/team/signout', {});
+        openTeam();
       } }, 'Leave this team game')));
+}
+
+function teamCodeBox(st) {
+  const box = el('div', {});
+  const showCode = (c) => {
+    const out = el('input', { class: 'search mono', type: 'text', readonly: true, value: c, onclick: (e) => e.target.select() });
+    box.replaceChildren(
+      el('p', {}, el('b', {}, 'Team code'), ': send this to friends. They paste it in Team with their name, and that is all.'),
+      el('div', { class: 'searchrow' }, out, el('button', { class: 'btn primary', onclick: async () => {
+        try { await navigator.clipboard.writeText(c); toast('Copied the team code.'); } catch (e) { out.select(); document.execCommand('copy'); toast('Copied the team code.'); }
+      } }, 'Copy')),
+      el('p', { class: 'note' }, 'Anyone with this code can change the game, so only give it to friends. To lock someone out, ',
+        el('a', { href: 'https://github.com/settings/personal-access-tokens', target: '_blank' }, 'delete the old code on GitHub'),
+        ' and ', el('a', { href: '#', onclick: (e) => { e.preventDefault(); makeForm(); } }, 'make a new one'), '.'));
+  };
+  const makeForm = () => {
+    const paste = el('input', { class: 'search', type: 'password', placeholder: 'Paste the code GitHub shows (starts with github_pat_)' });
+    const go = async () => {
+      try { const r = await api('/api/team/code', { token: paste.value }); toast('Team code ready.'); showCode(r.code); }
+      catch (e) { toast(e.message, true); }
+    };
+    paste.addEventListener('keydown', e => { if (e.key === 'Enter') go(); });
+    const repoName = st.repo.split('/')[1];
+    box.replaceChildren(
+      el('p', {}, el('b', {}, 'Make a team code'), ' so friends can join without a GitHub account:'),
+      el('ol', { class: 'teamsteps' },
+        el('li', {}, el('a', { class: 'btn primary small', href: st.codeTokenUrl, target: '_blank' }, 'Open the GitHub page')),
+        el('li', {}, 'Under Repository access pick "Only select repositories" and choose ', el('b', {}, repoName),
+          '. Check that Contents says "Read and write". Click "Generate token" at the bottom and copy the code.'),
+        el('li', {}, 'Paste it here:', el('div', { class: 'searchrow' }, paste, el('button', { class: 'btn primary', onclick: go }, 'Make code')))),
+      el('p', { class: 'note' }, 'This code only opens this one game, nothing else on your GitHub.'));
+  };
+  if (st.teamCode) showCode(st.teamCode); else makeForm();
+  return box;
 }
 
 async function teamRemove(login, inviteId = null) {

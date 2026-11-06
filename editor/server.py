@@ -494,6 +494,10 @@ def _team_post(path, body):
     if path == '/api/team/signout':
         team.sign_out()
         return {'ok': True}
+    if path == '/api/team/code':
+        return team.make_code(body.get('token', ''))
+    if path == '/api/team/joincode':
+        return _team_job('Join a team game', lambda job: team.join_with_code(job, body.get('code', ''), body.get('name', ''), save))
     if path == '/api/team/invite':
         return {'message': team.invite(body.get('login', ''))}
     if path == '/api/team/remove':
