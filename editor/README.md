@@ -35,8 +35,22 @@ Pokémon, move, item and ability exists, so a typo cannot break the build.
 
 **Play** runs `make` and opens the ROM in mGBA (the path comes from the
 `EMERALD_MGBA` environment variable or `--mgba`). **Update** commits your
-edits, then merges the newest version from GitHub, and aborts without changing
-anything if the two conflict.
+edits, then merges the newest version of the editor from GitHub. If both changed
+the same lines, it asks which version to keep (see below).
+
+**Team** lets friends work on one game. Each person keeps their own game folder
+and builds it themselves; the team's game lives in a private GitHub repository
+(remote `team`, branch `main`) that the owner's editor makes with **Start a team
+game**. Everyone signs in once with a GitHub personal access token (kept in
+`~/.config/emerald-editor/github.json`, never in the game folder). The owner
+invites friends by GitHub username; friends click **Join**, which accepts the
+invite and merges the team's game into their folder. **Share my changes**
+commits (with an optional note), merges what friends shared, and pushes.
+**Get friends' changes** only merges. **Keep everyone up to date automatically** (on by default, per folder, `git config emerald.autoSync`) makes the page do both about once a minute while nothing is unsaved, no job is running and no window is open, then reloads what is on screen. When the same lines changed on both sides,
+the merge stays open and the editor shows each clash side by side with Keep
+mine, Keep theirs or Keep both (whole-file choice for pictures and deleted
+files); Cancel aborts the merge. New editor features still come from the public
+repository through Update and reach friends through the team copy too.
 
 ## Code layout
 
@@ -48,6 +62,7 @@ anything if the two conflict.
 - `species.py`: reads and edits Pokémon data and level-up moves.
 - `configs.py`: reads and changes the `include/config` switches.
 - `tasks.py`: build, play and update jobs (and stopping them).
+- `team.py`: team games (GitHub sign-in, invites, share and get changes, picking versions when changes clash). Page side in `static/team.js`.
 - `mapview.py`: draws maps from their tilesets (a small PNG reader/writer, no extra packages) and saves items and positions; new items get a `FLAG_UNUSED_*` flag nothing else uses.
 - `wild.py`: wild Pokémon per map. `shops.py`: Poké Mart lists and prices. `gifts.py`: starters, gifts and one-time encounters.
 - `newtrainer.py`: adds a trainer ID (the game has room for 9 more), a team, and the person and script on a map.
