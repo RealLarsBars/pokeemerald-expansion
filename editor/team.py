@@ -42,7 +42,8 @@ class TeamError(Exception):
 # ---- git helpers ---------------------------------------------------------------
 
 def _git_env():
-    env = dict(os.environ, GIT_TERMINAL_PROMPT='0')
+    # Never pop up a GitHub sign-in window or prompt: the token (or team code) is all git gets.
+    env = dict(os.environ, GIT_TERMINAL_PROMPT='0', GIT_ASKPASS='echo', SSH_ASKPASS='echo', GCM_INTERACTIVE='never')
     tok = token()
     if tok:
         env['EMERALD_GH_TOKEN'] = tok
@@ -139,7 +140,7 @@ def gh(method, path, body=None, tok=None):
         except ValueError:
             data = None
         if e.code == 401:
-            raise TeamError('GitHub did not accept your sign-in. It may have expired: sign in again.')
+            raise TeamError(_access_hint())
         return e.code, data
     except (urllib.error.URLError, OSError) as e:
         raise TeamError('Could not reach GitHub. Check your internet connection. (%s)' % e)
@@ -429,12 +430,22 @@ def _api_error(prefix, data):
     return '%s: %s' % (prefix, msg or 'GitHub said no.')
 
 
+def _access_hint():
+    """What to do when GitHub stops letting you in (team-code friends never need to sign in)."""
+    if _load().get('viaCode'):
+        return ('The team code no longer works (the owner may have made a new one). Ask them for the new '
+                'team code, then click Team and paste it under "Got a new team code?".')
+    return 'GitHub did not accept your sign-in. It may have expired: click Team and sign in again.'
+
+
 def _friendly_git_error(msg):
     low = msg.lower()
+    code_user = _load().get('viaCode')
     if 'authentication failed' in low or 'could not read username' in low or '403' in low:
-        return 'GitHub did not let you in. Sign in again, and check you accepted the invite.'
+        return _access_hint() if code_user else 'GitHub did not let you in. Sign in again, and check you accepted the invite.'
     if 'not found' in low:
-        return 'GitHub could not find the team copy. Ask the owner to check it still exists and that you are invited.'
+        return _access_hint() if code_user else \
+            'GitHub could not find the team copy. Ask the owner to check it still exists and that you are invited.'
     if 'could not resolve host' in low or 'unable to access' in low:
         return 'Could not reach GitHub. Check your internet connection.'
     return msg[-300:]
