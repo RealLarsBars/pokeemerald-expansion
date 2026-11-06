@@ -3,7 +3,7 @@
 // Team: work on one game with friends (a private GitHub copy under the hood).
 // ---------------------------------------------------------------------------
 
-const TEAM = { status: null, syncing: false };
+const TEAM = { status: null, syncing: false, syncSince: 0 };
 
 function teamAgo(t) {
   const s = Math.max(0, Date.now() / 1000 - t);
@@ -13,12 +13,23 @@ function teamAgo(t) {
   return Math.round(s / 86400) + ' days ago';
 }
 
+// Syncing only while something is really talking to GitHub (and never for more than 3 minutes).
+function teamBusy() {
+  return TEAM.syncing && ($('#teamBtn').disabled || teamSyncing) && Date.now() - TEAM.syncSince < 3 * 60 * 1000;
+}
+
+function teamSetSyncing(on) {
+  TEAM.syncing = on;
+  if (on) TEAM.syncSince = Date.now();
+  teamBadge(TEAM.status);
+}
+
 // One plain answer to "is my team game up to date on GitHub?"
 function teamSyncState(st) {
   if (!st || !st.repo) return null;
   if (st.merging) return { cls: 'warn', icon: '!', short: 'Pick versions',
     long: 'You and a friend changed the same thing. Click Team to pick which version to keep.' };
-  if (TEAM.syncing && ($('#teamBtn').disabled || teamSyncing)) return { cls: 'busy', icon: '⟳', short: 'Syncing…',
+  if (teamBusy()) return { cls: 'busy', icon: '⟳', short: 'Syncing…',
     long: 'Talking to GitHub right now...' };
   const err = st.fetchError || st.syncError;
   if (err || !st.signedIn) return { cls: 'bad', icon: '⚠', short: 'Not synced',
@@ -41,16 +52,25 @@ function teamBadge(st) {
   tag.className = 'teamstate ' + s.cls;
   tag.textContent = s.icon + ' ' + s.short;
   $('#teamBtn').title = s.long + (st.lastSync ? ' (Last checked with GitHub ' + teamAgo(st.lastSync) + '.)' : '');
+  // Keep the Team window's status card live too, instead of frozen at the moment it opened.
+  const card = $('#teamSyncCard');
+  if (card && card.dataset.key !== teamCardKey(st, s)) card.replaceWith(teamStatusCard(st));
+}
+
+function teamCardKey(st, s) {
+  return [s.short, s.long, st.lastSync ? teamAgo(st.lastSync) : '', st.github ? st.github.time : ''].join('|');
 }
 
 // The window's top card: the same answer, with times and a link to see it on GitHub.
 function teamStatusCard(st) {
   const s = teamSyncState(st);
-  const card = el('div', { class: 'card syncstatus ' + s.cls },
+  const card = el('div', { class: 'card syncstatus ' + s.cls, id: 'teamSyncCard', 'data-key': teamCardKey(st, s) },
     el('div', { class: 'syncline' }, el('span', { class: 'teamstate ' + s.cls }, s.icon + ' ' + s.short),
       el('button', { class: 'btn small', onclick: async (e) => {
-        e.target.disabled = true; e.target.textContent = 'Checking...';
-        try { await teamRefresh(true); openTeam(); } catch (err) { toast(err.message, true); e.target.disabled = false; }
+        if (teamSyncing) return;
+        teamSyncing = true; teamSetSyncing(true);
+        try { await teamRefresh(true); } catch (err) { toast(err.message, true); }
+        finally { teamSyncing = false; teamSetSyncing(false); }
       } }, 'Check now')),
     el('p', {}, s.long),
     el('p', { class: 'note' }, 'Last checked with GitHub: ', el('b', {}, st.lastSync ? teamAgo(st.lastSync) : 'not yet'),
@@ -75,9 +95,9 @@ function teamJob(path, body, title) {
     if (!res.started) { toast('The editor is busy. Try again in a moment.', true); return; }
     setJobButtons(true);
     showJob(title);
-    TEAM.syncing = true; teamBadge(TEAM.status);
+    teamSetSyncing(true);
     jobDone = async (j) => {
-      TEAM.syncing = false;
+      teamSetSyncing(false);
       if (/restart in a moment/.test(j.message)) { waitForRestart(); return; }
       const st = await teamRefresh().catch(() => null);
       if (st && st.merging) openConflicts();
@@ -370,9 +390,9 @@ async function teamTick(first) {
     let st = await teamRefresh(false);
     if (st.merging) { if (first && $('#modal').classList.contains('hidden')) openConflicts(); return; }
     if (st.repo && st.signedIn && st.auto && teamIdle()) {
-      TEAM.syncing = true; teamBadge(st);
+      teamSetSyncing(true);
       let res;
-      try { res = await api('/api/team/sync', {}); } finally { TEAM.syncing = false; teamBadge(TEAM.status); }
+      try { res = await api('/api/team/sync', {}); } finally { teamSetSyncing(false); }
       if (res.restarting) { toast('Got a newer editor from your team. Restarting...'); waitForRestart(); return; }
       if (res.conflict) { await teamRefresh(); openConflicts(); return; }
       if (res.got) await teamAfterChanges(res.from || []);

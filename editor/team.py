@@ -54,9 +54,12 @@ _CRED = ['-c', 'credential.helper=',
          '-c', 'credential.helper=!f() { echo username=x-access-token; echo "password=$EMERALD_GH_TOKEN"; }; f']
 
 
-def git(*args):
-    r = subprocess.run(['git'] + _CRED + list(args), cwd=ROOT, capture_output=True, text=True,
-                       errors='replace', env=_git_env())
+def git(*args, timeout=None):
+    try:
+        r = subprocess.run(['git'] + _CRED + list(args), cwd=ROOT, capture_output=True, text=True,
+                           errors='replace', env=_git_env(), timeout=timeout)
+    except subprocess.TimeoutExpired:
+        return 1, 'unable to access GitHub: it did not answer in time.'
     return r.returncode, ((r.stdout or '') + (r.stderr or '')).strip()
 
 
@@ -306,7 +309,7 @@ def _sync_failed(message):
 
 def fetch_team():
     """Looks at the team copy on GitHub and notes whether that worked."""
-    code, msg = git('fetch', '--quiet', REMOTE)
+    code, msg = git('fetch', '--quiet', REMOTE, timeout=120)
     if code == 0:
         _synced()
     else:
