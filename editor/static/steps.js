@@ -20,10 +20,17 @@ const PLAIN_STEPS = {
 };
 const MSG_KIND = { MSGBOX_NPC: 'says', MSGBOX_DEFAULT: 'shows', MSGBOX_SIGN: 'sign reads', MSGBOX_AUTOCLOSE: 'shows (closes by itself)', MSGBOX_YESNO: 'asks (Yes/No)' };
 
-function scriptLines() { return S.textarea.value.split('\n'); }
+// Which script the steps belong to: the Scripts tab, or a person in the Maps tab.
+// { ta, holder, scroller, insert (target for openInsertForm), texts: {get, set} for texts kept elsewhere }
+let ST = null;
+function scriptTab() { return { ta: S.textarea, holder: document.getElementById('scriptSteps'), scroller: $('#scriptEditor'), insert: null, texts: null }; }
+function stepCtx() { return ST || scriptTab(); }
+
+function scriptLines() { return stepCtx().ta.value.split('\n'); }
 function setScriptLines(lines) {
-  S.textarea.value = lines.join('\n');
-  S.textarea.dispatchEvent(new Event('input'));
+  const ta = stepCtx().ta;
+  ta.value = lines.join('\n');
+  ta.dispatchEvent(new Event('input'));
 }
 
 function splitArgs(rest) {
@@ -58,7 +65,7 @@ function parseScriptFile(lines) {
 
 function textOf(blocks, label) {
   const b = blocks.find(x => x.label === label && x.kind === 'text');
-  if (!b) return null;
+  if (!b) return stepCtx().texts ? stepCtx().texts.get(label) : null;
   const raw = b.steps.map(s => (s.args.join(', ').match(/^"(.*)"$/) || [])[1] || '').join('');
   return raw.replace(/\$$/, '').replace(/\\p/g, '\n\n').replace(/\\[nl]/g, '\n').replace(/\\"/g, '"');
 }
@@ -67,7 +74,7 @@ function writeText(label, friendly) {
   const lines = scriptLines();
   const blocks = parseScriptFile(lines);
   const b = blocks.find(x => x.label === label && x.kind === 'text');
-  if (!b) return;
+  if (!b) { stepCtx().texts?.set(label, friendly); return; }
   const first = b.steps[0].line, last = b.steps[b.steps.length - 1].line;
   const fresh = textBlock(label, friendly).split('\n').slice(1);
   lines.splice(first, last - first + 1, ...fresh);
@@ -100,11 +107,12 @@ function deleteStep(step) {
 }
 
 function addStepAfter(step) {
-  const ta = S.textarea;
+  const ctx = stepCtx();
+  const ta = ctx.ta;
   const lines = scriptLines();
   ta.selectionStart = ta.selectionEnd = lines.slice(0, step.line + 1).join('\n').length + 1;
   const pick = el('div', { class: 'stepkinds' }, Object.entries(INSERTS).filter(([k]) => k !== 'newscript').map(([k, v]) =>
-    el('button', { class: 'btn', onclick: () => { closeModal(); openInsertForm(k); } }, v.title)));
+    el('button', { class: 'btn', onclick: () => { closeModal(); openInsertForm(k, ctx.insert); } }, v.title)));
   openModal('Add a step', pick);
 }
 
@@ -125,12 +133,13 @@ function stepView(step, blocks, block) {
   const textEditor = label => {
     const t = textOf(blocks, label);
     if (t === null) return el('div', { class: 'note' }, `Text ${label} is in another file (find it in the Dialogue tab).`);
-    const ta = el('textarea', { class: 'steptext', value: t, oninput: () => { writeText(label, ta.value); renderBoxes(ta.value, preview); } });
+    const ta = el('textarea', { class: 'steptext', 'data-text-label': label, value: t, oninput: () => { writeText(label, ta.value); renderBoxes(ta.value, preview); } });
     const preview = el('div', { class: 'boxes' });
     renderBoxes(t, preview);
     return el('div', { class: 'steptextwrap' }, ta, preview);
   };
-  const jump = label => el('a', { href: '#', class: 'steplink', onclick: e => { e.preventDefault(); document.getElementById('step-' + label)?.scrollIntoView({ behavior: 'smooth', block: 'start' }); } }, label);
+  const holder = stepCtx().holder;
+  const jump = label => el('a', { href: '#', class: 'steplink', onclick: e => { e.preventDefault(); holder?.querySelector(`[id="step-${label}"]`)?.scrollIntoView({ behavior: 'smooth', block: 'start' }); } }, label);
   const c = step.cmd;
   if (c === 'msgbox' || c === 'message') {
     const kind = el('select', { onchange: () => { const v = a.slice(); v[1] = kind.value; rewriteStep(step, v); } },
@@ -191,9 +200,18 @@ function stepView(step, blocks, block) {
 }
 
 function renderSteps() {
-  const holder = document.getElementById('scriptSteps');
-  if (!holder || !S.textarea) return;
-  const keep = $('#scriptEditor').scrollTop;
+  const ctx = stepCtx();
+  const holder = ctx.holder;
+  if (!holder || !ctx.ta) return;
+  if (!holder.dataset.stepsHooked) {
+    // whichever steps list you touch is the one the buttons and boxes change
+    holder.dataset.stepsHooked = '1';
+    const own = ctx;
+    const claim = () => { ST = own.ta === S.textarea && !own.texts ? null : own; };
+    holder.addEventListener('pointerdown', claim, true);
+    holder.addEventListener('focusin', claim, true);
+  }
+  const keep = ctx.scroller?.scrollTop || 0;
   const blocks = parseScriptFile(scriptLines());
   const scripts = blocks.filter(b => b.kind === 'script' || (b.kind === null));
   const moves = blocks.filter(b => b.kind === 'movement');
@@ -213,7 +231,7 @@ function renderSteps() {
   holder.replaceChildren(
     el('p', { class: 'note' }, 'Each box is one script, step by step. Change the words, items or Pokémon right here, use + to add a step, or switch to Code view for anything else.'),
     ...extra.filter((x, i) => i === 0 && hooks.length), ...(cards.length ? cards : [el('div', { class: 'note' }, 'This file has no scripts, only text.')]), ...extra.filter((x, i) => !(i === 0 && hooks.length)));
-  $('#scriptEditor').scrollTop = keep;
+  if (ctx.scroller) ctx.scroller.scrollTop = keep;
 }
 
 const _renderScriptEditorBase = renderScriptEditor;
@@ -237,7 +255,8 @@ renderScriptEditor = function () {
       openInsertForm('newscript');
     } }, '+ New script'));
     ta.after(el('div', { id: 'scriptSteps' }));
-    ta.addEventListener('change', renderSteps);
+    ta.addEventListener('change', () => { ST = null; renderSteps(); });
+    ST = null;
     renderSteps();
   }
 };

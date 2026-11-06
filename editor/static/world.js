@@ -6,6 +6,7 @@
 const W = {
   list: null, map: null, items: [], moves: {}, dirty: new Set(), mode: 'select', zoom: 2,
   sel: null, tab: 'items', wild: null, shops: null, prices: {}, gifts: null, filter: 'all',
+  personIdx: null, person: null, pEdits: null, showCode: true, pView: 'steps',
 };
 const TILE = 16;
 
@@ -52,7 +53,9 @@ async function openMap(folder, keepTab = true) {
   if (W.dirty.size && W.map?.map !== folder && !confirm('You have unsaved changes on this map. Throw them away?')) return;
   try {
     const d = await api('/api/map?map=' + encodeURIComponent(folder));
+    const keepPerson = W.map?.map === folder ? W.personIdx : null;
     setMapData(d);
+    if (keepPerson !== null && d.objects.some(o => o.index === keepPerson)) await loadPerson(keepPerson, false);
     if (!keepTab) W.tab = 'items';
     renderMapEditor();
     renderMapList();
@@ -73,6 +76,9 @@ function setMapData(d) {
   W.priceChanges = {};
   W.gifts = JSON.parse(JSON.stringify(d.gifts));
   W.giftChanged = new Set();
+  W.personIdx = null;
+  W.person = null;
+  W.pEdits = null;
 }
 
 function walkable(x, y) { return W.map.walls[y * W.map.width + x] === '0'; }
@@ -110,7 +116,7 @@ function renderMapCanvas() {
     if (o.kind === 'item') continue;
     const [x, y] = W.moves[o.index] || [o.x, o.y];
     const sprite = index.ow.get(o.graphics_id);
-    const n = el('div', { class: 'mk person ' + o.kind, title: (o.trainerName || prettyFromConst('OBJ_EVENT_GFX', o.graphics_id)) + ' – drag to move' });
+    const n = el('div', { class: 'mk person ' + o.kind + (W.personIdx === o.index ? ' sel' : ''), title: personName(o) + ' – click to see their script and what they say, drag to move' });
     const sh = sprite ? sprite.h / 16 : 2;
     n.append(owSprite(sprite, z));
     n.style.width = (sprite ? sprite.w : 16) * z + 'px';
@@ -181,6 +187,7 @@ function makeDraggable(node, thing, kind) {
       document.removeEventListener('mousemove', move);
       document.removeEventListener('mouseup', up);
       if (kind === 'item') { W.sel = thing; W.tab = 'items'; }
+      if (!moved && kind === 'person') { loadPerson(thing.index); return; }
       if (!moved) { renderMapEditor(); return; }
       const r = wrap.getBoundingClientRect();
       const x = Math.floor((ev.clientX - r.left) / cell), y = Math.floor((ev.clientY - r.top) / cell);
@@ -213,7 +220,7 @@ function renderMapEditor() {
     el('button', { class: 'btn small ghost', title: 'Zoom out', onclick: () => { W.zoom = Math.max(1, W.zoom - 1); renderMapEditor(); } }, '−'),
     el('span', { class: 'note', style: 'margin:0' }, `${W.zoom}×`),
     el('button', { class: 'btn small ghost', title: 'Zoom in', onclick: () => { W.zoom = Math.min(4, W.zoom + 1); renderMapEditor(); } }, '+'));
-  const hint = { select: 'Drag items and people to move them. Click an item to edit it.', ball: 'Click a spot on the map to place an item ball there.',
+  const hint = { select: 'Drag items and people to move them. Click someone to see their script and what they say.', ball: 'Click a spot on the map to place an item ball there.',
     hidden: 'Click a spot to hide an item there.', trainer: 'Click where the new trainer should stand.' }[W.mode];
   const left = el('div', { class: 'mapleft' }, tools,
     el('div', { class: 'note maphint' }, hint, ' ', el('span', { id: 'mapCoords' })),
@@ -312,23 +319,185 @@ function renderWildPanel() {
 }
 
 // ---- people and new trainers --------------------------------------------------------------
+function camelWords(s) { return s.replace(/_/g, ' ').replace(/([a-z])([A-Z0-9])/g, '$1 $2').replace(/(\d)([A-Z][a-z])/g, '$1 $2').trim(); }
+
+function personName(o) {
+  if (o.trainerName) return o.trainerName;
+  const m = (o.script || '').match(/_EventScript_(\w+)$/);
+  if (m) return camelWords(m[1]);
+  return prettyFromConst('OBJ_EVENT_GFX', o.graphics_id);
+}
+
+function textTitle(label) {
+  const m = label.match(/_Text_(\w+)$/);
+  return camelWords(m ? m[1] : label);
+}
+
+async function loadPerson(idx, render = true) {
+  if (W.dirty.has('person') && W.personIdx !== idx && !confirm('You have unsaved changes to this person. Throw them away?')) return;
+  W.dirty.delete('person');
+  W.personIdx = idx;
+  W.tab = 'people';
+  W.person = null;
+  if (render) renderMapEditor();
+  try {
+    W.person = await api(`/api/map/person?map=${encodeURIComponent(W.map.map)}&index=${idx}`);
+    W.pEdits = { texts: {} };
+  } catch (e) { toast(e.message, true); W.personIdx = null; }
+  if (render) renderMapEditor();
+}
+
+function closePerson() {
+  if (W.dirty.has('person') && !confirm('You have unsaved changes to this person. Throw them away?')) return;
+  W.dirty.delete('person');
+  W.personIdx = null; W.person = null; W.pEdits = null;
+  renderMapEditor();
+}
+
+function renderPersonCard() {
+  const o = W.map.objects.find(x => x.index === W.personIdx);
+  if (!o) return null;
+  const p = W.person;
+  const head = el('div', { class: 'rowline', style: 'margin-bottom:8px' }, owSprite(index.ow.get(o.graphics_id), 2),
+    el('div', { class: 'grow' }, el('h3', { style: 'margin:0' }, personName(o)), el('div', { class: 'note', style: 'margin:0' }, `x ${o.x}, y ${o.y}`)),
+    o.trainer ? el('button', { class: 'btn small', onclick: () => { showView('trainers'); openTrainer(o.trainer); } }, 'Edit team') : null,
+    el('button', { class: 'iconbtn', title: 'Close', onclick: closePerson }, '✕'));
+  const card = el('div', { class: 'card personcard', style: 'padding:12px' }, head);
+  if (!p) { card.append(el('div', { class: 'note' }, 'Loading…')); return card; }
+  if (p.missing) { card.append(el('div', { class: 'warnbox' }, `Their script (${p.label}) could not be found in the script files.`)); return card; }
+  if (!p.label) { card.append(renderNoScript(o)); return card; }
+
+  const shared = p.usedBy > 1 || !p.file.startsWith(`data/maps/${W.map.map}/`);
+  if (shared) {
+    card.append(el('div', { class: 'warnbox' }, p.usedBy > 1
+      ? `This script is shared by ${p.usedBy} people or things in the game. Changing it here changes all of them.`
+      : 'This script is shared with other places in the game. Changing it here changes those too.'));
+  }
+
+  // what they say
+  const talk = el('div', {});
+  if (!p.texts.length) talk.append(el('div', { class: 'note' }, 'They don’t say anything in their own words.'));
+  for (const t of p.texts) {
+    const preview = el('div', { class: 'boxes' });
+    const ta = el('textarea', { class: 'short', 'data-text-label': t.label, value: W.pEdits.texts[t.label] ?? t.text,
+      oninput: () => { W.pEdits.texts[t.label] = ta.value; markMapDirty('person'); renderBoxes(ta.value, preview); syncPersonText(card, t.label, ta.value); } });
+    renderBoxes(ta.value, preview);
+    talk.append(el('div', { class: 'persontext' },
+      el('div', { class: 'boxlabel' }, textTitle(t.label), el('span', { class: 'idtag' }, t.label)),
+      el('div', { class: 'textedit' }, ta, preview)));
+  }
+  card.append(el('h3', { class: 'sectionhead' }, 'What they say'),
+    el('p', { class: 'note' }, 'Each new line is a new line in the game. Leave an empty line to start a new text box. {PLAYER} is the player’s name. Red lines are too wide.'),
+    talk);
+
+  // the script: all of their scripts in one box, as steps (Simple view) or as code
+  const ta = el('textarea', { class: 'code', spellcheck: 'false', value: W.pEdits.code ?? personCode(p),
+    oninput: () => { W.pEdits.code = ta.value; markMapDirty('person'); } });
+  ta.style.minHeight = Math.min(420, 40 + 19 * (ta.value.split('\n').length + 1)) + 'px';
+  ta.addEventListener('keydown', e => {
+    if (e.key === 'Tab') { e.preventDefault(); ta.setRangeText('\t', ta.selectionStart, ta.selectionEnd, 'end'); ta.dispatchEvent(new Event('input')); }
+  });
+  const insertTarget = { ta, prefix: W.map.map, labels: () => p.labels };
+  const insert = el('select', {
+    onchange: () => { const v = insert.value; insert.value = ''; if (v) openInsertForm(v, insertTarget); },
+  }, el('option', { value: '' }, '+ Insert...'), Object.entries(INSERTS).filter(([k]) => k !== 'newscript').map(([k, v]) => el('option', { value: k }, v.title)));
+  const simple = W.pView === 'steps';
+  const toggle = el('div', { class: 'segmented' },
+    ['steps', 'code'].map(v => el('button', { class: W.pView === v ? 'on' : '', onclick: () => { W.pView = v; renderMapEditor(); } }, v === 'steps' ? 'Simple view' : 'Code view')));
+  const holder = el('div', { class: 'personsteps' });
+  const det = el('details', { open: W.showCode, ontoggle: () => { W.showCode = det.open; } },
+    el('summary', { class: 'sectionhead' }, 'Their script (what happens, step by step)'),
+    el('div', { class: 'rowline tight', style: 'margin:6px 0' }, toggle, simple ? null : insert),
+    el('p', { class: 'note' }, simple
+      ? 'Change the words, items or Pokémon right here, or use + on a step to add one after it.'
+      : 'Put the cursor where you want something to happen, then use Insert. Don’t change the lines ending in “::”, they are the script names.'),
+    simple ? holder : ta,
+    p.shared.length ? el('p', { class: 'note' }, 'Also uses shared scripts: ' + p.shared.join(', ') + '. Those are in the Scripts tab.') : null);
+  if (simple) {
+    const ctx = { ta, holder, scroller: null, insert: insertTarget, texts: {
+      get: label => W.pEdits.texts[label] ?? p.texts.find(t => t.label === label)?.text ?? null,
+      set: (label, v) => { W.pEdits.texts[label] = v; markMapDirty('person'); syncPersonText(card, label, v); },
+    } };
+    ta.addEventListener('change', () => { ST = ctx; renderSteps(); });
+    ST = ctx;
+    renderSteps();
+    ST = null;
+  }
+  card.append(det,
+    el('div', { class: 'row', style: 'justify-content:flex-end;margin-top:8px' },
+      el('span', { class: 'note' }, p.file),
+      el('button', { class: 'btn ghost small', onclick: () => { W.dirty.delete('person'); loadPerson(W.personIdx); } }, 'Revert'),
+      el('button', { class: 'btn primary small', onclick: saveMap }, 'Save')));
+  return card;
+}
+
+// The same text can be open twice (under "What they say" and in the steps): keep both boxes alike.
+function syncPersonText(card, label, value) {
+  for (const t of card.querySelectorAll('textarea[data-text-label]')) {
+    if (t.dataset.textLabel !== label || t === document.activeElement || t.value === value) continue;
+    t.value = value;
+    const preview = t.nextElementSibling;
+    if (preview?.classList.contains('boxes')) renderBoxes(value, preview);
+  }
+}
+
+// All of a person's scripts as one piece of code, each under its name.
+function personCode(p) { return p.scripts.map(sc => `${sc.label}::\n${sc.code}`).join('\n\n'); }
+
+// Split that code back into the scripts it came from. Returns null if a script name was changed.
+function splitPersonCode(p, code) {
+  const names = p.scripts.map(sc => sc.label);
+  const lines = code.replace(/\r/g, '').split('\n');
+  const at = [];
+  lines.forEach((line, i) => { const m = line.match(/^(\w+)::\s*$/); if (m && names.includes(m[1])) at.push([m[1], i]); });
+  if (at.length !== names.length || at.some(([n], i) => n !== names[i])) return null;
+  return at.map(([label, i], k) => {
+    const body = lines.slice(i + 1, k + 1 < at.length ? at[k + 1][1] : lines.length);
+    while (body.length && !body[body.length - 1].trim()) body.pop();
+    return { label, code: body.join('\n') };
+  });
+}
+
+function renderNoScript(o) {
+  const name = el('input', { value: '', placeholder: 'e.g. Old Man' });
+  const preview = el('div', { class: 'boxes' });
+  const ta = el('textarea', { class: 'short', placeholder: 'What should they say?', oninput: () => renderBoxes(ta.value, preview) });
+  return el('div', {},
+    el('p', { class: 'note' }, 'Nothing happens when you talk to them yet. Give them something to say:'),
+    el('label', { class: 'field' }, el('span', {}, 'Name (just for you)'), name),
+    el('label', { class: 'field' }, el('span', {}, 'What they say'), ta), preview,
+    el('div', { class: 'row', style: 'justify-content:flex-end' },
+      el('button', { class: 'btn primary small', onclick: async () => {
+        if (!ta.value.trim()) { toast('Type what they should say first.', true); return; }
+        if (W.dirty.size) { toast('Save this map first.', true); return; }
+        try {
+          await api('/api/map/person/new', { map: W.map.map, index: o.index, name: name.value, text: ta.value });
+          await openMap(W.map.map);
+          renderMapEditor();
+          toast('Saved. Press Play to try it.');
+        } catch (e) { toast(e.message, true); }
+      } }, 'Give them this')));
+}
+
 function renderPeoplePanel() {
   const out = el('div', {});
+  const card = W.personIdx !== null ? renderPersonCard() : null;
+  if (card) out.append(card);
+  else out.append(el('p', { class: 'note' }, 'Click someone on the map (or in the list below) to see their script and what they say.'));
   const trainersHere = W.map.objects.filter(o => o.kind === 'trainer');
   out.append(el('div', { class: 'rowline', style: 'margin-bottom:8px' },
     el('button', { class: 'btn primary small', onclick: () => { W.mode = 'trainer'; renderMapEditor(); toast('Click the map where the new trainer should stand.'); } }, '+ New trainer'),
     el('span', { class: 'note', style: 'margin:0' }, `Room for ${W.map.trainerRoom} more new trainer${W.map.trainerRoom === 1 ? '' : 's'} in the game.`)));
-  const rows = el('div', { class: 'rows' });
-  for (const o of trainersHere) {
-    rows.append(el('div', { class: 'rowline' }, owSprite(index.ow.get(o.graphics_id), 1),
-      el('div', { class: 'grow' }, el('div', {}, o.trainerName || o.script), el('div', { class: 'note', style: 'margin:0' }, `x ${o.x}, y ${o.y}`)),
-      o.trainer ? el('button', { class: 'btn small', onclick: () => { showView('trainers'); openTrainer(o.trainer); } }, 'Edit team') : null));
-  }
+  const row = o => el('div', { class: 'rowline mapitem' + (W.personIdx === o.index ? ' sel' : ''), style: 'cursor:pointer', onclick: () => loadPerson(o.index) },
+    owSprite(index.ow.get(o.graphics_id), 1),
+    el('div', { class: 'grow' }, el('div', {}, personName(o)), el('div', { class: 'note', style: 'margin:0' }, `x ${o.x}, y ${o.y}` + (o.script && o.script !== '0x0' ? '' : ' · says nothing yet'))),
+    o.trainer ? el('button', { class: 'btn small', onclick: e => { e.stopPropagation(); showView('trainers'); openTrainer(o.trainer); } }, 'Edit team') : null);
+  const rows = el('div', { class: 'rows' }, trainersHere.map(row));
   if (!trainersHere.length) rows.append(el('div', { class: 'note' }, 'No trainers on this map.'));
   out.append(el('h3', { class: 'sectionhead' }, 'Trainers'), rows);
   const people = W.map.objects.filter(o => o.kind === 'person' || o.kind === 'berry' || o.kind === 'other');
   out.append(el('h3', { class: 'sectionhead' }, 'Everyone else'),
-    el('p', { class: 'note' }, people.length ? 'Drag anyone on the map to move them. What they say is in the Dialogue and Scripts tabs.' : 'Nobody else is here.'));
+    people.length ? el('div', { class: 'rows' }, people.map(row)) : el('p', { class: 'note' }, 'Nobody else is here.'));
   return out;
 }
 
@@ -437,9 +606,28 @@ function renderGiftsPanel() {
 }
 
 // ---- saving -------------------------------------------------------------------------------
+async function savePerson() {
+  const p = W.person;
+  let scripts = [];
+  if (W.pEdits.code !== undefined && W.pEdits.code !== personCode(p)) {
+    const parts = splitPersonCode(p, W.pEdits.code);
+    if (!parts) throw new Error('A script name (a line ending in “::”) was changed or removed. Put it back, or press Revert.');
+    scripts = parts.map((x, i) => ({ label: x.label, before: p.scripts[i].code, code: x.code })).filter((x, i) => x.code !== p.scripts[i].code);
+  }
+  const texts = p.texts.filter(t => t.label in W.pEdits.texts && W.pEdits.texts[t.label] !== t.text)
+    .map(t => ({ file: t.file, label: t.label, text: W.pEdits.texts[t.label] }));
+  if (!scripts.length && !texts.length) return;
+  await api('/api/map/person', { map: W.map.map, index: W.personIdx, file: p.file, scripts, texts });
+}
+
 async function saveMap() {
   const d = W.map;
   if (!W.dirty.size) { toast('Nothing to save.'); return; }
+  if (W.dirty.has('person') && W.person && W.pEdits.code !== undefined && !splitPersonCode(W.person, W.pEdits.code)) {
+    W.tab = 'people'; W.pView = 'code'; renderMapEditor();
+    toast('A script name (a line ending in “::”) was changed or removed. Put it back, or press Revert.', true);
+    return;
+  }
   for (const it of W.items) {
     if (!index.items.has(it.item)) { W.tab = 'items'; W.sel = it; renderMapEditor(); toast('Pick an item from the list for every item on the map.', true); return; }
   }
@@ -455,6 +643,7 @@ async function saveMap() {
   }
   try {
     if (W.dirty.has('items')) await api('/api/map/items', { map: d.map, items: W.items, moves: W.moves });
+    if (W.dirty.has('person') && W.person) await savePerson();
     if (W.dirty.has('wild')) await api('/api/wild', { id: d.id, map: d.map, entries: W.wild });
     if (W.dirty.has('shops')) {
       for (const sh of W.shops) {

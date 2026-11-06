@@ -29,6 +29,7 @@ import mapview  # noqa: E402
 import projects  # noqa: E402
 import movesets  # noqa: E402
 import newtrainer  # noqa: E402
+import npcscript  # noqa: E402
 import shops  # noqa: E402
 import wild  # noqa: E402
 import species  # noqa: E402
@@ -149,7 +150,7 @@ def map_page(folder):
 
 
 ERRORS = (team.TeamError, mapview.MapError, wild.WildError, shops.ShopError, gifts.GiftError, movesets.MovesetError,
-          newtrainer.NewTrainerError)
+          newtrainer.NewTrainerError, npcscript.PersonError)
 
 
 def script_path(rel):
@@ -288,6 +289,8 @@ class Handler(BaseHTTPRequestHandler):
             return self._send(200, out)
         if path == '/api/map':
             return self._send(200, map_page(q.get('map', '')))
+        if path == '/api/map/person':
+            return self._send(200, npcscript.person(q.get('map', ''), q.get('index', '0'), S.text, S.maps))
         if path == '/api/mapimg':
             return self._send(200, mapview.map_image(q.get('map', '')), 'image/png')
         if path == '/api/starters':
@@ -369,6 +372,17 @@ class Handler(BaseHTTPRequestHandler):
             with S.lock:
                 mapview.save_items(body['map'], body.get('items', []), valid('items'), body.get('moves') or {})
             return self._send(200, map_page(body['map']))
+        if path == '/api/map/person':
+            with S.lock:
+                if body.get('scripts'):
+                    npcscript.save_scripts(body['file'], body['scripts'])
+                for t in body.get('texts') or []:
+                    S.text.save(t['file'], t['label'], t['text'])
+            return self._send(200, npcscript.person(body['map'], body['index'], S.text, S.maps))
+        if path == '/api/map/person/new':
+            with S.lock:
+                npcscript.new_script(body['map'], body['index'], body.get('name', ''), body.get('text', ''))
+            return self._send(200, npcscript.person(body['map'], body['index'], S.text, S.maps))
         if path == '/api/wild':
             with S.lock:
                 wild.save(body['id'], body.get('entries', []), valid('species'), body.get('map'))
