@@ -3,7 +3,7 @@
 // Team: work on one game with friends (a private GitHub copy under the hood).
 // ---------------------------------------------------------------------------
 
-const TEAM = { status: null };
+const TEAM = { status: null, syncing: false };
 
 function teamAgo(t) {
   const s = Math.max(0, Date.now() / 1000 - t);
@@ -13,11 +13,52 @@ function teamAgo(t) {
   return Math.round(s / 86400) + ' days ago';
 }
 
+// One plain answer to "is my team game up to date on GitHub?"
+function teamSyncState(st) {
+  if (!st || !st.repo) return null;
+  if (st.merging) return { cls: 'warn', icon: '!', short: 'Pick versions',
+    long: 'You and a friend changed the same thing. Click Team to pick which version to keep.' };
+  if (TEAM.syncing && ($('#teamBtn').disabled || teamSyncing)) return { cls: 'busy', icon: '⟳', short: 'Syncing…',
+    long: 'Talking to GitHub right now...' };
+  const err = st.fetchError || st.syncError;
+  if (err || !st.signedIn) return { cls: 'bad', icon: '⚠', short: 'Not synced',
+    long: st.signedIn ? 'Could not sync with GitHub: ' + err : 'You are signed out, so nothing is being shared. Click Team to sign in.' };
+  if (st.outgoing || st.unsaved || anyDirty()) return { cls: 'warn', icon: '●', short: 'Not shared yet',
+    long: anyDirty() ? 'You have edits that are not saved yet. Save them and they are shared on the next sync.'
+      : st.auto ? 'You have changes that are not on GitHub yet. They go up on the next sync (about a minute), or click Team and then Share my changes.'
+        : 'You have changes that are not on GitHub yet. Click Team and then Share my changes.' };
+  if (st.incoming) return { cls: 'warn', icon: '⬇', short: st.incoming + ' new from friends',
+    long: `${st.incoming} change(s) from friends are on GitHub but not in your game yet. ` +
+      (st.auto ? 'They come in on the next sync, or click Team and then Get friends\' changes.' : 'Click Team and then Get friends\' changes.') };
+  return { cls: 'ok', icon: '✓', short: 'Up to date',
+    long: 'Up to date. GitHub has everything you saved, and you have everything your friends shared.' };
+}
+
 function teamBadge(st) {
-  const b = $('#teamBadge');
-  if (st && st.merging) { b.textContent = '!'; b.classList.remove('hidden'); return; }
-  if (st && st.incoming) { b.textContent = st.incoming; b.classList.remove('hidden'); return; }
-  b.classList.add('hidden');
+  const tag = $('#teamState');
+  const s = teamSyncState(st);
+  if (!s) { tag.className = 'teamstate hidden'; $('#teamBtn').title = 'Work on this game with friends: share your changes and get theirs'; return; }
+  tag.className = 'teamstate ' + s.cls;
+  tag.textContent = s.icon + ' ' + s.short;
+  $('#teamBtn').title = s.long + (st.lastSync ? ' (Last checked with GitHub ' + teamAgo(st.lastSync) + '.)' : '');
+}
+
+// The window's top card: the same answer, with times and a link to see it on GitHub.
+function teamStatusCard(st) {
+  const s = teamSyncState(st);
+  const card = el('div', { class: 'card syncstatus ' + s.cls },
+    el('div', { class: 'syncline' }, el('span', { class: 'teamstate ' + s.cls }, s.icon + ' ' + s.short),
+      el('button', { class: 'btn small', onclick: async (e) => {
+        e.target.disabled = true; e.target.textContent = 'Checking...';
+        try { await teamRefresh(true); openTeam(); } catch (err) { toast(err.message, true); e.target.disabled = false; }
+      } }, 'Check now')),
+    el('p', {}, s.long),
+    el('p', { class: 'note' }, 'Last checked with GitHub: ', el('b', {}, st.lastSync ? teamAgo(st.lastSync) : 'not yet'),
+      st.auto ? ' (it checks about once a minute while the editor is open).' : '.'),
+    st.github ? el('p', { class: 'note' }, 'Newest change on GitHub: ', el('b', {}, st.github.what), ' by ', st.github.who, ', ', teamAgo(st.github.time), '.') : null,
+    st.url && !st.viaCode ? el('p', { class: 'note' }, el('a', { href: st.url + '/commits/main', target: '_blank' }, 'See the team game on GitHub'),
+      ' (the top entry there is the newest shared change).') : null);
+  return card;
 }
 
 async function teamRefresh(fetch = false) {
@@ -34,7 +75,9 @@ function teamJob(path, body, title) {
     if (!res.started) { toast('The editor is busy. Try again in a moment.', true); return; }
     setJobButtons(true);
     showJob(title);
+    TEAM.syncing = true; teamBadge(TEAM.status);
     jobDone = async (j) => {
+      TEAM.syncing = false;
       if (/restart in a moment/.test(j.message)) { waitForRestart(); return; }
       const st = await teamRefresh().catch(() => null);
       if (st && st.merging) openConflicts();
@@ -146,7 +189,7 @@ function teamMainBody(st) {
   if (!st.viaCode) loadPeople();
   const mine = st.outgoing || st.unsaved;
   return el('div', { class: 'team' },
-    st.fetchError ? el('div', { class: 'warnbox' }, st.fetchError) : null,
+    teamStatusCard(st),
     el('p', {}, 'Team game ', el('b', {}, st.repo), st.viaCode ? '. You are ' : '. Signed in as ', el('b', {}, st.login), '.'),
     el('label', { class: 'autosync' },
       el('input', { type: 'checkbox', checked: st.auto, onchange: async (e) => {
@@ -327,18 +370,24 @@ async function teamTick(first) {
     let st = await teamRefresh(false);
     if (st.merging) { if (first && $('#modal').classList.contains('hidden')) openConflicts(); return; }
     if (st.repo && st.signedIn && st.auto && teamIdle()) {
-      const res = await api('/api/team/sync', {});
+      TEAM.syncing = true; teamBadge(st);
+      let res;
+      try { res = await api('/api/team/sync', {}); } finally { TEAM.syncing = false; teamBadge(TEAM.status); }
       if (res.restarting) { toast('Got a newer editor from your team. Restarting...'); waitForRestart(); return; }
       if (res.conflict) { await teamRefresh(); openConflicts(); return; }
       if (res.got) await teamAfterChanges(res.from || []);
-      $('#teamBtn').title = res.ok === false ? 'Auto-sync could not reach GitHub: ' + res.message : 'Team game: up to date';
       await teamRefresh(false);
     } else if (st.repo && st.signedIn) {
       await teamRefresh(true);
     }
-  } catch (e) { /* offline is fine; try again next time */ }
+  } catch (e) {
+    // Offline is fine; try again next time, but say so on the button.
+    if (TEAM.status && TEAM.status.repo) { TEAM.status.fetchError = TEAM.status.fetchError || 'The editor could not reach GitHub: ' + e.message; teamBadge(TEAM.status); }
+  }
   finally { teamSyncing = false; }
 }
 
 setTimeout(() => teamTick(true), 3000);
 setInterval(() => teamTick(false), 60 * 1000);
+// Unsaved edits change the sign right away, without waiting for the next sync.
+setInterval(() => { if (TEAM.status) teamBadge(TEAM.status); }, 3000);
