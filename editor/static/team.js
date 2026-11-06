@@ -33,7 +33,7 @@ function teamSyncState(st) {
     long: 'Talking to GitHub right now...' };
   const err = st.fetchError || st.syncError;
   if (err || !st.signedIn) return { cls: 'bad', icon: '⚠', short: 'Not synced',
-    long: st.signedIn ? 'Could not sync with GitHub: ' + err : 'You are signed out, so nothing is being shared. Click Team to sign in.' };
+    long: st.signedIn ? 'Could not sync with GitHub: ' + err : 'Nothing is being shared right now. Click Team and paste your team code (or sign in, if you started this team game).' };
   if (st.outgoing || st.unsaved || anyDirty()) return { cls: 'warn', icon: '●', short: 'Not shared yet',
     long: anyDirty() ? 'You have edits that are not saved yet. Save them and they are shared on the next sync.'
       : st.auto ? 'You have changes that are not on GitHub yet. They go up on the next sync (about a minute), or click Team and then Share my changes.'
@@ -238,7 +238,7 @@ function teamMainBody(st) {
       el('div', { class: 'card grow' },
         el('h3', {}, 'Team'),
         st.people.length ? el('div', { class: 'note' }, 'Shared changes so far: ' + st.people.join(', ')) : null,
-        st.viaCode ? null : teamCodeBox(st),
+        st.viaCode ? teamNewCodeBox(st) : teamCodeBox(st),
         st.viaCode ? null : el('details', { class: 'teammore' },
           el('summary', {}, 'Or invite by GitHub username'),
           people,
@@ -253,6 +253,17 @@ function teamMainBody(st) {
         if (st.viaCode) await api('/api/team/signout', {});
         openTeam();
       } }, 'Leave this team game')));
+}
+
+// Friends who joined with a team code: swap in a new one if the owner changed it.
+function teamNewCodeBox(st) {
+  const code = el('input', { class: 'search', type: 'text', placeholder: 'New team code (starts with EMERALD-)' });
+  const go = () => teamJob('/api/team/joincode', { code: code.value, name: st.login }, 'Join a team game');
+  code.addEventListener('keydown', e => { if (e.key === 'Enter') go(); });
+  return el('details', { class: 'teammore' },
+    el('summary', {}, 'Got a new team code?'),
+    el('p', { class: 'note' }, 'If the owner made a new code, paste it here. Your game and edits stay as they are.'),
+    el('div', { class: 'searchrow' }, code, el('button', { class: 'btn', onclick: go }, 'Use code')));
 }
 
 function teamCodeBox(st) {
