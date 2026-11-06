@@ -288,6 +288,30 @@ def _set_remote(full_name):
 
 def leave():
     git('remote', 'remove', REMOTE)
+    git('config', '--unset', 'emerald.lastSync')
+    git('config', '--unset', 'emerald.syncError')
+
+
+# ---- sync status (for the "Up to date" sign on the Team button) ---------------
+
+def _synced():
+    """Remembers that GitHub answered just now, and clears any old problem."""
+    git('config', 'emerald.lastSync', str(int(time.time())))
+    git('config', '--unset', 'emerald.syncError')
+
+
+def _sync_failed(message):
+    git('config', 'emerald.syncError', (message or 'Something went wrong.')[:300])
+
+
+def fetch_team():
+    """Looks at the team copy on GitHub and notes whether that worked."""
+    code, msg = git('fetch', '--quiet', REMOTE)
+    if code == 0:
+        _synced()
+    else:
+        _sync_failed(_friendly_git_error(msg))
+    return code, msg
 
 
 def status(fetch=False):
@@ -300,7 +324,7 @@ def status(fetch=False):
     if not repo:
         return out
     if fetch and me.get('token'):
-        code, msg = git('fetch', '--quiet', REMOTE)
+        code, msg = fetch_team()
         if code != 0:
             out['fetchError'] = _friendly_git_error(msg)
     ref = '%s/%s' % (REMOTE, BRANCH)
@@ -308,6 +332,14 @@ def status(fetch=False):
     out['incoming'] = int(git_out('rev-list', '--count', 'HEAD..' + ref) or 0) if have else 0
     out['outgoing'] = int(git_out('rev-list', '--count', ref + '..HEAD') or 0) if have else 0
     out['unsaved'] = bool(git_out('status', '--porcelain'))
+    out['url'] = 'https://github.com/%s' % repo if re.match(r'^[^/\s]+/[^/\s]+$', repo) else ''
+    out['lastSync'] = int(git_out('config', 'emerald.lastSync') or 0)
+    out['syncError'] = git_out('config', 'emerald.syncError')
+    out['github'] = None
+    if have:
+        parts = git_out('log', '-1', '--format=%an%x09%ct%x09%s', ref).split('\t', 2)
+        if len(parts) == 3:
+            out['github'] = {'who': parts[0], 'time': int(parts[1]), 'what': parts[2]}
     out['recent'] = []
     out['people'] = []
     if have:
@@ -425,7 +457,7 @@ def create(job, name, save_my_changes):
     code, msg = run_git(job, 'push', '--progress', REMOTE, 'HEAD:refs/heads/' + BRANCH)
     if code != 0:
         return False, 'The upload did not finish: %s Click Share my changes to try again.' % _friendly_git_error(msg)
-    git('fetch', '--quiet', REMOTE)
+    fetch_team()
     gh('PATCH', '/repos/' + repo['full_name'], {'default_branch': BRANCH})
     return True, 'Your team game is ready! Invite friends by their GitHub username.'
 
@@ -446,6 +478,7 @@ def join(job, full_name, invite_id, save_my_changes):
     if git('rev-parse', '--verify', '-q', '%s/%s' % (REMOTE, BRANCH))[0] != 0:
         leave()
         return False, 'The team copy is still empty. Ask its owner to click Share my changes once, then join again.'
+    _synced()
     return merge_in(job, '%s/%s' % (REMOTE, BRANCH), 'get', save_my_changes,
                     done='Joined! You now have the team\'s game.')
 
@@ -454,7 +487,7 @@ def get_changes(job, save_my_changes):
     if not team_repo():
         return False, 'This game is not a team game yet.'
     job.write('Checking for friends\' changes...')
-    code, msg = git('fetch', '--quiet', REMOTE)
+    code, msg = fetch_team()
     if code != 0:
         return False, _friendly_git_error(msg)
     return merge_in(job, '%s/%s' % (REMOTE, BRANCH), 'get', save_my_changes)
@@ -467,7 +500,7 @@ def share(job, note, save_my_changes):
     if not save_my_changes(job, describe_changes(note)):
         return False, 'Could not save your changes, so nothing was shared.'
     for attempt in range(3):
-        code, msg = git('fetch', '--quiet', REMOTE)
+        code, msg = fetch_team()
         if code != 0:
             return False, _friendly_git_error(msg)
         ref = '%s/%s' % (REMOTE, BRANCH)
@@ -497,7 +530,7 @@ def sync(job, save_my_changes):
     """Auto-sync: share your saved edits and bring in friends' in one quiet step."""
     if not team_repo() or not token() or merging():
         return {'skipped': True}
-    code, msg = git('fetch', '--quiet', REMOTE)
+    code, msg = fetch_team()
     if code != 0:
         return {'ok': False, 'message': _friendly_git_error(msg)}
     ref = '%s/%s' % (REMOTE, BRANCH)
@@ -518,10 +551,11 @@ def push(job):
     job.write('Uploading your changes...')
     code, msg = run_git(job, 'push', '--progress', REMOTE, 'HEAD:refs/heads/' + BRANCH)
     if code == 0:
-        git('fetch', '--quiet', REMOTE)
+        fetch_team()
         return True, 'Shared! Friends get your changes when they click Get friends\' changes.'
     if 'rejected' in msg or 'fetch first' in msg or 'non-fast-forward' in msg:
         return False, 'retry'
+    _sync_failed('The upload did not work: ' + _friendly_git_error(msg))
     return False, 'The upload did not work: ' + _friendly_git_error(msg)
 
 
