@@ -333,6 +333,7 @@ def status(fetch=False):
             out['fetchError'] = _friendly_git_error(msg)
     ref = '%s/%s' % (REMOTE, BRANCH)
     have = git('rev-parse', '--verify', '-q', ref)[0] == 0
+    out['empty'] = not have
     out['incoming'] = int(git_out('rev-list', '--count', 'HEAD..' + ref) or 0) if have else 0
     out['outgoing'] = int(git_out('rev-list', '--count', ref + '..HEAD') or 0) if have else 0
     out['unsaved'] = bool(git_out('status', '--porcelain'))
@@ -467,11 +468,9 @@ def create(job, name, save_my_changes):
     if not save_my_changes(job):
         return False, 'Could not save your changes first, so nothing was uploaded.'
     _set_remote(repo['full_name'])
-    job.write('Uploading your game. The first time takes a while (the whole game history goes up once)...')
-    code, msg = run_git(job, 'push', '--progress', REMOTE, 'HEAD:refs/heads/' + BRANCH)
-    if code != 0:
-        return False, 'The upload did not finish: %s Click Share my changes to try again.' % _friendly_git_error(msg)
-    fetch_team()
+    ok, msg = push(job)
+    if not ok:
+        return False, ('The upload did not finish: %s' % msg) if msg != 'retry' else 'A friend shared at the same moment. Click Share my changes to try again.'
     gh('PATCH', '/repos/' + repo['full_name'], {'default_branch': BRANCH})
     return True, 'Your team game is ready! Invite friends by their GitHub username.'
 
@@ -548,6 +547,9 @@ def sync(job, save_my_changes):
     if code != 0:
         return {'ok': False, 'message': _friendly_git_error(msg)}
     ref = '%s/%s' % (REMOTE, BRANCH)
+    if not _have_remote():
+        # The first upload is big and slow, so it runs in the job panel (Share my changes), not quietly.
+        return {'ok': False, 'empty': True, 'message': NOT_UPLOADED}
     who = []
     for n in git_out('log', '--no-merges', '--format=%an', 'HEAD..' + ref).splitlines():
         if n and n not in who:
@@ -559,18 +561,56 @@ def sync(job, save_my_changes):
             'shared': ok and msg.startswith('Shared'), 'conflict': conflict}
 
 
+NOT_UPLOADED = ('Your game is not on GitHub yet. Click Team and then Share my changes to upload it. '
+                'The first upload is big and takes a while.')
+
+# The first upload sends the whole game history (hundreds of MB). One giant upload often breaks
+# halfway on a home connection, so it goes up in parts, oldest first. Each part that arrives
+# stays on GitHub, so after a break the next try carries on instead of starting over.
+PART_COMMITS = 400
+MAX_PARTS = 25
+_PUSH_OPTS = ['-c', 'http.postBuffer=524288000']
+
+
+def _have_remote():
+    return git('rev-parse', '--verify', '-q', '%s/%s' % (REMOTE, BRANCH))[0] == 0
+
+
+def _upload_stops():
+    """Commits to upload one after another, ending with HEAD."""
+    span = ('%s/%s..HEAD' % (REMOTE, BRANCH)) if _have_remote() else 'HEAD'
+    line = git_out('rev-list', '--first-parent', '--reverse', span).split()
+    if len(line) <= PART_COMMITS:
+        return ['HEAD'] if line else []
+    step = max(PART_COMMITS, -(-len(line) // MAX_PARTS))
+    return line[step - 1:-1:step] + ['HEAD']
+
+
 def push(job):
-    if not int(git_out('rev-list', '--count', '%s/%s..HEAD' % (REMOTE, BRANCH)) or 1):
+    stops = _upload_stops()
+    if not stops:
         return True, 'Nothing new to share. Friends already have everything you have.'
-    job.write('Uploading your changes...')
-    code, msg = run_git(job, 'push', '--progress', REMOTE, 'HEAD:refs/heads/' + BRANCH)
-    if code == 0:
-        fetch_team()
-        return True, 'Shared! Friends get your changes when they click Get friends\' changes.'
-    if 'rejected' in msg or 'fetch first' in msg or 'non-fast-forward' in msg:
-        return False, 'retry'
-    _sync_failed('The upload did not work: ' + _friendly_git_error(msg))
-    return False, 'The upload did not work: ' + _friendly_git_error(msg)
+    first = not _have_remote()
+    if first:
+        job.write('Uploading your whole game for the first time. This can take a long time; '
+                  'if it stops, click Share my changes and it carries on where it left off.')
+    else:
+        job.write('Uploading your changes...')
+    for i, stop in enumerate(stops):
+        if len(stops) > 1:
+            job.write('Uploading part %d of %d...' % (i + 1, len(stops)))
+        code, msg = run_git(job, *_PUSH_OPTS, 'push', '--progress', REMOTE, '%s:refs/heads/%s' % (stop, BRANCH))
+        if code != 0:
+            if 'rejected' in msg or 'fetch first' in msg or 'non-fast-forward' in msg:
+                return False, 'retry'
+            done = (' %d of %d parts arrived and are kept; click Share my changes to send the rest.' % (i, len(stops))) if i else ''
+            err = 'The upload did not work: ' + _friendly_git_error(msg) + done
+            _sync_failed(err)
+            return False, err
+    fetch_team()
+    if first:
+        return True, 'Uploaded! Your whole game is on GitHub now, so friends can join.'
+    return True, 'Shared! Friends get your changes when they click Get friends\' changes.'
 
 
 CONFLICT_MSG = ('You and someone else changed the same thing. Pick which version to keep '
