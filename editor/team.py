@@ -15,6 +15,7 @@ Your GitHub sign-in is a personal access token, kept in your Linux home folder
 (~/.config/emerald-editor/github.json), never inside the game folder.
 """
 
+import base64
 import json
 import os
 import re
@@ -133,12 +134,7 @@ def sign_in(tok):
     code, user = gh('GET', '/user', tok=tok)
     if code != 200 or not user:
         raise TeamError('GitHub did not accept that token. Make a new one and paste it right away.')
-    os.makedirs(os.path.dirname(TOKEN_FILE), exist_ok=True)
-    fd = os.open(TOKEN_FILE + '.tmp', os.O_WRONLY | os.O_CREAT | os.O_TRUNC, 0o600)
-    with os.fdopen(fd, 'w', encoding='utf-8') as f:
-        json.dump({'token': tok, 'login': user['login'], 'name': user.get('name') or user['login'],
-                   'id': user['id']}, f)
-    os.replace(TOKEN_FILE + '.tmp', TOKEN_FILE)
+    _save({'token': tok, 'login': user['login'], 'name': user.get('name') or user['login'], 'id': user['id']})
     _set_identity()
     return {'login': user['login']}
 
@@ -151,11 +147,102 @@ def sign_out():
 
 
 def _set_identity():
-    """Changes you share carry your GitHub name, so friends can see who did what."""
+    """Changes you share carry your name, so friends can see who did what."""
     me = _load()
-    if me.get('login'):
+    if me.get('viaCode'):
+        git('config', 'user.name', me['name'])
+        git('config', 'user.email', '%s@team.emerald' % (re.sub(r'[^a-z0-9]+', '.', me['name'].lower()).strip('.') or 'friend'))
+    elif me.get('login'):
         git('config', 'user.name', me.get('name') or me['login'])
         git('config', 'user.email', '%s+%s@users.noreply.github.com' % (me['id'], me['login']))
+
+
+def _save(data):
+    os.makedirs(os.path.dirname(TOKEN_FILE), exist_ok=True)
+    fd = os.open(TOKEN_FILE + '.tmp', os.O_WRONLY | os.O_CREAT | os.O_TRUNC, 0o600)
+    with os.fdopen(fd, 'w', encoding='utf-8') as f:
+        json.dump(data, f)
+    os.replace(TOKEN_FILE + '.tmp', TOKEN_FILE)
+
+
+# ---- team codes: friends join with one shared code, no GitHub account ----------
+#
+# The owner makes a GitHub token that can only read and change the team game (a
+# "fine-grained" token limited to that one repository), and the editor wraps it
+# with the repository's name into a team code. Anyone with the code can join,
+# share and get changes, and nothing else on the owner's GitHub.
+
+CODE_PREFIX = 'EMERALD-'
+
+
+def code_token_url(repo):
+    owner, name = (repo.split('/', 1) + [''])[:2]
+    return ('https://github.com/settings/personal-access-tokens/new?name=%s&description=%s'
+            '&target_name=%s&expires_in=none&contents=write' % (
+                urllib.request.quote('Emerald team code ' + name),
+                urllib.request.quote('Lets friends with the team code share changes to ' + repo),
+                urllib.request.quote(owner)))
+
+
+def make_code(tok):
+    """Owner: checks the pasted token opens only-the-team-game and turns it into a team code."""
+    repo = team_repo()
+    tok = (tok or '').strip()
+    if not repo:
+        raise TeamError('Start a team game first.')
+    if not tok.startswith('github_pat_'):
+        raise TeamError('That is not the right kind of code. Use the link above: the code GitHub shows starts with github_pat_.')
+    code, info = gh('GET', '/repos/' + repo, tok=tok)
+    if code != 200:
+        raise TeamError('That code cannot open %s. On the GitHub page, under Repository access, pick "Only select '
+                        'repositories" and choose %s, and set Contents to "Read and write".' % (repo, repo.split('/')[1]))
+    # Make sure it can change the game, not just read it (a dry-run upload asks GitHub for write access).
+    url = 'https://github.com/%s.git' % repo
+    r = subprocess.run(['git', '-c', 'credential.helper=', '-c',
+                        'credential.helper=!f() { echo username=x-access-token; echo "password=$EMERALD_GH_TOKEN"; }; f',
+                        'push', '--dry-run', '--quiet', url, 'HEAD:refs/heads/emerald-code-check'],
+                       cwd=ROOT, capture_output=True, text=True, errors='replace',
+                       env=dict(os.environ, GIT_TERMINAL_PROMPT='0', EMERALD_GH_TOKEN=tok))
+    if r.returncode != 0 and ('403' in r.stderr or 'denied' in r.stderr.lower() or 'not found' in r.stderr.lower()):
+        raise TeamError('That code can read the game but not change it. On the GitHub page set Contents to "Read and write".')
+    team_code = CODE_PREFIX + base64.urlsafe_b64encode(json.dumps({'r': repo, 't': tok}).encode()).decode().rstrip('=')
+    me = _load()
+    me['teamCode'] = team_code
+    _save(me)
+    return {'code': team_code}
+
+
+def team_code():
+    me = _load()
+    return me.get('teamCode', '') if me.get('teamCode') and team_repo() and not me.get('viaCode') else ''
+
+
+def read_code(text):
+    text = re.sub(r'\s+', '', text or '')
+    if not text.upper().startswith(CODE_PREFIX):
+        raise TeamError('A team code starts with EMERALD-. Ask your friend to copy the whole thing.')
+    raw = text[len(CODE_PREFIX):]
+    try:
+        data = json.loads(base64.urlsafe_b64decode(raw + '=' * (-len(raw) % 4)).decode())
+        repo, tok = data['r'], data['t']
+    except (ValueError, KeyError, TypeError):
+        raise TeamError('That team code is cut off or mistyped. Ask your friend to copy it again.')
+    if not re.match(r'^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$', repo):
+        raise TeamError('That team code is not valid.')
+    return repo, tok
+
+
+def join_with_code(job, text, name, save_my_changes):
+    """Friend: joins with the team code; no GitHub account needed."""
+    name = re.sub(r'\s+', ' ', (name or '').strip())[:40]
+    if not name:
+        return False, 'Type your name first, so friends can see who changed what.'
+    repo, tok = read_code(text)
+    code, _ = gh('GET', '/repos/' + repo, tok=tok)
+    if code != 200:
+        return False, 'That team code no longer works. Ask the owner for the new one.'
+    _save({'token': tok, 'login': name, 'name': name, 'id': 0, 'viaCode': True})
+    return join(job, repo, None, save_my_changes)
 
 
 # ---- the team copy -------------------------------------------------------------
@@ -183,6 +270,8 @@ def status(fetch=False):
     me = _load()
     repo = team_repo()
     out = {'signedIn': bool(me.get('token')), 'login': me.get('login', ''), 'repo': repo,
+           'viaCode': bool(me.get('viaCode')), 'teamCode': team_code(),
+           'codeTokenUrl': code_token_url(repo) if repo else '',
            'tokenUrl': TOKEN_URL, 'merging': merging(), 'auto': auto_on()}
     if not repo:
         return out
@@ -196,7 +285,11 @@ def status(fetch=False):
     out['outgoing'] = int(git_out('rev-list', '--count', ref + '..HEAD') or 0) if have else 0
     out['unsaved'] = bool(git_out('status', '--porcelain'))
     out['recent'] = []
+    out['people'] = []
     if have:
+        for n in git_out('log', '-300', '--no-merges', '--format=%an', ref).splitlines():
+            if n and n not in out['people'] and n != 'Emerald Editor':
+                out['people'].append(n)
         for line in git_out('log', '-12', '--no-merges', '--format=%an%x09%at%x09%s', ref).splitlines():
             parts = line.split('\t', 2)
             if len(parts) == 3:
