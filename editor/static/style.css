@@ -348,3 +348,14 @@ main { flex: 1; min-height: 0; }
 .item.project .sub { word-break: break-all; }
 .tag { display: inline-block; font-size: 11px; font-weight: 600; padding: 1px 7px; border-radius: 10px; margin-left: 6px; background: var(--panel-2); color: var(--muted); border: 1px solid var(--line); }
 .tag.team { color: var(--accent); }
+/* Fun Modes groups (one per Universal Randomizer tab) */
+.fungroup { border: 1px solid var(--line); border-radius: var(--radius); margin: 0 0 12px; background: var(--panel-2); }
+.fungroup > summary { cursor: pointer; padding: 12px 14px; list-style: none; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; }
+.fungroup > summary::-webkit-details-marker { display: none; }
+.fungroup > summary::before { content: '▸'; color: var(--muted, #888); }
+.fungroup[open] > summary::before { content: '▾'; }
+.fungroup > summary b { font-size: 15px; }
+.fungroup > summary .note { flex-basis: 100%; margin: 0 0 0 16px; }
+.fungroup-count { font-size: 12px; padding: 1px 8px; border-radius: 10px; border: 1px solid var(--line); color: var(--muted, #888); }
+.fungroup-count.on { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
+.fungroup > .card { margin: 0 12px 12px; }

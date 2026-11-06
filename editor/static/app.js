@@ -1501,15 +1501,85 @@ views.settings = {
 // ---------------------------------------------------------------------------
 const FUN_DEFAULTS = {
   seed: '', keepEdited: true,
-  wild: { on: false, mode: 'similar', legendaries: false },
-  trainers: { on: false, mode: 'similar', keepTheme: true, legendaries: false },
+  // Pokémon traits
+  baseStats: { on: false, mode: 'shuffle', followEvolutions: true },
+  types: { on: false, mode: 'follow', forceDual: false },
+  abilities: { on: false, followEvolutions: true, wonderGuard: false, banTrapping: true, banNegative: true, banBad: false },
+  evolutions: { on: false, mode: 'random', similarStrength: true, sameTyping: false, limit3: true, forceChange: true, noConvergence: true, forceGrowth: true, legendaries: false },
+  evoHelpers: { on: false, changeImpossible: true, easier: false, noTime: false },
+  expCurves: { on: false, mode: 'legendarySlow' },
+  palettes: { on: false, followEvolutions: true },
+  // Starters, gifts and trades
   starters: { on: false, mode: 'triangle', species: ['', '', ''] },
+  statics: { on: false, mode: 'legendSwap', roamers: true, catchingTutorial: true, levelPercent: 0 },
+  trades: { on: false, mode: 'given', nicknames: true, otNames: true, ivs: true, items: true },
+  // Moves
+  moveData: { on: false, power: true, accuracy: true, pp: true, type: false, category: false },
+  movesets: { on: false, mode: 'preferType', startMoves: 1, reorderDamaging: true, noGameBreaking: true, goodDamagingPercent: 0 },
+  // TMs and tutors
+  tmMoves: { on: false, keepField: true, noGameBreaking: true, goodDamagingPercent: 0, fullHM: false },
+  tmCompat: { on: false, mode: 'preferType', followEvolutions: true, levelUpCompatible: false, fullHM: false },
+  tutorMoves: { on: false, noGameBreaking: true },
+  tutorCompat: { on: false, mode: 'preferType', followEvolutions: true, levelUpCompatible: false },
+  // Trainers
+  trainers: { on: false, mode: 'similar', keepTheme: true, legendaries: false },
+  trainerExtras: { on: false, randomNames: false, randomClassNames: false, levelPercent: 0, fullyEvolvedAt: 0, extraBoss: 0, extraRegular: 0,
+                   itemsBoss: false, itemsRegular: false, consumableOnly: false, betterMovesets: false, allDoubles: false, legendaries: false },
+  // Wild
+  wild: { on: false, mode: 'similar', legendaries: false, typeThemed: false, catchEmAll: false },
+  wildExtras: { on: false, levelPercent: 0, minCatchRate: 0, heldItems: false, banBadItems: true },
+  // Items
+  fieldItems: { on: false, mode: 'shuffle', hidden: true, banBad: true },
+  shopItems: { on: false, mode: 'shuffle', banBad: true, banRegular: false, banOverpowered: true, guaranteeEvo: true, guaranteeX: true },
+  pickup: { on: false },
+  candy: { on: false },
+  // Battles and quality of life
+  typeChart: { on: false, mode: 'shuffle' },
+  misc: { on: false, instantText: false, reusableTMs: false, expShare: false, showTypes: false, showEffectiveness: false, fastIntro: false, nationalDex: false, runningShoes: false },
+  // Challenge
   hard: { on: false, bossTeams: true, levelBoost: 10, biggerBossTeams: true, doublesPercent: 20, doublesMinLevel: 20,
           legendaryLevel: 0, legendaryPercent: 15, regularItems: true },
   caps: { on: false, type: 'hard', mode: 'auto', caps: [15, 19, 24, 29, 31, 33, 42, 46, 58], candyCap: true },
-  candy: { on: false },
   comedy: { on: false, theme: 'thrones', hero: true, adult: false, fakeNews: true, battle: true, houseGyms: true, story: true, sprites: true, music: true },
 };
+// Which cards live in which group of the page (and count as "on" in its title).
+const FUN_GROUPS = [
+  ['traits', 'Pokémon', 'Base stats, types, abilities, evolutions, EXP curves and colors of every Pokémon.',
+    ['baseStats', 'types', 'abilities', 'evolutions', 'evoHelpers', 'expCurves', 'palettes']],
+  ['gifts', 'Starters, gifts and trades', 'Birch\'s three starters, gift Pokémon and legendaries you meet once, roaming Pokémon, and in-game trades.',
+    ['starters', 'statics', 'trades']],
+  ['moves', 'Moves', 'What every move does, and what Pokémon learn as they level up.', ['moveData', 'movesets']],
+  ['tms', 'TMs and move tutors', 'Which moves the TMs and the move tutors teach, and who can learn them.',
+    ['tmMoves', 'tmCompat', 'tutorMoves', 'tutorCompat']],
+  ['trainers', 'Trainers', 'Trainer teams, names, levels, items and double battles.', ['trainers', 'trainerExtras']],
+  ['wild', 'Wild Pokémon', 'What you find in grass, water, caves and fishing spots, and how easy it is to catch.', ['wild', 'wildExtras']],
+  ['items', 'Items', 'Items on the ground, hidden items, shops and the Pickup ability.', ['fieldItems', 'shopItems', 'pickup', 'candy']],
+  ['battle', 'Type chart and quality of life', 'Which types beat which, plus switches that make the game smoother.', ['typeChart', 'misc']],
+  ['challenge', 'Challenge', 'Hard mode and level caps.', ['hard', 'caps']],
+  ['comedy', 'Comedy dialogue', 'Rewrite the whole game\'s dialogue in one theme.', ['comedy']],
+];
+// Universal Randomizer settings that do not exist in Emerald, shown so nobody goes looking for them.
+const FUN_NOT_HERE = [
+  ['Totem Pokémon, Z-Crystals, hidden hollows, shaken grass, time-based wild Pokémon', 'Those are parts of other generations; Emerald has none of them.'],
+  ['Update base stats / moves / type chart to a newer generation', 'This game already uses the newest data. To go back to older numbers, use the generation switches in Game settings.'],
+  ['Custom player picture', 'Change any trainer\'s picture in the Trainers tab instead.'],
+  ['Lower case names, fastest text patches, ban Lucky Egg', 'Names are already mixed case; instant text is under Quality of life.'],
+];
+const FUN_PRESETS = [
+  ['classic', '🎲 Classic randomizer', 'Starters, wild Pokémon and trainers, fair strength.',
+    { starters: { on: true, mode: 'triangle' }, wild: { on: true, mode: 'similar' }, trainers: { on: true, mode: 'similar' },
+      statics: { on: true }, trades: { on: true }, fieldItems: { on: true } }],
+  ['chaos', '🌀 Everything random', 'Every randomizer on. A brand new game every seed.',
+    { baseStats: { on: true, mode: 'random' }, types: { on: true }, abilities: { on: true }, evolutions: { on: true },
+      evoHelpers: { on: true }, palettes: { on: true }, starters: { on: true, mode: 'random' }, statics: { on: true, mode: 'random' },
+      trades: { on: true, mode: 'both' }, moveData: { on: true }, movesets: { on: true }, tmMoves: { on: true }, tmCompat: { on: true },
+      tutorMoves: { on: true }, tutorCompat: { on: true }, trainers: { on: true, mode: 'similar' }, trainerExtras: { on: true, randomNames: true, randomClassNames: true },
+      wild: { on: true, mode: 'similar' }, fieldItems: { on: true, mode: 'random' }, shopItems: { on: true }, pickup: { on: true },
+      typeChart: { on: false } }],
+  ['nuzlocke', '🪦 Hard randomizer', 'Classic randomizer plus Hard mode, level caps and quality of life.',
+    { starters: { on: true }, wild: { on: true }, trainers: { on: true }, statics: { on: true }, evoHelpers: { on: true },
+      hard: { on: true }, caps: { on: true }, misc: { on: true, instantText: true, runningShoes: true, showEffectiveness: true } }],
+];
 const COMEDY_THEMES = [
   ['thrones', 'Game of Thrones', 'A real Game of Thrones story told through Hoenn: hand-written dialogue town by town, noble houses, plots and betrayals, and a dragon on the title screen. Serious, in the spirit of the books. Areas not written yet keep their normal text.'],
   ['madlibs', 'Mad Libs', 'You fill in 16 blanks from a menu at the start (a thing, a place, a food, a name...) and 4 more after every Gym. People all over Hoenn use your words, trainers build their trash talk around them, and signs run news about them.'],
@@ -1569,40 +1639,128 @@ function funCard(title, obj, intro, body) {
     obj.on ? el('div', { class: 'funbody' }, body) : null);
 }
 
-function renderFun() {
-  const s = F.s;
-  const seedInput = el('input', { type: 'text', value: s.seed, placeholder: 'Leave empty for a new random seed',
-    oninput: e => { s.seed = e.target.value; funSave(); } });
-  const header = el('div', { class: 'card' },
-    el('h3', {}, 'Fun Modes'),
-    el('p', { class: 'note' }, 'Tick the modes you want, press Preview to see what changes, then Apply. Your game is saved as a version first, so Undo Fun Modes on the left always takes you back. Then press Play to try it.'),
-    el('div', { class: 'row', style: 'align-items:flex-end' },
-      el('label', { class: 'field', style: 'flex:1;min-width:220px' }, el('span', {}, 'Seed (same seed + same settings = same game)'), seedInput),
-      el('button', { class: 'btn', onclick: () => { s.seed = String(Math.floor(Math.random() * 1e8)); funSave(); renderFun(); } }, '🎲 New seed')),
-    el('div', { style: 'margin-top:10px' }, funCheck(s, 'keepEdited', 'Leave trainers I changed by hand alone')));
+function funApplyPreset(preset) {
+  for (const k of Object.keys(FUN_DEFAULTS)) {
+    if (FUN_DEFAULTS[k] && typeof FUN_DEFAULTS[k] === 'object' && 'on' in FUN_DEFAULTS[k] && k !== 'comedy') F.s[k].on = false;
+  }
+  for (const [k, v] of Object.entries(preset)) Object.assign(F.s[k], v);
+  funSave(); renderFun();
+  toast('Preset picked. Press Preview to see what it does.');
+}
 
-  const wild = funCard('Randomize wild Pokémon', s.wild, 'Changes what you find in grass, water, caves and fishing spots.', [
-    el('div', { class: 'grid' },
-      funSelect('How', s.wild, 'mode', [['similar', 'Similar strength (fair)'], ['random', 'Anything goes'], ['global', 'Swap each species everywhere (1 to 1)']]),
-      el('div', { class: 'field' }, el('span', {}, 'Extras'), funCheck(s.wild, 'legendaries', 'Allow legendaries in the wild')))]);
+function funOpts(obj, items) {
+  // items: [key, label] checkboxes in one column
+  return el('div', { class: 'field' }, items.map(([k, l]) => funCheck(obj, k, l)));
+}
 
-  const tr = funCard('Randomize trainer teams', s.trainers, 'Every trainer gets new Pokémon. Your rival always carries the starter you did not pick.', [
-    el('div', { class: 'grid' },
-      funSelect('How', s.trainers, 'mode', [['similar', 'Similar strength (fair)'], ['random', 'Anything goes']]),
-      el('div', { class: 'field' }, el('span', {}, 'Extras'),
-        funCheck(s.trainers, 'keepTheme', 'Gym Leaders keep their type'),
-        funCheck(s.trainers, 'legendaries', 'Allow legendaries')))]);
+function funCards(s) {
+  const c = {};
+  c.baseStats = funCard('Base stats', s.baseStats, 'Changes HP, Attack, Defense, Sp. Atk, Sp. Def and Speed.', [el('div', { class: 'grid' },
+    funSelect('How', s.baseStats, 'mode', [['shuffle', 'Shuffle each Pokémon\'s own stats'], ['random', 'Random (same total as before)']]),
+    funOpts(s.baseStats, [['followEvolutions', 'Evolutions keep the same shape']]))]);
+  c.types = funCard('Types', s.types, 'Every Pokémon gets new types.', [el('div', { class: 'grid' },
+    funSelect('How', s.types, 'mode', [['follow', 'Random, evolutions keep them'], ['random', 'Completely random']]),
+    funOpts(s.types, [['forceDual', 'Every Pokémon has two types']]))]);
+  c.abilities = funCard('Abilities', s.abilities, 'Every Pokémon gets new abilities, hidden ability included.', [el('div', { class: 'grid' },
+    funOpts(s.abilities, [['followEvolutions', 'Evolutions keep the same abilities'], ['wonderGuard', 'Allow Wonder Guard']]),
+    funOpts(s.abilities, [['banTrapping', 'No trapping abilities (Shadow Tag, Arena Trap)'], ['banNegative', 'No bad-for-you abilities (Truant, Slow Start)'],
+      ['banBad', 'No useless abilities (Run Away, Honey Gather)']]))]);
+  c.evolutions = funCard('Evolutions', s.evolutions, 'Pokémon evolve into different Pokémon.', [el('div', { class: 'grid' },
+    funSelect('How', s.evolutions, 'mode', [['random', 'Random'], ['everyLevel', 'Random every level (evolves at every level up!)']], true),
+    s.evolutions.mode === 'random' ? funOpts(s.evolutions, [['similarStrength', 'Similar strength'], ['sameTyping', 'Shares a type'],
+      ['forceGrowth', 'Always gets stronger'], ['limit3', 'At most 3 stages']]) : null,
+    s.evolutions.mode === 'random' ? funOpts(s.evolutions, [['forceChange', 'Never the same as before'], ['noConvergence', 'No two evolve into the same one'],
+      ['legendaries', 'Allow legendaries']]) : funOpts(s.evolutions, [['legendaries', 'Allow legendaries']]))]);
+  c.evoHelpers = funCard('Evolution helpers', s.evoHelpers, 'Makes every Pokémon possible to evolve in a single game.', [el('div', { class: 'grid' },
+    funOpts(s.evoHelpers, [['changeImpossible', 'Trade evolutions happen at level 37 (or with the item)'], ['easier', 'Evolutions above level 40 happen at 40'],
+      ['noTime', 'Day and night evolutions work any time']]))]);
+  c.expCurves = funCard('Same EXP curve for all', s.expCurves, 'Every Pokémon levels up at the same speed.', [el('div', { class: 'grid' },
+    funSelect('Curve', s.expCurves, 'mode', [['legendarySlow', 'Medium Fast, legendaries Slow'], ['allMediumFast', 'Medium Fast for everyone']]))]);
+  c.palettes = funCard('Pokémon colors', s.palettes, 'New colors for every Pokémon\'s picture (normal and shiny).', [el('div', { class: 'grid' },
+    funOpts(s.palettes, [['followEvolutions', 'Families share colors']]))]);
 
-  const st = funCard('Randomize starters', s.starters, 'Changes the three Pokémon in Professor Birch\'s bag, and the rival\'s teams to match.', [
+  c.starters = funCard('Starters', s.starters, 'Changes the three Pokémon in Professor Birch\'s bag, and the rival\'s teams to match.', [
     el('div', { class: 'grid' },
-      funSelect('How', s.starters, 'mode', [['triangle', 'Random Grass, Fire and Water'], ['random', 'Any three (that evolve twice)'], ['custom', 'I pick them']], true)),
+      funSelect('How', s.starters, 'mode', [['triangle', 'Random Grass, Fire and Water'], ['random', 'Any three (that evolve twice)'], ['custom', 'I pick them']], true),
+      funOpts(s.starters, [['legendaries', 'Allow legendaries']])),
     s.starters.mode === 'custom' ? el('div', { class: 'grid', style: 'margin-top:8px' },
       [0, 1, 2].map(i => el('label', { class: 'field' }, el('span', {}, ['Left', 'Middle', 'Right'][i] + ' ball'),
         el('input', { type: 'text', value: s.starters.species[i] || '', 'data-list': 'dl-species',
           oninput: e => { s.starters.species[i] = e.target.value; funSave(); } })))) : null]);
+  c.statics = funCard('Gifts and legendaries', s.statics, 'Gift Pokémon (Castform, Beldum, fossils, the Wynaut egg) and Pokémon you battle once (Kyogre, Groudon, Rayquaza, the Regis, Kecleon...).', [el('div', { class: 'grid' },
+    funSelect('How', s.statics, 'mode', [['legendSwap', 'Legendaries stay legendaries'], ['similar', 'Similar strength'], ['random', 'Completely random']]),
+    funNumber('Levels +%', s.statics, 'levelPercent', -50, 100),
+    funOpts(s.statics, [['roamers', 'Roaming Latias / Latios too'], ['catchingTutorial', 'Change Wally\'s catching lesson']]))]);
+  c.trades = funCard('In-game trades', s.trades, 'The people who trade Pokémon with you offer something else.', [el('div', { class: 'grid' },
+    funSelect('What changes', s.trades, 'mode', [['given', 'What they give you'], ['both', 'What they give and what they ask for']]),
+    funOpts(s.trades, [['nicknames', 'New nicknames'], ['otNames', 'New trainer names'], ['ivs', 'Random IVs'], ['items', 'Random held items']]))]);
+
+  c.moveData = funCard('Move data', s.moveData, 'Changes the moves themselves.', [el('div', { class: 'grid' },
+    funOpts(s.moveData, [['power', 'Power'], ['accuracy', 'Accuracy'], ['pp', 'PP']]),
+    funOpts(s.moveData, [['type', 'Type'], ['category', 'Physical or special']]))]);
+  c.movesets = funCard('Level-up moves', s.movesets, 'What every Pokémon learns as it levels up (wild Pokémon and trainers too).', [el('div', { class: 'grid' },
+    funSelect('How', s.movesets, 'mode', [['preferType', 'Random, mostly its own types'], ['random', 'Completely random'], ['metronome', 'Metronome only (everyone!)']], true),
+    s.movesets.mode !== 'metronome' ? funNumber('Moves at level 1', s.movesets, 'startMoves', 1, 4) : null,
+    s.movesets.mode !== 'metronome' ? funNumber('Damaging moves at least %', s.movesets, 'goodDamagingPercent', 0, 100) : null,
+    s.movesets.mode !== 'metronome' ? funOpts(s.movesets, [['reorderDamaging', 'Weaker attacks first, stronger later'], ['noGameBreaking', 'No game-breaking moves (one-hit KOs, Sonic Boom, Spore)']]) : null)]);
+
+  c.tmMoves = funCard('TM moves', s.tmMoves, 'Each TM teaches a different move. HMs stay the same so you can always get around.', [el('div', { class: 'grid' },
+    funNumber('Strong damaging moves at least %', s.tmMoves, 'goodDamagingPercent', 0, 100),
+    funOpts(s.tmMoves, [['keepField', 'Keep field moves (Dig, Secret Power...)'], ['noGameBreaking', 'No game-breaking moves'], ['fullHM', 'Every Pokémon can learn every HM']]))]);
+  c.tmCompat = funCard('Who can learn TMs', s.tmCompat, 'Which Pokémon can use which TM.', [el('div', { class: 'grid' },
+    funSelect('How', s.tmCompat, 'mode', [['preferType', 'Random, likely for its own types'], ['random', 'Completely random'], ['full', 'Everyone learns every TM']]),
+    funOpts(s.tmCompat, [['followEvolutions', 'Evolutions learn the same'], ['levelUpCompatible', 'Moves it learns by level up are always OK'], ['fullHM', 'Every Pokémon can learn every HM']]))]);
+  c.tutorMoves = funCard('Tutor moves', s.tutorMoves, 'The move tutors in Hoenn teach different moves (and say so).', [el('div', { class: 'grid' },
+    funOpts(s.tutorMoves, [['noGameBreaking', 'No game-breaking moves']]))]);
+  c.tutorCompat = funCard('Who can learn tutor moves', s.tutorCompat, 'Which Pokémon each tutor can teach.', [el('div', { class: 'grid' },
+    funSelect('How', s.tutorCompat, 'mode', [['preferType', 'Random, likely for its own types'], ['random', 'Completely random'], ['full', 'Everyone learns every tutor move']]),
+    funOpts(s.tutorCompat, [['followEvolutions', 'Evolutions learn the same'], ['levelUpCompatible', 'Moves it learns by level up are always OK']]))]);
+
+  c.trainers = funCard('Trainer teams', s.trainers, 'Every trainer gets new Pokémon. Your rival always carries the starter you did not pick.', [
+    el('div', { class: 'grid' },
+      funSelect('How', s.trainers, 'mode', [['similar', 'Similar strength (fair)'], ['random', 'Anything goes'], ['typeThemed', 'Every trainer uses one random type'],
+        ['gymTypes', 'Fair, and every Gym and Elite Four gets a new type']]),
+      funOpts(s.trainers, [['keepTheme', 'Gym Leaders keep their type'], ['legendaries', 'Allow legendaries']]))]);
+  const te = s.trainerExtras;
+  c.trainerExtras = funCard('Trainer extras', te, 'Names, levels, bigger teams, held items and more for trainers.', [el('div', { class: 'grid' },
+    funNumber('Levels +%', te, 'levelPercent', -50, 100),
+    funNumber('Fully evolved from level (0 = off)', te, 'fullyEvolvedAt', 0, 100),
+    funNumber('Extra Pokémon for bosses', te, 'extraBoss', 0, 5),
+    funNumber('Extra Pokémon for others', te, 'extraRegular', 0, 5),
+    funOpts(te, [['randomNames', 'Shuffle trainer names'], ['randomClassNames', 'Shuffle class names (Hiker, Swimmer...)'], ['allDoubles', 'Every battle is a double battle']]),
+    funOpts(te, [['itemsBoss', 'Bosses hold items'], ['itemsRegular', 'Other trainers hold items'], ['consumableOnly', 'Only berries and one-use items'],
+      ['betterMovesets', 'Smarter movesets'], ['legendaries', 'Extra Pokémon can be legendary']]))]);
+
+  c.wild = funCard('Wild Pokémon', s.wild, 'Changes what you find in grass, water, caves and fishing spots.', [
+    el('div', { class: 'grid' },
+      funSelect('How', s.wild, 'mode', [['similar', 'Each area, similar strength (fair)'], ['random', 'Each area, anything goes'], ['global', 'Swap each species everywhere (1 to 1)']]),
+      funOpts(s.wild, [['typeThemed', 'Each area has one type'], ['catchEmAll', 'Catch \'em all: as many different Pokémon as possible'], ['legendaries', 'Allow legendaries in the wild']]))]);
+  c.wildExtras = funCard('Wild extras', s.wildExtras, 'Levels, catch rates and held items for wild Pokémon.', [el('div', { class: 'grid' },
+    funNumber('Levels +%', s.wildExtras, 'levelPercent', -50, 100),
+    funSelect('Easier to catch', s.wildExtras, 'minCatchRate', [[0, 'Unchanged'], [1, 'A little'], [2, 'Some'], [3, 'More'], [4, 'Much'], [5, 'Every ball catches like a Great Ball+']].map(([v, t]) => [String(v), t])),
+    funOpts(s.wildExtras, [['heldItems', 'Random held items'], ['banBadItems', 'No useless items']]))]);
+
+  c.fieldItems = funCard('Items on the ground', s.fieldItems, 'Item balls and hidden items. Key items stay where they are, and TMs stay TMs.', [el('div', { class: 'grid' },
+    funSelect('How', s.fieldItems, 'mode', [['shuffle', 'Shuffle the same items around'], ['random', 'Random items'], ['even', 'Random, each item about as often']]),
+    funOpts(s.fieldItems, [['hidden', 'Hidden items too'], ['banBad', 'No useless items (mail, shards...)']]))]);
+  c.shopItems = funCard('Shops', s.shopItems, 'What the Poké Marts and department stores sell.', [el('div', { class: 'grid' },
+    funSelect('How', s.shopItems, 'mode', [['shuffle', 'Shuffle between shops'], ['random', 'Random items']]),
+    funOpts(s.shopItems, [['banRegular', 'Change the basics too (Poké Balls, Potions...)'], ['banOverpowered', 'No overpowered items (Master Ball, Rare Candy...)'], ['banBad', 'No useless items']]),
+    funOpts(s.shopItems, [['guaranteeEvo', 'Evolution stones and items are sold somewhere'], ['guaranteeX', 'X items are sold somewhere']]))]);
+  c.pickup = funCard('Pickup items', s.pickup, 'Pokémon with the Pickup ability find different items.', []);
+  c.candy = funCard('Free Rare Candy in every shop', s.candy, 'Every Poké Mart sells Rare Candy for ₽0. Pairs well with level caps.', []);
+
+  c.typeChart = funCard('Type chart', s.typeChart, 'Changes which types are strong and weak against each other.', [el('div', { class: 'grid' },
+    funSelect('How', s.typeChart, 'mode', [['shuffle', 'Shuffle every matchup'], ['identities', 'Each type keeps its strength, targets shuffled'],
+      ['random', 'Completely random'], ['inverse', 'Inverse (weak becomes strong)']]))]);
+  c.misc = funCard('Quality of life', s.misc, 'Small switches that make the game smoother.', [el('div', { class: 'grid' },
+    funOpts(s.misc, [['instantText', 'Instant text'], ['runningShoes', 'Running Shoes from the start'], ['nationalDex', 'National Pokédex from the start'],
+      ['reusableTMs', 'TMs never run out']]),
+    funOpts(s.misc, [['expShare', 'Exp. Share for the whole party'], ['showTypes', 'Show types in battle'], ['showEffectiveness', 'Always show move effectiveness'],
+      ['fastIntro', 'Faster battle start']]))]);
 
   const h = s.hard;
-  const hard = funCard('Hard mode', h, 'Smart AI everywhere, real movesets with STAB and coverage, held items, natures and EVs for bosses. Tough but fair.', [
+  c.hard = funCard('Hard mode', h, 'Smart AI everywhere, real movesets with STAB and coverage, held items, natures and EVs for bosses. Tough but fair.', [
     el('div', { class: 'grid' },
       el('div', { class: 'field' }, el('span', {}, 'Bosses'),
         funCheck(h, 'bossTeams', 'Hand-built teams for Gym Leaders, Elite Four, Wallace, Wally, Maxie and Archie'),
@@ -1613,20 +1771,17 @@ function renderFun() {
       funNumber('...from level', h, 'doublesMinLevel', 1, 100, 'So you have two Pokémon by then.'),
       funNumber('Legendaries from level (0 = never)', h, 'legendaryLevel', 0, 100, 'Bosses at or above this level bring one. The big ones show up 15 levels later.'),
       funNumber('...and % of regular trainers', h, 'legendaryPercent', 0, 100))]);
-
-  const c = s.caps;
-  const caps = funCard('Level caps', c, 'Your Pokémon stop gaining EXP at the cap until you win the next badge.', [
+  const cp = s.caps;
+  c.caps = funCard('Level caps', cp, 'Your Pokémon stop gaining EXP at the cap until you win the next badge.', [
     el('div', { class: 'grid' },
-      funSelect('Type', c, 'type', [['hard', 'Hard: no EXP at the cap'], ['soft', 'Soft: much less EXP at the cap']]),
-      funSelect('Cap levels', c, 'mode', [['auto', 'Match each Gym Leader\'s strongest Pokémon'], ['custom', 'I set them']], true),
-      el('div', { class: 'field' }, el('span', {}, 'Rare Candy'), funCheck(c, 'candyCap', 'Rare Candy cannot go past the cap'))),
-    c.mode === 'custom' ? el('div', { class: 'capgrid' }, CAP_NAMES.map((n, i) => el('label', { class: 'field' }, el('span', {}, 'Until ' + n),
-      el('input', { type: 'number', min: 1, max: 100, value: c.caps[i], oninput: e => { c.caps[i] = Number(e.target.value) || 1; funSave(); } })))) : null]);
-
-  const candy = funCard('Free Rare Candy in every shop', s.candy, 'Every Poké Mart sells Rare Candy for ₽0. Pairs well with level caps.', []);
+      funSelect('Type', cp, 'type', [['hard', 'Hard: no EXP at the cap'], ['soft', 'Soft: much less EXP at the cap']]),
+      funSelect('Cap levels', cp, 'mode', [['auto', 'Match each Gym Leader\'s strongest Pokémon'], ['custom', 'I set them']], true),
+      el('div', { class: 'field' }, el('span', {}, 'Rare Candy'), funCheck(cp, 'candyCap', 'Rare Candy cannot go past the cap'))),
+    cp.mode === 'custom' ? el('div', { class: 'capgrid' }, CAP_NAMES.map((n, i) => el('label', { class: 'field' }, el('span', {}, 'Until ' + n),
+      el('input', { type: 'number', min: 1, max: 100, value: cp.caps[i], oninput: e => { cp.caps[i] = Number(e.target.value) || 1; funSave(); } })))) : null]);
 
   const cm = s.comedy;
-  const comedy = funCard('Comedy dialogue', cm, 'Pick one theme and the whole game goes all in on it. No joke is used twice, and at most one is added to each conversation.', [
+  c.comedy = funCard('Comedy dialogue', cm, 'Pick one theme and the whole game goes all in on it. No joke is used twice, and at most one is added to each conversation.', [
     el('div', { class: 'field' }, el('span', {}, 'Theme')),
     el('div', { class: 'packs' }, COMEDY_THEMES.map(([k, t, d]) => {
       const rb = el('input', { type: 'radio', name: 'comedyTheme', checked: cm.theme === k, onchange: () => { cm.theme = k; funSave(); renderFun(); } });
@@ -1637,13 +1792,54 @@ function renderFun() {
       const cb = el('input', { type: 'checkbox', checked: !!cm[k], onchange: () => { cm[k] = cb.checked; funSave(); renderFun(); } });
       return el('label', { class: 'pack' + (cm[k] ? ' on' : '') }, cb, el('div', {}, el('b', {}, t), el('div', { class: 'note' }, d)));
     }))]);
+  return c;
+}
 
-  const anyOn = ['wild', 'trainers', 'starters', 'hard', 'caps', 'candy', 'comedy'].some(k => s[k].on);
+function funOpenGroups() {
+  try { return JSON.parse(localStorage.getItem('emerald.funOpen') || '[]'); } catch (e) { return []; }
+}
+
+function renderFun() {
+  const s = F.s;
+  const seedInput = el('input', { type: 'text', value: s.seed, placeholder: 'Leave empty for a new random seed',
+    oninput: e => { s.seed = e.target.value; funSave(); } });
+  const header = el('div', { class: 'card' },
+    el('h3', {}, 'Fun Modes'),
+    el('p', { class: 'note' }, 'Every setting from the Universal Pokémon Randomizer that works in Emerald, plus our own modes. Open a group, switch on what you want, press Preview to see what changes, then Apply. Your game is saved as a version first, so Undo Fun Modes on the left always takes you back. Then press Play to try it.'),
+    el('div', { class: 'row', style: 'align-items:flex-end' },
+      el('label', { class: 'field', style: 'flex:1;min-width:220px' }, el('span', {}, 'Seed (same seed + same settings = same game)'), seedInput),
+      el('button', { class: 'btn', onclick: () => { s.seed = String(Math.floor(Math.random() * 1e8)); funSave(); renderFun(); } }, '🎲 New seed')),
+    el('div', { style: 'margin-top:10px' }, funCheck(s, 'keepEdited', 'Leave trainers I changed by hand alone')),
+    el('div', { class: 'field', style: 'margin-top:10px' }, el('span', {}, 'Not sure where to start? Pick a preset')),
+    el('div', { class: 'packs' }, FUN_PRESETS.map(([k, t, d, preset]) =>
+      el('button', { class: 'pack', style: 'text-align:left;background:none;font:inherit;color:inherit', onclick: () => funApplyPreset(preset) },
+        el('div', {}, el('b', {}, t), el('div', { class: 'note' }, d))))));
+
+  const cards = funCards(s);
+  const open = new Set(funOpenGroups());
+  const groups = FUN_GROUPS.map(([id, title, intro, keys]) => {
+    const n = keys.filter(k => s[k].on).length;
+    const d = el('details', { class: 'fungroup', open: open.has(id) },
+      el('summary', {}, el('b', {}, title), el('span', { class: 'fungroup-count' + (n ? ' on' : '') }, n ? `${n} on` : 'off'),
+        el('div', { class: 'note' }, intro)),
+      keys.map(k => cards[k]));
+    d.addEventListener('toggle', () => {
+      const now = new Set(funOpenGroups());
+      if (d.open) now.add(id); else now.delete(id);
+      try { localStorage.setItem('emerald.funOpen', JSON.stringify([...now])); } catch (e) { /* ignore */ }
+    });
+    return d;
+  });
+  const notHere = el('details', { class: 'fungroup' },
+    el('summary', {}, el('b', {}, 'Randomizer settings Emerald does not have'), el('div', { class: 'note' }, 'A few Universal Randomizer settings belong to other games.')),
+    el('div', { class: 'card' }, el('ul', {}, FUN_NOT_HERE.map(([a, b]) => el('li', {}, el('b', {}, a), ': ', b)))));
+
+  const anyOn = Object.keys(FUN_DEFAULTS).some(k => s[k] && s[k].on);
   const bar = el('div', { class: 'savebar funbar' },
     el('h2', {}, 'Fun Modes'),
     el('button', { class: 'btn', disabled: !anyOn || F.busy, onclick: () => runFun(false) }, 'Preview'),
     el('button', { class: 'btn primary', disabled: !anyOn || F.busy, onclick: () => runFun(true) }, 'Apply'));
-  $('#funEditor').replaceChildren(bar, header, wild, tr, st, hard, caps, candy, comedy);
+  $('#funEditor').replaceChildren(bar, header, ...groups, notHere);
 }
 
 async function runFun(apply) {
