@@ -1138,7 +1138,11 @@ async function openScript(path) {
   } catch (e) { toast(e.message, true); }
 }
 
+// Where "+ Insert..." puts things: the Scripts tab, or a person's script in the Maps tab.
+let INS = { ta: null, prefix: null, labels: () => [] };
+
 function scriptPrefix() {
+  if (INS.prefix) return INS.prefix;
   const m = S.current.match(/^data\/maps\/([^/]+)\//);
   return m ? m[1] : 'Common';
 }
@@ -1196,7 +1200,7 @@ function renderScriptEditor() {
 }
 
 function insertAtCursor(lines, appendix) {
-  const ta = S.textarea;
+  const ta = INS.ta;
   let pos = ta.selectionStart;
   // insert at the start of the next line so commands stay on their own lines
   const nl = ta.value.indexOf('\n', pos);
@@ -1224,7 +1228,7 @@ function textBlock(label, friendly) {
 }
 
 function uniqueLabel(base) {
-  const existing = new Set(labelsIn(S.textarea.value).map(l => l.name));
+  const existing = new Set(labelsIn(INS.ta.value).map(l => l.name).concat(INS.labels()));
   let name = base, n = 2;
   while (existing.has(name)) name = base + n++;
   return name;
@@ -1329,8 +1333,9 @@ const INSERTS = {
   },
 };
 
-function openInsertForm(kind) {
-  if (!S.textarea) return;
+function openInsertForm(kind, target = null) {
+  INS = target || { ta: S.textarea, prefix: null, labels: () => [] };
+  if (!INS.ta) return;
   const def = INSERTS[kind];
   const inputs = {};
   const form = el('div', { class: 'form' });
