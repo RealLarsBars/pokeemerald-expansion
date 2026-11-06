@@ -74,6 +74,25 @@ def person(map_folder, index, text_db, map_index):
     label = obj.get('script') or ''
     base = {'map': map_folder, 'index': int(index), 'label': label, 'graphics_id': obj.get('graphics_id', ''),
             'scripts': [], 'texts': [], 'shared': [], 'usedBy': 0, 'file': ''}
+    return _detail(base, label, text_db, map_index)
+
+
+def sign(map_folder, index, text_db, map_index):
+    """What a sign (or anything else you press A on) on a map says."""
+    if not re.match(r'^\w+$', map_folder):
+        raise PersonError('Unknown map.')
+    bgs = load_map(map_folder).get('bg_events') or []
+    try:
+        bg = bgs[int(index)]
+    except (IndexError, ValueError):
+        raise PersonError('That sign is not on this map any more. Reload the map.')
+    label = bg.get('script') or ''
+    base = {'map': map_folder, 'index': int(index), 'label': label, 'scripts': [], 'texts': [], 'shared': [],
+            'usedBy': 0, 'file': '', 'x': bg.get('x', 0), 'y': bg.get('y', 0)}
+    return _detail(base, label, text_db, map_index)
+
+
+def _detail(base, label, text_db, map_index):
     if not label or label == '0x0' or label == 'NULL':
         base['label'] = ''
         return base

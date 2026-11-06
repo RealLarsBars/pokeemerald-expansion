@@ -24,10 +24,13 @@ import configs  # noqa: E402
 import funmodes  # noqa: E402
 import gamedata  # noqa: E402
 import gifts  # noqa: E402
+import history  # noqa: E402
 import maps  # noqa: E402
 import mapview  # noqa: E402
+import pictures  # noqa: E402
 import projects  # noqa: E402
 import movesets  # noqa: E402
+import movedit  # noqa: E402
 import newtrainer  # noqa: E402
 import npcscript  # noqa: E402
 import shops  # noqa: E402
@@ -149,7 +152,148 @@ def map_page(folder):
     return d
 
 
-ERRORS = (team.TeamError, mapview.MapError, wild.WildError, shops.ShopError, gifts.GiftError, movesets.MovesetError,
+def _map_name(body):
+    from common import map_display_name
+    return map_display_name(str(body.get('map') or '')) or 'a map'
+
+
+def _pretty_id(const, prefix):
+    from common import const_to_name
+    return const_to_name(prefix, str(const or ''))
+
+
+def _trainer_label(body):
+    fields = dict((f[0], f[1]) for f in body.get('fields') or [] if isinstance(f, (list, tuple)) and len(f) == 2)
+    name = ('%s %s' % (fields.get('Class', ''), fields.get('Name', ''))).strip()
+    return 'Trainer ' + (name or _pretty_id(body.get('id'), 'TRAINER'))
+
+
+def _text_label(label):
+    """LittlerootTown_Text_TownSign -> Littleroot Town: Town Sign"""
+    from common import map_display_name
+    head, sep, tail = str(label).partition('_Text_')
+    if not sep:
+        return map_display_name(str(label))
+    return '%s: %s' % (map_display_name(head), map_display_name(tail))
+
+
+def _script_label(path):
+    from common import map_display_name
+    parts = str(path).split('/')
+    if len(parts) >= 4 and parts[1] == 'maps':
+        return 'Script for ' + map_display_name(parts[2])
+    return 'Script ' + os.path.splitext(parts[-1])[0].replace('_', ' ')
+
+
+# What each save is called in Recent changes (None: the request saves nothing).
+SAVE_LABELS = {
+    '/api/trainer': _trainer_label,
+    '/api/map/items': lambda b: 'Items on ' + _map_name(b),
+    '/api/map/person': lambda b: 'Someone on %s (what they say or do)' % _map_name(b),
+    '/api/map/person/new': lambda b: 'New lines for someone on ' + _map_name(b),
+    '/api/map/warp': lambda b: 'A door on ' + _map_name(b),
+    '/api/map/sign': lambda b: 'A sign on ' + _map_name(b),
+    '/api/wild': lambda b: 'Wild Pokémon on ' + _map_name(b),
+    '/api/shop': lambda b: 'Shop items and prices',
+    '/api/gift': lambda b: 'Gift Pokémon',
+    '/api/starters': lambda b: 'Starter Pokémon',
+    '/api/trainer/new': lambda b: 'New trainer on ' + _map_name(b),
+    '/api/trainer/room': lambda b: 'More room for new trainers',
+    '/api/moves/tms': lambda b: 'TM & HM list',
+    '/api/moves/species': lambda b: 'Moves %s can learn' % _pretty_id(b.get('id'), 'SPECIES'),
+    '/api/text/save': lambda b: 'Text "%s"' % _text_label(b.get('label', '')),
+    '/api/text/replace': lambda b: 'Replaced "%s" with "%s"' % (b.get('find', ''), b.get('replace', '')),
+    '/api/species': lambda b: 'Pokémon data for %s' % _pretty_id(b.get('id'), 'SPECIES'),
+    '/api/config': lambda b: 'Game settings (%s)' % os.path.basename(str(b.get('file', ''))),
+    '/api/script': lambda b: _script_label(b.get('path', '')),
+    '/api/move': lambda b: 'Move %s' % _pretty_id(b.get('id'), 'MOVE'),
+    '/api/item': lambda b: 'Item %s' % _pretty_id(b.get('id'), 'ITEM'),
+    '/api/picture': lambda b: ('New picture for %s' % b.get('name', b.get('kind', 'something'))) if b.get('save') else None,
+    '/api/fun/run': lambda b: 'Fun Modes applied' if b.get('apply') else None,
+    '/api/fun/undo': lambda b: 'Undid Fun Modes',
+    '/api/fun/reset': lambda b: 'Reset to the base game',
+    '/api/fun/version/switch': lambda b: 'Switched to a saved version',
+    '/api/team/resolve': lambda b: "Picked versions after getting friends' changes",
+}
+
+
+def save_label(path, body):
+    fn = SAVE_LABELS.get(path)
+    if not fn:
+        return None
+    try:
+        return fn(body if isinstance(body, dict) else {})
+    except Exception:
+        return 'A change'
+
+
+def find_anything(q):
+    """Top bar search: a few of the best matches of every kind."""
+    S = STATE
+    needle = q.strip().lower()
+    if len(needle) < 2:
+        return {}
+    words = needle.split()
+
+    def score(name, *extra):
+        n = name.lower()
+        hay = ' '.join([n] + [e.lower() for e in extra if e])
+        if not all(w in hay for w in words):
+            return None
+        return 0 if n == needle else 1 if n.startswith(needle) else 2 if needle in n else 3
+
+    best_score = {}
+
+    def best(rows, limit=6, kind=None):
+        rows = [r for r in rows if r[0] is not None]
+        rows.sort(key=lambda r: (r[0], r[1]['name']))
+        if kind and rows:
+            best_score[kind] = rows[0][0]
+        return [r[1] for r in rows[:limit]]
+
+    out = {}
+    S.party.refresh()
+    pics = {p['const']: p.get('img') for p in S.gamedata()['trainerPics']}
+    groups = {}
+    for tid, text in S.party.blocks:
+        t = trainers.summary(trainers.parse_block(text))
+        name = ('%s %s' % (t['class'], t['name'])).strip() or tid
+        sc = score(t['name'] or tid, t['class'], tid)
+        if sc is None:
+            continue
+        g = groups.get(name)
+        if g is None:
+            groups[name] = g = [sc, {'id': tid, 'name': name, 'sub': '', 'img': pics.get(t['pic'])}, 0]
+        g[2] += 1
+        if sc < g[0]:
+            g[0], g[1]['id'] = sc, tid
+    for g in groups.values():
+        g[1]['sub'] = '%d battles' % g[2] if g[2] > 1 else ''
+    out['trainer'] = best([(g[0], g[1]) for g in groups.values()], kind='trainer')
+    if S.map_list is None:
+        S.map_list = mapview.map_list()
+    out['map'] = best([(score(m['name'], m['map']), {'id': m['map'], 'name': m['name']}) for m in S.map_list], kind='map')
+    gd = S.gamedata()
+    out['species'] = best([(score(x['name'], x['const']), {'id': x['const'], 'name': x['name'], 'img': x.get('img')}) for x in gd['species']], kind='species')
+    out['move'] = best([(score(x['name'], x['const']), {'id': x['const'], 'name': x['name']}) for x in gd['moves']], 5, 'move')
+    out['item'] = best([(score(x['name'], x['const']), {'id': x['const'], 'name': x['name']}) for x in gd['items']], 5, 'item')
+    texts = S.text.search(q.strip(), False, limit=6)
+    out['text'] = [{'id': r['label'], 'q': q.strip(), 'name': (r['text'][:70] + ('...' if len(r['text']) > 70 else '')).replace('\n', ' '),
+                    'sub': r['label']} for r in texts.get('results', [])[:6]]
+    st = []
+    for f in configs.files():
+        for c in configs.read(f['file']):
+            st.append((score(c['name'], c['help'], c['section']), {'id': c['name'], 'name': c['name'], 'sub': f['title']}))
+    best_score['text'] = 2.5
+    out['setting'] = best(st, 4, 'setting')
+    out['script'] = best([(score(f['name'], f['path']), {'id': f['path'], 'name': f['name'], 'sub': f['path']})
+                          for f in maps.script_file_list() if f['group'] != 'Maps'], 3, 'script')
+    # Best matches first: "mudkip" shows the Pokémon before trainers who have one.
+    out['order'] = sorted((k for k in out if out[k]), key=lambda k: best_score.get(k, 3))
+    return out
+
+
+ERRORS = (team.TeamError, history.HistoryError, movedit.MoveItemError, pictures.PictureError, mapview.MapError, wild.WildError, shops.ShopError, gifts.GiftError, movesets.MovesetError,
           newtrainer.NewTrainerError, npcscript.PersonError)
 
 
@@ -208,7 +352,11 @@ class Handler(BaseHTTPRequestHandler):
         url = urlparse(self.path)
         STATE.map_list = None
         try:
-            self._post(url.path, self._body())
+            body = self._body()
+            self._post(url.path, body)
+            label = save_label(url.path, body)
+            if label:
+                history.record(label)
         except ApiError as e:
             self._send(e.status, {'error': str(e)})
         except ERRORS as e:
@@ -249,8 +397,24 @@ class Handler(BaseHTTPRequestHandler):
             full = project_path(rel)
             if not os.path.exists(full):
                 raise ApiError('missing image', 404)
+            # Pictures can be replaced (your own pictures), so the browser checks
+            # whether one changed; unchanged ones are not sent again.
+            stamp = str(int(os.path.getmtime(full)))
+            if self.headers.get('If-None-Match') == stamp:
+                self.send_response(304)
+                self.send_header('ETag', stamp)
+                self.end_headers()
+                return
             with open(full, 'rb') as f:
-                return self._send(200, with_transparent_background(f.read()), 'image/png', cache=True)
+                body = with_transparent_background(f.read())
+            self.send_response(200)
+            self.send_header('Content-Type', 'image/png')
+            self.send_header('Content-Length', str(len(body)))
+            self.send_header('Cache-Control', 'no-cache')
+            self.send_header('ETag', stamp)
+            self.end_headers()
+            self.wfile.write(body)
+            return
         if path == '/api/ping':
             return self._send(200, {'ok': True, 'root': ROOT, 'mgba': bool(S.mgba)})
         if path == '/api/gamedata':
@@ -291,6 +455,10 @@ class Handler(BaseHTTPRequestHandler):
             return self._send(200, map_page(q.get('map', '')))
         if path == '/api/map/person':
             return self._send(200, npcscript.person(q.get('map', ''), q.get('index', '0'), S.text, S.maps))
+        if path == '/api/map/sign':
+            return self._send(200, npcscript.sign(q.get('map', ''), q.get('index', '0'), S.text, S.maps))
+        if path == '/api/map/warps':
+            return self._send(200, mapview.warps_of(q.get('map', '')))
         if path == '/api/mapimg':
             return self._send(200, mapview.map_image(q.get('map', '')), 'image/png')
         if path == '/api/starters':
@@ -350,6 +518,18 @@ class Handler(BaseHTTPRequestHandler):
             return self._send(200, {'list': team.invitations()})
         if path == '/api/team/conflicts':
             return self._send(200, team.conflicts())
+        if path == '/api/movesitems':
+            return self._send(200, {'moves': movedit.move_list(), 'items': movedit.item_list()})
+        if path == '/api/move':
+            return self._send(200, movedit.read_move(q.get('id', '')))
+        if path == '/api/item':
+            return self._send(200, movedit.read_item(q.get('id', '')))
+        if path == '/api/picture/info':
+            return self._send(200, pictures.info(q.get('kind', ''), q.get('target', '')))
+        if path == '/api/find':
+            return self._send(200, find_anything(q.get('q', '')))
+        if path == '/api/history':
+            return self._send(200, history.listing())
         if path == '/api/fun/status':
             return self._send(200, {'fun': versions.fun_status(), 'versions': versions.list_versions()})
         raise ApiError('Not found', 404)
@@ -379,6 +559,17 @@ class Handler(BaseHTTPRequestHandler):
                 for t in body.get('texts') or []:
                     S.text.save(t['file'], t['label'], t['text'])
             return self._send(200, npcscript.person(body['map'], body['index'], S.text, S.maps))
+        if path == '/api/map/warp':
+            with S.lock:
+                mapview.save_warp(body['map'], body['index'], body['dest'], body['destWarp'], bool(body.get('both')))
+            return self._send(200, map_page(body['map']))
+        if path == '/api/map/sign':
+            with S.lock:
+                if body.get('scripts'):
+                    npcscript.save_scripts(body['file'], body['scripts'])
+                for t in body.get('texts') or []:
+                    S.text.save(t['file'], t['label'], t['text'])
+            return self._send(200, npcscript.sign(body['map'], body['index'], S.text, S.maps))
         if path == '/api/map/person/new':
             with S.lock:
                 npcscript.new_script(body['map'], body['index'], body.get('name', ''), body.get('text', ''))
@@ -401,6 +592,9 @@ class Handler(BaseHTTPRequestHandler):
         if path == '/api/starters':
             with S.lock:
                 return self._send(200, gifts.save_starters(body['species'], body.get('level', 5), valid('species')))
+        if path == '/api/trainer/room':
+            with S.lock:
+                return self._send(200, newtrainer.add_room())
         if path == '/api/trainer/new':
             with S.lock:
                 const = newtrainer.create(body)
@@ -418,6 +612,19 @@ class Handler(BaseHTTPRequestHandler):
                     movesets.save_egg_moves(sp.get('eggSymbol'), body['egg'], valid('moves'))
             return self._send(200, {'teach': movesets.teachables(sp.get('teachSymbol'), sp.get('teachingType')),
                                     'egg': movesets.egg_moves(sp.get('eggSymbol'))})
+        if path == '/api/move':
+            with S.lock:
+                return self._send(200, movedit.save_move(body['id'], body.get('changes') or {},
+                                                         {'TYPE_' + t.upper().replace(' ', '_') for t in S.gamedata()['types']} | set(S.gamedata()['types'])))
+        if path == '/api/item':
+            with S.lock:
+                return self._send(200, movedit.save_item(body['id'], body.get('changes') or {}))
+        if path == '/api/picture':
+            with S.lock:
+                res = pictures.convert(body, bool(body.get('save')))
+            if body.get('save'):
+                S._gamedata = None
+            return self._send(200, res)
         if path == '/api/trainer/competitive':
             return self._send(200, make_competitive(body))
         if path == '/api/showdown':
@@ -452,6 +659,8 @@ class Handler(BaseHTTPRequestHandler):
             with S.lock:
                 write_text(full, text)
             return self._send(200, {'ok': True})
+        if path.startswith('/api/history/'):
+            return self._send(200, _history_post(path, body))
         if path.startswith('/api/fun/'):
             return self._fun(path, body)
         if path.startswith('/api/projects/'):
@@ -476,12 +685,35 @@ class Handler(BaseHTTPRequestHandler):
             def do_update(job):
                 ok, msg = tasks.apply_update(job, auto=auto)
                 _fun_changed()
+                history.record('Editor update')
                 if ok and msg.startswith('Updated'):
                     S.restart_requested = True
                 return ok, msg
             started = S.job.start('Update', do_update)
             return self._send(200, {'started': started})
         raise ApiError('Not found', 404)
+
+
+def _history_post(path, body):
+    S = STATE
+    if S.job.snapshot()['state'] == 'running':
+        raise ApiError('Wait for the editor to finish what it is doing first.')
+    if team.merging():
+        raise ApiError('Finish picking versions first (click Team at the top).')
+    with S.lock:
+        if path == '/api/history/undo':
+            label = history.undo(body['id'])
+            msg = 'Took back: ' + label
+        elif path == '/api/history/goback':
+            label = history.go_back(body['id'])
+            msg = 'Your game is back to how it was before: ' + label
+        elif path == '/api/history/lastgood':
+            history.restore_good()
+            msg = 'Your game is back to the last version that worked.'
+        else:
+            raise ApiError('Not found', 404)
+    _fun_changed()
+    return {'ok': True, 'message': msg}
 
 
 def _fun_changed():
@@ -499,6 +731,7 @@ def _team_job(title, fn):
             ok, msg = fn(job)
         finally:
             _fun_changed()
+            history.record(title)
         if job.editor_changed:
             S.restart_requested = True
             msg = (msg + ' ' if msg else '') + 'They include a newer editor, so it will restart in a moment.'
@@ -566,6 +799,7 @@ def _team_post(path, body):
             res = team.sync(job, save)
         if res.get('got') or res.get('conflict'):
             _fun_changed()
+            history.record("Friends' changes")
         if job.editor_changed and not res.get('conflict'):
             S.restart_requested = True
             res['restarting'] = True
@@ -638,6 +872,7 @@ def main():
     if other:
         _switch_to(other)
     STATE = State(args.mgba)
+    history.start()
     server = ThreadingHTTPServer(('127.0.0.1', args.port), Handler)
     server.daemon_threads = True
     threading.Thread(target=server.serve_forever, daemon=True).start()

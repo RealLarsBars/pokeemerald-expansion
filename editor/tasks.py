@@ -20,18 +20,20 @@ class Job:
         self.log = []
         self.message = ''
         self.proc = None      # the program the job is running right now, if any
+        self.help = None      # a failed build's explanation, in plain words
         self.run_id = 0       # bumps on every start, so a stopped job cannot report back
 
     def snapshot(self, since=0):
         with self.lock:
             return {'state': self.state, 'title': self.title, 'message': self.message,
-                    'log': self.log[since:], 'next': len(self.log)}
+                    'log': self.log[since:], 'next': len(self.log), 'help': self.help}
 
     def start(self, title, fn):
         with self.lock:
             if self.state == 'running':
                 return False
             self.state, self.title, self.log, self.message = 'running', title, [], ''
+            self.help = None
             self.run_id += 1
             run_id = self.run_id
         threading.Thread(target=self._run, args=(fn, run_id), daemon=True).start()
@@ -113,8 +115,11 @@ def capture(args, timeout=None):
 # ---- build and play ---------------------------------------------------------
 
 def build(job):
+    import history
     job.write('Building your changes...')
     start = time.monotonic()
+    snap = history.before_build()
+    lines_before = len(getattr(job, 'log', []))
     common.watch_saves(True)
     try:
         code = run(job, ['make', '-j%d' % (os.cpu_count() or 2)])
@@ -128,9 +133,30 @@ def build(job):
                 pass
     took = _duration(time.monotonic() - start)
     if code != 0:
-        return False, 'The build failed. The lines just above the end of the log say what is wrong.'
+        if code < 0:
+            return False, 'The build was stopped.'
+        explain_failure(job, lines_before)
+        return False, 'The game could not be built. See what went wrong below.'
+    history.mark_good(snap)
     job.write('Build took %s.' % took)
     return True, 'Build finished in %s.' % took
+
+
+def explain_failure(job, start=0):
+    import buildhelp
+    import history
+    try:
+        help = buildhelp.explain(job.log[start:]) or {'what': 'The build stopped with an error.', 'where': '', 'open': None}
+    except Exception as exc:  # never hide the failure itself
+        help = {'what': 'The build stopped with an error (%s).' % exc, 'where': '', 'open': None}
+    help['canGoBack'] = history.has_good()
+    changed = []
+    for rel in history.changed_since_good() if help['canGoBack'] else []:
+        where = buildhelp.place(rel)['where']
+        if where not in changed:
+            changed.append(where)
+    help['changed'] = changed[:12]
+    job.help = help
 
 
 def _duration(seconds):

@@ -79,6 +79,11 @@ function setMapData(d) {
   W.personIdx = null;
   W.person = null;
   W.pEdits = null;
+  W.door = null;
+  W.doorEdit = null;
+  W.sign = null;
+  W.signData = null;
+  W.signEdits = {};
 }
 
 function walkable(x, y) { return W.map.walls[y * W.map.width + x] === '0'; }
@@ -107,9 +112,18 @@ function renderMapCanvas() {
     node.style.top = (y + 1 - h) * cell + 'px';
   };
   for (const w of d.warps) {
-    const n = el('div', { class: 'mk warp', title: w.toName ? `Door to ${w.toName}` : 'Door' });
+    const n = el('div', { class: 'mk warp' + (W.tab === 'doors' && W.door === w.index ? ' sel' : ''),
+      title: (w.toName ? `Door to ${w.toName}` : 'Door') + ' – click to change where it leads' });
     n.style.width = n.style.height = cell + 'px';
+    n.addEventListener('click', e => { if (W.mode !== 'select') return; e.stopPropagation(); openDoor(w.index); });
     place(n, w.x, w.y);
+    wrap.append(n);
+  }
+  for (const sg of d.signs || []) {
+    const n = el('div', { class: 'mk signmk' + (W.tab === 'doors' && W.sign === sg.index ? ' sel' : ''), title: 'Sign – click to change what it says' }, '✎');
+    n.style.width = n.style.height = cell + 'px';
+    n.addEventListener('click', e => { if (W.mode !== 'select') return; e.stopPropagation(); openSign(sg.index); });
+    place(n, sg.x, sg.y);
     wrap.append(n);
   }
   for (const o of d.objects) {
@@ -220,16 +234,17 @@ function renderMapEditor() {
     el('button', { class: 'btn small ghost', title: 'Zoom out', onclick: () => { W.zoom = Math.max(1, W.zoom - 1); renderMapEditor(); } }, '−'),
     el('span', { class: 'note', style: 'margin:0' }, `${W.zoom}×`),
     el('button', { class: 'btn small ghost', title: 'Zoom in', onclick: () => { W.zoom = Math.min(4, W.zoom + 1); renderMapEditor(); } }, '+'));
-  const hint = { select: 'Drag items and people to move them. Click someone to see their script and what they say.', ball: 'Click a spot on the map to place an item ball there.',
+  const hint = { select: 'Drag items and people to move them. Click someone to see their script and what they say. Click a door (blue square) or a sign (✎) to change it.', ball: 'Click a spot on the map to place an item ball there.',
     hidden: 'Click a spot to hide an item there.', trainer: 'Click where the new trainer should stand.' }[W.mode];
   const left = el('div', { class: 'mapleft' }, tools,
     el('div', { class: 'note maphint' }, hint, ' ', el('span', { id: 'mapCoords' })),
     el('div', { class: 'mapscroll' + (W.mode !== 'select' ? ' placing' : '') }, renderMapCanvas()));
   const tabs = [['items', `Items (${W.items.length})`], ['wild', 'Wild Pokémon'], ['people', 'Trainers & people'],
+    ['doors', `Doors & signs (${d.warps.length + (d.signs || []).length})`],
     ['shops', `Shop${W.shops.length ? ` (${W.shops.length})` : ''}`], ['gifts', `Gifts & encounters${W.gifts.length ? ` (${W.gifts.length})` : ''}`]];
   const panel = el('div', { class: 'mappanel' },
     el('div', { class: 'subtabs' }, tabs.map(([k, label]) => el('button', { class: 'subtab' + (W.tab === k ? ' active' : ''), onclick: () => { W.tab = k; renderMapEditor(); } }, label))),
-    { items: renderItemsPanel, wild: renderWildPanel, people: renderPeoplePanel, shops: renderShopsPanel, gifts: renderGiftsPanel }[W.tab]());
+    { items: renderItemsPanel, wild: renderWildPanel, people: renderPeoplePanel, doors: renderDoorsPanel, shops: renderShopsPanel, gifts: renderGiftsPanel }[W.tab]());
   root.replaceChildren(
     el('div', { class: 'savebar' },
       el('h2', {}, d.name, el('span', { class: 'idtag' }, d.id)),
@@ -487,7 +502,8 @@ function renderPeoplePanel() {
   const trainersHere = W.map.objects.filter(o => o.kind === 'trainer');
   out.append(el('div', { class: 'rowline', style: 'margin-bottom:8px' },
     el('button', { class: 'btn primary small', onclick: () => { W.mode = 'trainer'; renderMapEditor(); toast('Click the map where the new trainer should stand.'); } }, '+ New trainer'),
-    el('span', { class: 'note', style: 'margin:0' }, `Room for ${W.map.trainerRoom} more new trainer${W.map.trainerRoom === 1 ? '' : 's'} in the game.`)));
+    el('span', { class: 'note', style: 'margin:0' }, `Room for ${W.map.trainerRoom} more new trainer${W.map.trainerRoom === 1 ? '' : 's'} in the game.`),
+    el('button', { class: 'btn small ghost', title: 'Make space for 48 more brand-new trainers', onclick: makeTrainerRoom }, 'Make more room')));
   const row = o => el('div', { class: 'rowline mapitem' + (W.personIdx === o.index ? ' sel' : ''), style: 'cursor:pointer', onclick: () => loadPerson(o.index) },
     owSprite(index.ow.get(o.graphics_id), 1),
     el('div', { class: 'grow' }, el('div', {}, personName(o)), el('div', { class: 'note', style: 'margin:0' }, `x ${o.x}, y ${o.y}` + (o.script && o.script !== '0x0' ? '' : ' · says nothing yet'))),
@@ -499,6 +515,16 @@ function renderPeoplePanel() {
   out.append(el('h3', { class: 'sectionhead' }, 'Everyone else'),
     people.length ? el('div', { class: 'rows' }, people.map(row)) : el('p', { class: 'note' }, 'Nobody else is here.'));
   return out;
+}
+
+async function makeTrainerRoom() {
+  if (!confirm('Make room for 48 more new trainers?\n\nThis moves where the game keeps its saved progress, so an old save file will act strangely. Start a new game after this (Recent changes can undo it).')) return;
+  try {
+    const res = await api('/api/trainer/room', {});
+    W.map.trainerRoom = res.room;
+    renderMapEditor();
+    toast(`Room for ${res.room} new trainers now. The next Play rebuilds most of the game, so it takes a few minutes.`);
+  } catch (e) { toast(e.message, true); }
 }
 
 function openNewTrainer(x, y) {
@@ -658,8 +684,18 @@ async function saveMap() {
         await api('/api/gift', { file: g.file, line: g.line, expect: g.text, species: g.species, level: g.level, item: g.itemChanged ? g.item : null });
       }
     }
+    if (W.dirty.has('door') && W.doorEdit?.dest && W.doorEdit.warps?.length) {
+      await api('/api/map/warp', { map: d.map, index: W.door, dest: W.doorEdit.dest, destWarp: W.doorEdit.destWarp, both: W.doorEdit.both });
+    }
+    if (W.dirty.has('sign') && signTexts().length) await api('/api/map/sign', { map: d.map, index: W.sign, texts: signTexts() });
+    const keepDoor = W.door, keepSign = W.sign, keepTab = W.tab;
     W.dirty.clear();
     await openMap(d.map);
+    if (keepTab === 'doors') {
+      if (keepDoor !== null && keepDoor !== undefined) await openDoor(keepDoor);
+      else if (keepSign !== null && keepSign !== undefined) await openSign(keepSign);
+      else { W.tab = 'doors'; renderMapEditor(); }
+    }
     W.list = await api('/api/maps');
     renderMapList();
     toast('Saved. Press Play to try it.');
@@ -688,3 +724,109 @@ views.maps = {
     } catch (e) { $('#mapList').replaceChildren(el('div', { class: 'warnbox' }, e.message)); }
   },
 };
+
+// ---- doors and signs ---------------------------------------------------------------------------
+async function openDoor(idx) {
+  W.tab = 'doors';
+  W.door = idx;
+  W.sign = null;
+  const w = W.map.warps.find(x => x.index === idx);
+  W.doorEdit = { dest: w.toFolder || '', destWarp: w.toWarp, both: false, warps: null };
+  renderMapEditor();
+  if (w.toFolder) await loadDoorTargets(w.toFolder);
+}
+
+async function loadDoorTargets(folder) {
+  try {
+    const list = await api('/api/map/warps?map=' + encodeURIComponent(folder));
+    if (W.doorEdit && W.doorEdit.dest === folder) { W.doorEdit.warps = list; renderMapEditor(); }
+  } catch (e) { toast(e.message, true); }
+}
+
+async function openSign(idx) {
+  if (W.dirty.has('sign') && W.sign !== idx && !confirm('You have unsaved changes to this sign. Throw them away?')) return;
+  W.dirty.delete('sign');
+  W.tab = 'doors';
+  W.sign = idx;
+  W.door = null;
+  W.signData = null;
+  W.signEdits = {};
+  renderMapEditor();
+  try { W.signData = await api(`/api/map/sign?map=${encodeURIComponent(W.map.map)}&index=${idx}`); } catch (e) { toast(e.message, true); }
+  renderMapEditor();
+}
+
+function renderDoorCard() {
+  const w = W.map.warps.find(x => x.index === W.door);
+  if (!w) return null;
+  const ed = W.doorEdit;
+  const mapSel = el('select', { class: 'grow', onchange: () => { ed.dest = mapSel.value; ed.destWarp = 0; ed.warps = null; markMapDirty('door'); renderMapEditor(); loadDoorTargets(ed.dest); } },
+    w.toFolder ? null : el('option', { value: '' }, w.toName ? `(${w.toName})` : '(pick a map)'),
+    (W.list || []).map(m => el('option', { value: m.map, selected: m.map === ed.dest }, m.name)));
+  const warpSel = el('select', { onchange: () => { ed.destWarp = parseInt(warpSel.value, 10); markMapDirty('door'); } },
+    (ed.warps || []).map(t => el('option', { value: t.index, selected: t.index === ed.destWarp }, `Door ${t.index + 1} (x ${t.x}, y ${t.y})${t.toName ? ' – leads to ' + t.toName : ''}`)));
+  const both = el('input', { type: 'checkbox', checked: ed.both, onchange: () => { ed.both = both.checked; markMapDirty('door'); } });
+  return el('div', { class: 'card personcard', style: 'padding:12px' },
+    el('div', { class: 'rowline', style: 'margin-bottom:8px' },
+      el('div', { class: 'grow' }, el('h3', { style: 'margin:0' }, `Door ${w.index + 1}`), el('div', { class: 'note', style: 'margin:0' }, `x ${w.x}, y ${w.y} · leads to ${w.toName || 'nowhere yet'}`)),
+      w.toFolder ? el('button', { class: 'btn small', title: 'Open the map this door leads to', onclick: () => openMap(w.toFolder, false) }, 'Go there →') : null,
+      el('button', { class: 'iconbtn', title: 'Close', onclick: () => { W.door = null; W.dirty.delete('door'); renderMapEditor(); } }, '✕')),
+    w.to === 'MAP_DYNAMIC' ? el('p', { class: 'note' }, 'This door takes the player back to wherever they came in from (like the exit of a Pokémon Center). You can point it at a fixed place instead.') : null,
+    el('label', { class: 'field' }, el('span', {}, 'Leads to the map'), mapSel),
+    el('label', { class: 'field' }, el('span', {}, 'Comes out at'), ed.dest ? (ed.warps ? warpSel : el('span', { class: 'note' }, 'Loading its doors…')) : el('span', { class: 'note' }, 'Pick a map first.')),
+    el('label', { class: 'row', style: 'gap:8px;margin-top:6px' }, both, 'Also make that door lead back here'),
+    el('p', { class: 'note' }, 'The player comes out standing on the door you pick.'),
+    el('div', { class: 'row', style: 'justify-content:flex-end' },
+      el('button', { class: 'btn primary small', disabled: !ed.dest || !ed.warps || !ed.warps.length, onclick: saveDoor }, 'Save door')));
+}
+
+async function saveDoor() { await saveMap(); }
+
+function renderSignCard() {
+  const sg = (W.map.signs || []).find(x => x.index === W.sign);
+  if (!sg) return null;
+  const p = W.signData;
+  const card = el('div', { class: 'card personcard', style: 'padding:12px' },
+    el('div', { class: 'rowline', style: 'margin-bottom:8px' },
+      el('div', { class: 'grow' }, el('h3', { style: 'margin:0' }, 'Sign'), el('div', { class: 'note', style: 'margin:0' }, `x ${sg.x}, y ${sg.y}`)),
+      el('button', { class: 'iconbtn', title: 'Close', onclick: () => { if (W.dirty.has('sign') && !confirm('Throw away your changes to this sign?')) return; W.sign = null; W.dirty.delete('sign'); renderMapEditor(); } }, '✕')));
+  if (!p) { card.append(el('div', { class: 'note' }, 'Loading…')); return card; }
+  if (!p.texts.length) { card.append(el('div', { class: 'note' }, 'This sign has no words of its own (it runs a special script). You can change that in the Scripts tab.')); return card; }
+  for (const t of p.texts) {
+    const preview = el('div', { class: 'boxes' });
+    const ta = el('textarea', { class: 'short', value: W.signEdits[t.label] ?? t.text,
+      oninput: () => { W.signEdits[t.label] = ta.value; markMapDirty('sign'); renderBoxes(ta.value, preview); } });
+    renderBoxes(ta.value, preview);
+    card.append(el('div', { class: 'persontext' }, el('div', { class: 'boxlabel' }, textTitle(t.label)), el('div', { class: 'textedit' }, ta, preview)));
+  }
+  if (p.usedBy > 1) card.append(el('div', { class: 'note' }, 'Other signs use the same words, so they change too.'));
+  card.append(el('div', { class: 'row', style: 'justify-content:flex-end' },
+    el('button', { class: 'btn primary small', onclick: saveSign }, 'Save sign')));
+  return card;
+}
+
+async function saveSign() { await saveMap(); }
+
+function signTexts() {
+  const p = W.signData;
+  if (!p) return [];
+  return p.texts.filter(t => W.signEdits[t.label] !== undefined && W.signEdits[t.label] !== t.text)
+    .map(t => ({ file: t.file, label: t.label, text: W.signEdits[t.label] }));
+}
+
+function renderDoorsPanel() {
+  const out = el('div', {});
+  const card = W.door !== null && W.door !== undefined ? renderDoorCard() : W.sign !== null && W.sign !== undefined ? renderSignCard() : null;
+  if (card) out.append(card);
+  else out.append(el('p', { class: 'note' }, 'Click a door (blue square) or a sign (✎) on the map, or pick one below.'));
+  const doors = W.map.warps.map(w => el('div', { class: 'rowline mapitem' + (W.door === w.index ? ' sel' : ''), style: 'cursor:pointer', onclick: () => openDoor(w.index) },
+    el('span', { class: 'kindtag ball' }, 'Door ' + (w.index + 1)),
+    el('div', { class: 'grow' }, 'to ' + (w.toName || '?')),
+    el('span', { class: 'note', style: 'margin:0' }, `x ${w.x}, y ${w.y}`)));
+  out.append(el('h3', { class: 'sectionhead' }, 'Doors and exits'), doors.length ? el('div', { class: 'rows' }, doors) : el('p', { class: 'note' }, 'No doors on this map.'));
+  const signs = (W.map.signs || []).map(sg => el('div', { class: 'rowline mapitem' + (W.sign === sg.index ? ' sel' : ''), style: 'cursor:pointer', onclick: () => openSign(sg.index) },
+    el('span', { class: 'kindtag hid' }, 'Sign'), el('div', { class: 'grow' }, camelWords(sg.script.replace(/^.*_EventScript_/, ''))),
+    el('span', { class: 'note', style: 'margin:0' }, `x ${sg.x}, y ${sg.y}`)));
+  out.append(el('h3', { class: 'sectionhead' }, 'Signs'), signs.length ? el('div', { class: 'rows' }, signs) : el('p', { class: 'note' }, 'No signs on this map.'));
+  return out;
+}
