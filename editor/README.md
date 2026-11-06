@@ -57,6 +57,8 @@ repository through Update and reach friends through the team copy too.
 
 **Team codes**: the owner makes a fine-grained GitHub token limited to the team repository (Contents: read and write) and the editor wraps it with the repository name into a code starting `EMERALD-`. Friends paste the code and their name in Team to join, with no GitHub account; their changes carry that name. Anyone with the code can change the game; the owner locks people out by deleting that token on GitHub and making a new code.
 
+**Projects** (📁 at the top left) keeps several games side by side, such as your own hack and team games. Each project is a full game folder with its own edits, builds, saved versions and team. New projects go in `Emerald-Projects/<name>` next to the first game folder and are made with a local `git clone`, so nothing big is downloaded: *Original game* resets to `origin/master` (the newest editor, none of your edits), and *Copy of this game* keeps everything. Opening a project restarts the editor from that folder's own `editor/server.py`, and the next start opens the project used last (`~/.config/emerald-editor/projects.json`). A GitHub sign-in is shared by all projects; a team code is kept with its project only (`.git/emerald-team.json`).
+
 ## Code layout
 
 - `server.py`: HTTP server and API routes (localhost only).
@@ -67,6 +69,7 @@ repository through Update and reach friends through the team copy too.
 - `species.py`: reads and edits Pokémon data and level-up moves.
 - `configs.py`: reads and changes the `include/config` switches.
 - `tasks.py`: build, play and update jobs (and stopping them).
+- `projects.py`: the list of game folders, making new ones and switching between them (`static/projects.js`).
 - `team.py`: team games (GitHub sign-in, invites, share and get changes, picking versions when changes clash). Page side in `static/team.js`.
 - `mapview.py`: draws maps from their tilesets (a small PNG reader/writer, no extra packages) and saves items and positions; new items get a `FLAG_UNUSED_*` flag nothing else uses.
 - `wild.py`: wild Pokémon per map. `shops.py`: Poké Mart lists and prices. `gifts.py`: starters, gifts and one-time encounters.

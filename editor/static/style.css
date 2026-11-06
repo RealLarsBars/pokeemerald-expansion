@@ -338,3 +338,13 @@ main { flex: 1; min-height: 0; }
 .team .mono { font-family: ui-monospace, Consolas, monospace; font-size: 12px; }
 .team details.teammore { margin-top: 12px; }
 .team details.teammore summary { cursor: pointer; color: var(--muted); font-size: 13px; }
+
+/* Projects */
+.projectbtn { flex-shrink: 0; max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; margin-right: 6px; }
+.list.projects { border: 1px solid var(--line); border-radius: 8px; margin-bottom: 16px; }
+.item.project { display: flex; gap: 8px; align-items: center; padding: 10px 12px; border-bottom: 1px solid var(--line); }
+.item.project:last-child { border-bottom: 0; }
+.item.project.active { background: var(--accent-soft); }
+.item.project .sub { word-break: break-all; }
+.tag { display: inline-block; font-size: 11px; font-weight: 600; padding: 1px 7px; border-radius: 10px; margin-left: 6px; background: var(--panel-2); color: var(--muted); border: 1px solid var(--line); }
+.tag.team { color: var(--accent); }

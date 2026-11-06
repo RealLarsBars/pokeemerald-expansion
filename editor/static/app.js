@@ -1784,15 +1784,15 @@ async function pollJob() {
 
 let jobDone = null;   // called once when the current job finishes
 
-async function startJob(path, title, onDone = null, confirmed = false) {
+async function startJob(path, title, onDone = null, confirmed = false, body = {}) {
   if (!confirmed && anyDirty() && !confirm('Some changes are not saved yet and will not be included. Continue?')) return;
   try {
-    let res = await api(path, {});
+    let res = await api(path, body);
     if (!res.started) {
       // Something is still running (or stuck). Offer to stop it and go ahead.
       if (!confirm('The editor is still busy with something else. Stop that and continue?')) return;
       if (!(await stopJob(false))) return;
-      res = await api(path, {});
+      res = await api(path, body);
       if (!res.started) { toast('The editor is still busy. Try again in a moment.', true); return; }
     }
     jobDone = onDone;
