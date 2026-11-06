@@ -273,10 +273,14 @@ def randomize_starters(ov, opt, rng, report):
     elif mode == 'triangle':
         new = []
         for ty in ('TYPE_GRASS', 'TYPE_FIRE', 'TYPE_WATER'):
-            c = [i['const'] for i in three_stage if ty in i['types']]
-            new.append(rng.choice(c))
+            # with randomized evolutions or types there may be no three-stage line of a type
+            c = [i['const'] for i in three_stage if ty in i['types']] or [i['const'] for i in pick.all if ty in i['types']] \
+                or [i['const'] for i in pick.all]
+            new.append(rng.choice([x for x in c if x not in new] or c))
     else:
         pool = three_stage if opt.get('threeStage', True) else [i for i in pick.all if i['stage'] == 1]
+        if len(pool) < 3:
+            pool = pick.all
         new = rng.sample([i['const'] for i in pool], 3)
     text = ov.read(STARTERS)
     for kind, s in zip(('GRASS', 'FIRE', 'WATER'), new):
@@ -479,10 +483,18 @@ def check_party(text):
 def run(settings, apply=False):
     """settings: {seed, wild:{on,...}, trainers:{...}, starters:{...}, hard:{...}, caps:{...}, candy:{on}, comedy:{...}}"""
     import comedy
+    import randomizer
     seed = str(settings.get('seed') or '').strip() or str(random.randrange(10 ** 8))
     ov = Overlay()
     report = Report()
-    fundata.reset_caches()
+    fundata.set_reader(ov.read)  # Pokemon data read through the pending changes
+    try:
+        return _run(settings, apply, seed, ov, report, comedy, randomizer)
+    finally:
+        fundata.set_reader(None)
+
+
+def _run(settings, apply, seed, ov, report, comedy, randomizer):
 
     def rng(part):
         return random.Random('%s:%s' % (seed, part))
@@ -491,13 +503,15 @@ def run(settings, apply=False):
         keep = edited_trainers(ov.read(PARTY))
         if keep:
             report.add('Kept as you edited them', sorted(keep))
-    on = lambda k: settings.get(k, {}).get('on')  # noqa: E731
+    on = lambda k: (settings.get(k) or {}).get('on')  # noqa: E731
+    randomizer.run_before(ov, settings, rng, report)
     if on('starters'):
         randomize_starters(ov, settings['starters'], rng('starters'), report)
-    if on('wild'):
+    if on('wild') and not (settings['wild'].get('typeThemed') or settings['wild'].get('catchEmAll')):
         randomize_wild(ov, settings['wild'], rng('wild'), report)
-    if on('trainers'):
+    if on('trainers') and settings['trainers'].get('mode') != 'typeThemed':
         randomize_trainers(ov, settings['trainers'], rng('trainers'), report, keep)
+    randomizer.run_after(ov, settings, rng, report, keep)
     if on('hard'):
         hard_mode(ov, settings['hard'], rng('hard'), report, keep)
     if on('caps'):
@@ -506,6 +520,7 @@ def run(settings, apply=False):
         free_rare_candy(ov, report)
     if on('comedy'):
         comedy.apply(ov, settings['comedy'], rng('comedy'), report)
+    randomizer.finish(ov, settings, report)
     if PARTY in ov.files:
         problems = check_party(ov.files[PARTY])
         if problems:

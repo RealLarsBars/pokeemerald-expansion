@@ -20,6 +20,20 @@ REGIONAL = ('isAlolanForm', 'isGalarianForm', 'isHisuianForm', 'isPaldeanForm')
 
 
 _CONFIG = {}
+_READER = None
+
+
+def set_reader(fn):
+    """Read game files through fn(rel_path) (Fun Modes' in-memory copy) instead of the disk."""
+    global _READER
+    _READER = fn
+    reset_caches()
+
+
+def _read(path):
+    if _READER is not None:
+        return _READER(os.path.relpath(path, ROOT))
+    return read_text(path)
 
 
 def config_value(name):
@@ -27,7 +41,7 @@ def config_value(name):
     if not _CONFIG:
         raw = {}
         for path in sorted(glob.glob(os.path.join(ROOT, 'include/config/*.h'))):
-            for n, v in re.findall(r'^\s*#define\s+(\w+)\s+([^\s/]+)', read_text(path), re.M):
+            for n, v in re.findall(r'^\s*#define\s+(\w+)\s+([^\s/]+)', _read(path), re.M):
                 raw.setdefault(n, v)
         _CONFIG['__raw'] = raw
 
@@ -126,7 +140,7 @@ def pool(refresh=False):
         return _POOL
     out = {}
     for path in sorted(glob.glob(os.path.join(INFO_DIR, 'gen_*.h'))):
-        lines = list(_active_lines(read_text(path)))
+        lines = list(_active_lines(_read(path)))
         active = '\n'.join(l if a else '' for l, a in lines)
         macros = {}
         for l, a in lines:
@@ -172,7 +186,7 @@ def pool(refresh=False):
                 info[f] = bool(re.search(r'\.' + f + r'\s*=\s*TRUE', body))
             out[const] = info
     # aliases such as SPECIES_MIMIKYU = SPECIES_MIMIKYU_DISGUISED
-    consts = read_text(os.path.join(ROOT, 'include/constants/species.h'))
+    consts = _read(os.path.join(ROOT, 'include/constants/species.h'))
     aliases = {}
     for a, b in re.findall(r'^\s*(SPECIES_[A-Z0-9_]+)\s*=\s*(SPECIES_[A-Z0-9_]+)\s*,', consts, re.M):
         if b in out and a not in out:
@@ -254,7 +268,7 @@ def moves():
     global _MOVES
     if _MOVES is not None:
         return _MOVES
-    text = read_text(os.path.join(ROOT, 'src/data/moves_info.h'))
+    text = _read(os.path.join(ROOT, 'src/data/moves_info.h'))
     out = {}
     parts = re.split(r'^\s*\[(MOVE_[A-Z0-9_]+)\]\s*=\s*$', text, flags=re.M)
     for i in range(1, len(parts), 2):
@@ -293,7 +307,7 @@ def level_up_moves(const, level=100, p=None):
     if not sym:
         return []
     if _LEARN_TEXT is None:
-        _LEARN_TEXT = read_text(species.active_learnset_file()[0])
+        _LEARN_TEXT = _read(species.active_learnset_file()[0])
     m = re.search(r'struct LevelUpMove ' + re.escape(sym) + r'\[\]\s*=\s*\{(.*?)\};', _LEARN_TEXT, re.S)
     if not m:
         return []
@@ -308,7 +322,7 @@ def teachable_moves(const):
     global _TEACH
     if _TEACH is None:
         try:
-            _TEACH = json.loads(read_text(os.path.join(ROOT, 'src/data/pokemon/all_learnables.json')))
+            _TEACH = json.loads(_read(os.path.join(ROOT, 'src/data/pokemon/all_learnables.json')))
         except (OSError, ValueError):
             _TEACH = {}
     key = const[8:]
@@ -318,5 +332,6 @@ def teachable_moves(const):
 
 
 def reset_caches():
-    global _POOL, _MOVES, _LEARN_TEXT
-    _POOL = _MOVES = _LEARN_TEXT = None
+    global _POOL, _MOVES, _LEARN_TEXT, _TEACH
+    _POOL = _MOVES = _LEARN_TEXT = _TEACH = None
+    _CONFIG.clear()

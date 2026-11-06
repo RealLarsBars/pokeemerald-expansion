@@ -103,6 +103,28 @@ def _move_description(move):
     return ' '.join(''.join(parts).replace('\\n', ' ').split())
 
 
+def set_tm_description(t, item, move):
+    """items.h text with `item`'s bag description replaced by the move's own.
+    The old description may hold #if lines, so everything up to the next field goes."""
+    desc = _move_description(move)
+    if not desc:
+        return t
+    m = re.search(r'\[%s\]\s*=\s*\{' % re.escape(item), t)
+    if not m:
+        return t
+    end = t.find('\n    },', m.end())
+    d = re.compile(r'^([ \t]*)\.description\s*=\s*', re.M).search(t, m.end(), end)
+    if not d:
+        return t
+    nxt = re.compile(r'^[ \t]*\.\w+\s*=', re.M).search(t, d.end(), end)
+    stop = nxt.start() if nxt else end + 1
+    lines = _wrap(desc)
+    ind = d.group(1)
+    body = ''.join('%s    "%s%s"' % (ind, l.replace('"', '\\"'), '\\n' if i < len(lines) - 1 else '') + ('\n' if i < len(lines) - 1 else '')
+                   for i, l in enumerate(lines))
+    return t[:d.end()] + 'COMPOUND_STRING(\n' + body + '),\n' + t[stop:]
+
+
 def _rename_tm_items(renames):
     """ITEM_TM_OLD -> ITEM_TM_NEW in every file that uses it, in two steps so
     two TMs can swap moves; the TM's bag description follows the new move."""
@@ -125,16 +147,7 @@ def _rename_tm_items(renames):
     items = os.path.join(ROOT, 'src/data/items.h')
     t = read_text(items)
     for new_item, move in renames.values():
-        desc = _move_description(move)
-        if not desc:
-            continue
-        m = re.search(r'\[%s\]\s*=\s*\{.*?\.description\s*=\s*COMPOUND_STRING\((.*?)\),' % re.escape(new_item), t, re.S)
-        if not m or '[ITEM_' in t[m.start() + 2:m.start(1)]:
-            continue
-        lines = _wrap(desc)
-        body = '\n' + ''.join('            "%s%s"%s' % (l.replace('"', '\\"'), '\\n' if i < len(lines) - 1 else '', '\n' if i < len(lines) - 1 else '')
-                              for i, l in enumerate(lines))
-        t = t[:m.start(1)] + body + t[m.end(1):]
+        t = set_tm_description(t, new_item, move)
     write_text(items, t)
 
 
