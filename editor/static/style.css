@@ -332,3 +332,5 @@ main { flex: 1; min-height: 0; }
 .team .side .label { font-size: 12px; font-weight: 700; margin-bottom: 4px; }
 .team pre { margin: 0; white-space: pre-wrap; word-break: break-word; font-size: 12px; max-height: 240px; overflow: auto; }
 .team pre.ctx { color: var(--muted); padding: 2px 8px; }
+.team .autosync { display: flex; gap: 10px; align-items: flex-start; background: var(--accent-soft); border-radius: 8px; padding: 10px 12px; margin: 8px 0 12px; cursor: pointer; }
+.team .autosync input { margin-top: 3px; }

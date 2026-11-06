@@ -505,6 +505,22 @@ def _team_post(path, body):
         return _team_job('Share my changes', lambda job: team.share(job, body.get('note', ''), save))
     if path == '/api/team/get':
         return _team_job("Get friends' changes", lambda job: team.get_changes(job, save))
+    if path == '/api/team/auto':
+        team.set_auto(bool(body.get('on')))
+        return {'auto': team.auto_on()}
+    if path == '/api/team/sync':
+        # Quiet auto-sync from the page; skipped while anything else is going on.
+        if S.job.snapshot()['state'] == 'running' or not team.auto_on():
+            return {'skipped': True}
+        job = tasks.QuietJob()
+        with S.lock:
+            res = team.sync(job, save)
+        if res.get('got') or res.get('conflict'):
+            _fun_changed()
+        if job.editor_changed and not res.get('conflict'):
+            S.restart_requested = True
+            res['restarting'] = True
+        return res
     if S.job.snapshot()['state'] == 'running':
         raise ApiError('Wait for the editor to finish what it is doing first.')
     with S.lock:

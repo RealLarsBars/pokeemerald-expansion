@@ -76,6 +76,17 @@ class Job:
                 del self.log[:1000]
 
 
+class QuietJob:
+    """Stands in for Job when a step runs without the job panel (auto-sync)."""
+    def __init__(self):
+        self.proc = None
+        self.editor_changed = False
+        self.log = []
+
+    def write(self, line):
+        self.log.append(line)
+
+
 def run(job, args, cwd=ROOT):
     proc = subprocess.Popen(args, cwd=cwd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
                             text=True, errors='replace', start_new_session=True)

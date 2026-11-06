@@ -46,7 +46,7 @@ game**. Everyone signs in once with a GitHub personal access token (kept in
 invites friends by GitHub username; friends click **Join**, which accepts the
 invite and merges the team's game into their folder. **Share my changes**
 commits (with an optional note), merges what friends shared, and pushes.
-**Get friends' changes** only merges. When the same lines changed on both sides,
+**Get friends' changes** only merges. **Keep everyone up to date automatically** (on by default, per folder, `git config emerald.autoSync`) makes the page do both about once a minute while nothing is unsaved, no job is running and no window is open, then reloads what is on screen. When the same lines changed on both sides,
 the merge stays open and the editor shows each clash side by side with Keep
 mine, Keep theirs or Keep both (whole-file choice for pictures and deleted
 files); Cancel aborts the merge. New editor features still come from the public

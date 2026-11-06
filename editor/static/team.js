@@ -137,6 +137,13 @@ function teamMainBody(st) {
   return el('div', { class: 'team' },
     st.fetchError ? el('div', { class: 'warnbox' }, st.fetchError) : null,
     el('p', {}, 'Team game ', el('b', {}, st.repo), '. Signed in as ', el('b', {}, st.login), '.'),
+    el('label', { class: 'autosync' },
+      el('input', { type: 'checkbox', checked: st.auto, onchange: async (e) => {
+        try { await api('/api/team/auto', { on: e.target.checked }); await teamRefresh(); toast(e.target.checked ? 'Auto-sync is on.' : 'Auto-sync is off. Use the buttons below.'); }
+        catch (err) { toast(err.message, true); }
+      } }),
+      el('span', {}, el('b', {}, 'Keep everyone up to date automatically'),
+        el('div', { class: 'note' }, 'About once a minute, everything you saved is shared and friends\' changes come in. It waits while you have unsaved edits open, and asks you when two people changed the same thing.'))),
     el('div', { class: 'row' },
       el('div', { class: 'card grow' },
         el('h3', {}, 'Your changes'),
@@ -244,17 +251,43 @@ async function openConflicts() {
 
 $('#teamBtn').addEventListener('click', openTeam);
 
-// Quietly look for friends' changes now and every few minutes, so the Team badge shows them.
-(function teamWatch() {
-  let first = true;
-  const tick = async () => {
-    try {
-      const st = await teamRefresh(true);
-      // Left half-way through picking versions last time: pick up where it stopped.
-      if (st.merging && first && $('#modal').classList.contains('hidden')) openConflicts();
-    } catch (e) { /* offline is fine */ }
-    first = false;
-  };
-  setTimeout(tick, 3000);
-  setInterval(tick, 5 * 60 * 1000);
-})();
+// Auto-sync about once a minute; otherwise just look for friends' changes for the badge.
+let teamSyncing = false;
+
+function teamIdle() {
+  const jobBusy = $('#teamBtn').disabled;   // a build, update or team step is running
+  return !jobBusy && !anyDirty() && $('#modal').classList.contains('hidden');
+}
+
+async function teamAfterChanges(names) {
+  toast('Got changes from ' + (names.join(', ') || 'your team') + '.');
+  try { await loadTrainerList(); } catch (e) { /* ignore */ }
+  if (typeof T !== 'undefined' && T.current && !T.dirty && typeof openTrainer === 'function') {
+    try { openTrainer(T.current.id); } catch (e) { /* ignore */ }
+  }
+  const active = document.querySelector('.view.active');
+  if (active) views[active.id.replace('view-', '')]?.onShow?.();
+}
+
+async function teamTick(first) {
+  if (teamSyncing) return;
+  teamSyncing = true;
+  try {
+    let st = await teamRefresh(false);
+    if (st.merging) { if (first && $('#modal').classList.contains('hidden')) openConflicts(); return; }
+    if (st.repo && st.signedIn && st.auto && teamIdle()) {
+      const res = await api('/api/team/sync', {});
+      if (res.restarting) { toast('Got a newer editor from your team. Restarting...'); waitForRestart(); return; }
+      if (res.conflict) { await teamRefresh(); openConflicts(); return; }
+      if (res.got) await teamAfterChanges(res.from || []);
+      $('#teamBtn').title = res.ok === false ? 'Auto-sync could not reach GitHub: ' + res.message : 'Team game: up to date';
+      await teamRefresh(false);
+    } else if (st.repo && st.signedIn) {
+      await teamRefresh(true);
+    }
+  } catch (e) { /* offline is fine; try again next time */ }
+  finally { teamSyncing = false; }
+}
+
+setTimeout(() => teamTick(true), 3000);
+setInterval(() => teamTick(false), 60 * 1000);

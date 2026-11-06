@@ -183,7 +183,7 @@ def status(fetch=False):
     me = _load()
     repo = team_repo()
     out = {'signedIn': bool(me.get('token')), 'login': me.get('login', ''), 'repo': repo,
-           'tokenUrl': TOKEN_URL, 'merging': merging()}
+           'tokenUrl': TOKEN_URL, 'merging': merging(), 'auto': auto_on()}
     if not repo:
         return out
     if fetch and me.get('token'):
@@ -366,6 +366,33 @@ def share(job, note, save_my_changes):
         job.write('A friend shared at the same moment. Trying again...')
         time.sleep(1)
     return False, 'Friends kept sharing at the same time. Wait a minute and click Share again.'
+
+
+def auto_on():
+    return git_out('config', 'emerald.autoSync') != 'false'
+
+
+def set_auto(on):
+    git('config', 'emerald.autoSync', 'true' if on else 'false')
+
+
+def sync(job, save_my_changes):
+    """Auto-sync: share your saved edits and bring in friends' in one quiet step."""
+    if not team_repo() or not token() or merging():
+        return {'skipped': True}
+    code, msg = git('fetch', '--quiet', REMOTE)
+    if code != 0:
+        return {'ok': False, 'message': _friendly_git_error(msg)}
+    ref = '%s/%s' % (REMOTE, BRANCH)
+    who = []
+    for n in git_out('log', '--no-merges', '--format=%an', 'HEAD..' + ref).splitlines():
+        if n and n not in who:
+            who.append(n)
+    got = int(git_out('rev-list', '--count', '--no-merges', 'HEAD..' + ref) or 0)
+    ok, msg = share(job, '', save_my_changes)
+    conflict = merging()
+    return {'ok': ok or conflict, 'message': msg, 'got': 0 if (conflict or not ok) else got, 'from': who,
+            'shared': ok and msg.startswith('Shared'), 'conflict': conflict}
 
 
 def push(job):
