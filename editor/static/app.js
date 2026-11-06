@@ -53,7 +53,8 @@ function toast(msg, bad = false) {
   toastTimer = setTimeout(() => t.classList.add('hidden'), bad ? 6000 : 2500);
 }
 
-function imgUrl(path) { return path ? '/img?path=' + encodeURIComponent(path) : ''; }
+let IMG_V = 0;   // bumped when a picture changes (your own pictures), so the page shows the new one
+function imgUrl(path) { return path ? '/img?path=' + encodeURIComponent(path) + (IMG_V ? '&v=' + IMG_V : '') : ''; }
 
 function debounce(fn, ms) {
   let t = null;
@@ -402,6 +403,13 @@ function renderTrainer() {
       picImg.src = imgUrl(p.img);
     }),
   }, picImg, el('div', { class: 'hint' }, 'Change picture'));
+  const ownPic = el('button', {
+    class: 'btn small ghost', style: 'margin-top:6px', title: 'Put in a picture of your own (PNG, JPG...) instead of this battle picture',
+    onclick: () => {
+      const cur = toConst('TRAINER_PIC', getField('Pic'));
+      openPictureImport('trainer', cur, index.pics.get(cur)?.name || getField('Pic'), () => { picImg.src = imgUrl(index.pics.get(cur)?.img); });
+    },
+  }, '📷 Use my own picture');
 
   const classes = GD.classes.map(c => ({ value: c.name, label: c.name }));
   const classValue = index.classes.get(toConst('TRAINER_CLASS', getField('Class')))?.name || getField('Class');
@@ -414,7 +422,7 @@ function renderTrainer() {
 
   const identity = el('div', { class: 'card' },
     el('h3', {}, 'Trainer'),
-    el('div', { class: 'row' }, picPick,
+    el('div', { class: 'row' }, el('div', { style: 'display:flex;flex-direction:column;align-items:center' }, picPick, ownPic),
       el('div', { class: 'grid' },
         inputField('Name', getField('Name'), v => { setField('Name', v); $('.savebar h2').firstChild.textContent = v || t.id; }, { maxlength: 12 }),
         selectField('Class', classes, classValue, v => setField('Class', v)),
@@ -497,6 +505,13 @@ function renderAppearances() {
         markTrainerDirty();
       }, 'ow'),
     }, holder, el('div', { class: 'note' }, o.mapName), el('div', { class: 'hint' }, 'Change sprite')));
+    spriteRow.append(el('button', {
+      class: 'btn small ghost', style: 'align-self:center', title: 'Put in a picture of your own for this sprite',
+      onclick: () => {
+        const gid = T.sprites[key]?.graphics_id || o.graphics_id;
+        openPictureImport('overworld', gid, index.ow.get(gid)?.name || gid, () => draw(gid));
+      },
+    }, '📷 Use my own'));
   }
   if (spriteRow.children.length) card.append(spriteRow);
 
@@ -785,6 +800,7 @@ function renderSpecies() {
     el('h2', {}, d.speciesName || sp?.name || d.id, el('span', { class: 'idtag' }, d.id)),
     el('span', { id: 'speciesDirty', class: 'dirty' }, P.dirty ? 'Unsaved changes' : ''),
     el('button', { class: 'btn ghost', onclick: () => { P.dirty = false; openSpecies(d.id); } }, 'Revert'),
+    el('button', { class: 'btn ghost', title: 'Put in your own front and back pictures for this Pokémon', onclick: () => openPictureImport('pokemon', d.id, d.speciesName || sp?.name || d.id, () => { renderSpecies(); renderSpeciesList(); }) }, '📷 New pictures'),
     el('button', { class: 'btn primary', onclick: saveSpecies, disabled: !d.editable }, 'Save'));
   if (!d.editable) {
     root.replaceChildren(saveBar, el('div', { class: 'warnbox' }, d.note || 'This Pokémon cannot be edited here.'));
@@ -1941,6 +1957,7 @@ function showJob(title) {
   $('#jobMessage').className = '';
   $('#jobMessage').innerHTML = '<span class="spinner"></span>Working...';
   $('#jobLog').textContent = '';
+  renderJobHelp(null);
   $('#jobStop').classList.remove('hidden');
   jobNext = 0;
 }
@@ -1974,7 +1991,8 @@ async function pollJob() {
     msg.textContent = j.message;
     msg.className = j.state === 'done' ? 'ok' : 'bad';
     $('#jobStop').classList.add('hidden');
-    if (j.state === 'failed' && !/^Stopped/.test(j.message)) $('#jobLog').classList.remove('hidden');
+    renderJobHelp(j.state === 'failed' ? j.help : null);
+    if (j.state === 'failed' && !j.help && !/^Stopped/.test(j.message)) $('#jobLog').classList.remove('hidden');
     setJobButtons(false);
     if (j.title === 'Update' && j.state === 'done' && /^Updated/.test(j.message)) waitForRestart();
     if (jobDone) { const cb = jobDone; jobDone = null; cb(j); }

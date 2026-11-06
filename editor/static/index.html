@@ -14,12 +14,16 @@
     <button class="tab active" data-view="trainers">Trainers</button>
     <button class="tab" data-view="maps">Maps</button>
     <button class="tab" data-view="pokemon">Pok&eacute;mon data</button>
+    <button class="tab" data-view="moves">Moves &amp; items</button>
     <button class="tab" data-view="dialogue">Dialogue</button>
     <button class="tab" data-view="scripts">Scripts</button>
     <button class="tab" data-view="settings">Game settings</button>
     <button class="tab" data-view="fun">Fun Modes</button>
   </nav>
   <div class="actions">
+ <input id="globalSearch" class="globalsearch" type="search" placeholder="Find anything..." title="Find a trainer, map, Pokémon, move, item, text or setting">
+    <button id="helpBtn" class="btn ghost" title="What this tab does and how to use it">?</button>
+    <button id="historyBtn" class="btn ghost" title="Everything you saved, with Undo">Recent changes</button>
     <button id="teamBtn" class="btn ghost" title="Work on this game with friends: share your changes and get theirs">Team<span id="teamBadge" class="badge hidden"></span></button>
     <button id="updateBtn" class="btn ghost" title="Get the newest version of the editor">Update<span id="updateBadge" class="badge hidden"></span></button>
     <button id="exportBtn" class="btn ghost" title="Build the game and save it as a new .gba file wherever you like">Save as .gba</button>
@@ -70,6 +74,21 @@
     </aside>
     <div id="speciesEditor" class="editor">
       <div class="empty">Pick a Pok&eacute;mon on the left to change its stats, types, abilities, evolutions and moves.</div>
+    </div>
+  </section>
+
+  <!-- MOVES & ITEMS -->
+  <section id="view-moves" class="view">
+    <aside class="sidebar">
+      <div class="sidebtns" id="miKinds">
+        <button class="btn small primary" data-kind="move">Moves</button>
+        <button class="btn small" data-kind="item">Items</button>
+      </div>
+      <input id="miSearch" class="search" type="search" placeholder="Search moves or items...">
+      <div id="miList" class="list"><div class="empty">Loading...</div></div>
+    </aside>
+    <div id="miEditor" class="editor">
+      <div class="empty">Pick a move or an item on the left to change it.</div>
     </div>
   </section>
 
@@ -127,6 +146,7 @@
     <button id="jobLogToggle" class="btn small ghost">Show details</button>
     <button id="jobClose" class="btn small ghost">Close</button>
   </div>
+  <div id="jobHelp" class="jobhelp hidden"></div>
   <pre id="jobLog" class="joblog hidden"></pre>
 </div>
 
@@ -154,5 +174,8 @@
 <script src="/static/steps.js"></script>
 <script src="/static/team.js"></script>
 <script src="/static/projects.js"></script>
+<script src="/static/moves.js"></script>
+<script src="/static/pictures.js"></script>
+<script src="/static/extras.js"></script>
 </body>
 </html>

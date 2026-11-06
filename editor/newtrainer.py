@@ -3,8 +3,12 @@ src/data/trainers.party, and (if a map is chosen) a person on that map with
 a battle script and their lines in the map's scripts.inc.
 
 The game keeps one "beaten" flag per trainer and only has room for a few
-more before those flags would run into other flags, so new trainers use the
-spare slots the game leaves free (9 in Emerald)."""
+more before those flags would run into other flags. The game leaves 9 spare
+slots; add_room() makes more by raising MAX_TRAINERS_COUNT_EMERALD. Every
+flag after the trainer flags is counted from the end of them, so they all move
+along together (old save files then see the wrong flags, so a new game is
+needed). The save has about 300 spare bytes, which is room for over 2,000
+more; the editor stops at 1,400 trainers to keep space for other features."""
 
 import os
 import re
@@ -33,6 +37,22 @@ def _counts(text):
 def room():
     count, maximum = _counts(read_text(OPPONENTS_H))
     return max(0, maximum - count)
+
+
+ROOM_STEP = 48           # a multiple of 8, so the flags stay whole bytes
+ROOM_LIMIT = 1400
+
+
+def add_room(step=ROOM_STEP):
+    """Makes space for `step` more new trainers. Returns the new room."""
+    text = read_text(OPPONENTS_H)
+    count, maximum = _counts(text)
+    new_max = min(ROOM_LIMIT, maximum + step)
+    if new_max <= maximum:
+        raise NewTrainerError('There is already as much room for trainers as the editor allows.')
+    text = re.sub(r'(#define MAX_TRAINERS_COUNT_EMERALD\s+)\d+', lambda m: m.group(1) + str(new_max), text)
+    write_text(OPPONENTS_H, text)
+    return {'room': new_max - count}
 
 
 def _const_name(name, text):

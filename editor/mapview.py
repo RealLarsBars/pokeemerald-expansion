@@ -396,11 +396,17 @@ def map_detail(folder, map_index=None):
     warps = []
     for i, w in enumerate(data.get('warp_events') or []):
         dest = w.get('dest_map', '')
-        warps.append({'x': _int(w.get('x')), 'y': _int(w.get('y')), 'to': dest,
-                      'toName': map_display_name(_folder_of(dest)) if dest else ''})
+        special = dest in ('MAP_DYNAMIC', 'MAP_UNDEFINED', '')
+        warps.append({'index': i, 'x': _int(w.get('x')), 'y': _int(w.get('y')), 'to': dest,
+                      'toWarp': _int(w.get('dest_warp_id')), 'toFolder': '' if special else _folder_of(dest),
+                      'toName': 'where the player came from' if dest == 'MAP_DYNAMIC' else map_display_name(_folder_of(dest)) if dest else ''})
+    signs = []
+    for i, b in enumerate(data.get('bg_events') or []):
+        if b.get('type') == 'sign':
+            signs.append({'index': i, 'x': _int(b.get('x')), 'y': _int(b.get('y')), 'script': b.get('script', '')})
     return {'map': folder, 'name': map_display_name(folder), 'id': data.get('id', ''),
             'width': layout['width'], 'height': layout['height'], 'walls': walls, 'heights': heights,
-            'objects': objects, 'hidden': hidden, 'warps': warps}
+            'objects': objects, 'hidden': hidden, 'warps': warps, 'signs': signs}
 
 
 _FOLDER_OF = {}
@@ -414,6 +420,46 @@ def _folder_of(map_id):
             except (ValueError, OSError, MapError):
                 pass
     return _FOLDER_OF.get(map_id, map_id.replace('MAP_', '').title().replace('_', ''))
+
+
+def warps_of(folder):
+    """The doors of a map, for picking which one a door leads to."""
+    data = load_map(folder)
+    out = []
+    for i, w in enumerate(data.get('warp_events') or []):
+        dest = w.get('dest_map', '')
+        out.append({'index': i, 'x': _int(w.get('x')), 'y': _int(w.get('y')),
+                    'toName': 'where the player came from' if dest == 'MAP_DYNAMIC' else map_display_name(_folder_of(dest)) if dest else ''})
+    return out
+
+
+def save_warp(folder, index, dest_folder, dest_warp, both=False):
+    """Points one door at another map's door (and, with both, that door back here)."""
+    if not re.match(r'^\w+$', folder) or not re.match(r'^\w+$', dest_folder or ''):
+        raise MapError('Unknown map.')
+    data = load_map(folder)
+    warps = data.get('warp_events') or []
+    try:
+        w = warps[int(index)]
+    except (IndexError, ValueError):
+        raise MapError('That door is not on this map any more. Reload the map.')
+    dest = load_map(dest_folder)
+    dest_warps = dest.get('warp_events') or []
+    dest_warp = int(dest_warp)
+    if not 0 <= dest_warp < len(dest_warps):
+        raise MapError('%s has no door number %d.' % (map_display_name(dest_folder), dest_warp + 1))
+    w['dest_map'] = dest.get('id', '')
+    w['dest_warp_id'] = str(dest_warp) if isinstance(w.get('dest_warp_id'), str) else dest_warp
+    save_map(folder, data)
+    if both:
+        if dest_folder == folder:
+            data = load_map(folder)
+            dest_warps = data.get('warp_events') or []
+            dest = data
+        back = dest_warps[dest_warp]
+        back['dest_map'] = data.get('id', '')
+        back['dest_warp_id'] = str(int(index)) if isinstance(back.get('dest_warp_id'), str) else int(index)
+        save_map(dest_folder, dest)
 
 
 # ---- free flags for new items --------------------------------------------------------------
