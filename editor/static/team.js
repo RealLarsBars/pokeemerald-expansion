@@ -34,6 +34,9 @@ function teamSyncState(st) {
   const err = st.fetchError || st.syncError;
   if (err || !st.signedIn) return { cls: 'bad', icon: '⚠', short: 'Not synced',
     long: st.signedIn ? 'Could not sync with GitHub: ' + err : 'You are signed out, so nothing is being shared. Click Team to sign in.' };
+  if (st.empty) return { cls: 'bad', icon: '⚠', short: 'Not uploaded yet',
+    long: 'Your game is not on GitHub yet, so friends cannot get it. Click Team and then Share my changes to upload it. ' +
+      'The first upload is big and can take a long time. If it stops, click Share my changes again and it carries on where it left off.' };
   if (st.outgoing || st.unsaved || anyDirty()) return { cls: 'warn', icon: '●', short: 'Not shared yet',
     long: anyDirty() ? 'You have edits that are not saved yet. Save them and they are shared on the next sync.'
       : st.auto ? 'You have changes that are not on GitHub yet. They go up on the next sync (about a minute), or click Team and then Share my changes.'
@@ -207,7 +210,7 @@ function teamMainBody(st) {
   };
   invite.addEventListener('keydown', e => { if (e.key === 'Enter') doInvite(); });
   if (!st.viaCode) loadPeople();
-  const mine = st.outgoing || st.unsaved;
+  const mine = st.outgoing || st.unsaved || st.empty;
   return el('div', { class: 'team' },
     teamStatusCard(st),
     el('p', {}, 'Team game ', el('b', {}, st.repo), st.viaCode ? '. You are ' : '. Signed in as ', el('b', {}, st.login), '.'),
@@ -221,7 +224,8 @@ function teamMainBody(st) {
     el('div', { class: 'row' },
       el('div', { class: 'card grow' },
         el('h3', {}, 'Your changes'),
-        el('p', { class: 'note' }, mine ? 'You have changes your friends do not have yet.' : 'Friends already have everything you made.'),
+        el('p', { class: 'note' }, st.empty ? 'Your game is not uploaded yet. Click Share my changes to upload it.'
+          : mine ? 'You have changes your friends do not have yet.' : 'Friends already have everything you made.'),
         el('div', { class: 'searchrow' }, note,
           el('button', { class: 'btn primary', onclick: () => teamJob('/api/team/share', { note: note.value }, 'Share my changes') }, 'Share my changes'))),
       el('div', { class: 'card grow' },
